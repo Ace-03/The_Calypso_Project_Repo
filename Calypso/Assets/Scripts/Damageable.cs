@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Damageable : MonoBehaviour
+public class Damageable : MonoBehaviour, IDamageable
 {
     public int hp = 0;
 
-    public virtual void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         hp -= damage;
         if (hp <= 0)
@@ -12,7 +12,7 @@ public class Damageable : MonoBehaviour
             Die();
         }
     }
-    public virtual void Die()
+    public void Die()
     {
         Debug.Log("DIED");
     }
