@@ -1,16 +1,36 @@
 using UnityEngine;
-
-public class Command : MonoBehaviour
+public abstract class Command
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public PlayerController controller;
+
+    public abstract void Execute();
+}
+
+public class MoveCommand : Command
+{
+    private Vector3 direction;
+
+    public MoveCommand(PlayerController targetController, Vector3 moveDirection)
     {
-        
+        controller = targetController;
+        direction = moveDirection;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Execute()
     {
-        
+        controller.SetMovementVector(direction);
+    }
+}
+
+public class InteractCommand : Command
+{
+    public InteractCommand(PlayerController targetController)
+    {
+        controller = targetController;
+    }
+
+    public override void Execute()
+    {
+        controller.Interact();
     }
 }
