@@ -3,11 +3,15 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
-    public float maxSpeed;
-    public float acceleration;
-    public float deceleration;
+    private float baseMaxSpeed;
+    private float baseAcceleration;
+    private float baseDeceleration;
 
-    private float speedMultiplier = 20f;
+    private float maxSpeed;
+    private float acceleration;
+    private float deceleration;
+
+    private float rbSpeedAdjustment = 20f;
     private Rigidbody rb;
     private IInteractable currentInteractable;
     private Vector3 movementVector;
@@ -18,6 +22,8 @@ public class PlayerController : MonoBehaviour
         {
             rb = gameObject.AddComponent<Rigidbody>();
         }
+
+        InitializeMovementStats();
     }
 
     private void FixedUpdate()
@@ -32,7 +38,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (movementVector.magnitude <= 0.15f && horizontalVelocity.magnitude > 0)
         {
-            Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * (speedMultiplier / 3);
+            Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * (rbSpeedAdjustment / 3);
             rb.AddForce(brakingForce, ForceMode.Acceleration);
         }
 
@@ -41,6 +47,7 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = horizontalVelocity.normalized * maxSpeed;
         }
     }
+    
     public void SetMovementVector(Vector3 newVector)
     {
         movementVector = newVector;
@@ -59,5 +66,22 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         currentInteractable = null;
+    }
+    private void InitializeMovementStats()
+    {
+        baseMaxSpeed = PlayerStats.instance.GetMaxSpeed();
+        baseAcceleration = PlayerStats.instance.GetAcceleration();
+        baseDeceleration = PlayerStats.instance.GetDeceleration();
+
+        maxSpeed = baseMaxSpeed;
+        acceleration = baseAcceleration;
+        deceleration = baseDeceleration;
+    }
+
+    public void ApplyMovementModifiers()
+    {
+        maxSpeed = baseMaxSpeed + (baseMaxSpeed * PlayerStats.instance.GetSpdModifier() / 100);
+        acceleration = baseAcceleration + (baseAcceleration * PlayerStats.instance.GetAccModifier() / 100);
+        deceleration = baseDeceleration + (baseDeceleration * PlayerStats.instance.GetDecelModifier() / 100);
     }
 }

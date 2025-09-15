@@ -394,9 +394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a27aa4ead78114fbcb886350f57aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  acceleration: 5
-  deceleration: 5
 --- !u!54 &1425679146
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -424,6 +421,65 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1 &1436277482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1436277484}
+  - component: {fileID: 1436277483}
+  m_Layer: 0
+  m_Name: _PlayerStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1436277483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436277482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141a65c59d7d5154fbaf97b521ad7e83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  armor: 5
+  recovery: 1
+  luck: 100
+  maxSpeed: 50
+  acceleration: 5
+  deceleration: 5
+  spdModifier: 20
+  accModifier: 0
+  decelModifier: 0
+  strength: 100
+  range: 100
+  cooldown: 100
+  duration: 100
+  ammount: 100
+--- !u!4 &1436277484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436277482}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588930217
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,3 +747,4 @@ SceneRoots:
   - {fileID: 101549983}
   - {fileID: 1425679144}
   - {fileID: 499590361}
+  - {fileID: 1436277484}
