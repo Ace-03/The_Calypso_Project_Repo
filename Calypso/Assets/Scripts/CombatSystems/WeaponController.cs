@@ -6,6 +6,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     private WeaponDefinitionSO weaponData;
 
+    private GameObject weaponInstance;
     private IWeaponBehavior weaponBehavior;
     private readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
     private float nextAttackTime;
@@ -15,6 +16,10 @@ public class WeaponController : MonoBehaviour
         InitializeData();
         RecalculateStats();
         nextAttackTime = Time.time + currentStats["Cooldown"];
+
+        Debug.Log(nextAttackTime);
+        Debug.Log(currentStats["Cooldown"]);
+        Debug.Log(Time.time);
     }
 
     private void Update()
@@ -28,7 +33,8 @@ public class WeaponController : MonoBehaviour
 
     public void InitializeData()
     {
-        weaponBehavior = weaponData.weaponBehaviorPrefab.GetComponent<IWeaponBehavior>();
+        weaponInstance = Instantiate(weaponData.weaponBehaviorPrefab, transform);
+        weaponBehavior = weaponInstance.GetComponent<IWeaponBehavior>();
     }
 
     public void RecalculateStats()

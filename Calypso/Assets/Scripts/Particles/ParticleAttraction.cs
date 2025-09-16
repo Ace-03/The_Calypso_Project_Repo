@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(ParticleSystem))]
-public class ParticleAttraction : MonoBehaviour
+public class ParticleAttraction : MonoBehaviour, IWeaponBehavior
 {
     public Transform Target;
 
@@ -17,6 +17,7 @@ public class ParticleAttraction : MonoBehaviour
     [SerializeField] private float waitingTimeBeforeApplyingForce = 0.3f;
     private void Start()
     {
+        Target = GameObject.FindWithTag("Target").transform;
     }
 
     void Update()
@@ -49,5 +50,16 @@ public class ParticleAttraction : MonoBehaviour
         }
 
         system.SetParticles(particles, count);
+    }
+
+    public void Attack(WeaponController weapon)
+    {
+        Debug.Log("Running attack in weapon Controller");
+        system.Play();
+    }
+
+    public void ApplyWeaponStats(WeaponController weapon)
+    {
+        return;
     }
 }

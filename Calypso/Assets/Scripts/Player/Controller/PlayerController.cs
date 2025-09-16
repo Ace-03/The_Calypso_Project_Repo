@@ -80,8 +80,8 @@ public class PlayerController : MonoBehaviour
 
     public void ApplyMovementModifiers()
     {
-        maxSpeed = baseMaxSpeed + (baseMaxSpeed * PlayerStats.Instance.GetSpdModifier() / 100);
-        acceleration = baseAcceleration + (baseAcceleration * PlayerStats.Instance.GetAccModifier() / 100);
-        deceleration = baseDeceleration + (baseDeceleration * PlayerStats.Instance.GetDecelModifier() / 100);
+        maxSpeed = baseMaxSpeed * PlayerStats.Instance.GetSpdModifier();
+        acceleration = baseAcceleration * PlayerStats.Instance.GetAccModifier();
+        deceleration = baseDeceleration * PlayerStats.Instance.GetDecelModifier();
     }
 }

@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: NewWeaponDefinition
+  m_Name: TestWeapon
   m_EditorClassIdentifier: 
-  weaponName: 
-  weaponBehaviorPrefab: {fileID: 0}
+  weaponName: Test Weapon
+  weaponBehaviorPrefab: {fileID: 7467138609195483652, guid: 91569182eaa218b4c8f403b9f99173a0, type: 3}
   icon: {fileID: 0}
-  baseCooldown: 0
-  baseDamage: 0
-  baseProjectileSpeed: 0
-  baseDuration: 0
-  baseAmmount: 0
-  baseKnockback: 0
-  baseStun: 0
-  basePoison: 0
-  baseSlowdown: 0
+  baseCooldown: 2
+  baseDamage: 2
+  baseProjectileSpeed: 4
+  baseDuration: 4
+  baseAmmount: 4
+  requiredResources: 0
   hasAOE: 0
   aoeAreaSize: 0
   aoeTickRate: 0
   aoeShape: 0
+  baseKnockback: 0
+  baseStun: 0
+  basePoison: 0
+  baseSlowdown: 0
