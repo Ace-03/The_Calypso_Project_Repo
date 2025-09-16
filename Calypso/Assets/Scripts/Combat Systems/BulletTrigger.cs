@@ -2,7 +2,17 @@ using UnityEngine;
 
 public class BulletTrigger : MonoBehaviour
 {
-    public int bulletDamage = 1;
+    WeaponDefinitionSO weaponData;
+    public int bulletDamage = 1; // stubbed for now
+
+    private void Start()
+    {
+        // assumes weapon controller is attatched to same object for now.
+        // likely will change.
+        weaponData = GetComponent<WeaponController>()?.GetWeaponData();
+    }
+
+    
     void OnParticleCollision(GameObject other)
     {
         TryDamage(other);
@@ -17,7 +27,14 @@ public class BulletTrigger : MonoBehaviour
     {
         if (other.GetComponent<HealthSystem>() != null)
         {
-            other.GetComponent<HealthSystem>().TakeDamage(bulletDamage);
+            DamageInfo damageInfo = new DamageInfo();
+
+            if (other.CompareTag("player"))
+                damageInfo.damage = bulletDamage; // stubbed for now
+            else
+                damageInfo = DamageCalculator.Instance.GetDamageInfo(weaponData);
+
+            other.GetComponent<HealthSystem>().TakeDamage(damageInfo);
         }
     }
 }

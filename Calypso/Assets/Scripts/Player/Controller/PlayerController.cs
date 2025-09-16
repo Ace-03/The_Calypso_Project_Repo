@@ -69,9 +69,9 @@ public class PlayerController : MonoBehaviour
     }
     private void InitializeMovementStats()
     {
-        baseMaxSpeed = PlayerStats.instance.GetMaxSpeed();
-        baseAcceleration = PlayerStats.instance.GetAcceleration();
-        baseDeceleration = PlayerStats.instance.GetDeceleration();
+        baseMaxSpeed = PlayerStats.Instance.GetMaxSpeed();
+        baseAcceleration = PlayerStats.Instance.GetAcceleration();
+        baseDeceleration = PlayerStats.Instance.GetDeceleration();
 
         maxSpeed = baseMaxSpeed;
         acceleration = baseAcceleration;
@@ -80,8 +80,8 @@ public class PlayerController : MonoBehaviour
 
     public void ApplyMovementModifiers()
     {
-        maxSpeed = baseMaxSpeed + (baseMaxSpeed * PlayerStats.instance.GetSpdModifier() / 100);
-        acceleration = baseAcceleration + (baseAcceleration * PlayerStats.instance.GetAccModifier() / 100);
-        deceleration = baseDeceleration + (baseDeceleration * PlayerStats.instance.GetDecelModifier() / 100);
+        maxSpeed = baseMaxSpeed + (baseMaxSpeed * PlayerStats.Instance.GetSpdModifier() / 100);
+        acceleration = baseAcceleration + (baseAcceleration * PlayerStats.Instance.GetAccModifier() / 100);
+        deceleration = baseDeceleration + (baseDeceleration * PlayerStats.Instance.GetDecelModifier() / 100);
     }
 }

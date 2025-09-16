@@ -1,4 +1,3 @@
-using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
@@ -20,7 +19,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(DamageInfo info)
     {
         if (DEBUG_MATS)
         {
@@ -30,12 +29,12 @@ public class HealthSystem : MonoBehaviour
 
         if (bonusHP > 0)
         {
-            bonusHP -= damage;
+            bonusHP -= (int)info.damage;
         }
         if (bonusHP <= 0)
         {
             bonusHP = 0;
-            hp -= damage;
+            hp -= (int)info.damage;
         }
         if (hp <= 0) {
             Die();

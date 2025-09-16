@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public static PlayerStats instance;
+    public static PlayerStats Instance;
 
     #region Stats
     
@@ -37,26 +37,19 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Weapon Modifiers")]
     [SerializeField]
-    private float strength = 100;
+    private float strength = 5;
     [SerializeField]
-    private float range = 100;
+    private float dexterity = 5;
     [SerializeField]
-    private float cooldown = 100;
+    private float area = 5;
     [SerializeField]
-    private float duration = 100;
+    private float cooldown = 5;
     [SerializeField]
-    private int ammount = 100;
+    private float duration = 5;
+    [SerializeField]
+    private int ammount = 5;
     
     #endregion
-
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(this);
-    }
-
 
     #region Getters
 
@@ -127,10 +120,14 @@ public class PlayerStats : MonoBehaviour
     {
         return strength;
     }
-
-    public float GetRange()
+    public float GetDexterity()
     {
-        return range;
+        return dexterity;
+    }
+
+    public float GetArea()
+    {
+        return area;
     }
 
     public float GetCooldown()
@@ -221,10 +218,14 @@ public class PlayerStats : MonoBehaviour
     {
         strength = value;
     }
+    public void SetDexterity(float value)
+    {
+        dexterity = value;
+    }
 
     public void SetRange(float value)
     {
-        range = value;
+        area = value;
     }
 
     public void SetCooldown(float value)
@@ -245,4 +246,28 @@ public class PlayerStats : MonoBehaviour
     #endregion
 
     #endregion
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
+            Destroy(this);
+    }
+
+    /* ApplyPassiveModifiers exists to apply passive item
+     * effects to the weapon. 
+     * 
+     * the number of passive items and specific effects are
+     * unknown. To approach this there will likely be a
+     * "passives controller" script which holds an array of
+     * passive items. each passive will have an interface with
+     * a "ApplyModifier(PlayerStats stats)" method that 
+     * will do the work to modify the stats.
+     * 
+     */
+    public void ApplyPassiveModifiers()
+    {
+
+    }
 }

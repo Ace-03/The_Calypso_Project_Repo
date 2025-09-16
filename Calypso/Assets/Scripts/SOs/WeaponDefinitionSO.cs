@@ -1,16 +1,25 @@
 using UnityEngine;
 
-public class WeaponDefinitionSO : MonoBehaviour
+[CreateAssetMenu(fileName = "NewWeaponDefinition", menuName = "WeaponSO")]
+public class WeaponDefinitionSO : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public string weaponName;
+    public GameObject weaponBehaviorPrefab;
+    public Sprite icon;
+    public float baseCooldown;
+    public float baseDamage;
+    public float baseProjectileSpeed;
+    public float baseDuration;
+    public float baseAmmount;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool hasAOE;
+    public float aoeAreaSize;
+    public float aoeTickRate;
+    public AOEShape aoeShape;
+}
+
+public enum AOEShape
+{
+    Circle,
+    Square,
 }
