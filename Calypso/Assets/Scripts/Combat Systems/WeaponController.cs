@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class WeaponController : MonoBehaviour
 {
@@ -6,68 +7,40 @@ public class WeaponController : MonoBehaviour
     private WeaponDefinitionSO weaponData;
 
     private IWeaponBehavior weaponBehavior;
-    private float cooldown;
-
-    private bool hasAOE;
-    private float area;
-    private float aoeTick;
-
-    private float cooldownTimer;
-
+    private readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
+    private float nextAttackTime;
 
     private void Start()
     {
         InitializeData();
+        RecalculateStats();
+        nextAttackTime = Time.time + currentStats["Cooldown"];
     }
 
     private void Update()
     {
-        cooldownTimer -= Time.deltaTime;
-        if (cooldownTimer <= 0)
+        if (Time.time >= nextAttackTime)
         {
             Attack();
-            cooldownTimer = cooldown;
+            nextAttackTime = Time.time + currentStats["Cooldown"];
         }
     }
 
     public void InitializeData()
     {
         weaponBehavior = weaponData.weaponBehaviorPrefab.GetComponent<IWeaponBehavior>();
-        cooldown = weaponData.baseCooldown;
-
-        if (weaponData.hasAOE)
-        {
-            hasAOE = true;
-            area = weaponData.aoeAreaSize;
-            aoeTick = weaponData.aoeTickRate;
-        }
     }
 
-    /* ApplyPassiveModifiers exists to apply passive item
-     * effects to the weapon. 
-     * 
-     * the number of passive items and specific effects are
-     * unknown. To approach this there will likely be a
-     * "passives controller" script which holds an array of
-     * passive items. each passive will have an interface with
-     * a "ApplyModifier(WeaponController weapon)" method that 
-     * will do the work to modify the stats.
-     * 
-     */
-    public void ApplyPassiveModifiers()
+    public void RecalculateStats()
     {
+        currentStats.Clear();
 
-    }
-
-    public void ApplyPlayerModifiers()
-    {
-        cooldown = weaponData.baseCooldown + (weaponData.baseCooldown * (PlayerStats.Instance.GetCooldown() / 100));
-
-        if (hasAOE)
-        {
-            aoeTick = weaponData.aoeTickRate + (weaponData.aoeTickRate * (PlayerStats.Instance.GetCooldown() / 100));
-            area = weaponData.aoeAreaSize + (weaponData.aoeAreaSize * (PlayerStats.Instance.GetArea() / 100));
-        }
+        currentStats["Cooldown"] = weaponData.baseCooldown * PlayerStats.Instance.GetCooldown();
+        currentStats["Ammount"] = weaponData.baseAmmount + PlayerStats.Instance.GetAmmount();
+        currentStats["Duration"] = weaponData.baseDuration * PlayerStats.Instance.GetDuration();
+        currentStats["Speed"] = weaponData.baseProjectileSpeed * PlayerStats.Instance.GetDexterity();
+        currentStats["AOETick"] = weaponData.aoeTickRate * PlayerStats.Instance.GetCooldown();
+        currentStats["Area"] = weaponData.aoeAreaSize * PlayerStats.Instance.GetArea();
     }
 
     public void Attack()

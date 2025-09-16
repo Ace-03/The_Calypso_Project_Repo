@@ -17,6 +17,11 @@ public class WeaponDefinitionEditor : Editor
     SerializedProperty aoeTickRate;
     SerializedProperty aoeShape;
 
+    SerializedProperty baseKnockback;
+    SerializedProperty baseStun;
+    SerializedProperty basePoison;
+    SerializedProperty baseSlowdown;
+
     private void OnEnable()
     {
         weaponName = serializedObject.FindProperty("weaponName");

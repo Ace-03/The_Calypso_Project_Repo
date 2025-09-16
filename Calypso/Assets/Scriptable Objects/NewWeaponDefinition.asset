@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: NewWeaponDefinition
   m_EditorClassIdentifier: 
   weaponName: 
+  weaponBehaviorPrefab: {fileID: 0}
   icon: {fileID: 0}
   baseCooldown: 0
   baseDamage: 0
   baseProjectileSpeed: 0
   baseDuration: 0
   baseAmmount: 0
+  baseKnockback: 0
+  baseStun: 0
+  basePoison: 0
+  baseSlowdown: 0
   hasAOE: 0
   aoeAreaSize: 0
   aoeTickRate: 0

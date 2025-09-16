@@ -37,17 +37,17 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Weapon Modifiers")]
     [SerializeField]
-    private float strength = 5;
+    private float strength = 1.1f;
     [SerializeField]
-    private float dexterity = 5;
+    private float dexterity = 1.2f;
     [SerializeField]
-    private float area = 5;
+    private float area = 1.3f;
     [SerializeField]
-    private float cooldown = 5;
+    private float cooldown = 0.8f;
     [SerializeField]
-    private float duration = 5;
+    private float duration = 1.3f;
     [SerializeField]
-    private int ammount = 5;
+    private int ammount = 1;
     
     #endregion
 

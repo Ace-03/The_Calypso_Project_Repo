@@ -16,7 +16,7 @@ public class DamageCalculator : MonoBehaviour
     {
         return new DamageInfo
         {
-            damage = weaponData.baseDamage + (weaponData.baseDamage * (PlayerStats.Instance.GetStrength() / 100)),
+            damage = weaponData.baseDamage * PlayerStats.Instance.GetStrength(),
             // remaining values to be added.
         };
 

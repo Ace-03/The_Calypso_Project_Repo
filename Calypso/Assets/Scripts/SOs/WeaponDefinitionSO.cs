@@ -12,7 +12,13 @@ public class WeaponDefinitionSO : ScriptableObject
     public float baseDuration;
     public float baseAmmount;
 
-    public bool hasAOE;
+    public float baseKnockback;
+    public float baseStun;
+    public float basePoison;
+    public float baseSlowdown;
+
+    [SerializeField]
+    private bool hasAOE;
     public float aoeAreaSize;
     public float aoeTickRate;
     public AOEShape aoeShape;

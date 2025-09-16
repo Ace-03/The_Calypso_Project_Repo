@@ -10,7 +10,7 @@ public interface IWeaponBehavior
 
 
     /* use weapon stats like speed, area, tick, (cooldown potentially)
-     * to behavior controller to adjust its behavior.
+     * on behavior controller to adjust its behavior.
      */
     void ApplyWeaponStats(WeaponController weapon);
 
