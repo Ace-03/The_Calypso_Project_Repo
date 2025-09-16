@@ -17,7 +17,10 @@ public class DamageCalculator : MonoBehaviour
         return new DamageInfo
         {
             damage = weaponData.baseDamage * PlayerStats.Instance.GetStrength(),
-            // remaining values to be added.
+            knockbackStrength = weaponData.baseKnockback * PlayerStats.Instance.GetStrength(),
+            stunDuration = weaponData.baseStun * PlayerStats.Instance.GetDexterity(),
+            poisonDuration = weaponData.basePoison * PlayerStats.Instance.GetDuration(),
+            slowDuration = weaponData.baseSlowdown * PlayerStats.Instance.GetDuration(),
         };
 
     }

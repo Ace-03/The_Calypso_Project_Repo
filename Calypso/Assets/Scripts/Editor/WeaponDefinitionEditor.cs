@@ -36,6 +36,11 @@ public class WeaponDefinitionEditor : Editor
         aoeAreaSize = serializedObject.FindProperty("aoeAreaSize");
         aoeTickRate = serializedObject.FindProperty("aoeTickRate");
         aoeShape = serializedObject.FindProperty("aoeShape");
+
+        baseKnockback = serializedObject.FindProperty("baseKnockback");
+        baseStun = serializedObject.FindProperty("baseStun");
+        basePoison = serializedObject.FindProperty("basePoison");
+        baseSlowdown = serializedObject.FindProperty("baseSlowdown");
     }
 
     public override void OnInspectorGUI()
@@ -63,6 +68,11 @@ public class WeaponDefinitionEditor : Editor
             EditorGUILayout.PropertyField(aoeShape);
 
         }
+
+        EditorGUILayout.PropertyField(baseKnockback);
+        EditorGUILayout.PropertyField(baseStun);
+        EditorGUILayout.PropertyField(basePoison);
+        EditorGUILayout.PropertyField(baseSlowdown);
 
         serializedObject.ApplyModifiedProperties();
     }

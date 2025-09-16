@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewWeaponDefinition", menuName = "WeaponSO")]
 public class WeaponDefinitionSO : ScriptableObject
 {
+    [Header("Weapon Base Stats")]
     public string weaponName;
     public GameObject weaponBehaviorPrefab;
     public Sprite icon;
@@ -11,17 +12,21 @@ public class WeaponDefinitionSO : ScriptableObject
     public float baseProjectileSpeed;
     public float baseDuration;
     public float baseAmmount;
+    public int requiredResources;
 
-    public float baseKnockback;
-    public float baseStun;
-    public float basePoison;
-    public float baseSlowdown;
-
+    [Header("AOE Stats")]
     [SerializeField]
     private bool hasAOE;
     public float aoeAreaSize;
     public float aoeTickRate;
     public AOEShape aoeShape;
+
+    [Header("Status Effects")]
+    public float baseKnockback;
+    public float baseStun;
+    public float basePoison;
+    public float baseSlowdown;
+
 }
 
 public enum AOEShape

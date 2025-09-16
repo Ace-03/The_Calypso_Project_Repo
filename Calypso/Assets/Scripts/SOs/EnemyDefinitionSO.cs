@@ -1,16 +1,20 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "NewEnemyDefinition", menuName = "EnemySO")]
 public class EnemyDefinitionSO : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string enemyName;
+    public Sprite icon;
+    public GameObject enemyPrefab;
+    public GameObject deathEffect;
+    public int maxHealth;
+    public float movementSpeed;
+    public WeaponController weapon;
+    public float knockbackResistance;
+    public float stunResistance;
+    public float poisonResistance;
+    public float slowResistance;
+    public int experienceReward;
+    public int resource1;
+    public int resource2;
 }
