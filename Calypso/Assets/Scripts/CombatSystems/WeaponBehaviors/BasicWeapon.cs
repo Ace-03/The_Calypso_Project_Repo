@@ -4,18 +4,20 @@ public class BasicWeapon : MonoBehaviour, IWeaponBehavior
 {
     private ParticleSystem system;
 
-    private void Start()
+    private void Awake()
     {
         system = GetComponent<ParticleSystem>();
     }
 
     public void ApplyWeaponStats(WeaponController weapon)
     {
-
+        GeneralModifier.SetDuration(system, weapon.GetCooldown());
+        BurstModifier.SetCount(system, 0, weapon.GetAmount());
     }
 
     public void Attack(WeaponController weapon)
     {
-        system.Play();
+        if (system != null && !system.isPlaying)
+            system.Play();
     }
 }

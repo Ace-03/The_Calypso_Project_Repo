@@ -6,19 +6,20 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     private WeaponDefinitionSO weaponData;
 
+    public readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
+
     private GameObject weaponInstance;
     private IWeaponBehavior weaponBehavior;
-    private readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
     private float nextAttackTime;
 
     private void Start()
     {
         InitializeData();
         RecalculateStats();
-        nextAttackTime = Time.time + currentStats["Cooldown"];
+        weaponBehavior?.ApplyWeaponStats(this);
+        nextAttackTime = Time.time + GetCooldown();
 
         Debug.Log(nextAttackTime);
-        Debug.Log(currentStats["Cooldown"]);
         Debug.Log(Time.time);
     }
 
@@ -27,7 +28,7 @@ public class WeaponController : MonoBehaviour
         if (Time.time >= nextAttackTime)
         {
             Attack();
-            nextAttackTime = Time.time + currentStats["Cooldown"];
+            nextAttackTime = Time.time + GetCooldown();
         }
     }
 
@@ -42,7 +43,7 @@ public class WeaponController : MonoBehaviour
         currentStats.Clear();
 
         currentStats["Cooldown"] = weaponData.baseCooldown * PlayerStats.Instance.GetCooldown();
-        currentStats["Ammount"] = weaponData.baseAmmount + PlayerStats.Instance.GetAmmount();
+        currentStats["Amount"] = weaponData.baseAmount + PlayerStats.Instance.GetAmount();
         currentStats["Duration"] = weaponData.baseDuration * PlayerStats.Instance.GetDuration();
         currentStats["Speed"] = weaponData.baseProjectileSpeed * PlayerStats.Instance.GetDexterity();
         currentStats["AOETick"] = weaponData.aoeTickRate * PlayerStats.Instance.GetCooldown();
@@ -58,4 +59,34 @@ public class WeaponController : MonoBehaviour
     {
         return weaponData;
     }
+
+
+    #region Getters
+
+    public float GetCooldown()
+    {
+        return currentStats["Cooldown"];
+    }
+    public int GetAmount()
+    {
+        return (int)currentStats["Amount"];
+    }
+    public float GetDuration()
+    {
+        return currentStats["Duration"];
+    }
+    public float GetSpeed()
+    {
+        return currentStats["Speed"];
+    }
+    public float GetAOETick()
+    {
+        return currentStats["AOETick"];
+    }
+    public float GetArea()
+    {
+        return currentStats["Area"];
+    }
+
+    #endregion
 }
