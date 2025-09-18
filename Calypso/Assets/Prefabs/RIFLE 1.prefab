@@ -4905,7 +4905,7 @@ GameObject:
   - component: {fileID: 7562424797762174138}
   - component: {fileID: 1812151299177642501}
   m_Layer: 0
-  m_Name: RIFLE
+  m_Name: RIFLE 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
