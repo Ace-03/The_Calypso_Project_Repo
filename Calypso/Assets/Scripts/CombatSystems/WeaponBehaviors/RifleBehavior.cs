@@ -1,33 +1,30 @@
 using UnityEngine;
 
-public class RifleBehavior : MonoBehaviour
+public class RifleBehavior : MonoBehaviour, IWeaponBehavior
 {
-    public ParticleSystem ps;
-    public BulletTrigger bt;
-    public WeaponController controller;
+    private ParticleSystem ps;
+    private BulletTrigger bt;
 
-    private void Start()
+    private void Awake()
     {
-        Attack(controller);
+        ps = GetComponent<ParticleSystem>();
+        bt = GetComponent<BulletTrigger>();
     }
     public void Attack(WeaponController weapon)
     {
-        ApplyWeaponStats(weapon);
-        if (ps != null)
+        Debug.Log("Running Rifle Attack");
+        if (ps != null && !ps.isPlaying)
         {
-            if (!ps.isPlaying)
-            {
-                ps.Play();
-            }
+            ps.Play();
+            Debug.Log("Playing Particle System");
         }
     }
     public void ApplyWeaponStats(WeaponController weapon)
     {
         // Let me know what should go where, even in laymans terms.
-        WeaponDefinitionSO weaponData = weapon.GetWeaponData();
         GeneralModifier.SetDamage(bt, 3);
-        GeneralModifier.SetRateOverTime(ps, (int)weaponData.baseAmmount);
-        GeneralModifier.SetDuration(ps, weaponData.baseCooldown);
-        GeneralModifier.SetLifetime(ps, weaponData.baseDuration);
+        GeneralModifier.SetRateOverTime(ps, (int)weapon.currentStats["Amount"]);
+        GeneralModifier.SetDuration(ps, weapon.currentStats["Cooldown"]);
+        GeneralModifier.SetLifetime(ps, weapon.currentStats["Duration"]);
     }
 }

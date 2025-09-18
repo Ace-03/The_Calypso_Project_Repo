@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: NewWeaponDefinition
+  m_Name: TestWeapon
   m_EditorClassIdentifier: 
   weaponName: DEBUG_WEAPON
-  weaponBehaviorPrefab: {fileID: 0}
+  weaponBehaviorPrefab: {fileID: 7467138609195483652, guid: 91569182eaa218b4c8f403b9f99173a0, type: 3}
   icon: {fileID: 0}
-  baseCooldown: 1
+  baseCooldown: 1.2
   baseDamage: 1
   baseProjectileSpeed: 20
   baseDuration: 5
-  baseAmmount: 1
+  baseAmount: 2
   requiredResources: 0
   hasAOE: 0
   aoeAreaSize: 0

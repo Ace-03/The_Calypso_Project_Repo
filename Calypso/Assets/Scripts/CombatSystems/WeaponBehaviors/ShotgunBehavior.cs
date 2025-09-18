@@ -2,33 +2,30 @@ using UnityEngine;
 
 public class ShotgunBehavior : MonoBehaviour, IWeaponBehavior
 {
-    public ParticleSystem ps;
-    public BulletTrigger bt;
-    public WeaponController controller;
-
-    private void Start()
+    private ParticleSystem ps;
+    private BulletTrigger bt;
+    
+    private void Awake()
     {
-        Attack(controller);
+        ps = GetComponent<ParticleSystem>();
+        bt = GetComponent<BulletTrigger>();
     }
     public void Attack(WeaponController weapon)
     {
-        ApplyWeaponStats(weapon);
-        if (ps != null)
-        {
-            if (!ps.isPlaying)
-            {
-                ps.Play();
-            }
-        }
+        if (ps != null && !ps.isPlaying)
+            ps.Play();
     }
+
     public void ApplyWeaponStats(WeaponController weapon)
     {
-        // Let me know what should go where, even in laymans terms.
-        WeaponDefinitionSO weaponData = weapon.GetWeaponData();
-        GeneralModifier.SetDamage(bt, 3);
-        BurstModifier.SetCount(ps, 0, (int)weaponData.baseAmmount);
-        GeneralModifier.SetDuration(ps, weaponData.baseCooldown);
-        GeneralModifier.SetLifetime(ps, weaponData.baseDuration);
-        //GeneralModifier.SetDamage(bt, (int)weapon.GetWeaponData().baseDamage);
+        if (ps != null && ps.isPlaying)
+            ps.Stop();
+
+            // Let me know what should go where, even in laymans terms.
+            GeneralModifier.SetDamage(bt, 3);
+            BurstModifier.SetCount(ps, 0, (int)weapon.currentStats["Amount"]);
+            GeneralModifier.SetDuration(ps, weapon.currentStats["Cooldown"]);
+            GeneralModifier.SetLifetime(ps, weapon.currentStats["Duration"]);
+            //GeneralModifier.SetDamage(bt, (int)weapon.GetWeaponData().baseDamage);
     }
 }

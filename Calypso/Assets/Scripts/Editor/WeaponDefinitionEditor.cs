@@ -11,7 +11,7 @@ public class WeaponDefinitionEditor : Editor
     SerializedProperty baseDamage;
     SerializedProperty baseProjectileSpeed;
     SerializedProperty baseDuration;
-    SerializedProperty baseAmmount;
+    SerializedProperty baseAmount;
     SerializedProperty hasAOE;
     SerializedProperty aoeAreaSize;
     SerializedProperty aoeTickRate;
@@ -31,7 +31,7 @@ public class WeaponDefinitionEditor : Editor
         baseDamage = serializedObject.FindProperty("baseDamage");
         baseProjectileSpeed = serializedObject.FindProperty("baseProjectileSpeed");
         baseDuration = serializedObject.FindProperty("baseDuration");
-        baseAmmount = serializedObject.FindProperty("baseAmmount");
+        baseAmount = serializedObject.FindProperty("baseAmount");
         hasAOE = serializedObject.FindProperty("hasAOE");
         aoeAreaSize = serializedObject.FindProperty("aoeAreaSize");
         aoeTickRate = serializedObject.FindProperty("aoeTickRate");
@@ -54,7 +54,7 @@ public class WeaponDefinitionEditor : Editor
         EditorGUILayout.PropertyField(baseDamage);
         EditorGUILayout.PropertyField(baseProjectileSpeed);
         EditorGUILayout.PropertyField(baseDuration);
-        EditorGUILayout.PropertyField(baseAmmount);
+        EditorGUILayout.PropertyField(baseAmount);
 
         EditorGUILayout.Space();
 

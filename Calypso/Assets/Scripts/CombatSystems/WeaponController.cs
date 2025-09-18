@@ -6,19 +6,20 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     private WeaponDefinitionSO weaponData;
 
+    public readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
+
     private GameObject weaponInstance;
     private IWeaponBehavior weaponBehavior;
-    private readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
     private float nextAttackTime;
 
     private void Start()
     {
         InitializeData();
         RecalculateStats();
+        weaponBehavior?.ApplyWeaponStats(this);
         nextAttackTime = Time.time + currentStats["Cooldown"];
 
         Debug.Log(nextAttackTime);
-        Debug.Log(currentStats["Cooldown"]);
         Debug.Log(Time.time);
     }
 
@@ -42,7 +43,7 @@ public class WeaponController : MonoBehaviour
         currentStats.Clear();
 
         currentStats["Cooldown"] = weaponData.baseCooldown * PlayerStats.Instance.GetCooldown();
-        currentStats["Ammount"] = weaponData.baseAmmount + PlayerStats.Instance.GetAmmount();
+        currentStats["Amount"] = weaponData.baseAmount + PlayerStats.Instance.GetAmount();
         currentStats["Duration"] = weaponData.baseDuration * PlayerStats.Instance.GetDuration();
         currentStats["Speed"] = weaponData.baseProjectileSpeed * PlayerStats.Instance.GetDexterity();
         currentStats["AOETick"] = weaponData.aoeTickRate * PlayerStats.Instance.GetCooldown();

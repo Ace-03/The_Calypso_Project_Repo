@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4901,7 +4901,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8388621890121078001}
   - component: {fileID: 1627494714008052900}
-  - component: {fileID: 1544196310822017116}
   - component: {fileID: 2333947746251475266}
   - component: {fileID: 7562424797762174138}
   - component: {fileID: 1812151299177642501}
@@ -4946,7 +4945,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9658,19 +9657,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &1544196310822017116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2735682749369207564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f32f213bc9d46a740bb27464ef54fb00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: 713084f8326764b40a9a73b173ff704d, type: 2}
 --- !u!114 &2333947746251475266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9683,9 +9669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db002600f208c8f4c934137da0ca0bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 1627494714008052900}
-  bt: {fileID: 1812151299177642501}
-  controller: {fileID: 1544196310822017116}
 --- !u!199 &7562424797762174138
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -9846,7 +9829,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14800,7 +14783,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
