@@ -21,12 +21,15 @@ public class BurstRifleBehavior : MonoBehaviour, IWeaponBehavior
         if (ps != null && ps.isPlaying)
             ps.Stop();
 
-            // Let me know what should go where, even in laymans terms.
-            GeneralModifier.SetDamage(bt, 3);
-            BurstModifier.SetCycles(ps, 0, weapon.GetAmount());
-             BurstModifier.SetInterval(ps, 0, weapon.GetCooldown() / weapon.GetAmount());
-            GeneralModifier.SetDuration(ps, weapon.GetCooldown()*2);
-            GeneralModifier.SetLifetime(ps, weapon.GetDuration());
-            //GeneralModifier.SetDamage(bt, (int)weapon.GetWeaponData().baseDamage);
+        // Let me know what should go where, even in laymans terms.
+        GeneralModifier.SetDamage(bt, 3);
+        BurstModifier.SetCycles(ps, 0, weapon.GetAmount());
+        BurstModifier.SetInterval(ps, 0, weapon.GetCooldown() / weapon.GetAmount());
+        GeneralModifier.SetDuration(ps, weapon.GetCooldown()*2);
+        GeneralModifier.SetLifetime(ps, weapon.GetDuration());
+        GeneralModifier.SetSpeed(ps, weapon.GetSpeed() * 10);
+        GeneralModifier.SetCircleArc(ps, 1 / weapon.GetAccuracy() * 200);
+        Debug.Log("Accuracy is " + (1 / weapon.GetAccuracy() * 200));
+        //GeneralModifier.SetDamage(bt, (int)weapon.GetWeaponData().baseDamage);
     }
 }

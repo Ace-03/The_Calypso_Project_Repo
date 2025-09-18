@@ -45,6 +45,7 @@ public class WeaponController : MonoBehaviour
         currentStats["Cooldown"] = weaponData.baseCooldown * PlayerStats.Instance.GetCooldown();
         currentStats["Amount"] = weaponData.baseAmount + PlayerStats.Instance.GetAmount();
         currentStats["Duration"] = weaponData.baseDuration * PlayerStats.Instance.GetDuration();
+        currentStats["accuracy"] = weaponData.baseAccuracy + PlayerStats.Instance.GetDexterity();
         currentStats["Speed"] = weaponData.baseProjectileSpeed * PlayerStats.Instance.GetDexterity();
         currentStats["AOETick"] = weaponData.aoeTickRate * PlayerStats.Instance.GetCooldown();
         currentStats["Area"] = weaponData.aoeAreaSize * PlayerStats.Instance.GetArea();
@@ -86,6 +87,11 @@ public class WeaponController : MonoBehaviour
     public float GetArea()
     {
         return currentStats["Area"];
+    }
+
+    public float GetAccuracy()
+    {
+        return currentStats["accuracy"];
     }
 
     #endregion

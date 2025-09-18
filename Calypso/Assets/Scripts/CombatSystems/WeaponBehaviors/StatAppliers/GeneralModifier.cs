@@ -26,6 +26,11 @@ public static class GeneralModifier
         var Main = ps.main;
         Main.simulationSpeed = speed;
     }
+    public static void SetStartSpeed(ParticleSystem ps, float speed)
+    {
+        var Main = ps.main;
+        Main.startSpeed = speed;
+    }
     public static void SetRateOverTime(ParticleSystem ps, float rate)
     {
         var emission = ps.emission;
