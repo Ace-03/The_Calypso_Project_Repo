@@ -32,8 +32,6 @@ public class SimpleInputManager : MonoBehaviour
 
         moveInput.Normalize();
 
-        Debug.Log(moveInput);
-
         invoker.ExecuteCommand(new MoveCommand(player, moveInput));
     }
 }

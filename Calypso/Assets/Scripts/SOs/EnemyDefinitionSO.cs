@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEnemyDefinition", menuName = "EnemySO")]
-public class EnemyDefinitionSO : MonoBehaviour
+public class EnemyDefinitionSO : ScriptableObject
 {
     public string enemyName;
     public Sprite icon;

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         }
 
         InitializeMovementStats();
+        ApplyMovementModifiers();
     }
 
     private void FixedUpdate()
@@ -72,16 +73,12 @@ public class PlayerController : MonoBehaviour
         baseMaxSpeed = PlayerStats.Instance.GetMaxSpeed();
         baseAcceleration = PlayerStats.Instance.GetAcceleration();
         baseDeceleration = PlayerStats.Instance.GetDeceleration();
-
-        maxSpeed = baseMaxSpeed;
-        acceleration = baseAcceleration;
-        deceleration = baseDeceleration;
     }
 
     public void ApplyMovementModifiers()
     {
-        maxSpeed = baseMaxSpeed + (baseMaxSpeed * PlayerStats.Instance.GetSpdModifier() / 100);
-        acceleration = baseAcceleration + (baseAcceleration * PlayerStats.Instance.GetAccModifier() / 100);
-        deceleration = baseDeceleration + (baseDeceleration * PlayerStats.Instance.GetDecelModifier() / 100);
+        maxSpeed = baseMaxSpeed * PlayerStats.Instance.GetSpdModifier();
+        acceleration = baseAcceleration * PlayerStats.Instance.GetAccModifier();
+        deceleration = baseDeceleration * PlayerStats.Instance.GetDecelModifier();
     }
 }
