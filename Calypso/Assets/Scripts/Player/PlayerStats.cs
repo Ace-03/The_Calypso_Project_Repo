@@ -140,7 +140,7 @@ public class PlayerStats : MonoBehaviour
         return duration;
     }
     
-    public int GetAmmount()
+    public int GetAmount()
     {
         return ammount;
     }

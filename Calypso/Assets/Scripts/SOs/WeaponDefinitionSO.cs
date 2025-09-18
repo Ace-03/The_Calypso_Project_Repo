@@ -11,7 +11,7 @@ public class WeaponDefinitionSO : ScriptableObject
     public float baseDamage;
     public float baseProjectileSpeed;
     public float baseDuration;
-    public float baseAmmount;
+    public float baseAmount;
     public int requiredResources;
 
     [Header("AOE Stats")]
