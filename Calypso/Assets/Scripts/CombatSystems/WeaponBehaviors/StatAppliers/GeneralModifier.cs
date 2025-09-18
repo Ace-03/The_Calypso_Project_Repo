@@ -32,4 +32,9 @@ public static class GeneralModifier
         emission.rateOverTime = rate;
     }
 
+    public static void SetCircleArc(ParticleSystem ps, float arcSize)
+    {
+        var Shape = ps.shape;
+        Shape.arc = arcSize;
+    }
 }
