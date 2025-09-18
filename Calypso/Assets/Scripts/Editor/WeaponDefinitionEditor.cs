@@ -10,6 +10,7 @@ public class WeaponDefinitionEditor : Editor
     SerializedProperty baseCooldown;
     SerializedProperty baseDamage;
     SerializedProperty baseProjectileSpeed;
+    SerializedProperty baseAccuracy;
     SerializedProperty baseDuration;
     SerializedProperty baseAmount;
     SerializedProperty hasAOE;
@@ -30,6 +31,7 @@ public class WeaponDefinitionEditor : Editor
         baseCooldown = serializedObject.FindProperty("baseCooldown");
         baseDamage = serializedObject.FindProperty("baseDamage");
         baseProjectileSpeed = serializedObject.FindProperty("baseProjectileSpeed");
+        baseAccuracy = serializedObject.FindProperty("baseAccuracy");
         baseDuration = serializedObject.FindProperty("baseDuration");
         baseAmount = serializedObject.FindProperty("baseAmount");
         hasAOE = serializedObject.FindProperty("hasAOE");
@@ -53,6 +55,7 @@ public class WeaponDefinitionEditor : Editor
         EditorGUILayout.PropertyField(baseCooldown);
         EditorGUILayout.PropertyField(baseDamage);
         EditorGUILayout.PropertyField(baseProjectileSpeed);
+        EditorGUILayout.PropertyField(baseAccuracy);
         EditorGUILayout.PropertyField(baseDuration);
         EditorGUILayout.PropertyField(baseAmount);
 
