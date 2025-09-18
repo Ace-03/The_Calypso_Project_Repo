@@ -17,7 +17,7 @@ public class WeaponController : MonoBehaviour
         InitializeData();
         RecalculateStats();
         weaponBehavior?.ApplyWeaponStats(this);
-        nextAttackTime = Time.time + currentStats["Cooldown"];
+        nextAttackTime = Time.time + GetCooldown();
 
         Debug.Log(nextAttackTime);
         Debug.Log(Time.time);
@@ -28,7 +28,7 @@ public class WeaponController : MonoBehaviour
         if (Time.time >= nextAttackTime)
         {
             Attack();
-            nextAttackTime = Time.time + currentStats["Cooldown"];
+            nextAttackTime = Time.time + GetCooldown();
         }
     }
 
@@ -59,4 +59,34 @@ public class WeaponController : MonoBehaviour
     {
         return weaponData;
     }
+
+
+    #region Getters
+
+    public float GetCooldown()
+    {
+        return currentStats["Cooldown"];
+    }
+    public int GetAmount()
+    {
+        return (int)currentStats["Amount"];
+    }
+    public float GetDuration()
+    {
+        return currentStats["Duration"];
+    }
+    public float GetSpeed()
+    {
+        return currentStats["Speed"];
+    }
+    public float GetAOETick()
+    {
+        return currentStats["AOETick"];
+    }
+    public float GetArea()
+    {
+        return currentStats["Area"];
+    }
+
+    #endregion
 }

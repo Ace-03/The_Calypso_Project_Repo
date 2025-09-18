@@ -23,9 +23,9 @@ public class ShotgunBehavior : MonoBehaviour, IWeaponBehavior
 
             // Let me know what should go where, even in laymans terms.
             GeneralModifier.SetDamage(bt, 3);
-            BurstModifier.SetCount(ps, 0, (int)weapon.currentStats["Amount"]);
-            GeneralModifier.SetDuration(ps, weapon.currentStats["Cooldown"]);
-            GeneralModifier.SetLifetime(ps, weapon.currentStats["Duration"]);
+            BurstModifier.SetCount(ps, 0, weapon.GetAmount());
+            GeneralModifier.SetDuration(ps, weapon.GetCooldown());
+            GeneralModifier.SetLifetime(ps, weapon.GetDuration());
             //GeneralModifier.SetDamage(bt, (int)weapon.GetWeaponData().baseDamage);
     }
 }
