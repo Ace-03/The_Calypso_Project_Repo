@@ -17,8 +17,8 @@ MonoBehaviour:
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   baseCooldown: 3
   baseDamage: 3
-  baseProjectileSpeed: 20
-  baseDuration: 1
+  baseProjectileSpeed: 10
+  baseDuration: 0.01
   baseAmount: 3
   requiredResources: 0
   hasAOE: 0
