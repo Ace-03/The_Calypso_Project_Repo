@@ -12,11 +12,9 @@ public class RifleBehavior : MonoBehaviour, IWeaponBehavior
     }
     public void Attack(WeaponController weapon)
     {
-        Debug.Log("Running Rifle Attack");
         if (ps != null && !ps.isPlaying)
         {
             ps.Play();
-            Debug.Log("Playing Particle System");
         }
     }
     public void ApplyWeaponStats(WeaponController weapon)
