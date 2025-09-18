@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7318057924441467903}
   - component: {fileID: 1234571866211099546}
   - component: {fileID: 3287534419590505085}
+  - component: {fileID: 6041201740007281172}
   m_Layer: 0
   m_Name: Test Weapon
   m_TagString: Untagged
@@ -49,7 +50,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -981,7 +982,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 30
+        scalar: 2
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -4904,3 +4905,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8891a04f8c097e9429e80133e675386a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6041201740007281172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7467138609195483652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d953b6e385ff240b46ce8be9bcca84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletDamage: 1

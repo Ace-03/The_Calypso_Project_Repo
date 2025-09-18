@@ -1,0 +1,35 @@
+using UnityEngine;
+
+public static class GeneralModifier
+{
+    public static void SetDamage(BulletTrigger bulletTrigger, int damage)
+    {
+        bulletTrigger.bulletDamage = damage;
+    }
+    public static void SetDuration(ParticleSystem ps, float duration)
+    {
+        var Main = ps.main;
+        Main.duration = duration;
+    }
+    public static void SetLifetime(ParticleSystem ps, float lifetime)
+    {
+        var Main = ps.main;
+        Main.startLifetime = lifetime;
+    }
+    public static void SetSpeed(ParticleSystem ps, float speed)
+    {
+        var Main = ps.main;
+        Main.startSpeed = speed;
+    }
+    public static void SetSimulationSpeed(ParticleSystem ps, float speed)
+    {
+        var Main = ps.main;
+        Main.simulationSpeed = speed;
+    }
+    public static void SetRateOverTime(ParticleSystem ps, float rate)
+    {
+        var emission = ps.emission;
+        emission.rateOverTime = rate;
+    }
+
+}

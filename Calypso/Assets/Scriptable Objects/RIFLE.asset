@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: TestWeapon
+  m_Name: RIFLE
   m_EditorClassIdentifier: 
-  weaponName: DEBUG_WEAPON
-  weaponBehaviorPrefab: {fileID: 7467138609195483652, guid: 91569182eaa218b4c8f403b9f99173a0, type: 3}
-  icon: {fileID: 0}
-  baseCooldown: 1.2
-  baseDamage: 1
+  weaponName: RIFLE
+  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 850fecafbdf49bb4da657250c843c72b, type: 3}
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  baseCooldown: 3
+  baseDamage: 3
   baseProjectileSpeed: 20
-  baseDuration: 5
-  baseAmount: 2
+  baseDuration: 1
+  baseAmount: 3
   requiredResources: 0
   hasAOE: 0
   aoeAreaSize: 0
