@@ -21,8 +21,8 @@ public class RifleBehavior : MonoBehaviour, IWeaponBehavior
     {
         // Let me know what should go where, even in laymans terms.
         GeneralModifier.SetDamage(bt, 3);
-        GeneralModifier.SetRateOverTime(ps, (int)weapon.currentStats["Amount"]);
-        GeneralModifier.SetDuration(ps, weapon.currentStats["Cooldown"]);
-        GeneralModifier.SetLifetime(ps, weapon.currentStats["Duration"]);
+        GeneralModifier.SetRateOverTime(ps, weapon.GetAmount());
+        GeneralModifier.SetDuration(ps, weapon.GetCooldown());
+        GeneralModifier.SetLifetime(ps, weapon.GetDuration());
     }
 }

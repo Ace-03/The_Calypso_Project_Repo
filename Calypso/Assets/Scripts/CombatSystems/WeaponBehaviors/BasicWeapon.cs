@@ -11,8 +11,8 @@ public class BasicWeapon : MonoBehaviour, IWeaponBehavior
 
     public void ApplyWeaponStats(WeaponController weapon)
     {
-        GeneralModifier.SetDuration(system, weapon.currentStats["Cooldown"]);
-        BurstModifier.SetCount(system, 0, (int)weapon.currentStats["Amount"]);
+        GeneralModifier.SetDuration(system, weapon.GetCooldown());
+        BurstModifier.SetCount(system, 0, weapon.GetAmount());
     }
 
     public void Attack(WeaponController weapon)
