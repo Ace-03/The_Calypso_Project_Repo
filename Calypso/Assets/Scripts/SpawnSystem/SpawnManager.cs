@@ -1,7 +1,6 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static WaveDefinitionSO;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -34,7 +33,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private string SpawnEnemies()
+    private IEnumerator SpawnEnemies()
     {
         while (true)
         {
@@ -48,6 +47,8 @@ public class SpawnManager : MonoBehaviour
                 {
                     SpawnEnemy();
                 }
+
+                yield return new WaitForSeconds(spawnInterval);
             }   
         }
     }
@@ -55,6 +56,8 @@ public class SpawnManager : MonoBehaviour
     private void SpawnEnemy()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
+
+        GameObject enemy = Instantiate(waveSequence[currentWaveIndex].enemiesInWave[0].enemyDefinition.enemyPrefab, spawnPosition, Quaternion.identity);
 
         // spawn from object pool
         //GameObject enemy = ObjectPool.Instance.GetPooledObject("Enemy");

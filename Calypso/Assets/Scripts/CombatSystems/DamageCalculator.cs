@@ -26,7 +26,7 @@ public class DamageCalculator : MonoBehaviour
     }
 }
 
-public class DamageInfo
+public struct DamageInfo
 {
     public float damage;
     public float knockbackStrength;
