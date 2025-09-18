@@ -10,6 +10,7 @@ public class WeaponDefinitionSO : ScriptableObject
     public float baseCooldown;
     public float baseDamage;
     public float baseProjectileSpeed;
+    public float baseAccuracy;
     public float baseDuration;
     public float baseAmount;
     public int requiredResources;

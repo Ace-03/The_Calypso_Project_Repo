@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: SHOTGUN
+  m_Name: BURST_RIFLE
   m_EditorClassIdentifier: 
-  weaponName: SHOTGUN
-  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: cb4888ab48b37684886b8e43455a7ef7, type: 3}
+  weaponName: Burst Rifle
+  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 656adfd913d3b53449b3dce7c8dbdfcd, type: 3}
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  baseCooldown: 1.5
+  baseCooldown: 0.8
   baseDamage: 3
-  baseProjectileSpeed: 20
-  baseAccuracy: 0
-  baseDuration: 5
-  baseAmount: 3
+  baseProjectileSpeed: 4
+  baseAccuracy: 200
+  baseDuration: 3
+  baseAmount: 2
   requiredResources: 0
   hasAOE: 0
   aoeAreaSize: 0
