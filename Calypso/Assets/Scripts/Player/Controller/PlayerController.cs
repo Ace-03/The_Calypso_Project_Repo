@@ -3,6 +3,9 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private Transform playerAimer;
+
     private float baseMaxSpeed;
     private float baseAcceleration;
     private float baseDeceleration;
@@ -15,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private IInteractable currentInteractable;
     private Vector3 movementVector;
+    private Vector3 aimVector;
 
     private void Start()
     {
@@ -29,12 +33,52 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        MovePlayer();
+        UpdateAim();
+    }
+
+    private void UpdateAim()
+    {
+        if (aimVector.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(aimVector, Vector3.up);
+            playerAimer.rotation = Quaternion.Slerp(playerAimer.rotation, targetRotation, 0.2f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        currentInteractable = other.GetComponent<IInteractable>();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        currentInteractable = null;
+    }
+
+    public void SetMovementVector(Vector3 direction)
+    {
+        movementVector = direction;
+    }
+
+    public void SetAimerRotation(Vector3 direction)
+    {
+        aimVector = direction;
+    }
+
+    public void Interact()
+    {
+        currentInteractable?.Interact();
+    }
+
+    private void MovePlayer()
+    {
         Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
         if (movementVector.magnitude > 0)
         {
             Vector3 targetVelocity = movementVector * maxSpeed;
-            Vector3 velocityChange = targetVelocity - horizontalVelocity;  
+            Vector3 velocityChange = targetVelocity - horizontalVelocity;
             rb.AddForce(velocityChange * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
         else if (movementVector.magnitude <= 0.15f && horizontalVelocity.magnitude > 0)
@@ -48,26 +92,7 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = horizontalVelocity.normalized * maxSpeed;
         }
     }
-    
-    public void SetMovementVector(Vector3 newVector)
-    {
-        movementVector = newVector;
-    }
 
-    public void Interact()
-    {
-        currentInteractable?.Interact();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        currentInteractable = other.GetComponent<IInteractable>();
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        currentInteractable = null;
-    }
     private void InitializeMovementStats()
     {
         baseMaxSpeed = PlayerStats.Instance.GetMaxSpeed();
