@@ -104,6 +104,6 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 GetRandomSpawnPosition()
     {
-        return playerTransform.position + new Vector3(UnityEngine.Random.Range(-20, 20), 0, UnityEngine.Random.Range(-10, 10));
+        return playerTransform.position + new Vector3(UnityEngine.Random.Range(-30, 30), 0, UnityEngine.Random.Range(-30, 30));
     }
 }
