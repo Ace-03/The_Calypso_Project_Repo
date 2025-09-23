@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
     private int currentWaveIndex = 0;
     private float waveTimer = 0f;
 
-    private void Start()
+    private void Awake()
     {
         InitializeEnemyPools();
 
@@ -21,19 +21,19 @@ public class SpawnManager : MonoBehaviour
 
     private void InitializeEnemyPools()
     {
-        HashSet<GameObject> uniqueEnemyPrefabs = new HashSet<GameObject>();
+        HashSet<EnemyDefinitionSO> uniqueEnemies = new HashSet<EnemyDefinitionSO>();
         
         foreach (var wave in waveSequence)
         {
             foreach (var enemySpawnInfo in wave.enemiesInWave)
             {
-                uniqueEnemyPrefabs.Add(enemySpawnInfo.enemyDefinition.enemyPrefab);
+                uniqueEnemies.Add(enemySpawnInfo.enemyDefinition);
             }
         }
 
-        foreach (var enemyPrefab in uniqueEnemyPrefabs)
+        foreach (var enemyData in uniqueEnemies)
         {
-            PoolManager.Instance.CreatePool(enemyPrefab.name, enemyPrefab, 25);
+            PoolManager.Instance.CreatePool(enemyData.name, enemyData.enemyPrefab, 25);
         }
     }
 
@@ -49,7 +49,6 @@ public class SpawnManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("All waves completed!");
             }
         }
         waveTimer -= Time.deltaTime;

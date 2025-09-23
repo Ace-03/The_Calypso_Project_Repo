@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
     private float acceleration;
     private float deceleration;
 
-    private float velocity;
-
     private float rbSpeedAdjustment = 20f;
     private Rigidbody rb;
     private IInteractable currentInteractable;
@@ -24,6 +22,7 @@ public class PlayerController : MonoBehaviour
         if (!TryGetComponent<Rigidbody>(out rb))
         {
             rb = gameObject.AddComponent<Rigidbody>();
+            rb.freezeRotation = true;
         }
 
         InitializeMovementStats();
@@ -32,7 +31,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        velocity = rb.linearVelocity.magnitude;
         Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
         if (movementVector.magnitude > 0)
@@ -55,7 +53,6 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalVelocity.magnitude <= slideClamp)
         {
-            Debug.Log("Clamping velocity to zero");
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
     }

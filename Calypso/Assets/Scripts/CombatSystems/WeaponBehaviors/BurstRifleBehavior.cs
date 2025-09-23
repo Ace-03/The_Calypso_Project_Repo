@@ -29,7 +29,6 @@ public class BurstRifleBehavior : MonoBehaviour, IWeaponBehavior
         GeneralModifier.SetLifetime(ps, weapon.GetDuration());
         GeneralModifier.SetSpeed(ps, weapon.GetSpeed() * 10);
         GeneralModifier.SetCircleArc(ps, 1 / weapon.GetAccuracy() * 200);
-        Debug.Log("Accuracy is " + (1 / weapon.GetAccuracy() * 200));
         //GeneralModifier.SetDamage(bt, (int)weapon.GetWeaponData().baseDamage);
     }
 }
