@@ -14,6 +14,8 @@ public class AI_NAV : MonoBehaviour
         // Get the NavMeshAgent attached to this object
         agent = GetComponent<NavMeshAgent>();
         target = FindAnyObjectByType<PlayerController>().transform;
+
+        agent.updateRotation = false;
     }
 
     void Update()
