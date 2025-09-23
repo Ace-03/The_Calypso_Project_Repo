@@ -1,18 +1,8 @@
 using UnityEngine;
 
-public class DamageCalculator : MonoBehaviour
+public static class DamageCalculator
 {
-    public static DamageCalculator Instance;
-
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else if (Instance != this)
-            Destroy(this);
-    }
-
-    public DamageInfo GetDamageInfo(WeaponDefinitionSO weaponData)
+    public static DamageInfo GetDamageInfo(WeaponDefinitionSO weaponData)
     {
         return new DamageInfo
         {
