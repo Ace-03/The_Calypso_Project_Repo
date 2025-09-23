@@ -14,7 +14,6 @@ public class BillboardController : MonoBehaviour
         if (cameraTransform != null)
         {
             transform.LookAt(cameraTransform);
-            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
     }
 }
