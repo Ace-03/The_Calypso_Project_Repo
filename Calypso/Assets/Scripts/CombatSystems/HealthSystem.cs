@@ -21,6 +21,8 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(DamageInfo info)
     {
+        Debug.Log("Damage Taken: " + info.damage);
+
         if (DEBUG_MATS)
         {
             DEBUG_Change_Mat();
@@ -42,11 +44,7 @@ public class HealthSystem : MonoBehaviour
     }
     public void Die()
     {
-        if(DEBUG_RESPAWN)
-        {
-            FindAnyObjectByType<Spawner>().Spawn();
-        }
-        Destroy(this.gameObject);
+        GetComponent<EnemyController>().OnDeath();
     }
     public void DEBUG_Change_Mat()
     {

@@ -18,9 +18,6 @@ public class WeaponController : MonoBehaviour
         RecalculateStats();
         weaponBehavior?.ApplyWeaponStats(this);
         nextAttackTime = Time.time + GetCooldown();
-
-        Debug.Log(nextAttackTime);
-        Debug.Log(Time.time);
     }
 
     private void Update()
