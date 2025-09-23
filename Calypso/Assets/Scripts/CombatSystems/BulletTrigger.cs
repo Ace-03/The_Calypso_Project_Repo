@@ -9,7 +9,7 @@ public class BulletTrigger : MonoBehaviour
     {
         // assumes weapon controller is attatched to same object for now.
         // likely will change.
-        weaponData = GetComponent<WeaponController>()?.GetWeaponData();
+        weaponData = GetComponentInParent<WeaponController>()?.GetWeaponData();
     }
 
     
@@ -29,10 +29,10 @@ public class BulletTrigger : MonoBehaviour
         {
             DamageInfo damageInfo = new DamageInfo();
 
-            if (other.CompareTag("player"))
+            if (other.CompareTag("Player"))
                 damageInfo.damage = bulletDamage; // stubbed for now
             else
-                damageInfo = DamageCalculator.Instance.GetDamageInfo(weaponData);
+                damageInfo = DamageCalculator.GetDamageInfo(weaponData);
 
             other.GetComponent<HealthSystem>().TakeDamage(damageInfo);
         }
