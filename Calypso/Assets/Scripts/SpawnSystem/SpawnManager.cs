@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,28 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        InitializeEnemyPools();
+
         waveTimer = waveSequence[0].waveDuration;
         StartCoroutine(SpawnEnemies());
+    }
+
+    private void InitializeEnemyPools()
+    {
+        HashSet<GameObject> uniqueEnemyPrefabs = new HashSet<GameObject>();
+        
+        foreach (var wave in waveSequence)
+        {
+            foreach (var enemySpawnInfo in wave.enemiesInWave)
+            {
+                uniqueEnemyPrefabs.Add(enemySpawnInfo.enemyDefinition.enemyPrefab);
+            }
+        }
+
+        foreach (var enemyPrefab in uniqueEnemyPrefabs)
+        {
+            PoolManager.Instance.CreatePool(enemyPrefab.name, enemyPrefab, 25);
+        }
     }
 
     private void Update()
@@ -31,6 +52,7 @@ public class SpawnManager : MonoBehaviour
                 Debug.Log("All waves completed!");
             }
         }
+        waveTimer -= Time.deltaTime;
     }
 
     private IEnumerator SpawnEnemies()
@@ -45,7 +67,7 @@ public class SpawnManager : MonoBehaviour
 
                 if (GameObject.FindGameObjectsWithTag("Enemy").Length < enemySpawnInfo.maxActiveEnemies)
                 {
-                    SpawnEnemy();
+                    SpawnEnemy(enemySpawnInfo.enemyDefinition);
                 }
 
                 yield return new WaitForSeconds(spawnInterval);
@@ -53,14 +75,17 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemy(EnemyDefinitionSO enemyType)
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
 
-        GameObject enemy = Instantiate(waveSequence[currentWaveIndex].enemiesInWave[0].enemyDefinition.enemyPrefab, spawnPosition, Quaternion.identity);
+        GameObject enemyInstance =  PoolManager.Instance.GetFromPool(enemyType.name, spawnPosition, Quaternion.identity);
 
-        // spawn from object pool
-        //GameObject enemy = ObjectPool.Instance.GetPooledObject("Enemy");
+        if (enemyInstance == null )
+        {
+            Debug.LogError($"Failed to spawn enemy of type {enemyType.name}");
+            return;
+        }
     }
 
     private Vector3 GetRandomSpawnPosition()
