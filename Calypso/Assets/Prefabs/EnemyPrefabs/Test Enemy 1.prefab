@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 8189211907886639963}
   - component: {fileID: 8905867380056176102}
   m_Layer: 7
-  m_Name: Model
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
