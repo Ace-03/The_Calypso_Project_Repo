@@ -33,7 +33,7 @@ public class SpawnManager : MonoBehaviour
 
         foreach (var enemyData in uniqueEnemies)
         {
-            PoolManager.Instance.CreatePool(enemyData.name, enemyData.enemyPrefab, 25);
+            PoolManager.Instance.CreatePool(enemyData.name, enemyData.enemyPrefab, 50);
         }
     }
 
@@ -49,6 +49,7 @@ public class SpawnManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("All waves completed!");
             }
         }
         waveTimer -= Time.deltaTime;
@@ -64,9 +65,23 @@ public class SpawnManager : MonoBehaviour
             {
                 float spawnInterval = 1f / enemySpawnInfo.spawnRate;
 
-                if (GameObject.FindGameObjectsWithTag("Enemy").Length < enemySpawnInfo.maxActiveEnemies)
+                float totalEnemies = FindObjectsByType<EnemyController>(FindObjectsSortMode.None).Length;
+
+                foreach (var enemy in FindObjectsByType<EnemyController>(FindObjectsSortMode.None))
+                {
+                    if (enemy.GetEnemyData().name != enemySpawnInfo.enemyDefinition.name)
+                    {
+                        totalEnemies--;
+                    }
+                }
+
+                if (totalEnemies < enemySpawnInfo.maxActiveEnemies)
                 {
                     SpawnEnemy(enemySpawnInfo.enemyDefinition);
+                }
+                else
+                {
+                    //Debug.Log($"Max active enemies reached for {enemySpawnInfo.enemyDefinition.name}");
                 }
 
                 yield return new WaitForSeconds(spawnInterval);

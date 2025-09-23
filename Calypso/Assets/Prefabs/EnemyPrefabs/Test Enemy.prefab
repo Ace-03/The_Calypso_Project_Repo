@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 3473330441131207307}
   - component: {fileID: 2148165340477933453}
   - component: {fileID: -6049647831721388527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Test Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce8c78345c0cc3498d4d38eb8a12e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 0
+  maxHP: 20
   hp: 0
   bonusHP: 0
   invulnerable: 0
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 8727223315817079260}
   - component: {fileID: 5703161285189753817}
   - component: {fileID: 8640995569948910288}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

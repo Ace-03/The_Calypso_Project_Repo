@@ -9,7 +9,7 @@ public class BulletTrigger : MonoBehaviour
     {
         // assumes weapon controller is attatched to same object for now.
         // likely will change.
-        weaponData = GetComponent<WeaponController>()?.GetWeaponData();
+        weaponData = GetComponentInParent<WeaponController>()?.GetWeaponData();
     }
 
     

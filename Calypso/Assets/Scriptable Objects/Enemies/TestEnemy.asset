@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   enemyPrefab: {fileID: 936472771579500139, guid: c04e608cac6a7944d86453717f8a32e1, type: 3}
   deathEffect: {fileID: 0}
-  maxHealth: 10
+  maxHealth: 5
   movementSpeed: 3
   weapon: {fileID: 0}
   knockbackResistance: 0

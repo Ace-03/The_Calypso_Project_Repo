@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -5,8 +6,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     EnemyDefinitionSO enemyData;
 
-    HealthSystem healthSystem;
-    PooledObject pooledObject;
+    private HealthSystem healthSystem;
+    private PooledObject pooledObject;
 
     private void Awake()
     {
@@ -20,11 +21,20 @@ public class EnemyController : MonoBehaviour
         Initialize(enemyData);
     }
 
-    public void Initialize(EnemyDefinitionSO data)
+    private void Initialize(EnemyDefinitionSO data)
     {
         healthSystem.maxHP = data.maxHealth;
+        healthSystem.hp = data.maxHealth;
         // Initialize other components like health, speed, etc. based on enemyData
     }
 
+    public EnemyDefinitionSO GetEnemyData()
+    {
+        return enemyData;
+    }
 
+    internal void OnDeath()
+    {
+        pooledObject.DeactivateAndReturn();
+    }
 }

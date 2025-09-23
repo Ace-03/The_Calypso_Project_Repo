@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (movementVector.magnitude <= 0.15f && horizontalVelocity.magnitude > slideClamp)
         {
-            Debug.Log("Decelerating");
             Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * (rbSpeedAdjustment / 3);
             rb.AddForce(brakingForce, ForceMode.Acceleration);
         }
