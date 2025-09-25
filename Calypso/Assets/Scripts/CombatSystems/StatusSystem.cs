@@ -58,7 +58,7 @@ public class StatusSystem : MonoBehaviour
         }
         else
         {
-            if (ai.speed <= 0)
+            if (ai.speed <= 0 && stunTimer <=0)
             {
                 ai.ResetSpeed();
             }
