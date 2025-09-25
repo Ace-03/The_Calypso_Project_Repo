@@ -159,7 +159,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  mr: {fileID: 8640995569948910288}
+  mr: {fileID: 0}
 --- !u!114 &6683637244912736383
 MonoBehaviour:
   m_ObjectHideFlags: 0

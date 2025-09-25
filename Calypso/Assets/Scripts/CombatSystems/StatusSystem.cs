@@ -13,6 +13,9 @@ public class StatusSystem : MonoBehaviour
     private int slowdownStacks;
     private float poisonTickRate = 2f;
     private float poisonTickTimer;
+    private float knockbackTimer;
+    private int knockbackStacks;
+    private float knockbackStrength;
     private HealthSystem healthSystem;
     private AI_NAV ai;
 
@@ -26,6 +29,16 @@ public class StatusSystem : MonoBehaviour
         UpdateTimers();
         ApplyStats();
     }
+    public void ResetTimers()
+    {
+        stunTimer = 0f;
+        poisonTimer = 0f;
+        slowdownTimer = 0f;
+        knockbackStrength = 0f;
+        knockbackTimer = 0f;
+        UpdateTimers();
+        ApplyStats();
+    }
     private void ApplyStats()
     {
         if (stunTimer > 0)
@@ -34,7 +47,18 @@ public class StatusSystem : MonoBehaviour
         }
         else if(ai != null)
         {
-            if(ai.speed == 0)
+            if(ai.speed <= 0 && knockbackTimer <= 0)
+            {
+                ai.ResetSpeed();
+            }
+        }
+        if (knockbackTimer > 0)
+        {
+            DoKnockback();
+        }
+        else
+        {
+            if (ai.speed <= 0)
             {
                 ai.ResetSpeed();
             }
@@ -53,6 +77,7 @@ public class StatusSystem : MonoBehaviour
         stunTimer = Mathf.Clamp(stunTimer - Time.deltaTime, 0, maxStatTime);
         poisonTimer = Mathf.Clamp(poisonTimer - Time.deltaTime, 0, maxStatTime);
         slowdownTimer = Mathf.Clamp(slowdownTimer-Time.deltaTime, 0, maxStatTime);
+        knockbackTimer = Mathf.Clamp(knockbackTimer - Time.deltaTime, 0, maxStatTime);
         if(stunTimer == 0)
         {
             maxStatStacks -= stunStacks;
@@ -65,6 +90,10 @@ public class StatusSystem : MonoBehaviour
         if(slowdownTimer == 0)
         {
             slowdownStacks = 0;
+        }
+        if (knockbackTimer == 0)
+        {
+            knockbackStacks = 0;
         }
     }
     private void UpdateStacks()
@@ -84,7 +113,11 @@ public class StatusSystem : MonoBehaviour
             slowdownStacks = Mathf.Clamp(slowdownStacks + 1, 0, maxStatStacks);
             slowdownTimer = Mathf.Clamp(slowdownTimer - maxStatTime, 1f, maxStatTime);
         }
-
+        if(knockbackTimer > maxStatTime && knockbackStacks < maxStatStacks)
+        {
+            knockbackStacks = Mathf.Clamp(knockbackStacks + 1, 0, maxStatStacks);
+            knockbackTimer = Mathf.Clamp(knockbackTimer - maxStatTime, 1f, maxStatTime);
+        }
     }
     public void ApplyStun(float time)
     {
@@ -101,8 +134,18 @@ public class StatusSystem : MonoBehaviour
         slowdownTimer += time;
         UpdateStacks();
     }
+    public void ApplyKnockback(float strength)
+    {
+        knockbackTimer = 0.2f;
+        knockbackStrength = strength;
+        UpdateStacks();
+    }
     private void DoStun()
     {
+        if (knockbackTimer > 0)
+        {
+            return;
+        }
         if (ai == null)
         {
             Debug.LogError("Couldn't find AI_NAV module");
@@ -121,6 +164,7 @@ public class StatusSystem : MonoBehaviour
             poisonTickTimer = 1f / poisonTickRate;
             int poisonDamage = (int)(healthSystem.maxHP * 0.1f * (poisonStacks + 1));
             if (poisonDamage < 1) { poisonDamage = poisonStacks; }
+            if (poisonDamage < 1) { poisonDamage = 1; }
             healthSystem.TakeDamageRaw(poisonDamage);
         }
     }
@@ -140,7 +184,14 @@ public class StatusSystem : MonoBehaviour
     }
     public void DoKnockback()
     {
-        //Implement here
+        if(ai == null)
+        {
+            return;
+        }
+        ai.speed = 0;
+        //Over-Simplfied implementation
+        Vector3 dir = (transform.position - ai.target.position).normalized;
+        transform.position += dir * knockbackStrength * (knockbackStacks + 1) * Time.deltaTime;
     }
 
     public bool IsStunned()
