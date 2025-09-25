@@ -38,7 +38,7 @@ public static class BurstModifier
         burst.cycleCount = cycles;
         emission.SetBurst(index, burst);
     }
-    public static void SetInterval(ParticleSystem ps, int index, int interval) 
+    public static void SetInterval(ParticleSystem ps, int index, float interval) 
     {
         var emission = ps.emission;
         if (emission.burstCount <= 0 && index >= emission.burstCount)
@@ -50,7 +50,7 @@ public static class BurstModifier
         burst.repeatInterval = interval;
         emission.SetBurst(index, burst);
     }
-    public static void SetProbability(ParticleSystem ps, int index, int probability)
+    public static void SetProbability(ParticleSystem ps, int index, float probability)
     {
         var emission = ps.emission;
         if (emission.burstCount <= 0 && index >= emission.burstCount)

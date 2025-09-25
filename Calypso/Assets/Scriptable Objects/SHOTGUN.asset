@@ -18,6 +18,7 @@ MonoBehaviour:
   baseCooldown: 1.5
   baseDamage: 3
   baseProjectileSpeed: 20
+  baseAccuracy: 0
   baseDuration: 5
   baseAmount: 3
   requiredResources: 0

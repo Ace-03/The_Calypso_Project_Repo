@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float baseMaxSpeed;
     private float baseAcceleration;
     private float baseDeceleration;
+    private float slideClamp;
 
     private float maxSpeed;
     private float acceleration;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         if (!TryGetComponent<Rigidbody>(out rb))
         {
             rb = gameObject.AddComponent<Rigidbody>();
+            rb.freezeRotation = true;
         }
 
         InitializeMovementStats();
@@ -81,7 +83,7 @@ public class PlayerController : MonoBehaviour
             Vector3 velocityChange = targetVelocity - horizontalVelocity;
             rb.AddForce(velocityChange * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
-        else if (movementVector.magnitude <= 0.15f && horizontalVelocity.magnitude > 0)
+        else if (movementVector.magnitude <= 0.15f && horizontalVelocity.magnitude > slideClamp)
         {
             Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * (rbSpeedAdjustment / 3);
             rb.AddForce(brakingForce, ForceMode.Acceleration);
@@ -91,6 +93,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = horizontalVelocity.normalized * maxSpeed;
         }
+
+        if (horizontalVelocity.magnitude <= slideClamp)
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+        }
     }
 
     private void InitializeMovementStats()
@@ -98,6 +105,7 @@ public class PlayerController : MonoBehaviour
         baseMaxSpeed = PlayerStats.Instance.GetMaxSpeed();
         baseAcceleration = PlayerStats.Instance.GetAcceleration();
         baseDeceleration = PlayerStats.Instance.GetDeceleration();
+        slideClamp = 0.3f;
     }
 
     public void ApplyMovementModifiers()
