@@ -3,13 +3,13 @@ using UnityEngine;
 public class BulletTrigger : MonoBehaviour
 {
     WeaponDefinitionSO weaponData;
-    public int bulletDamage = 1; // stubbed for now
+    EnemyDefinitionSO enem;
 
     private void Start()
     {
-        // assumes weapon controller is attatched to same object for now.
-        // likely will change.
+        // assumes info is attatched to same object.
         weaponData = GetComponentInParent<WeaponController>()?.GetWeaponData();
+        enem = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
     }
 
     
@@ -25,16 +25,16 @@ public class BulletTrigger : MonoBehaviour
 
     private void TryDamage(GameObject other)
     {
-        if (other.GetComponent<HealthSystem>() != null)
+        if (other.GetComponent<IHealthSystem>() != null)
         {
             DamageInfo damageInfo = new DamageInfo();
 
             if (other.CompareTag("Player"))
-                damageInfo.damage = bulletDamage; // stubbed for now
+                damageInfo = DamageCalculator.GetDamageInfo(enem);
             else
                 damageInfo = DamageCalculator.GetDamageInfo(weaponData);
 
-            other.GetComponent<HealthSystem>().TakeDamage(damageInfo);
+            other.GetComponent<IHealthSystem>().TakeDamage(damageInfo);
         }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AI_NAV : MonoBehaviour
+public class AI_NAV : MonoBehaviour, IEnemyMovement
 {
     public Transform target;   // The object to move toward
     public float speed = 3.5f;
@@ -29,7 +29,13 @@ public class AI_NAV : MonoBehaviour
         }
         else
         {
-            target = FindAnyObjectByType<Target>().transform;
+            target = FindAnyObjectByType<PlayerController>().transform;
         }
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+        agent.speed = newSpeed;
     }
 }

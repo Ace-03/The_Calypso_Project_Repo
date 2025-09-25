@@ -65,9 +65,9 @@ public class SpawnManager : MonoBehaviour
             {
                 float spawnInterval = 1f / enemySpawnInfo.spawnRate;
 
-                float totalEnemies = FindObjectsByType<EnemyController>(FindObjectsSortMode.None).Length;
+                float totalEnemies = FindObjectsByType<EnemyInitializer>(FindObjectsSortMode.None).Length;
 
-                foreach (var enemy in FindObjectsByType<EnemyController>(FindObjectsSortMode.None))
+                foreach (var enemy in FindObjectsByType<EnemyInitializer>(FindObjectsSortMode.None))
                 {
                     if (enemy.GetEnemyData().name != enemySpawnInfo.enemyDefinition.enemyName)
                     {

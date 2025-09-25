@@ -20,4 +20,9 @@ public class BasicWeapon : MonoBehaviour, IWeaponBehavior
         if (system != null && !system.isPlaying)
             system.Play();
     }
+
+    public bool IsAimable()
+    {
+        return false;
+    }
 }

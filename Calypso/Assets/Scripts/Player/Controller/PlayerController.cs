@@ -102,16 +102,16 @@ public class PlayerController : MonoBehaviour
 
     private void InitializeMovementStats()
     {
-        baseMaxSpeed = PlayerStats.Instance.GetMaxSpeed();
-        baseAcceleration = PlayerStats.Instance.GetAcceleration();
-        baseDeceleration = PlayerStats.Instance.GetDeceleration();
+        baseMaxSpeed = PlayerManager.Instance.GetMaxSpeed();
+        baseAcceleration = PlayerManager.Instance.GetAcceleration();
+        baseDeceleration = PlayerManager.Instance.GetDeceleration();
         slideClamp = 0.3f;
     }
 
     public void ApplyMovementModifiers()
     {
-        maxSpeed = baseMaxSpeed * PlayerStats.Instance.GetSpdModifier();
-        acceleration = baseAcceleration * PlayerStats.Instance.GetAccModifier();
-        deceleration = baseDeceleration * PlayerStats.Instance.GetDecelModifier();
+        maxSpeed = baseMaxSpeed * PlayerManager.Instance.GetSpdModifier();
+        acceleration = baseAcceleration * PlayerManager.Instance.GetAccModifier();
+        deceleration = baseDeceleration * PlayerManager.Instance.GetDecelModifier();
     }
 }
