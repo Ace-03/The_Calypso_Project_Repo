@@ -1,3 +1,7 @@
+public class PlayerHealthData : HealthData
+{
+    public float invulnerabilityDuration;
+}
 public class HealthData
 {
     public int maxHP;

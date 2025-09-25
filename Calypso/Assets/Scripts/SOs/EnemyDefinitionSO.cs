@@ -4,13 +4,13 @@ using UnityEngine;
 public class EnemyDefinitionSO : ScriptableObject
 {
     public string enemyName;
-    public Sprite icon;
+    public Sprite sprite;
     public GameObject enemyPrefab;
     public GameObject deathEffect;
     public int maxHealth;
     public float movementSpeed;
     public float DifficultyModifier;
-    internal float aimSpeed;
+    public float aimSpeed;
     public WeaponDefinitionSO weapon;
     public float knockbackResistance;
     public float stunResistance;

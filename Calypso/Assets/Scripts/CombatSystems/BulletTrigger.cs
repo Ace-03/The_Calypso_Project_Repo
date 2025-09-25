@@ -3,13 +3,13 @@ using UnityEngine;
 public class BulletTrigger : MonoBehaviour
 {
     WeaponDefinitionSO weaponData;
-    EnemyDefinitionSO enem;
+    EnemyDefinitionSO enemyData;
 
-    private void Start()
+    private void Awake()
     {
         // assumes info is attatched to same object.
         weaponData = GetComponentInParent<WeaponController>()?.GetWeaponData();
-        enem = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
+        enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
     }
 
     
@@ -30,11 +30,18 @@ public class BulletTrigger : MonoBehaviour
             DamageInfo damageInfo = new DamageInfo();
 
             if (other.CompareTag("Player"))
-                damageInfo = DamageCalculator.GetDamageInfo(enem);
-            else
-                damageInfo = DamageCalculator.GetDamageInfo(weaponData);
+            {
+                if (enemyData == null)
+                    enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
 
-            other.GetComponent<IHealthSystem>().TakeDamage(damageInfo);
+                damageInfo = DamageCalculator.GetDamageToPlayer(enemyData);
+                other.GetComponent<IHealthSystem>().TakeDamage(damageInfo);
+            }
+            else if (other.CompareTag("Enemy") && CompareTag("Player"))
+            {
+                damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
+                other.GetComponent<IHealthSystem>().TakeDamage(damageInfo);
+            }
         }
     }
 }

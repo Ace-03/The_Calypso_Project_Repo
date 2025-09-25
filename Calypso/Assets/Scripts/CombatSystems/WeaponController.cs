@@ -39,6 +39,12 @@ public class WeaponController : MonoBehaviour
         if (weaponInstance != null)
             Destroy(weaponInstance);
         
+        if (weaponData == null)
+        {
+            Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
+            return;
+        }
+
         weaponInstance = Instantiate(weaponData.weaponBehaviorPrefab, transform);
         weaponBehavior = weaponInstance.GetComponent<IWeaponBehavior>();
     }
@@ -46,6 +52,20 @@ public class WeaponController : MonoBehaviour
     public void RecalculateStats()
     {
         currentStats.Clear();
+
+        if (weaponData == null)
+        {
+            Debug.LogError("Weapon data is not assigned in WeaponController. Setting stats to zero");
+            currentStats["Cooldown"] = 0;
+            currentStats["Amount"] = 0;
+            currentStats["Duration"] = 0;
+            currentStats["accuracy"] = 0;
+            currentStats["Speed"] = 0;
+            currentStats["AOETick"] = 0;
+            currentStats["Area"] = 0;
+            return;
+        }
+
 
         if (!CompareTag("Player"))
         {

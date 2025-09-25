@@ -7,7 +7,15 @@ public class BurstRifleBehavior : MonoBehaviour, IWeaponBehavior
     private void Awake()
     {
         ps = GetComponent<ParticleSystem>();
+
+        var col = ps.collision;
+
+        if (transform.parent.CompareTag("Player"))
+            col.collidesWith = LayerMask.GetMask("Enemy", "Environment");
+        else if (transform.parent.CompareTag("Enemy"))
+            col.collidesWith = LayerMask.GetMask("Player", "Environment");
     }
+
     public void Attack(WeaponController weapon)
     {
         if (ps != null && !ps.isPlaying)

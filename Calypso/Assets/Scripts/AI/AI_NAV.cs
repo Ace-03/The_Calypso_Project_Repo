@@ -9,7 +9,7 @@ public class AI_NAV : MonoBehaviour, IEnemyMovement
     public bool stopAtDistance = true;
     private NavMeshAgent agent;
 
-    void Start()
+    void Awake()
     {
         // Get the NavMeshAgent attached to this object
         agent = GetComponent<NavMeshAgent>();

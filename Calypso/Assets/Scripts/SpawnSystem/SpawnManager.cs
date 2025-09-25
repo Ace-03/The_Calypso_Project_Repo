@@ -94,7 +94,18 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPosition = GetRandomSpawnPosition();
 
         GameObject enemyInstance =  PoolManager.Instance.GetFromPool(enemyType.name, spawnPosition, Quaternion.identity);
+        
+        if (!enemyInstance.TryGetComponent<EnemyInitializer>(out var initializer))
+        {
+            Debug.LogError($"Enemy prefab {enemyType.name} does not have an EnemyInitializer component.");
+            return;
+        }
+        else
+        {
+            initializer.Initialize(enemyType);
+        }
 
+            enemyInstance.GetComponent<EnemyInitializer>().Initialize(enemyType);
         if (enemyInstance == null )
         {
             Debug.LogError($"Failed to spawn enemy of type {enemyType.name}");

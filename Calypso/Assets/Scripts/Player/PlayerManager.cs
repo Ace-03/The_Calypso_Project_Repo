@@ -16,6 +16,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private float recovery = 1; // health regen per second
     [SerializeField]
+    private float invulnerabilityPeriod = 0.5f;
+    [SerializeField]
     private int luck = 100; // affects loot drops and critical hits
 
 
@@ -271,8 +273,9 @@ public class PlayerManager : MonoBehaviour
         if (!player.TryGetComponent<PlayerHealth>(out var hs))
             hs = player.AddComponent<PlayerHealth>();
 
-        hs.Initialize(new HealthData
+        hs.Initialize(new PlayerHealthData
         {
+            invulnerabilityDuration = invulnerabilityPeriod,
             maxHP = maxHealth,
         });
     }

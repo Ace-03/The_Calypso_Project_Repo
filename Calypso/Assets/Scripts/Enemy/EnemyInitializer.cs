@@ -4,39 +4,65 @@ using UnityEngine.AI;
 
 public class EnemyInitializer : MonoBehaviour
 {
-    [SerializeField]
-    private bool useDefaultComponents = true;
-
     private EnemyDefinitionSO enemyData;
     private EnemyHealth healthSystem;
     private PooledObject pooledObject;
+    private SpriteRenderer sr;
     private IEnemyMovement ai;
+
     private void Awake()
     {
-        // If we are using components from the SO then don't add defaults.
-        if (!useDefaultComponents) return;
-
         if (!TryGetComponent<PooledObject>(out pooledObject))
             pooledObject = gameObject.AddComponent<PooledObject>();
+        
         if (!TryGetComponent<EnemyHealth>(out healthSystem))
             healthSystem = gameObject.AddComponent<EnemyHealth>();
+        
         if (!TryGetComponent<IEnemyMovement>(out ai))
             ai = gameObject.AddComponent<AI_NAV>();
+
+        if (!GetComponentInChildren<SpriteRenderer>())
+            sr = Instantiate(new GameObject("Sprite"), transform).AddComponent<SpriteRenderer>();
+        else
+            sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void Initialize(EnemyDefinitionSO data)
     {
         enemyData = data;
 
-        healthSystem.Initialize(new HealthData { maxHP = data.maxHealth });
-        ai.SetSpeed(data.movementSpeed);
+        InitializeHealth(data);
+        InitializeMovement(data);
+        InitializeSprite(data);
         InitializeWeapon(data.weapon);
 
         // Initialize other components like health, speed, etc. based on enemyData
     }
 
+    private void InitializeHealth(EnemyDefinitionSO data)
+    {
+        healthSystem.Initialize(new HealthData { maxHP = data.maxHealth });
+    }
+
+    private void InitializeMovement(EnemyDefinitionSO data)
+    {
+        ai.SetSpeed(data.movementSpeed);
+    }
+
+    private void InitializeSprite(EnemyDefinitionSO data)
+    {
+        sr.sprite = data.sprite;
+        sr.color = Color.white;
+    }
+
     private void InitializeWeapon(WeaponDefinitionSO weaponData)
     {
+        if (weaponData == null)
+        {
+            Debug.LogError("Weapon data is null in EnemyInitializer. Enemy will be unarmed.");
+            return;
+        }
+
         if (!TryGetComponent<WeaponController>(out var weaponController))
             weaponController = gameObject.AddComponent<WeaponController>();
 

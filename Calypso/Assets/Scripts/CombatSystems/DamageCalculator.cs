@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class DamageCalculator
 {
-    public static DamageInfo GetDamageInfo(WeaponDefinitionSO weaponData)
+    public static DamageInfo GetDamageFromPlayer(WeaponDefinitionSO weaponData)
     {
         return new DamageInfo
         {
@@ -14,9 +14,11 @@ public static class DamageCalculator
         };
     }
 
-    public static DamageInfo GetDamageInfo(EnemyDefinitionSO enemyData)
+    public static DamageInfo GetDamageToPlayer(EnemyDefinitionSO enemyData)
     {
-        return enemyData.MakeDamageInfo();
+        DamageInfo damageInfo = enemyData.MakeDamageInfo();
+        damageInfo.damage *= 1 + (PlayerManager.Instance.GetArmor() * -0.01f);
+        return damageInfo;
     }
 }
 

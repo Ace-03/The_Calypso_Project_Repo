@@ -30,8 +30,9 @@ public class EnemyWeaponAim : MonoBehaviour
         this.aimSpeed = aimSpeed;
     }
 
-    internal void Initialize(GameObject gameObject, object aimSpeed)
+    internal void Initialize(GameObject gameObject, float newAimSpeed)
     {
-        throw new NotImplementedException();
+        weapon = gameObject.transform;
+        aimSpeed = newAimSpeed;
     }
 }

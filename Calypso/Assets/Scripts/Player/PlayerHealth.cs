@@ -2,24 +2,45 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
-    public int maxHP;
-    public int hp;
-    public int bonusHP;
-    public bool invulnerable;
+    private int maxHP;
+    private int hp;
+    private int bonusHP;
+    private bool invulnerable;
+
+    private float invulnerabilityduration = 0.5f;
+    private float invulnerabilityTimer;
+
+    private void Update()
+    {
+        if (!invulnerable) { return; }
+
+        invulnerabilityTimer -= Time.deltaTime;
+
+        if (invulnerabilityTimer <= 0)
+            invulnerable = false;
+    }
 
     public void TakeDamage(DamageInfo info)
     {
-        Debug.Log("Damage Taken: " + info.damage);
-
         if (invulnerable) { return; }
 
-        hp -= (int)info.damage;
-        
-        if (hp <= 0)
+        Debug.Log("Damage Taken by player: " + info.damage);
+        if (bonusHP > 0) 
         {
-            Die();
+            int damageToBonus = Mathf.Min(bonusHP, (int)info.damage);
+            bonusHP -= damageToBonus;
+            info.damage -= damageToBonus;
         }
+
+        hp -= (int)Mathf.Clamp(info.damage, 0f, maxHP);
+        invulnerabilityTimer = invulnerabilityduration;
+        invulnerable = true;
+
+
+        if (hp <= 0)
+            Die();
     }
+
     public void Die()
     {
         // Game Over Logic Here
@@ -30,8 +51,27 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         if (rb != null)
         {
-            rb.AddForce(Vector3.up * 50, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 1000, ForceMode.Impulse);
         }
+    }
+
+    public void heal(int amount)
+    {
+        hp += amount;
+        if (hp > maxHP + bonusHP)
+            hp = maxHP + bonusHP;
+    }
+
+    public void addBonusHP(int amount)
+    {
+        bonusHP += amount;
+    }
+
+    public void Initialize(PlayerHealthData data)
+    {
+        invulnerabilityduration = data.invulnerabilityDuration;
+        maxHP = data.maxHP;
+        hp = data.maxHP;
     }
 
     public void Initialize(HealthData data)

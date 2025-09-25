@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6383583984287182776}
   - component: {fileID: 2754005291634056761}
   - component: {fileID: 5570232738656937367}
-  - component: {fileID: 2148165340477933453}
   - component: {fileID: -6049647831721388527}
   - component: {fileID: 369635773466012643}
+  - component: {fileID: 7347213933104212895}
   m_Layer: 7
   m_Name: EnemyPrefabGeneric
   m_TagString: Enemy
@@ -95,9 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 3.5
-  stopDistance: 3
+  stopDistance: 0.2
   stopAtDistance: 1
---- !u!114 &2148165340477933453
+--- !u!114 &-6049647831721388527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,13 +106,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 936472771579500139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ce8c78345c0cc3498d4d38eb8a12e8e, type: 3}
+  m_Script: {fileID: 11500000, guid: cc40de3687baa0c428443276de9b728d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolName: 
+--- !u!114 &369635773466012643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936472771579500139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98918660c2473f848973e9eb362d33d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7347213933104212895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936472771579500139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90cef6dea71b9a4d8e771651f11a3df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 0
   hp: 0
-  bonusHP: 0
-  invulnerable: 0
   DEBUG_RESPAWN: 0
   DEBUG_MATS: 0
   DEBUG_Gradient:
@@ -145,31 +168,6 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
---- !u!114 &-6049647831721388527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936472771579500139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc40de3687baa0c428443276de9b728d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolName: 
---- !u!114 &369635773466012643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936472771579500139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98918660c2473f848973e9eb362d33d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2698687926846563290
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,8 +245,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2e426de7d78065e4eb7ed540e20d116c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0.34905648, b: 0.79186183, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
