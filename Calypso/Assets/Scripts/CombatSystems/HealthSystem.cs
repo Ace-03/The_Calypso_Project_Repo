@@ -29,6 +29,7 @@ public class HealthSystem : MonoBehaviour
             statusSystem.ApplyPoison(info.poisonDuration);
             statusSystem.ApplySlowdown(info.stunDuration);
             statusSystem.ApplyStun(info.stunDuration);
+            statusSystem.ApplyKnockback(info.knockbackStrength);
         }
         if (DEBUG_MATS)
         {
@@ -75,6 +76,11 @@ public class HealthSystem : MonoBehaviour
     }
     public void Die()
     {
+        if (statusSystem != null)
+        {
+            statusSystem.ResetTimers();
+        }
+        hp = maxHP;
         GetComponent<EnemyController>().OnDeath();
     }
     public void DEBUG_Change_Mat()
