@@ -5,6 +5,8 @@ public class WeaponController : MonoBehaviour
 {
     [SerializeField]
     private WeaponDefinitionSO weaponData;
+    [SerializeField]
+    private Transform weaponPivot;
 
     public readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
 
@@ -45,7 +47,7 @@ public class WeaponController : MonoBehaviour
             return;
         }
 
-        weaponInstance = Instantiate(weaponData.weaponBehaviorPrefab, transform);
+        weaponInstance = Instantiate(weaponData.weaponBehaviorPrefab, weaponPivot);
         weaponBehavior = weaponInstance.GetComponent<IWeaponBehavior>();
     }
 

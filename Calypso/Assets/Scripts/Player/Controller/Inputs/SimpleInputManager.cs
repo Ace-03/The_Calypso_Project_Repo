@@ -33,5 +33,9 @@ public class SimpleInputManager : MonoBehaviour
         moveInput.Normalize();
 
         invoker.ExecuteCommand(new MoveCommand(player, moveInput));
+
+        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(player.transform.position);
+        
+        invoker.ExecuteCommand(new AimCommand(player, dir));
     }
 }

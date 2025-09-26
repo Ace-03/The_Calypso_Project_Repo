@@ -4904,7 +4904,6 @@ GameObject:
   - component: {fileID: 5417961931621998416}
   - component: {fileID: 7562424797762174138}
   - component: {fileID: 1812151299177642501}
-  - component: {fileID: 4284510983084470466}
   m_Layer: 0
   m_Name: SHOTGUN
   m_TagString: Untagged
@@ -9815,19 +9814,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4d953b6e385ff240b46ce8be9bcca84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletDamage: 3
---- !u!114 &4284510983084470466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2735682749369207564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88bacb92d5753814ea10e591f5519807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3247799907809243447

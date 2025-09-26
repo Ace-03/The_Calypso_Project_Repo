@@ -34,3 +34,17 @@ public class InteractCommand : Command
         controller.Interact();
     }
 }
+
+public class AimCommand : Command
+{
+    private Vector3 aimDirection;
+    public AimCommand(PlayerController targetController, Vector3 direction)
+    {
+        controller = targetController;
+        aimDirection = direction;
+    }
+    public override void Execute()
+    {
+        controller.SetAimVector(aimDirection);
+    }
+}

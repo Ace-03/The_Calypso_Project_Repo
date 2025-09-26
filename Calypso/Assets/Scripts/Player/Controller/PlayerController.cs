@@ -4,18 +4,16 @@ using UnityEngine.PlayerLoop;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private Transform playerAimer;
+    private Transform weaponPivot;
 
     private float baseMaxSpeed;
     private float baseAcceleration;
     private float baseDeceleration;
-    private float slideClamp;
 
     private float maxSpeed;
     private float acceleration;
     private float deceleration;
 
-    private float rbSpeedAdjustment = 20f;
     private Rigidbody rb;
     private IInteractable currentInteractable;
     private Vector3 movementVector;
@@ -43,8 +41,8 @@ public class PlayerController : MonoBehaviour
     {
         if (aimVector.magnitude > 0.1f)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(aimVector, Vector3.up);
-            playerAimer.rotation = Quaternion.Slerp(playerAimer.rotation, targetRotation, 0.2f);
+            float angle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
+            weaponPivot.rotation = Quaternion.AngleAxis(angle, Vector3.down);
         }
     }
 
@@ -63,7 +61,7 @@ public class PlayerController : MonoBehaviour
         movementVector = direction;
     }
 
-    public void SetAimerRotation(Vector3 direction)
+    public void SetAimVector(Vector3 direction)
     {
         aimVector = direction;
     }
@@ -83,20 +81,20 @@ public class PlayerController : MonoBehaviour
             Vector3 velocityChange = targetVelocity - horizontalVelocity;
             rb.AddForce(velocityChange * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
-        else if (movementVector.magnitude <= 0.15f && horizontalVelocity.magnitude > slideClamp)
+        else if (movementVector.magnitude <= 0.15f)
         {
-            Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * (rbSpeedAdjustment / 3);
-            rb.AddForce(brakingForce, ForceMode.Acceleration);
+            Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * Time.fixedDeltaTime;
+            rb.AddForce(brakingForce, ForceMode.VelocityChange);
+        
+            if (horizontalVelocity.magnitude < 0.5f)
+            {
+                rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            }
         }
 
         if (horizontalVelocity.magnitude > maxSpeed)
         {
             rb.linearVelocity = horizontalVelocity.normalized * maxSpeed;
-        }
-
-        if (horizontalVelocity.magnitude <= slideClamp)
-        {
-            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
     }
 
@@ -105,7 +103,6 @@ public class PlayerController : MonoBehaviour
         baseMaxSpeed = PlayerManager.Instance.GetMaxSpeed();
         baseAcceleration = PlayerManager.Instance.GetAcceleration();
         baseDeceleration = PlayerManager.Instance.GetDeceleration();
-        slideClamp = 0.3f;
     }
 
     public void ApplyMovementModifiers()

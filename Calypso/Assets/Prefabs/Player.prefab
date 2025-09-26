@@ -261,6 +261,7 @@ Transform:
   m_Children:
   - {fileID: 7764472329224569483}
   - {fileID: 2832730173401900703}
+  - {fileID: 5554833905175610038}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5651583649422092401
@@ -378,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a27aa4ead78114fbcb886350f57aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAimer: {fileID: 0}
+  weaponPivot: {fileID: 5554833905175610038}
 --- !u!114 &6693502108835353163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 08b5135d76af6ba478a0d320cb99736f, type: 2}
+  weaponPivot: {fileID: 5554833905175610038}
 --- !u!114 &5034327732661880448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,7 +406,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b8802b7978d1741b0cf672d3ae7a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 0
-  hp: 0
-  bonusHP: 0
-  invulnerable: 0
+--- !u!1 &7063436058657950361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5554833905175610038}
+  m_Layer: 8
+  m_Name: WeaponPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5554833905175610038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7063436058657950361}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3373966260996384910}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
