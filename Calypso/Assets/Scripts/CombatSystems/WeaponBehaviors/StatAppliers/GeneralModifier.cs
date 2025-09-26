@@ -2,10 +2,6 @@ using UnityEngine;
 
 public static class GeneralModifier
 {
-    public static void SetDamage(BulletTrigger bulletTrigger, int damage)
-    {
-        bulletTrigger.bulletDamage = damage;
-    }
     public static void SetDuration(ParticleSystem ps, float duration)
     {
         var Main = ps.main;

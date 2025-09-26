@@ -62,4 +62,9 @@ public class ParticleAttraction : MonoBehaviour, IWeaponBehavior
     {
         return;
     }
+
+    public bool IsAimable()
+    {
+        return true;
+    }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AI_NAV : MonoBehaviour
+public class AI_NAV : MonoBehaviour, IEnemyMovement
 {
     public Transform target;   // The object to move toward
     private float maxSpeed;
@@ -10,7 +10,7 @@ public class AI_NAV : MonoBehaviour
     public bool stopAtDistance = true;
     private NavMeshAgent agent;
 
-    void Start()
+    void Awake()
     {
         maxSpeed = speed;
         // Get the NavMeshAgent attached to this object
@@ -31,14 +31,22 @@ public class AI_NAV : MonoBehaviour
         }
         else
         {
-            target = FindAnyObjectByType<Target>().transform;
+            target = FindAnyObjectByType<PlayerController>().transform;
         }
     }
+
+    public void SetSpeed(float newSpeed)
+    {
+        maxSpeed = newSpeed;
+        agent.speed = newSpeed;
+    }
+    
     public void ResetSpeed()
     {
         speed = maxSpeed;
 
     }
+    
     public float GetMaxSpeed()
     {
         return maxSpeed;

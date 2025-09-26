@@ -4,7 +4,11 @@ public class SimpleInputManager : MonoBehaviour
 {
     [SerializeField]
     private PlayerController player;
+    [SerializeField]
+    private AimType aimMethod;
+    
     private Invoker invoker;
+
 
     void Start()
     {
@@ -33,5 +37,35 @@ public class SimpleInputManager : MonoBehaviour
         moveInput.Normalize();
 
         invoker.ExecuteCommand(new MoveCommand(player, moveInput));
+
+        Vector3 dir = new Vector3();
+
+        switch (aimMethod) 
+        {
+            case AimType.mouse:
+                Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(player.transform.position);
+                break;
+            case AimType.arrows:
+                if (Input.GetKey(KeyCode.UpArrow))
+                    dir += Vector3.forward;
+                if (Input.GetKey(KeyCode.DownArrow))
+                    dir += Vector3.back;
+                if (Input.GetKey(KeyCode.LeftArrow))
+                    dir += Vector3.left;
+                if (Input.GetKey(KeyCode.RightArrow))
+                    dir += Vector3.right;
+                break;
+            case AimType.withMovement:
+                dir = moveInput;
+        }
+
+        invoker.ExecuteCommand(new AimCommand(player, dir));
+    }
+
+    private enum AimType
+    {
+        mouse,
+        arrows,
+        withMovement,
     }
 }
