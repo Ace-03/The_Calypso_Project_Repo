@@ -6,7 +6,9 @@ public class SimpleInputManager : MonoBehaviour
     private PlayerController player;
     [SerializeField]
     private AimType aimMethod;
-    
+
+    private Vector3 persistentAim = new Vector3();
+
     private Invoker invoker;
 
 
@@ -59,7 +61,12 @@ public class SimpleInputManager : MonoBehaviour
                 dir = moveInput;
         }
 
-        invoker.ExecuteCommand(new AimCommand(player, dir));
+        if (dir.magnitude <= 0.1f)
+            dir = persistentAim
+        else
+            persistentAim = dir;
+
+            invoker.ExecuteCommand(new AimCommand(player, dir));
     }
 
     private enum AimType
