@@ -24,21 +24,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     {
         if (invulnerable) { return; }
 
-        Debug.Log("Damage Taken by player: " + info.damage);
-        if (bonusHP > 0) 
-        {
-            int damageToBonus = Mathf.Min(bonusHP, (int)info.damage);
-            bonusHP -= damageToBonus;
-            info.damage -= damageToBonus;
-        }
-
-        hp -= (int)Mathf.Clamp(info.damage, 0f, maxHP);
-        invulnerabilityTimer = invulnerabilityduration;
-        invulnerable = true;
-
-
-        if (hp <= 0)
-            Die();
+        TakeDamageRaw((int)info.damage);
     }
 
     public void Die()
@@ -78,6 +64,29 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     {
         maxHP = data.maxHP;
         hp = data.maxHP;
+    }
+
+    public void TakeDamageRaw(int damage)
+    {
+        Debug.Log("Damage Taken by player: " + damage);
+        if (bonusHP > 0)
+        {
+            int damageToBonus = Mathf.Min(bonusHP, damage);
+            bonusHP -= damageToBonus;
+            damage -= damageToBonus;
+        }
+
+        hp -= (int)Mathf.Clamp(damage, 0f, maxHP);
+        invulnerabilityTimer = invulnerabilityduration;
+        invulnerable = true;
+
+        if (hp <= 0)
+            Die();
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHP;
     }
 }
 

@@ -30,21 +30,12 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
             statusSystem.ApplyKnockback(info.knockbackStrength);
         }
 
-        if (DEBUG_MATS)
-            DEBUG_Change_Mat();
-        
-        hp -= (int)info.damage;
-        
-        if (hp <= 0)
-        {
-            hp = 0;
-            Die();
-        }
+        TakeDamageRaw((int)info.damage);
     }
 
     public void TakeDamageRaw(int damage)
     {
-        Debug.Log("Raw Damage Taken: " + damage);
+        Debug.Log("Damage Taken: " + damage);
 
         if (DEBUG_MATS)
             DEBUG_Change_Mat();
@@ -62,7 +53,7 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
             statusSystem.ResetTimers();
         }
         hp = maxHP;
-        GetComponent<EnemyController>().OnDeath();
+        GetComponent<EnemyInitializer>().OnDeath();
     }
     
     public void DEBUG_Change_Mat()
@@ -84,5 +75,10 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
     {
         maxHP = data.maxHP;
         hp = data.maxHP;
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHP;
     }
 }
