@@ -37,5 +37,6 @@ public static class GeneralModifier
     {
         var Shape = ps.shape;
         Shape.arc = arcSize;
+        Shape.rotation = new Vector3(Shape.rotation.x, arcSize/2, Shape.rotation.z);
     }
 }

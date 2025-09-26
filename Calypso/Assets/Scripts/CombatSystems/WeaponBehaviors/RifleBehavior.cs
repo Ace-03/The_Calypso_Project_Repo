@@ -27,6 +27,7 @@ public class RifleBehavior : MonoBehaviour, IWeaponBehavior
         GeneralModifier.SetRateOverTime(ps, weapon.GetAmount());
         GeneralModifier.SetDuration(ps, weapon.GetCooldown());
         GeneralModifier.SetLifetime(ps, weapon.GetDuration());
+        GeneralModifier.SetCircleArc(ps, 1 / weapon.GetAccuracy() * 200);
     }
 
     public bool IsAimable()
