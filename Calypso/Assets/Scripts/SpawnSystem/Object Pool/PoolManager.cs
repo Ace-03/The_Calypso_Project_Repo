@@ -16,7 +16,6 @@ public class PoolManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(this.gameObject);
 
         poolDictionary = new Dictionary<string, Pool>();
         foreach (var pool in pools)

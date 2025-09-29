@@ -5,12 +5,16 @@ public class PickupSpawner : MonoBehaviour
 {
     static public void SpawnPickup(ItemDrop Drop, Vector3 position)
     {
+        Debug.Log(position);
         int count = Random.Range(Drop.minAmount, Drop.maxAmount + 1);
 
         for (int i = 0; i < count; i++)
         {
             GameObject newPickup= Instantiate(Drop.data.prefab, position, Quaternion.identity);
-            newPickup.GetComponent<Pickup>().SetPickupData(Drop.data);
+            
+            Pickup pickupComponent = newPickup.GetComponent<Pickup>();
+            pickupComponent.SetPickupData(Drop.data);
+            pickupComponent.InitializeData();
         }
     }
 
@@ -20,8 +24,8 @@ public class PickupSpawner : MonoBehaviour
         {
             foreach (var drop in enemyData.possibleDrops)
             {
-                float roll = UnityEngine.Random.Range(0f, 100f);
-                if (roll < drop.dropChance)
+                float roll = Random.Range(0f, 100f);
+                if (roll <= drop.dropChance)
                 {
                     PickupSpawner.SpawnPickup(drop, position);
                 }

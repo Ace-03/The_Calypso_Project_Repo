@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesInWave:
   - enemyDefinition: {fileID: 11400000, guid: 4afac625963e7e34f9210b6de61bcc40, type: 2}
-    spawnRate: 50
-    maxActiveEnemies: 10
+    spawnRate: 0.2
+    maxActiveEnemies: 3
   waveDuration: 120

@@ -9,6 +9,10 @@ public class ResourceTracker : MonoBehaviour
     [SerializeField]
     private int stone;
 
+    [SerializeField]
+    private GameObject stonePrefab;
+    [SerializeField]
+    private GameObject resinPrefab;
 
     private void Awake()
     {
@@ -19,10 +23,8 @@ public class ResourceTracker : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
     }
-
 
     public void AddResin(int amount)
     {

@@ -17,5 +17,6 @@ public class ResourcePickup : Pickup
                 break;
         }
 
+        Destroy(this.gameObject);
     }
 }

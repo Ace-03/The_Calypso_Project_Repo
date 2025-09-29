@@ -21,7 +21,6 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
 
     public void TakeDamage(DamageInfo info)
     {
-        Debug.Log("Damage Taken: " + info.damage);
         if (statusSystem != null)
         {
             statusSystem.ApplyPoison(info.poisonDuration);
@@ -35,7 +34,6 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
 
     public void TakeDamageRaw(int damage)
     {
-        Debug.Log("Damage Taken: " + damage);
 
         if (DEBUG_MATS)
             DEBUG_Change_Mat();
