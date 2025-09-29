@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
 
     public void TakeDamage(DamageInfo info)
     {
-
+        Debug.Log("Damage Taken: " + info.damage);
         if (statusSystem != null)
         {
             statusSystem.ApplyPoison(info.poisonDuration);
@@ -49,9 +49,8 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
     public void Die()
     {
         if (statusSystem != null)
-        {
             statusSystem.ResetTimers();
-        }
+
         hp = maxHP;
         GetComponent<EnemyInitializer>().OnDeath();
     }

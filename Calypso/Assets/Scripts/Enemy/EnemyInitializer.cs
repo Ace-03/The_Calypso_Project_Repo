@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyInitializer : MonoBehaviour
 {
@@ -90,6 +89,7 @@ public class EnemyInitializer : MonoBehaviour
 
     internal void OnDeath()
     {
+        PickupSpawner.RollForItemDrop(enemyData, transform.position);
         pooledObject.DeactivateAndReturn();
     }
 }
