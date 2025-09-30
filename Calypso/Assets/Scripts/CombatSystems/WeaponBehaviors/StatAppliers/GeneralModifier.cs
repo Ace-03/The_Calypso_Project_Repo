@@ -2,10 +2,6 @@ using UnityEngine;
 
 public static class GeneralModifier
 {
-    public static void SetDamage(BulletTrigger bulletTrigger, int damage)
-    {
-        bulletTrigger.bulletDamage = damage;
-    }
     public static void SetDuration(ParticleSystem ps, float duration)
     {
         var Main = ps.main;
@@ -41,5 +37,6 @@ public static class GeneralModifier
     {
         var Shape = ps.shape;
         Shape.arc = arcSize;
+        Shape.rotation = new Vector3(Shape.rotation.x, arcSize/2, Shape.rotation.z);
     }
 }

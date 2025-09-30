@@ -14,4 +14,5 @@ public interface IWeaponBehavior
      */
     void ApplyWeaponStats(WeaponController weapon);
 
+    bool IsAimable();
 }

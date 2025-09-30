@@ -3,19 +3,21 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private Transform weaponPivot;
+
     private float baseMaxSpeed;
     private float baseAcceleration;
     private float baseDeceleration;
-    private float slideClamp;
 
     private float maxSpeed;
     private float acceleration;
     private float deceleration;
 
-    private float rbSpeedAdjustment = 20f;
     private Rigidbody rb;
     private IInteractable currentInteractable;
     private Vector3 movementVector;
+    private Vector3 aimVector;
 
     private void Start()
     {
@@ -31,39 +33,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-
-        if (movementVector.magnitude > 0)
-        {
-            Vector3 targetVelocity = movementVector * maxSpeed;
-            Vector3 velocityChange = targetVelocity - horizontalVelocity;  
-            rb.AddForce(velocityChange * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
-        }
-        else if (movementVector.magnitude <= 0.15f && horizontalVelocity.magnitude > slideClamp)
-        {
-            Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * (rbSpeedAdjustment / 3);
-            rb.AddForce(brakingForce, ForceMode.Acceleration);
-        }
-
-        if (horizontalVelocity.magnitude > maxSpeed)
-        {
-            rb.linearVelocity = horizontalVelocity.normalized * maxSpeed;
-        }
-
-        if (horizontalVelocity.magnitude <= slideClamp)
-        {
-            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
-        }
-    }
-    
-    public void SetMovementVector(Vector3 newVector)
-    {
-        movementVector = newVector;
+        MovePlayer();
+        UpdateAim();
     }
 
-    public void Interact()
+    private void UpdateAim()
     {
-        currentInteractable?.Interact();
+        if (aimVector.magnitude > 0.1f)
+        {
+            float angle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
+            weaponPivot.rotation = Quaternion.AngleAxis(angle, Vector3.down);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,18 +55,60 @@ public class PlayerController : MonoBehaviour
     {
         currentInteractable = null;
     }
+
+    public void SetMovementVector(Vector3 direction)
+    {
+        movementVector = direction;
+    }
+
+    public void SetAimVector(Vector3 direction)
+    {
+        aimVector = direction;
+    }
+
+    public void Interact()
+    {
+        currentInteractable?.Interact();
+    }
+
+    private void MovePlayer()
+    {
+        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+
+        if (movementVector.magnitude > 0)
+        {
+            Vector3 targetVelocity = movementVector * maxSpeed;
+            Vector3 velocityChange = targetVelocity - horizontalVelocity;
+            rb.AddForce(velocityChange * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        }
+        else if (movementVector.magnitude <= 0.15f)
+        {
+            Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * Time.fixedDeltaTime;
+            rb.AddForce(brakingForce, ForceMode.VelocityChange);
+        
+            if (horizontalVelocity.magnitude < 0.5f)
+            {
+                rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            }
+        }
+
+        if (horizontalVelocity.magnitude > maxSpeed)
+        {
+            rb.linearVelocity = horizontalVelocity.normalized * maxSpeed;
+        }
+    }
+
     private void InitializeMovementStats()
     {
-        baseMaxSpeed = PlayerStats.Instance.GetMaxSpeed();
-        baseAcceleration = PlayerStats.Instance.GetAcceleration();
-        baseDeceleration = PlayerStats.Instance.GetDeceleration();
-        slideClamp = 0.3f;
+        baseMaxSpeed = PlayerManager.Instance.GetMaxSpeed();
+        baseAcceleration = PlayerManager.Instance.GetAcceleration();
+        baseDeceleration = PlayerManager.Instance.GetDeceleration();
     }
 
     public void ApplyMovementModifiers()
     {
-        maxSpeed = baseMaxSpeed * PlayerStats.Instance.GetSpdModifier();
-        acceleration = baseAcceleration * PlayerStats.Instance.GetAccModifier();
-        deceleration = baseDeceleration * PlayerStats.Instance.GetDecelModifier();
+        maxSpeed = baseMaxSpeed * PlayerManager.Instance.GetSpdModifier();
+        acceleration = baseAcceleration * PlayerManager.Instance.GetAccModifier();
+        deceleration = baseDeceleration * PlayerManager.Instance.GetDecelModifier();
     }
 }

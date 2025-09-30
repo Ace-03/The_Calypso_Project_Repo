@@ -65,11 +65,11 @@ public class SpawnManager : MonoBehaviour
             {
                 float spawnInterval = 1f / enemySpawnInfo.spawnRate;
 
-                float totalEnemies = FindObjectsByType<EnemyController>(FindObjectsSortMode.None).Length;
+                float totalEnemies = FindObjectsByType<EnemyInitializer>(FindObjectsSortMode.None).Length;
 
-                foreach (var enemy in FindObjectsByType<EnemyController>(FindObjectsSortMode.None))
+                foreach (var enemy in FindObjectsByType<EnemyInitializer>(FindObjectsSortMode.None))
                 {
-                    if (enemy.GetEnemyData().name != enemySpawnInfo.enemyDefinition.enemyName)
+                    if (enemy.GetEnemyData().enemyName != enemySpawnInfo.enemyDefinition.enemyName)
                     {
                         totalEnemies--;
                     }
@@ -94,7 +94,18 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPosition = GetRandomSpawnPosition();
 
         GameObject enemyInstance =  PoolManager.Instance.GetFromPool(enemyType.name, spawnPosition, Quaternion.identity);
+        
+        if (!enemyInstance.TryGetComponent<EnemyInitializer>(out var initializer))
+        {
+            Debug.LogError($"Enemy prefab {enemyType.name} does not have an EnemyInitializer component.");
+            return;
+        }
+        else
+        {
+            initializer.Initialize(enemyType);
+        }
 
+            enemyInstance.GetComponent<EnemyInitializer>().Initialize(enemyType);
         if (enemyInstance == null )
         {
             Debug.LogError($"Failed to spawn enemy of type {enemyType.name}");

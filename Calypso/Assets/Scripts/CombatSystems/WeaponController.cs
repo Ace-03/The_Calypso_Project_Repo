@@ -5,6 +5,8 @@ public class WeaponController : MonoBehaviour
 {
     [SerializeField]
     private WeaponDefinitionSO weaponData;
+    [SerializeField]
+    private Transform weaponPivot;
 
     public readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
 
@@ -13,6 +15,11 @@ public class WeaponController : MonoBehaviour
     private float nextAttackTime;
 
     private void Start()
+    {
+        Initialize();
+    }
+
+    private void Initialize()
     {
         InitializeData();
         RecalculateStats();
@@ -31,7 +38,16 @@ public class WeaponController : MonoBehaviour
 
     public void InitializeData()
     {
-        weaponInstance = Instantiate(weaponData.weaponBehaviorPrefab, transform);
+        if (weaponInstance != null)
+            Destroy(weaponInstance);
+        
+        if (weaponData == null)
+        {
+            Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
+            return;
+        }
+
+        weaponInstance = Instantiate(weaponData.weaponBehaviorPrefab, weaponPivot);
         weaponBehavior = weaponInstance.GetComponent<IWeaponBehavior>();
     }
 
@@ -39,13 +55,39 @@ public class WeaponController : MonoBehaviour
     {
         currentStats.Clear();
 
-        currentStats["Cooldown"] = weaponData.baseCooldown * PlayerStats.Instance.GetCooldown();
-        currentStats["Amount"] = weaponData.baseAmount + PlayerStats.Instance.GetAmount();
-        currentStats["Duration"] = weaponData.baseDuration * PlayerStats.Instance.GetDuration();
-        currentStats["accuracy"] = weaponData.baseAccuracy + PlayerStats.Instance.GetDexterity();
-        currentStats["Speed"] = weaponData.baseProjectileSpeed * PlayerStats.Instance.GetDexterity();
-        currentStats["AOETick"] = weaponData.aoeTickRate * PlayerStats.Instance.GetCooldown();
-        currentStats["Area"] = weaponData.aoeAreaSize * PlayerStats.Instance.GetArea();
+        if (weaponData == null)
+        {
+            Debug.LogError("Weapon data is not assigned in WeaponController. Setting stats to zero");
+            currentStats["Cooldown"] = 0;
+            currentStats["Amount"] = 0;
+            currentStats["Duration"] = 0;
+            currentStats["accuracy"] = 0;
+            currentStats["Speed"] = 0;
+            currentStats["AOETick"] = 0;
+            currentStats["Area"] = 0;
+            return;
+        }
+
+
+        if (!CompareTag("Player"))
+        {
+            currentStats["Cooldown"] = weaponData.baseCooldown;
+            currentStats["Amount"] = weaponData.baseAmount;
+            currentStats["Duration"] = weaponData.baseDuration;
+            currentStats["accuracy"] = weaponData.baseAccuracy;
+            currentStats["Speed"] = weaponData.baseProjectileSpeed;
+            currentStats["AOETick"] = weaponData.aoeTickRate;
+            currentStats["Area"] = weaponData.aoeAreaSize;
+            return;
+        }
+
+        currentStats["Cooldown"] = weaponData.baseCooldown * PlayerManager.Instance.GetCooldown();
+        currentStats["Amount"] = weaponData.baseAmount + PlayerManager.Instance.GetAmount();
+        currentStats["Duration"] = weaponData.baseDuration * PlayerManager.Instance.GetDuration();
+        currentStats["accuracy"] = weaponData.baseAccuracy + PlayerManager.Instance.GetDexterity();
+        currentStats["Speed"] = weaponData.baseProjectileSpeed * PlayerManager.Instance.GetDexterity();
+        currentStats["AOETick"] = weaponData.aoeTickRate * PlayerManager.Instance.GetCooldown();
+        currentStats["Area"] = weaponData.aoeAreaSize * PlayerManager.Instance.GetArea();
     }
 
     public void Attack()
@@ -58,6 +100,11 @@ public class WeaponController : MonoBehaviour
         return weaponData;
     }
 
+    public void SetWeaponData(WeaponDefinitionSO data)
+    {
+        weaponData = data;
+        Initialize();
+    }
 
     #region Getters
 
@@ -89,6 +136,16 @@ public class WeaponController : MonoBehaviour
     public float GetAccuracy()
     {
         return currentStats["accuracy"];
+    }
+
+    public GameObject GetWeaponInstance()
+    {
+        return weaponInstance;
+    }
+
+    public IWeaponBehavior GetWeaponBehavior()
+    {
+        return weaponBehavior;
     }
 
     #endregion

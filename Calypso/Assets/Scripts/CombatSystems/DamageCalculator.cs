@@ -2,26 +2,23 @@ using UnityEngine;
 
 public static class DamageCalculator
 {
-    public static DamageInfo GetDamageInfo(WeaponDefinitionSO weaponData)
+    public static DamageInfo GetDamageFromPlayer(WeaponDefinitionSO weaponData)
     {
         return new DamageInfo
         {
-            damage = weaponData.baseDamage * PlayerStats.Instance.GetStrength(),
-            knockbackStrength = weaponData.baseKnockback * PlayerStats.Instance.GetStrength(),
-            stunDuration = weaponData.baseStun * PlayerStats.Instance.GetDexterity(),
-            poisonDuration = weaponData.basePoison * PlayerStats.Instance.GetDuration(),
-            slowDuration = weaponData.baseSlowdown * PlayerStats.Instance.GetDuration(),
+            damage = weaponData.baseDamage * PlayerManager.Instance.GetStrength(),
+            knockbackStrength = weaponData.baseKnockback * PlayerManager.Instance.GetStrength(),
+            stunDuration = weaponData.baseStun * PlayerManager.Instance.GetDexterity(),
+            poisonDuration = weaponData.basePoison * PlayerManager.Instance.GetDuration(),
+            slowDuration = weaponData.baseSlowdown * PlayerManager.Instance.GetDuration(),
         };
-
     }
-}
 
-public struct DamageInfo
-{
-    public float damage;
-    public float knockbackStrength;
-    public float stunDuration;
-    public float poisonDuration;
-    public float slowDuration;
+    public static DamageInfo GetDamageToPlayer(EnemyDefinitionSO enemyData)
+    {
+        DamageInfo damageInfo = enemyData.MakeDamageInfo();
+        damageInfo.damage *= 1 + (PlayerManager.Instance.GetArmor() * -0.01f);
+        return damageInfo;
+    }
 }
 

@@ -7,6 +7,13 @@ public class BasicWeapon : MonoBehaviour, IWeaponBehavior
     private void Awake()
     {
         system = GetComponent<ParticleSystem>();
+
+        var col = system.collision;
+
+        if (transform.parent.CompareTag("Player"))
+            col.collidesWith = LayerMask.GetMask("Enemy", "Environment");
+        else if (transform.parent.CompareTag("Enemy"))
+            col.collidesWith = LayerMask.GetMask("Player", "Environment");
     }
 
     public void ApplyWeaponStats(WeaponController weapon)
@@ -19,5 +26,10 @@ public class BasicWeapon : MonoBehaviour, IWeaponBehavior
     {
         if (system != null && !system.isPlaying)
             system.Play();
+    }
+
+    public bool IsAimable()
+    {
+        return false;
     }
 }

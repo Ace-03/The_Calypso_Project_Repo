@@ -16,7 +16,6 @@ public class PoolManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(this.gameObject);
 
         poolDictionary = new Dictionary<string, Pool>();
         foreach (var pool in pools)
@@ -94,12 +93,6 @@ public class PoolManager : MonoBehaviour
 
     internal void CreatePool(string poolName, GameObject enemyPrefab, int size)
     {
-
-        Debug.Log("Pool Name: " + poolName);
-        Debug.Log("Prefab: " + enemyPrefab);
-        Debug.Log("poolDictionary: " + poolDictionary);
-        Debug.Log("Transform: " + transform);
-
         if (poolDictionary.ContainsKey(poolName))
         {
             Debug.LogWarning($"Pool '{poolName}' already exists.");
@@ -112,8 +105,6 @@ public class PoolManager : MonoBehaviour
             prefab = enemyPrefab,
             size = size
         };
-
-
 
         newPool.Initialize(transform);
         poolDictionary.Add(poolName, newPool);
