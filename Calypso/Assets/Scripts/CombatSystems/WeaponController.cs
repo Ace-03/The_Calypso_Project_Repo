@@ -47,6 +47,16 @@ public class WeaponController : MonoBehaviour
             return;
         }
 
+        if (weaponPivot == null)
+        {
+            GameObject pivotObject = Instantiate(new GameObject(), transform);
+
+            weaponPivot = pivotObject.transform;
+            pivotObject.name = "Weapon Pivot";
+            pivotObject.tag = "Enemy";
+            pivotObject.layer = 7;
+        }
+
         weaponInstance = Instantiate(weaponData.weaponBehaviorPrefab, weaponPivot);
         weaponBehavior = weaponInstance.GetComponent<IWeaponBehavior>();
     }
