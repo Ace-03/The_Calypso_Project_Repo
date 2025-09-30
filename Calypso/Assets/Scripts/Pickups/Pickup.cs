@@ -8,10 +8,11 @@ public abstract class Pickup : MonoBehaviour
     private SphereCollider attractorTrigger;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private SpriteRenderer sr;
 
 
     private PickupSO pickupData;
-    private SpriteRenderer sr;
     private Rigidbody rb;
 
 

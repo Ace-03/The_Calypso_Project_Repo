@@ -29,6 +29,6 @@ MonoBehaviour:
   slowResistance: 0
   possibleDrops:
   - data: {fileID: 11400000, guid: 073fa187d6feefd409d21ac15044ab0b, type: 2}
-    dropChance: 10
+    dropChance: 20
     minAmount: 1
     maxAmount: 2

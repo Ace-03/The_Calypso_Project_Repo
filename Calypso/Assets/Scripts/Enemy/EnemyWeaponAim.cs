@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyWeaponAim : MonoBehaviour
 {
     [SerializeField]
-    private Transform weapon;
+    private WeaponController weapon;
     private float aimSpeed;
 
     private void FixedUpdate()
@@ -15,24 +15,31 @@ public class EnemyWeaponAim : MonoBehaviour
     private void AimAtPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null) return;
-        if (weapon == null) return;
+        if (player == null)
+        {
+            Debug.LogError("Could Not Find Player In Enemy Weapon Aimer");
+            return;
+        }
+        if (weapon == null)
+        {
+            Debug.LogError("Cuold Not Find Weapon Transform In Enemy Weapon Aimer");
+            return;
+        }
 
-        Vector3 directionToPlayer = (player.transform.position - weapon.position).normalized;
+        Transform weaponPivot = weapon.weaponPivot;
 
-        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-        weapon.rotation = Quaternion.Slerp(weapon.rotation, targetRotation, Time.deltaTime * aimSpeed);
+        Vector3 directionToPlayer = (player.transform.position - weaponPivot.position).normalized;
+
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer) * Quaternion.Euler(0, -90, 0);
+        weaponPivot.rotation = Quaternion.Slerp(weaponPivot.rotation, targetRotation, Time.deltaTime * aimSpeed);
     }
 
-    public void Initialize(Transform weapon, float aimSpeed)
+    internal void Initialize(WeaponController enemyWeapon, float newAimSpeed)
     {
-        this.weapon = weapon;
-        this.aimSpeed = aimSpeed;
-    }
-
-    internal void Initialize(GameObject gameObject, float newAimSpeed)
-    {
-        weapon = gameObject.transform;
+        Debug.Log("In Weapon Aimer: " + enemyWeapon);
+        weapon = enemyWeapon;
+        Debug.Log("In Weapon Aimer the weapon is: " + weapon);
         aimSpeed = newAimSpeed;
+
     }
 }

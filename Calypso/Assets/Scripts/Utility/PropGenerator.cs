@@ -67,8 +67,6 @@ public class PropGenerator : MonoBehaviour
                 SpawnProp();
             }
         }
-
-        Debug.Log($"Finished generating {numberOfProps} props with seed: {seed}.");
     }
 
     [ContextMenu("Regenerate Props")]

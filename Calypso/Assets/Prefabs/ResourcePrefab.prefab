@@ -346,3 +346,4 @@ MonoBehaviour:
   pickupTrigger: {fileID: 7843618239630536904}
   attractorTrigger: {fileID: 3182996413640958850}
   animator: {fileID: 5497843044083496596}
+  sr: {fileID: 3760277076098861880}
