@@ -46,6 +46,7 @@ public class AttractorTrigger : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log("In Attractor Range");
             Vector3 direction = (transform.position - parentTransform.position).normalized;
             float attractForce = this.attractForce;
             
