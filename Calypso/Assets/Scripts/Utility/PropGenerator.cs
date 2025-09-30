@@ -24,7 +24,7 @@ public class PropGenerator : MonoBehaviour
 
     void Start()
     {
-        GenerateProps();
+        RegenerateProps();
     }
 
     private void GenerateProps()
@@ -51,34 +51,34 @@ public class PropGenerator : MonoBehaviour
                 givenRotation = Quaternion.identity;
 
             if (ExclusionZones != null)
-            {
                 foreach (Collider coll in ExclusionZones)
-                {
                     if (!coll.bounds.Contains(randomPosition))
-                        Instantiate(propPrefab, randomPosition, givenRotation, propContainer);
-                }
-            }
+                        SpawnProp();
             else
-            {
-                Instantiate(propPrefab, randomPosition, givenRotation, propContainer);
-            }
+                SpawnProp();
         }
 
         Debug.Log($"Finished generating {numberOfProps} props with seed: {seed}.");
     }
 
     [ContextMenu("Regenerate Props")]
-    private void RegenerateProps()
+    public void RegenerateProps()
     {
         ClearProps();
         GenerateProps();
     }
 
     [ContextMenu("Clear Props In Editor")]
-    private void ClearProps()
+    public void ClearProps()
     {
         int childCount = propContainer.childCount;
         for (int i = childCount - 1; i >= 0; i--)
             DestroyImmediate(propContainer.GetChild(i).gameObject);
+    }
+
+    private void SpawnProp()
+    {
+        Instantiate(propPrefab, randomPosition, givenRotation, propContainer);
+
     }
 }
