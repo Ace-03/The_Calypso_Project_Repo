@@ -8,6 +8,7 @@ public class PropGenerator : MonoBehaviour
     public int seed = 1000;
     public int numberOfProps = 50;
     public bool giveRandomRotation = false;
+    public bool useExclusionZones = false;
 
     [Header("Generation Bounds (Coordinates)")]
     public Vector3 minBounds = new Vector3(-10f, 0f, -10f);
@@ -50,12 +51,21 @@ public class PropGenerator : MonoBehaviour
             else 
                 givenRotation = Quaternion.identity;
 
-            if (ExclusionZones != null)
+            if (useExclusionZones)
+            {
                 foreach (Collider coll in ExclusionZones)
+                {
                     if (!coll.bounds.Contains(randomPosition))
+                    {
                         SpawnProp();
+                    }
+                }
+
+            }
             else
+            {
                 SpawnProp();
+            }
         }
 
         Debug.Log($"Finished generating {numberOfProps} props with seed: {seed}.");

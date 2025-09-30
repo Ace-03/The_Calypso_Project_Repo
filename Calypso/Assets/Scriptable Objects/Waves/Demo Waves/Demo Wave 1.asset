@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97594c2909a5e554487f634f72646b89, type: 3}
+  m_Name: Demo Wave 1
+  m_EditorClassIdentifier: 
+  enemiesInWave:
+  - enemyDefinition: {fileID: 11400000, guid: 2a05a2ca8763a064c98627ff2d04b552, type: 2}
+    spawnRate: 3
+    maxActiveEnemies: 20
+  - enemyDefinition: {fileID: 11400000, guid: 7a8310ec0b0ab5348bbccdbc7890a217, type: 2}
+    spawnRate: 3
+    maxActiveEnemies: 30
+  - enemyDefinition: {fileID: 11400000, guid: 87cd81e286185314f82dc3a40a000324, type: 2}
+    spawnRate: 1
+    maxActiveEnemies: 10
+  waveDuration: 30

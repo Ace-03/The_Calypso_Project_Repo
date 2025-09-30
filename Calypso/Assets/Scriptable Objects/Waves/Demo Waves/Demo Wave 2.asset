@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97594c2909a5e554487f634f72646b89, type: 3}
-  m_Name: TestWave
+  m_Name: Demo Wave 2
   m_EditorClassIdentifier: 
   enemiesInWave:
+  - enemyDefinition: {fileID: 11400000, guid: 87cd81e286185314f82dc3a40a000324, type: 2}
+    spawnRate: 15
+    maxActiveEnemies: 40
   - enemyDefinition: {fileID: 11400000, guid: 07cad1300e39cc345b293c0b19fa95a2, type: 2}
-    spawnRate: 0.2
-    maxActiveEnemies: 50
-  waveDuration: 120
+    spawnRate: 10
+    maxActiveEnemies: 20
+  - enemyDefinition: {fileID: 11400000, guid: 7a8310ec0b0ab5348bbccdbc7890a217, type: 2}
+    spawnRate: 2
+    maxActiveEnemies: 4
+  waveDuration: 30

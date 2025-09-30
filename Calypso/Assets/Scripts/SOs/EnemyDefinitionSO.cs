@@ -6,6 +6,8 @@ public class EnemyDefinitionSO : ScriptableObject
 {
     public string enemyName;
     public Sprite sprite;
+    public Color spriteColor = Color.white;
+    public float sizeModifier = 1f;
     public GameObject enemyPrefab;
     public GameObject deathEffect;
     public int maxHealth;
@@ -17,9 +19,6 @@ public class EnemyDefinitionSO : ScriptableObject
     public float stunResistance;
     public float poisonResistance;
     public float slowResistance;
-    public int experienceReward;
-    public int resource1;
-    public int resource2;
 
     [System.Serializable]
     public class ItemDrop

@@ -51,7 +51,8 @@ public class EnemyInitializer : MonoBehaviour
     private void InitializeSprite(EnemyDefinitionSO data)
     {
         sr.sprite = data.sprite;
-        sr.color = Color.white;
+        sr.color = data.spriteColor;
+        transform.localScale *= data.sizeModifier;
     }
 
     private void InitializeWeapon(WeaponDefinitionSO weaponData)

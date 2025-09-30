@@ -63,7 +63,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2308417265868075463}
   - component: {fileID: 3073781929404549119}
-  - component: {fileID: 8855884269646725760}
   m_Layer: 0
   m_Name: Foliage Generator
   m_TagString: Untagged
@@ -109,27 +108,6 @@ MonoBehaviour:
   propContainer: {fileID: 8120958663849306932}
   ExclusionZones:
   - {fileID: 389077457003625792}
---- !u!65 &8855884269646725760
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3110440883844430704}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5233342907976656113
 GameObject:
   m_ObjectHideFlags: 0
