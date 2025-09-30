@@ -69,7 +69,7 @@ public class SpawnManager : MonoBehaviour
 
                 foreach (var enemy in FindObjectsByType<EnemyInitializer>(FindObjectsSortMode.None))
                 {
-                    if (enemy.GetEnemyData().name != enemySpawnInfo.enemyDefinition.enemyName)
+                    if (enemy.GetEnemyData().enemyName != enemySpawnInfo.enemyDefinition.enemyName)
                     {
                         totalEnemies--;
                     }

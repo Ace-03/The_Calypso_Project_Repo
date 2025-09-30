@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEnemyDefinition", menuName = "EnemySO")]
@@ -19,6 +20,17 @@ public class EnemyDefinitionSO : ScriptableObject
     public int experienceReward;
     public int resource1;
     public int resource2;
+
+    [System.Serializable]
+    public class ItemDrop
+    {
+        public PickupSO data;
+        public float dropChance;
+        public int minAmount;
+        public int maxAmount;
+    }
+
+    public List<ItemDrop> possibleDrops;
 
     public DamageInfo MakeDamageInfo()
     {

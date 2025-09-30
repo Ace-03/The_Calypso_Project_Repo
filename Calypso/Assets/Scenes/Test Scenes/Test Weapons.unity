@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1425679145}
+  aimMethod: 0
 --- !u!1 &169836179
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a27aa4ead78114fbcb886350f57aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponPivot: {fileID: 0}
 --- !u!54 &1425679146
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -546,6 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 1a9e0f433aadb8c4fbd389ba17fba497, type: 2}
+  weaponPivot: {fileID: 0}
 --- !u!1 &1436277482
 GameObject:
   m_ObjectHideFlags: 0

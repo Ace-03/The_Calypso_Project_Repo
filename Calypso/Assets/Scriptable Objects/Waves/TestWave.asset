@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: TestWave
   m_EditorClassIdentifier: 
   enemiesInWave:
-  - enemyDefinition: {fileID: 11400000, guid: b150e1b1e48f0c94aad46ff2bae359a1, type: 2}
-    spawnRate: 3
-    maxActiveEnemies: 10
   - enemyDefinition: {fileID: 11400000, guid: 4afac625963e7e34f9210b6de61bcc40, type: 2}
-    spawnRate: 3
-    maxActiveEnemies: 10
+    spawnRate: 0.2
+    maxActiveEnemies: 3
   waveDuration: 120
