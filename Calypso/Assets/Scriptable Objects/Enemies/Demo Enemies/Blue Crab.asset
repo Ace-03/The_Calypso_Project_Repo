@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17056790f82f890478fa81fc549e768a, type: 3}
-  m_Name: TestCrab
+  m_Name: Blue Crab
   m_EditorClassIdentifier: 
-  enemyName: UnarmedCrab
+  enemyName: Blue Crab
   sprite: {fileID: 21300000, guid: 2e426de7d78065e4eb7ed540e20d116c, type: 3}
-  spriteColor: {r: 1, g: 1, b: 1, a: 0}
-  sizeModifier: 1
+  spriteColor: {r: 0.1656975, g: 0.42030272, b: 0.8930817, a: 1}
+  sizeModifier: 0.8
   enemyPrefab: {fileID: 936472771579500139, guid: 465b6aeb9fa55a74d9e0631fb381f028, type: 3}
   deathEffect: {fileID: 0}
-  maxHealth: 5
-  movementSpeed: 3
+  maxHealth: 2
+  movementSpeed: 8
   DifficultyModifier: 1
   aimSpeed: 0
   weapon: {fileID: 11400000, guid: c7139475d8162ee4eb2f83184c095dd6, type: 2}
@@ -28,7 +28,11 @@ MonoBehaviour:
   poisonResistance: 0
   slowResistance: 0
   possibleDrops:
-  - data: {fileID: 11400000, guid: 073fa187d6feefd409d21ac15044ab0b, type: 2}
-    dropChance: 10
+  - data: {fileID: 11400000, guid: 06c2c592bbc2c2c4b8837d8819131fbd, type: 2}
+    dropChance: 5
     minAmount: 1
-    maxAmount: 2
+    maxAmount: 1
+  - data: {fileID: 11400000, guid: 073fa187d6feefd409d21ac15044ab0b, type: 2}
+    dropChance: 5
+    minAmount: 1
+    maxAmount: 1
