@@ -41,7 +41,7 @@ public abstract class Pickup : MonoBehaviour
             triggerObject.AddComponent<AttractorTrigger>();
             attractorTrigger = triggerObject.AddComponent<SphereCollider>();
             attractorTrigger.isTrigger = true;
-            attractorTrigger.radius = 15f;
+            attractorTrigger.radius = 12f;
         }
 
         if (sr == null)
