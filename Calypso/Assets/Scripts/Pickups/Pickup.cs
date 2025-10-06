@@ -73,6 +73,7 @@ public abstract class Pickup : MonoBehaviour
     public void InitializeData()
     {
         sr.sprite = pickupData.sprite;
+        SpriteNormalizer.NormalizeSprite(sr.gameObject);
         sr.transform.localScale *= pickupData.sizeModifier;
         pickupTrigger.transform.localScale *= pickupData.sizeModifier;
     }
