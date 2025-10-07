@@ -1,31 +1,11 @@
 using UnityEngine;
 
-public class BurstRifleBehavior : MonoBehaviour, IWeaponBehavior
+public class BurstRifleBehavior : BulletScript, IWeaponBehavior
 {
-    private ParticleSystem ps;
-    
-    private void Awake()
+
+    public override void ApplyWeaponStats(WeaponController weapon)
     {
-        ps = GetComponent<ParticleSystem>();
-
-        var col = ps.collision;
-
-        if (transform.parent.CompareTag("Player"))
-            col.collidesWith = LayerMask.GetMask("Enemy", "Environment");
-        else if (transform.parent.CompareTag("Enemy"))
-            col.collidesWith = LayerMask.GetMask("Player", "Environment");
-    }
-
-    public void Attack(WeaponController weapon)
-    {
-        if (ps != null && !ps.isPlaying)
-            ps.Play();
-    }
-
-    public void ApplyWeaponStats(WeaponController weapon)
-    {
-        if (ps != null && ps.isPlaying)
-            ps.Stop();
+        StopAttack();
 
         BurstModifier.SetCycles(ps, 0, weapon.GetAmount());
         BurstModifier.SetInterval(ps, 0, weapon.GetCooldown() / weapon.GetAmount());
@@ -35,7 +15,7 @@ public class BurstRifleBehavior : MonoBehaviour, IWeaponBehavior
         GeneralModifier.SetCircleArc(ps, 1 / weapon.GetAccuracy() * 200);
     }
 
-    public bool IsAimable()
+    public override bool IsAimable()
     {
         return true;
     }
