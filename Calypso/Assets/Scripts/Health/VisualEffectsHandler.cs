@@ -95,7 +95,7 @@ public class VisualEffectsHandler : MonoBehaviour
             elapsed += Time.deltaTime;
             Color currentColor = spriteRenderer.color;
 
-            float cosVal = Mathf.Cos(Time.time * 10);
+            float cosVal = Mathf.Cos(Time.time * 25);
             float alpha = (cosVal * 0.25f) + 0.75f;
             
             spriteRenderer.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
