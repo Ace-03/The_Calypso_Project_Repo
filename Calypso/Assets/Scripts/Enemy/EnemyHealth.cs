@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour, IHealthSystem
+public class EnemyHealth : GenericHealth
 {
-    public int maxHP;
-    public int hp;
     public bool DEBUG_RESPAWN;
     public bool DEBUG_MATS;
     public Gradient DEBUG_Gradient;
@@ -19,8 +17,9 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
         statusSystem = GetComponent<StatusSystem>();
     }
 
-    public void TakeDamage(DamageInfo info)
+    public override void TakeDamage(DamageInfo info)
     {
+        Debug.Log("Enemy took damage: " + info.damage);
         if (statusSystem != null)
         {
             statusSystem.ApplyPoison(info.poisonDuration);
@@ -29,10 +28,10 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
             statusSystem.ApplyKnockback(info.knockbackStrength);
         }
 
-        TakeDamageRaw((int)info.damage);
+        base.TakeDamage(info);
     }
 
-    public void TakeDamageRaw(int damage)
+    public override void TakeDamageRaw(int damage)
     {
 
         if (DEBUG_MATS)
@@ -44,12 +43,12 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
             Die();
     }
     
-    public void Die()
+    public override void Die()
     {
         if (statusSystem != null)
             statusSystem.ResetTimers();
 
-        hp = maxHP;
+        base.Die();
         GetComponent<EnemyInitializer>().OnDeath();
     }
     
@@ -66,16 +65,5 @@ public class EnemyHealth : MonoBehaviour, IHealthSystem
         float percentage = (float)hp/(float)maxHP;
         Color interpolatedColor = DEBUG_Gradient.Evaluate(percentage);
         mr.material.color = interpolatedColor;
-    }
-
-    public void Initialize(HealthData data)
-    {
-        maxHP = data.maxHP;
-        hp = data.maxHP;
-    }
-
-    public int GetMaxHealth()
-    {
-        return maxHP;
     }
 }

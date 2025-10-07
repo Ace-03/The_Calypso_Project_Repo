@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IHealthSystem
+public class PlayerHealth : GenericHealth
 {
-    private int maxHP;
-    private int hp;
     private int bonusHP;
     private bool invulnerable;
 
-    private float invulnerabilityduration = 0.5f;
+    private float invulnerabilityDuration = 0.5f;
     private float invulnerabilityTimer;
 
     private void Update()
@@ -20,14 +18,15 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
             invulnerable = false;
     }
 
-    public void TakeDamage(DamageInfo info)
+    public override void TakeDamage(DamageInfo info)
     {
         if (invulnerable) { return; }
 
-        TakeDamageRaw((int)info.damage);
+        vfxHandler.TriggerInvulnerabilityEffect(invulnerable, invulnerabilityDuration);
+        base.TakeDamage(info);
     }
 
-    public void Die()
+    public override void Die()
     {
         // Game Over Logic Here
 
@@ -37,8 +36,10 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         if (rb != null)
         {
-            rb.AddForce(Vector3.up * 1000, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 100, ForceMode.Impulse);
         }
+
+        base.Die();
     }
 
     public void heal(int amount)
@@ -55,18 +56,12 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
     public void Initialize(PlayerHealthData data)
     {
-        invulnerabilityduration = data.invulnerabilityDuration;
+        invulnerabilityDuration = data.invulnerabilityDuration;
         maxHP = data.maxHP;
         hp = data.maxHP;
     }
 
-    public void Initialize(HealthData data)
-    {
-        maxHP = data.maxHP;
-        hp = data.maxHP;
-    }
-
-    public void TakeDamageRaw(int damage)
+    public override void TakeDamageRaw(int damage)
     {
         Debug.Log("Damage Taken by player: " + damage);
         if (bonusHP > 0)
@@ -77,16 +72,11 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         }
 
         hp -= (int)Mathf.Clamp(damage, 0f, maxHP);
-        invulnerabilityTimer = invulnerabilityduration;
+        invulnerabilityTimer = invulnerabilityDuration;
         invulnerable = true;
 
         if (hp <= 0)
             Die();
-    }
-
-    public int GetMaxHealth()
-    {
-        return maxHP;
     }
 }
 

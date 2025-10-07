@@ -25,25 +25,22 @@ public class BulletTrigger : MonoBehaviour
 
     private void TryDamage(GameObject other)
     {
-        if (other.GetComponent<IHealthSystem>() != null)
+        if (other.GetComponent<GenericHealth>() != null)
         {
-            Debug.Log("Has Health System");
             DamageInfo damageInfo = new DamageInfo();
 
             if (other.CompareTag("Player"))
             {
-                Debug.Log("Damaging Player");
                 if (enemyData == null)
                     enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
 
                 damageInfo = DamageCalculator.GetDamageToPlayer(enemyData);
-                other.GetComponent<IHealthSystem>().TakeDamage(damageInfo);
+                other.GetComponent<GenericHealth>().TakeDamage(damageInfo);
             }
             else if (other.CompareTag("Enemy"))
             {
-                Debug.Log("Damaging Enemy");
                 damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
-                other.GetComponent<IHealthSystem>().TakeDamage(damageInfo);
+                other.GetComponent<GenericHealth>().TakeDamage(damageInfo);
             }
         }
     }
