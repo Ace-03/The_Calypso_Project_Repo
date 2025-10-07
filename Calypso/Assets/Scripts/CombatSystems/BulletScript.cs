@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 public class BulletScript : MonoBehaviour
 {
     BulletTrigger bulletTrigger;
-    protected ParticleSystem ps;
+    public ParticleSystem ps;
     public TEAM team;
     public bool pierce;
     private void Awake()

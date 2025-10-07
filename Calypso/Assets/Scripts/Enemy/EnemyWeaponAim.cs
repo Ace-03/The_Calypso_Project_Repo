@@ -36,9 +36,7 @@ public class EnemyWeaponAim : MonoBehaviour
 
     internal void Initialize(WeaponController enemyWeapon, float newAimSpeed)
     {
-        Debug.Log("In Weapon Aimer: " + enemyWeapon);
         weapon = enemyWeapon;
-        Debug.Log("In Weapon Aimer the weapon is: " + weapon);
         aimSpeed = newAimSpeed;
 
     }

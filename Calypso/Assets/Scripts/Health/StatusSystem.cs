@@ -16,12 +16,12 @@ public class StatusSystem : MonoBehaviour
     private float knockbackTimer;
     private int knockbackStacks;
     private float knockbackStrength;
-    private IHealthSystem healthSystem;
+    private GenericHealth healthSystem;
     private AI_NAV ai;
 
     private void Start()
     {
-        healthSystem = GetComponent<IHealthSystem>();
+        healthSystem = GetComponent<GenericHealth>();
         ai = GetComponent<AI_NAV>();
     }
     private void Update()
@@ -162,7 +162,7 @@ public class StatusSystem : MonoBehaviour
         else
         {
             poisonTickTimer = 1f / poisonTickRate;
-            int poisonDamage = (int)(healthSystem.GetMaxHealth() * 0.1f * (poisonStacks + 1));
+            int poisonDamage = (int)(healthSystem.maxHP * 0.1f * (poisonStacks + 1));
             if (poisonDamage < 1) { poisonDamage = poisonStacks; }
             if (poisonDamage < 1) { poisonDamage = 1; }
             healthSystem.TakeDamageRaw(poisonDamage);
