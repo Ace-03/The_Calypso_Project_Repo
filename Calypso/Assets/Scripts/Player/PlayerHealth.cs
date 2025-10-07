@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IHealthSystem
+public class PlayerHealth : GenericHealth
 {
-    private int maxHP;
-    private int hp;
     private int bonusHP;
     private bool invulnerable;
 
@@ -20,14 +18,14 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
             invulnerable = false;
     }
 
-    public void TakeDamage(DamageInfo info)
+    public override void TakeDamage(DamageInfo info)
     {
         if (invulnerable) { return; }
 
-        TakeDamageRaw((int)info.damage);
+        base.TakeDamage(info);
     }
 
-    public void Die()
+    public override void Die()
     {
         // Game Over Logic Here
 
@@ -60,13 +58,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         hp = data.maxHP;
     }
 
-    public void Initialize(HealthData data)
-    {
-        maxHP = data.maxHP;
-        hp = data.maxHP;
-    }
-
-    public void TakeDamageRaw(int damage)
+    public override void TakeDamageRaw(int damage)
     {
         Debug.Log("Damage Taken by player: " + damage);
         if (bonusHP > 0)
@@ -82,11 +74,6 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         if (hp <= 0)
             Die();
-    }
-
-    public int GetMaxHealth()
-    {
-        return maxHP;
     }
 }
 

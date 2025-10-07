@@ -5,6 +5,7 @@ public class EnemyInitializer : MonoBehaviour
 {
     private EnemyDefinitionSO enemyData;
     private EnemyHealth healthSystem;
+    private VisualEffectsHandler VfxHandler;
     private PooledObject pooledObject;
     private SpriteRenderer sr;
     private IEnemyMovement ai;
@@ -16,7 +17,10 @@ public class EnemyInitializer : MonoBehaviour
         
         if (!TryGetComponent<EnemyHealth>(out healthSystem))
             healthSystem = gameObject.AddComponent<EnemyHealth>();
-        
+
+        if (!TryGetComponent<VisualEffectsHandler>(out var vfx))
+            VfxHandler = gameObject.AddComponent<VisualEffectsHandler>();
+
         if (!TryGetComponent<IEnemyMovement>(out ai))
             ai = gameObject.AddComponent<AI_NAV>();
 
@@ -33,14 +37,18 @@ public class EnemyInitializer : MonoBehaviour
         InitializeHealth(data);
         InitializeMovement(data);
         InitializeSprite(data);
+        InitializeVFX();
         InitializeWeapon(data.weapon);
-
-        // Initialize other components like health, speed, etc. based on enemyData
     }
 
     private void InitializeHealth(EnemyDefinitionSO data)
     {
         healthSystem.Initialize(new HealthData { maxHP = data.maxHealth });
+    }
+
+    private void InitializeVFX()
+    {
+        VfxHandler.Initialize(sr, healthSystem);
     }
 
     private void InitializeMovement(EnemyDefinitionSO data)
@@ -67,7 +75,7 @@ public class EnemyInitializer : MonoBehaviour
             weaponController = gameObject.AddComponent<WeaponController>();
 
         weaponController.SetWeaponData(weaponData);
-
+        weaponController.Initialize();
 
         if (weaponController.GetWeaponBehavior().IsAimable())
         {

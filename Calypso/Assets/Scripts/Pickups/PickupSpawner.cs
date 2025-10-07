@@ -5,7 +5,6 @@ public class PickupSpawner : MonoBehaviour
 {
     static public void SpawnPickup(ItemDrop Drop, Vector3 position)
     {
-        Debug.Log(position);
         int count = Random.Range(Drop.minAmount, Drop.maxAmount + 1);
 
         for (int i = 0; i < count; i++)
