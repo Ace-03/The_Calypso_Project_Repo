@@ -102,6 +102,7 @@ MonoBehaviour:
   seed: 237
   numberOfProps: 600
   giveRandomRotation: 0
+  useExclusionZones: 0
   minBounds: {x: -200, y: 0, z: -200}
   maxBounds: {x: 200, y: 0, z: 200}
   propPrefab: {fileID: 0}

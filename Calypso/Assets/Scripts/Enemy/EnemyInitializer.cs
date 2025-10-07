@@ -74,7 +74,7 @@ public class EnemyInitializer : MonoBehaviour
             if (!TryGetComponent<EnemyWeaponAim>(out var aim))
                 aim = gameObject.AddComponent<EnemyWeaponAim>();
 
-            aim.Initialize(weaponController.GetWeaponInstance(), enemyData.aimSpeed);
+            aim.Initialize(weaponController, enemyData.aimSpeed);
         }
     }
 
@@ -91,6 +91,14 @@ public class EnemyInitializer : MonoBehaviour
     internal void OnDeath()
     {
         PickupSpawner.RollForItemDrop(enemyData, transform.position);
+
+        pooledObject.DeactivateAndReturn();
+
+        //Invoke("RemoveEnemy", 5f);
+    }
+
+    void RemoveEnemy()
+    {
         pooledObject.DeactivateAndReturn();
     }
 }

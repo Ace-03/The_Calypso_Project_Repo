@@ -6,7 +6,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     private WeaponDefinitionSO weaponData;
     [SerializeField]
-    private Transform weaponPivot;
+    public Transform weaponPivot;
 
     public readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
 

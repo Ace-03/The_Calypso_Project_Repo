@@ -21,7 +21,7 @@ MonoBehaviour:
   maxHealth: 5
   movementSpeed: 1.5
   DifficultyModifier: 1
-  aimSpeed: 0
+  aimSpeed: 1
   weapon: {fileID: 11400000, guid: 08b5135d76af6ba478a0d320cb99736f, type: 2}
   knockbackResistance: 0
   stunResistance: 0

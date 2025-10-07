@@ -28,11 +28,7 @@ MonoBehaviour:
   poisonResistance: 0
   slowResistance: 0
   possibleDrops:
-  - data: {fileID: 11400000, guid: 56c6c9fb01d602846bb6c6f4d6b325f8, type: 2}
-    dropChance: 100
-    minAmount: 1
-    maxAmount: 2
   - data: {fileID: 11400000, guid: 073fa187d6feefd409d21ac15044ab0b, type: 2}
-    dropChance: 100
+    dropChance: 20
     minAmount: 1
     maxAmount: 2
