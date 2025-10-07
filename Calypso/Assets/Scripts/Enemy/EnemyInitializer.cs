@@ -48,7 +48,7 @@ public class EnemyInitializer : MonoBehaviour
 
     private void InitializeVFX()
     {
-        VfxHandler.Initialize(sr, healthSystem);
+        VfxHandler.Initialize(sr, healthSystem.maxHP);
     }
 
     private void InitializeMovement(EnemyDefinitionSO data)

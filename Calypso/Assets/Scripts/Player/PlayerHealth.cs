@@ -5,7 +5,7 @@ public class PlayerHealth : GenericHealth
     private int bonusHP;
     private bool invulnerable;
 
-    private float invulnerabilityduration = 0.5f;
+    private float invulnerabilityDuration = 0.5f;
     private float invulnerabilityTimer;
 
     private void Update()
@@ -22,6 +22,7 @@ public class PlayerHealth : GenericHealth
     {
         if (invulnerable) { return; }
 
+        vfxHandler.TriggerInvulnerabilityEffect(invulnerable, invulnerabilityDuration);
         base.TakeDamage(info);
     }
 
@@ -35,8 +36,10 @@ public class PlayerHealth : GenericHealth
 
         if (rb != null)
         {
-            rb.AddForce(Vector3.up * 1000, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 100, ForceMode.Impulse);
         }
+
+        base.Die();
     }
 
     public void heal(int amount)
@@ -53,7 +56,7 @@ public class PlayerHealth : GenericHealth
 
     public void Initialize(PlayerHealthData data)
     {
-        invulnerabilityduration = data.invulnerabilityDuration;
+        invulnerabilityDuration = data.invulnerabilityDuration;
         maxHP = data.maxHP;
         hp = data.maxHP;
     }
@@ -69,7 +72,7 @@ public class PlayerHealth : GenericHealth
         }
 
         hp -= (int)Mathf.Clamp(damage, 0f, maxHP);
-        invulnerabilityTimer = invulnerabilityduration;
+        invulnerabilityTimer = invulnerabilityDuration;
         invulnerable = true;
 
         if (hp <= 0)

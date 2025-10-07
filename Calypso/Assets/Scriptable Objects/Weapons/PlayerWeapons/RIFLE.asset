@@ -15,10 +15,10 @@ MonoBehaviour:
   weaponName: RIFLE
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 850fecafbdf49bb4da657250c843c72b, type: 3}
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  baseCooldown: 3
+  baseCooldown: 10
   baseDamage: 3
   baseProjectileSpeed: 20
-  baseAccuracy: 0
+  baseAccuracy: 200
   baseDuration: 1
   baseAmount: 3
   requiredResources: 0

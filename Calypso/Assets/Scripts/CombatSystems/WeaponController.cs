@@ -16,7 +16,7 @@ public class WeaponController : MonoBehaviour
     private IWeaponBehavior weaponBehavior;
     private float nextAttackTime;
 
-    private void Awake()
+    private void Start()
     {
         if (autoInitialize)
             Initialize();

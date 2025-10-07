@@ -48,7 +48,7 @@ public class EnemyHealth : GenericHealth
         if (statusSystem != null)
             statusSystem.ResetTimers();
 
-        hp = maxHP;
+        base.Die();
         GetComponent<EnemyInitializer>().OnDeath();
     }
     

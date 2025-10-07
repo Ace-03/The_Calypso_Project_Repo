@@ -6,7 +6,7 @@ public class VisualEffectsHandler : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     private Transform targetTransform;
-    private GenericHealth health;
+    private float maxHP;
 
     [SerializeField]
     private bool autoInitialize = false;
@@ -20,7 +20,7 @@ public class VisualEffectsHandler : MonoBehaviour
             Initialize();
     }
 
-    public void Initialize(SpriteRenderer sr = null, GenericHealth health = null)
+    public void Initialize(SpriteRenderer sr = null, float hp = 0)
     {
         if (sr != null)
         {
@@ -28,7 +28,7 @@ public class VisualEffectsHandler : MonoBehaviour
         }
         else if (!TryGetComponent<SpriteRenderer>(out spriteRenderer))
         {
-            Debug.LogWarning("VisualEffectHandler: No SpriteRenderer found on " + gameObject.name);
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
         if (spriteRenderer != null)
@@ -42,16 +42,33 @@ public class VisualEffectsHandler : MonoBehaviour
             originalColor = Color.white;
         }
 
-        if (health == null && !TryGetComponent<GenericHealth>(out this.health))
+        if (hp == 0)
         {
-            Debug.LogWarning("VisualEffectHandler: No Health component found on " + gameObject.name);
+            TryGetHP();
+        }
+        else
+        {
+            maxHP = hp;
         }
     }
 
-    public void TriggerVisualEffects(DamageInfo damgeInfo)
+    public void TriggerHitEffect(DamageInfo damgeInfo)
     {
         TriggerFlash((int)damgeInfo.damage);
         TriggerShake((int)damgeInfo.damage);
+    }
+
+    public void TriggerInvulnerabilityEffect(bool isInvulnerable, float duration)
+    {
+        TriggerInvulnerabilityFlash(isInvulnerable, duration);
+    }
+
+    private void TriggerInvulnerabilityFlash(bool isInvulnerable, float duration)
+    {
+        if (!isInvulnerable)
+        {
+            StartCoroutine(InvulnerabilityFlash(duration));
+        }
     }
 
     private void TriggerFlash(int damage)
@@ -70,11 +87,31 @@ public class VisualEffectsHandler : MonoBehaviour
         }
     }
 
+    private IEnumerator InvulnerabilityFlash(float duration)
+    {
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            Color currentColor = spriteRenderer.color;
+
+            float cosVal = Mathf.Cos(Time.time * 10);
+            float alpha = (cosVal * 0.25f) + 0.75f;
+            
+            spriteRenderer.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
+
+            yield return new WaitForFixedUpdate();
+        }
+        spriteRenderer.color = originalColor;
+    }
+
+
     private IEnumerator HitFlash(int damage)
     {
         isFlashing = true;
+        CheckForHP();
 
-        float flashDuration = 0.1f + ((damage / health.maxHP) * 0.2f);
+        float flashDuration = 0.06f + ((damage / maxHP) * 0.05f);
         float elapsed = 0.0f;
 
         while (elapsed < flashDuration)
@@ -84,16 +121,18 @@ public class VisualEffectsHandler : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         spriteRenderer.color = originalColor;
+        isFlashing = false;
     }
 
     private IEnumerator HitShake(int damage)
     {
         isShaking = true;
+        CheckForHP();
+        
+        float shakeMagnitude = Vector3.Distance(Camera.main.transform.position, transform.position) * 0.001f + (damage / maxHP) * 0.01f;
+        float shakeDuration = 0.1f + (damage / maxHP) * 0.05f;
 
-        float shakeMagnitude = Vector3.Distance(Camera.main.transform.position, transform.position) * 0.05f + (damage / health.maxHP);
-        float shakeDuration = 0.1f + (damage / health.maxHP);
-
-        Vector3 originalLocalPosition = transform.localPosition;
+        Vector3 originalLocalPosition = targetTransform.localPosition;
         float elapsed = 0.0f;
 
         while (elapsed < shakeDuration)
@@ -108,8 +147,29 @@ public class VisualEffectsHandler : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        transform.localPosition = originalLocalPosition;
+        targetTransform.localPosition = originalLocalPosition;
         isShaking = false;
+    }
+
+    private void CheckForHP()
+    {
+        if (maxHP == 0)
+        {
+            Debug.LogWarning($"{this.name}: health is 0, tyring to get health");
+            TryGetHP();
+        }
+    }
+
+    private void TryGetHP()
+    {
+        if (GetComponent<GenericHealth>() == null)
+        {
+            Debug.LogWarning("VisualEffectHandler: No Health given to " + gameObject.name);
+        }
+        else
+        {
+            maxHP = GetComponent<GenericHealth>().maxHP;
+        }
     }
 }
 

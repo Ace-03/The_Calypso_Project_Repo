@@ -5,8 +5,9 @@ public class GenericHealth : MonoBehaviour
     [SerializeField]
     public int maxHP;
     public int hp;
+    public VisualEffectsHandler vfxHandler;
 
-    private VisualEffectsHandler vfxHandler;
+    private bool dead;
 
     private void Awake()
     {
@@ -15,11 +16,13 @@ public class GenericHealth : MonoBehaviour
 
     public virtual void TakeDamage(DamageInfo info)
     {
-        if (vfxHandler != null)
-        {
-            vfxHandler.TriggerVisualEffects(info);
-        }
+
         TakeDamageRaw((int)info.damage);
+
+        if (!dead && vfxHandler != null)
+        {
+            vfxHandler.TriggerHitEffect(info);
+        }
     }
 
     public virtual void TakeDamageRaw(int damage)
@@ -33,21 +36,22 @@ public class GenericHealth : MonoBehaviour
     public virtual void Die()
     {
         hp = maxHP;
-        Destroy(gameObject);
+        dead = true;
     }
 
     public void Initialize(HealthData data, VisualEffectsHandler vfx = null)
     {
         maxHP = data.maxHP;
         hp = maxHP;
-
-        if (vfx == null && !TryGetComponent<VisualEffectsHandler>(out vfxHandler))
+        dead = false;
+        if (vfx != null)
+        {
+            Debug.Log("VFX IS: " + vfx);
+            vfxHandler = vfx;
+        }
+        else if (!TryGetComponent<VisualEffectsHandler>(out vfxHandler))
         {
             Debug.LogWarning("No VisualEffectsHandler found on GenericHealth object. Visual effects will be disabled.");
-        }
-        else
-        {
-            vfxHandler = vfx;
         }
     }
 }
