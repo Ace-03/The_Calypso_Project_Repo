@@ -26,7 +26,7 @@ MonoBehaviour:
   aoeAreaSize: 0
   aoeTickRate: 0
   aoeShape: 0
-  baseKnockback: 0
+  baseKnockback: 10
   baseStun: 0
   basePoison: 0
   baseSlowdown: 0

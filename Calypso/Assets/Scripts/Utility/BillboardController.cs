@@ -13,7 +13,8 @@ public class BillboardController : MonoBehaviour
     {
         if (cameraTransform != null)
         {
-            transform.LookAt(cameraTransform);
+            Quaternion targetRotation = Quaternion.LookRotation(cameraTransform.forward);
+            transform.rotation = targetRotation;
         }
     }
 }

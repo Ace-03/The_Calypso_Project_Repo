@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 369635773466012643}
   - component: {fileID: 7347213933104212895}
   - component: {fileID: 7952601672202704693}
+  - component: {fileID: 4462239315826289053}
   m_Layer: 7
   m_Name: EnemyPrefabGeneric
   m_TagString: Enemy
@@ -185,6 +186,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 0}
   weaponPivot: {fileID: 1432093945960958542}
+--- !u!114 &4462239315826289053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936472771579500139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099482f7f1e87724da2dcd751bfd7f90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStatTime: 10
+  maxStatStacks: 3
 --- !u!1 &2698687926846563290
 GameObject:
   m_ObjectHideFlags: 0

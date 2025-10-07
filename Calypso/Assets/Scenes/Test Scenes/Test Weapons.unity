@@ -578,22 +578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141a65c59d7d5154fbaf97b521ad7e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  armor: 5
-  recovery: 1
-  luck: 100
-  maxSpeed: 10
-  acceleration: 8
-  deceleration: 8
-  spdModifier: 1
-  accModifier: 1
-  decelModifier: 1
-  strength: 1
-  dexterity: 1
-  area: 1
-  cooldown: 1
-  duration: 1
-  ammount: 0
 --- !u!4 &1436277484
 Transform:
   m_ObjectHideFlags: 0
