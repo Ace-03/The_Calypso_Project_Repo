@@ -9727,6 +9727,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa88a6c8937b0b241a0128ffb62365db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps: {fileID: 0}
+  team: 0
+  pierce: 0
 --- !u!199 &7562424797762174138
 ParticleSystemRenderer:
   serializedVersion: 6
