@@ -19,11 +19,11 @@ MonoBehaviour:
   baseDamage: 3
   baseProjectileSpeed: 4
   baseAccuracy: 200
-  baseDuration: 3
+  baseDuration: 0.075
   baseAmount: 1
   requiredResources: 0
   hasAOE: 0
-  aoeAreaSize: 0
+  aoeAreaSize: 5
   aoeTickRate: 0
   aoeShape: 0
   baseKnockback: 10
