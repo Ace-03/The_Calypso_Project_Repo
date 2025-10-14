@@ -207,4 +207,15 @@ public class WeaponController : MonoBehaviour
     }
 
     #endregion
+
+    private void OnDisable()
+    {
+        if (weaponInstance == null)
+        {
+            Debug.LogWarning("No weapon on weapon controller: " + name);
+            return;
+        }
+
+        weaponInstance.SetActive(false);
+    }
 }
