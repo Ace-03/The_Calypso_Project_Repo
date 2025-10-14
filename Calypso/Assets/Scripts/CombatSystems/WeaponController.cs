@@ -189,6 +189,13 @@ public class WeaponController : MonoBehaviour
         return currentStats["accuracy"];
     }
 
+    public Material GetSprite()
+    {
+        if (weaponData != null)
+            return weaponData.bulletSprite;
+        else
+            return null;
+    }
     public GameObject GetWeaponInstance()
     {
         return weaponInstance;

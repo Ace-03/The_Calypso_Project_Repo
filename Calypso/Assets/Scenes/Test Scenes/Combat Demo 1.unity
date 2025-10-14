@@ -54801,7 +54801,7 @@ PrefabInstance:
     - target: {fileID: 6693502108835353163, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
       propertyPath: weaponData
       value: 
-      objectReference: {fileID: 11400000, guid: 63598b4fa1a16cf43968b04ed2953907, type: 2}
+      objectReference: {fileID: 11400000, guid: 08b5135d76af6ba478a0d320cb99736f, type: 2}
     - target: {fileID: 6887405348467899213, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
       propertyPath: m_Name
       value: Player
@@ -58284,7 +58284,7 @@ SceneRoots:
   - {fileID: 1588930220}
   - {fileID: 499590361}
   - {fileID: 560044446}
-  - {fileID: 1981454805}
   - {fileID: 1659210662}
+  - {fileID: 1981454805}
   - {fileID: 1705165327}
   - {fileID: 138569456}

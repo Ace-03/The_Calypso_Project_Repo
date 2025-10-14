@@ -75,7 +75,7 @@ public abstract class Pickup : MonoBehaviour
         sr.sprite = pickupData.sprite;
         SpriteNormalizer.NormalizeSprite(sr.gameObject);
         sr.transform.localScale *= pickupData.sizeModifier;
-        pickupTrigger.transform.localScale *= pickupData.sizeModifier;
+        //pickupTrigger.transform.localScale *= pickupData.sizeModifier;
     }
 
     private void PlayVisualAnimation()

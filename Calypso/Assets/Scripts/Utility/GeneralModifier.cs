@@ -2,6 +2,11 @@ using UnityEngine;
 
 public static class GeneralModifier
 {
+    public static void SetSprite(ParticleSystem ps, Material sprite)
+    {
+        var renderer = ps.GetComponent<ParticleSystemRenderer>();
+        renderer.material = sprite;
+    }
     public static void SetDuration(ParticleSystem ps, float duration)
     {
         var Main = ps.main;
