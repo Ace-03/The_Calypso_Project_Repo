@@ -111,4 +111,11 @@ public class PlayerController : MonoBehaviour
         acceleration = baseAcceleration * PlayerManager.Instance.GetAccModifier();
         deceleration = baseDeceleration * PlayerManager.Instance.GetDecelModifier();
     }
+
+    private void OnDisable()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.isKinematic = true;
+        GetComponent<Collider>().enabled = false;
+    }
 }

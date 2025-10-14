@@ -76,4 +76,15 @@ public class SimpleInputManager : MonoBehaviour
         arrows,
         withMovement,
     }
+
+    private void OnDisable()
+    {
+        if (player == null)
+        {
+            Debug.Log("Input Manager has no controller");
+            return;
+        }
+
+        player.enabled = false;
+    }
 }
