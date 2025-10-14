@@ -136,8 +136,6 @@ public class WeaponController : MonoBehaviour
         Initialize();
     }
 
-
-
     #region Getters
 
     private void CheckForStat(string stat)

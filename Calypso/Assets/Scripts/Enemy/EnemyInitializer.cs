@@ -102,7 +102,10 @@ public class EnemyInitializer : MonoBehaviour
 
         pooledObject.DeactivateAndReturn();
 
-        //Invoke("RemoveEnemy", 5f);
+        if (enemyData.deathEffect != null)
+        {
+            Instantiate(enemyData.deathEffect, transform.position, Quaternion.identity);
+        }
     }
 
     void RemoveEnemy()

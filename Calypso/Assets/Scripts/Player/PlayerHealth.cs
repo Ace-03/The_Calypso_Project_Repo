@@ -30,6 +30,8 @@ public class PlayerHealth : GenericHealth
     {
         // Game Over Logic Here
 
+        PlayerManager.Instance.OnDeath();
+
         // stubbed out for now
         Debug.Log("Player Died");
         Rigidbody rb = GetComponent<Rigidbody>();

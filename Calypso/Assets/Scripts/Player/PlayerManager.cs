@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject playerVisuals;
+    [SerializeField]
+    private GameObject inputManager;
+    [SerializeField]
+    private GameObject deathParticle;
+
     private GameObject player;
 
     public static PlayerManager Instance;
@@ -278,6 +285,38 @@ public class PlayerManager : MonoBehaviour
             invulnerabilityDuration = invulnerabilityPeriod,
             maxHP = maxHealth,
         });
+    }
+
+    public void OnDeath()
+    {
+        DisableMovement();
+        DisableWeapons();
+        DisableVisuals();
+
+        SpawnDeathParticle();
+        Debug.Log("Game Over");
+
+        // Game Over UI and other Logic Here
+    }
+
+    public void DisableMovement()
+    {
+        inputManager.GetComponent<SimpleInputManager>().enabled = false;
+    }
+
+    public void DisableWeapons()
+    {
+        player.GetComponent<WeaponController>().enabled = false;
+    }
+
+    public void DisableVisuals()
+    {
+        playerVisuals.SetActive(false);
+    }
+
+    public void SpawnDeathParticle()
+    {
+        GameObject particle = Instantiate(deathParticle, player.transform.position, Quaternion.identity);
     }
 
     /* ApplyPassiveModifiers exists to apply passive item
