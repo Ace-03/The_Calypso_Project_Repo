@@ -1,10 +1,8 @@
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.Rendering;
 
 [RequireComponent(typeof(BulletTrigger))]
 [RequireComponent(typeof(ParticleSystem))]
-public class BulletScript : MonoBehaviour
+public class ParticleWeaponBase : MonoBehaviour
 {
     BulletTrigger bulletTrigger;
     public ParticleSystem ps;
@@ -53,7 +51,8 @@ public class BulletScript : MonoBehaviour
     public virtual void ApplyWeaponStats(WeaponController weapon)
     {
         StopAttack();
-        Debug.LogError("Base Bullet Script Can't Apply Weapon Stats to: " + weapon.gameObject.name);
+
+        GeneralModifier.SetSprite(ps, weapon.GetSprite());
     }
     public virtual bool IsAimable()
     {

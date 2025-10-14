@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: RIFLE
+  m_Name: ShellToss
   m_EditorClassIdentifier: 
-  weaponName: RIFLE
-  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 850fecafbdf49bb4da657250c843c72b, type: 3}
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  baseCooldown: 10
+  weaponName: Shell Toss
+  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 656adfd913d3b53449b3dce7c8dbdfcd, type: 3}
+  bulletSprite: {fileID: 2100000, guid: c9062319503748646af8fea5ea24ea59, type: 2}
+  baseCooldown: 0.8
   baseDamage: 3
-  baseProjectileSpeed: 20
+  baseProjectileSpeed: 4
   baseAccuracy: 200
-  baseDuration: 1
-  baseAmount: 3
+  baseDuration: 3
+  baseAmount: 1
   requiredResources: 0
   hasAOE: 0
   aoeAreaSize: 0
   aoeTickRate: 0
   aoeShape: 0
-  baseKnockback: 10
+  baseKnockback: 0
   baseStun: 0
   basePoison: 0
   baseSlowdown: 0

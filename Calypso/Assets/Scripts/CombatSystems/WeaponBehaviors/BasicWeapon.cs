@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BasicWeapon : BulletScript, IWeaponBehavior
+public class BasicWeapon : ParticleWeaponBase, IWeaponBehavior
 {
     private ParticleSystem system;
 
@@ -8,6 +8,8 @@ public class BasicWeapon : BulletScript, IWeaponBehavior
     {
         GeneralModifier.SetDuration(system, weapon.GetCooldown());
         BurstModifier.SetCount(system, 0, weapon.GetAmount());
+
+        base.ApplyWeaponStats(weapon);
     }
 
     public override bool IsAimable()

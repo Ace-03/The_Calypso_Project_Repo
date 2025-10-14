@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BurstRifleBehavior : BulletScript, IWeaponBehavior
+public class BurstRifleBehavior : ParticleWeaponBase, IWeaponBehavior
 {
 
     public override void ApplyWeaponStats(WeaponController weapon)
@@ -13,6 +13,8 @@ public class BurstRifleBehavior : BulletScript, IWeaponBehavior
         GeneralModifier.SetLifetime(ps, weapon.GetDuration());
         GeneralModifier.SetSpeed(ps, weapon.GetSpeed() * 10);
         GeneralModifier.SetCircleArc(ps, 1 / weapon.GetAccuracy() * 200);
+
+        base.ApplyWeaponStats(weapon);
     }
 
     public override bool IsAimable()
