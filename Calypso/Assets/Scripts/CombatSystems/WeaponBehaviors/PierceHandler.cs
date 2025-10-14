@@ -17,6 +17,7 @@ public class PierceHandler : MonoBehaviour
     EnemyDefinitionSO enemyData;
 
     private Dictionary<uint, int> particleHitCounts = new Dictionary<uint, int>();
+    private Dictionary<uint, Collider> particleLastHit = new Dictionary<uint, Collider>();
 
     private void Awake()
     {
@@ -46,6 +47,7 @@ public class PierceHandler : MonoBehaviour
     void CheckCollision()
     {
         int particleCount = particleSystem.GetParticles(particles);
+        int hitcount = 0;
 
         for (int i = 0; i < particleCount; i++)
         {
@@ -59,30 +61,60 @@ public class PierceHandler : MonoBehaviour
 
             if (hits.Length > 0)
             {
-
+                hitcount = hits.Length;
                 // Use randomSeed as a unique key for the particle
                 uint id = particle.randomSeed;
 
                 if (!particleHitCounts.ContainsKey(id))
                     particleHitCounts[id] = 0;
                 particleHitCounts[id] += hits.Length;
+                if (!particleLastHit.ContainsKey(id))
+                    particleLastHit[id] = null;
 
                 foreach (Collider hit in hits)
                 {
-                    GameObject other = hit.gameObject;
-                    if (other.GetComponent<GenericHealth>() != null)
+                    if (CheckIfNotAlreadyHit(hit, id))
                     {
-                        DamageInfo damageInfo = new DamageInfo();
-
-                        if (other.CompareTag("Enemy"))
+                        GameObject other = hit.gameObject;
+                        if (other.GetComponent<GenericHealth>() != null)
                         {
-                            Debug.Log($"Particle {id} hit {hit.gameObject.name}, total hits: {particleHitCounts[id]}");
-                            damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
-                            other.GetComponent<GenericHealth>().TakeDamage(damageInfo);
-                            CheckNumberHits(i,id);
+                            DamageInfo damageInfo = new DamageInfo();
+
+                            if (other.CompareTag("Enemy"))
+                            {
+                                Debug.Log($"Particle {id} hit {hit.gameObject.name}, total hits: {particleHitCounts[id]}");
+                                damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
+                                other.GetComponent<GenericHealth>().TakeDamage(damageInfo);
+                                CheckNumberHits(i, id);
+                            }
                         }
                     }
                 }
+            }
+        }
+        if(hitcount > 0) UpdateParticles();
+    }
+    bool CheckIfNotAlreadyHit(Collider collider, uint id)
+    {
+        if(collider == null)
+        {
+            return false;
+        }
+        if (particleLastHit == null)
+        {
+            particleLastHit[id] = collider;
+            return true;
+        }
+        else
+        {
+            if (particleLastHit[id] != collider)
+            {
+                particleLastHit[id] = collider;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
@@ -90,12 +122,14 @@ public class PierceHandler : MonoBehaviour
     {
         if (particleHitCounts[id] >= maxCollisionTicks)
         {
+            particleHitCounts[id] = 0;
+            particleLastHit[id] = null;
             particles[index].remainingLifetime = 0f;
-
-            Debug.Log($"Particle {id} died via HITS");
-
-            particleSystem.Clear();
-            particleSystem.SetParticles(particles);
         }
+    }
+    void UpdateParticles()
+    {
+        particleSystem.Clear();
+        particleSystem.SetParticles(particles, particles.Length);
     }
 }
