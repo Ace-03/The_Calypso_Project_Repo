@@ -17,7 +17,7 @@ MonoBehaviour:
   spriteColor: {r: 0.8805031, g: 0.18551464, b: 0.18551464, a: 1}
   sizeModifier: 5
   enemyPrefab: {fileID: 936472771579500139, guid: 465b6aeb9fa55a74d9e0631fb381f028, type: 3}
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 1469735650166152172, guid: 0cc132ba384097843aea95a07323bd74, type: 3}
   maxHealth: 50
   movementSpeed: 2
   DifficultyModifier: 1
@@ -28,7 +28,7 @@ MonoBehaviour:
   poisonResistance: 0
   slowResistance: 0
   possibleDrops:
-  - data: {fileID: 11400000, guid: 073fa187d6feefd409d21ac15044ab0b, type: 2}
+  - data: {fileID: 11400000, guid: 56c6c9fb01d602846bb6c6f4d6b325f8, type: 2}
     dropChance: 100
     minAmount: 5
     maxAmount: 15

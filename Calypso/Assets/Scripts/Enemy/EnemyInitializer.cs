@@ -10,6 +10,8 @@ public class EnemyInitializer : MonoBehaviour
     private SpriteRenderer sr;
     private IEnemyMovement ai;
 
+    private Color deathParticleColor;
+
     private void Awake()
     {
         if (!TryGetComponent<PooledObject>(out pooledObject))
@@ -61,6 +63,7 @@ public class EnemyInitializer : MonoBehaviour
         sr.sprite = data.sprite;
         sr.color = data.spriteColor;
         transform.localScale *= data.sizeModifier;
+        deathParticleColor = SpriteAverageColor.GetAverageColor(data.sprite) * data.spriteColor;
     }
 
     private void InitializeWeapon(WeaponDefinitionSO weaponData)
@@ -100,9 +103,15 @@ public class EnemyInitializer : MonoBehaviour
     {
         PickupSpawner.RollForItemDrop(enemyData, transform.position);
 
-        pooledObject.DeactivateAndReturn();
+        RemoveEnemy();
 
-        //Invoke("RemoveEnemy", 5f);
+        if (enemyData.deathEffect != null)
+        {
+            ParticleSystem ps = Instantiate(enemyData.deathEffect, transform.position, Quaternion.identity)
+                .GetComponentInChildren<ParticleSystem>();
+
+            GeneralModifier.SetColor(ps, deathParticleColor);
+        }
     }
 
     void RemoveEnemy()

@@ -17,18 +17,18 @@ MonoBehaviour:
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
   sizeModifier: 1
   enemyPrefab: {fileID: 936472771579500139, guid: 465b6aeb9fa55a74d9e0631fb381f028, type: 3}
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 1469735650166152172, guid: 0cc132ba384097843aea95a07323bd74, type: 3}
   maxHealth: 5
   movementSpeed: 1.5
   DifficultyModifier: 1
   aimSpeed: 1
-  weapon: {fileID: 11400000, guid: 08b5135d76af6ba478a0d320cb99736f, type: 2}
+  weapon: {fileID: 11400000, guid: e745a26d142d66f4784742b1d07fb3ce, type: 2}
   knockbackResistance: 0
   stunResistance: 0
   poisonResistance: 0
   slowResistance: 0
   possibleDrops:
-  - data: {fileID: 11400000, guid: a8ffceda15d581842b7df1f97495b555, type: 2}
+  - data: {fileID: 11400000, guid: 56c6c9fb01d602846bb6c6f4d6b325f8, type: 2}
     dropChance: 30
     minAmount: 1
     maxAmount: 2

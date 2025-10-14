@@ -50,7 +50,6 @@ public class SpawnManager : MonoBehaviour
             else
             {
                 StopAllCoroutines();
-                Debug.Log("All waves completed!");
             }
         }
         waveTimer -= Time.deltaTime;
