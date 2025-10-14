@@ -2,6 +2,12 @@ using UnityEngine;
 
 public static class GeneralModifier
 {
+    public static void SetColor(ParticleSystem ps, Color color)
+    {
+        var Main = ps.main;
+        Main.startColor = color;
+    }
+
     public static void SetSprite(ParticleSystem ps, Material sprite)
     {
         var renderer = ps.GetComponent<ParticleSystemRenderer>();

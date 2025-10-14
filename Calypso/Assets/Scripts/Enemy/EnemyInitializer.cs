@@ -100,11 +100,14 @@ public class EnemyInitializer : MonoBehaviour
     {
         PickupSpawner.RollForItemDrop(enemyData, transform.position);
 
-        pooledObject.DeactivateAndReturn();
+        RemoveEnemy();
 
         if (enemyData.deathEffect != null)
         {
-            Instantiate(enemyData.deathEffect, transform.position, Quaternion.identity);
+            ParticleSystem ps = Instantiate(enemyData.deathEffect, transform.position, Quaternion.identity)
+                .GetComponentInChildren<ParticleSystem>();
+
+            GeneralModifier.SetColor(ps, SpriteAverageColor.GetAverageColor(enemyData.sprite));
         }
     }
 

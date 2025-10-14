@@ -17,7 +17,8 @@ MonoBehaviour:
   spriteColor: {r: 0.1656975, g: 0.42030272, b: 0.8930817, a: 1}
   sizeModifier: 0.8
   enemyPrefab: {fileID: 936472771579500139, guid: 465b6aeb9fa55a74d9e0631fb381f028, type: 3}
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 1469735650166152172, guid: 0cc132ba384097843aea95a07323bd74, type: 3}
+  deathParticleColor: {r: 0.13581336, g: 0.3279203, b: 0.6855345, a: 1}
   maxHealth: 2
   movementSpeed: 8
   DifficultyModifier: 1
