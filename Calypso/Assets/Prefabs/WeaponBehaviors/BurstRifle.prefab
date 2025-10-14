@@ -4936,7 +4936,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2735682749369207564}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 1.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5703,7 +5703,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 20
+      value: 0
       mode: 0
       spread: 0
       speed:
@@ -9816,6 +9816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f732b7ad8f0ec394d9ddc32cadfaf85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps: {fileID: 0}
   team: 0
   pierce: 0
 --- !u!1 &3247799907809243447
