@@ -19,7 +19,6 @@ public class EnemyHealth : GenericHealth
 
     public override void TakeDamage(DamageInfo info)
     {
-        Debug.Log("Enemy took damage: " + info.damage);
         if (statusSystem != null)
         {
             statusSystem.ApplyPoison(info.poisonDuration);

@@ -5,14 +5,7 @@ public class ResourceTracker : MonoBehaviour
     public static ResourceTracker Instance;
 
     [SerializeField]
-    private int resin;
-    [SerializeField]
-    private int stone;
-
-    [SerializeField]
-    private GameObject stonePrefab;
-    [SerializeField]
-    private GameObject resinPrefab;
+    private int iron;
 
     private void Awake()
     {
@@ -22,23 +15,13 @@ public class ResourceTracker : MonoBehaviour
             Instance = this;
     }
 
-    public void AddResin(int amount)
+    public void AddIron(int amount)
     {
-        resin += amount;
+        iron += amount;
     }
 
-    public void AddStone(int amount)
+    public void RemoveIron(int ammount)
     {
-        stone += amount;
-    }
-
-    public void RemoveResin(int ammount)
-    {
-        resin -= ammount;
-    }
-
-    public void RemoveStone(int ammount)
-    {
-        stone -= ammount;
+        iron -= ammount;
     }
 }
