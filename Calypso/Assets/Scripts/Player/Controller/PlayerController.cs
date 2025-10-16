@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private playerSprites playerSprites;
 
     [SerializeField]
-    private SpriteRenderer spriteRenderer;
+    private playerRenderers renderers;
 
     private float baseMaxSpeed;
     private float baseAcceleration;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
         InitializeMovementStats();
         ApplyMovementModifiers();
-        spriteController.Initialize(spriteRenderer, playerSprites);
+        spriteController.Initialize(renderers, playerSprites);
     }
 
     private void OnDisable()
