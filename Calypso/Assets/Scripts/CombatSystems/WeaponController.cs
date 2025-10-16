@@ -210,12 +210,14 @@ public class WeaponController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (weaponInstance == null)
-        {
-            Debug.LogWarning("No weapon on weapon controller: " + name);
-            return;
-        }
+        if (weaponInstance == null) return;
 
         weaponInstance.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        if (weaponInstance == null) return;
+        weaponInstance.SetActive(true);
     }
 }
