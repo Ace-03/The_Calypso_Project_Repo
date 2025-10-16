@@ -19,7 +19,6 @@ public abstract class Pickup : MonoBehaviour
     void Awake()
     {
         SetUpComponents();
-        LaunchPickup();
     }
 
 

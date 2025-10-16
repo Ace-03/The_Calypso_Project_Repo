@@ -48,12 +48,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        currentInteractable = other.GetComponent<IInteractable>();
+        other.TryGetComponent<IInteractable>(out var target);
+
+        if (target != null)
+            currentInteractable = target;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        currentInteractable = null;
+        if (currentInteractable == null) return;
+
+        if (other.GetComponent<IInteractable>() == currentInteractable)
+            currentInteractable = null;
     }
 
     public void SetMovementVector(Vector3 direction)
@@ -114,8 +120,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        rb.linearVelocity = Vector3.zero;
-        rb.isKinematic = true;
-        GetComponent<Collider>().enabled = false;
+        if (rb != null) rb.linearVelocity = Vector3.zero;
+    }
+
+    private void OnEnable()
+    {
+        if (rb != null) rb.linearVelocity = Vector3.zero;
+    }
+
+    public void ToggleCollider(bool state)
+    {
+        GetComponent<Collider>().enabled = state;
     }
 }

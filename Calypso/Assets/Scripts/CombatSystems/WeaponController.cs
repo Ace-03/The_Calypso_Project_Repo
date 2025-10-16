@@ -214,4 +214,10 @@ public class WeaponController : MonoBehaviour
 
         weaponInstance.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        if (weaponInstance == null) return;
+        weaponInstance.SetActive(true);
+    }
 }
