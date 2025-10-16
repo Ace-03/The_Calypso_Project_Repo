@@ -12940,6 +12940,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &502238139 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8980815773108051722, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+  m_PrefabInstance: {fileID: 1659210662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &503779937
 GameObject:
   m_ObjectHideFlags: 0
@@ -32476,6 +32481,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271823160}
   m_Mesh: {fileID: 2275174824774840571, guid: f8d7654d3a811da4a99de1e885dac00f, type: 3}
+--- !u!1 &1275128795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8166983347140975720, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
+  m_PrefabInstance: {fileID: 1981454805}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1275298325
 GameObject:
   m_ObjectHideFlags: 0
@@ -45008,13 +45018,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: db13450beda215448b9fe19a41934272, type: 2}
     - target: {fileID: 7466764017000435719, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
-      propertyPath: ammount
-      value: 0
+      propertyPath: luck
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7466764017000435719, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
-      propertyPath: invulnerabilityPeriod
-      value: 0.5
+      propertyPath: maxHealth
+      value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7466764017000435719, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 502238139}
+    - target: {fileID: 7466764017000435719, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: deathParticle
+      value: 
+      objectReference: {fileID: 1469735650166152172, guid: b7eb6d1ae35ee604a8353b5211a34e95, type: 3}
+    - target: {fileID: 7466764017000435719, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: playerVisuals
+      value: 
+      objectReference: {fileID: 1275128795}
     - target: {fileID: 7802940238760266560, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_Name
       value: _Managers
@@ -54818,8 +54840,7 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5651583649422092401, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -58290,10 +58311,10 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1659210662}
   - {fileID: 1588930220}
   - {fileID: 499590361}
   - {fileID: 560044446}
-  - {fileID: 1705165327}
+  - {fileID: 1659210662}
   - {fileID: 1981454805}
+  - {fileID: 1705165327}
   - {fileID: 138569456}

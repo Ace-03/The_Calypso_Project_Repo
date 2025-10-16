@@ -104,9 +104,8 @@ public abstract class Pickup : MonoBehaviour
 
 }
 
-
 public enum ResourceType
 {
-    Resin,
-    Stone,
+    iron,
+    exp,
 }

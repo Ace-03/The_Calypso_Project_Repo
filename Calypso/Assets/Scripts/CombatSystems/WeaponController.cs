@@ -136,8 +136,6 @@ public class WeaponController : MonoBehaviour
         Initialize();
     }
 
-
-
     #region Getters
 
     private void CheckForStat(string stat)
@@ -209,4 +207,11 @@ public class WeaponController : MonoBehaviour
     }
 
     #endregion
+
+    private void OnDisable()
+    {
+        if (weaponInstance == null) return;
+
+        weaponInstance.SetActive(false);
+    }
 }

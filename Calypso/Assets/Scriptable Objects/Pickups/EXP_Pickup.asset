@@ -15,6 +15,6 @@ MonoBehaviour:
   pickupName: EXP
   pickupValue: 1
   sprite: {fileID: 21300000, guid: 3409224a61aa10f4fb7b32e14700b05f, type: 3}
-  sizeModifier: 30
+  sizeModifier: 1
   prefab: {fileID: 8462755256029153103, guid: 49ee8dd931ab4544ab5caa5933d2d3cc, type: 3}
-  resourceType: 0
+  resourceType: 1

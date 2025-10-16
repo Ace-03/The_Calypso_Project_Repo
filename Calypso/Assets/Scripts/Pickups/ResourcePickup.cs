@@ -6,11 +6,11 @@ public class ResourcePickup : Pickup
     {
         switch (data.resourceType)
         {
-            case ResourceType.Resin:
-                ResourceTracker.Instance.AddResin(data.pickupValue);
+            case ResourceType.iron:
+                ResourceTracker.Instance.AddIron(data.pickupValue);
                 break;
-            case ResourceType.Stone:
-                ResourceTracker.Instance.AddStone(data.pickupValue);
+            case ResourceType.exp:
+                LevelManager.Instance.AddExperience(data.pickupValue);
                 break;
             default:
                 Debug.LogWarning("Unhandled resource type: " + data.resourceType);
