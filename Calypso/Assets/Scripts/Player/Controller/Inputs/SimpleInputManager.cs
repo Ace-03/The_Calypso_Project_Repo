@@ -79,12 +79,15 @@ public class SimpleInputManager : MonoBehaviour
 
     private void OnDisable()
     {
-        if (player == null)
-        {
-            Debug.Log("Input Manager has no controller");
-            return;
-        }
+        if (player == null) return;
 
         player.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        if (player == null) return;
+        
+        player.enabled = true;
     }
 }

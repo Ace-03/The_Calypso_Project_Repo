@@ -20,15 +20,6 @@ public class EnemyDefinitionSO : ScriptableObject
     public float poisonResistance;
     public float slowResistance;
 
-    [System.Serializable]
-    public class ItemDrop
-    {
-        public PickupSO data;
-        public float dropChance;
-        public int minAmount;
-        public int maxAmount;
-    }
-
     public List<ItemDrop> possibleDrops;
 
     public DamageInfo MakeDamageInfo()

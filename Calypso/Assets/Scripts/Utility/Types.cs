@@ -16,3 +16,11 @@ public struct DamageInfo
     public float slowDuration;
 }
 
+[System.Serializable]
+public class ItemDrop
+{
+    public PickupSO data;
+    public float dropChance;
+    public int minAmount;
+    public int maxAmount;
+}

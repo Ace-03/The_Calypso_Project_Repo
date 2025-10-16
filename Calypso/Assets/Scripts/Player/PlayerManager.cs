@@ -289,9 +289,9 @@ public class PlayerManager : MonoBehaviour
 
     public void OnDeath()
     {
-        DisableMovement();
-        DisableWeapons();
-        DisableVisuals();
+        ToggleMovement(false);
+        ToggleWeapons(false);
+        ToggleVisuals(false);
 
         SpawnDeathParticle();
         Debug.Log("Game Over");
@@ -299,20 +299,25 @@ public class PlayerManager : MonoBehaviour
         // Game Over UI and other Logic Here
     }
 
-    public void DisableMovement()
+    #region Player State Handlers
+
+    public void ToggleMovement(bool state)
     {
-        inputManager.GetComponent<SimpleInputManager>().enabled = false;
+        inputManager.GetComponent<SimpleInputManager>().enabled = state;
     }
 
-    public void DisableWeapons()
+    public void ToggleWeapons(bool state)
     {
-        player.GetComponent<WeaponController>().enabled = false;
+        player.GetComponent<WeaponController>().enabled = state;
     }
 
-    public void DisableVisuals()
+    public void ToggleVisuals(bool state)
     {
-        playerVisuals.SetActive(false);
+        playerVisuals.SetActive(state);
+        player.GetComponent<PlayerController>().ToggleCollider(state);
     }
+
+    #endregion
 
     public void SpawnDeathParticle()
     {
