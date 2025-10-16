@@ -1,10 +1,15 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Transform weaponPivot;
+
+    [SerializeField]
+    private playerSprites playerSprites;
+
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
 
     private float baseMaxSpeed;
     private float baseAcceleration;
@@ -14,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private float acceleration;
     private float deceleration;
 
+    private PlayerSpriteController spriteController = new PlayerSpriteController();
     private Rigidbody rb;
     private IInteractable currentInteractable;
     private Vector3 movementVector;
@@ -29,21 +35,23 @@ public class PlayerController : MonoBehaviour
 
         InitializeMovementStats();
         ApplyMovementModifiers();
+        spriteController.Initialize(spriteRenderer, playerSprites);
+    }
+
+    private void OnDisable()
+    {
+        if (rb != null) rb.linearVelocity = Vector3.zero;
+    }
+
+    private void OnEnable()
+    {
+        if (rb != null) rb.linearVelocity = Vector3.zero;
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
         UpdateAim();
-    }
-
-    private void UpdateAim()
-    {
-        if (aimVector.magnitude > 0.1f)
-        {
-            float angle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
-            weaponPivot.rotation = Quaternion.AngleAxis(angle, Vector3.down);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,8 +89,10 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
-        if (movementVector.magnitude > 0)
+        if (movementVector.magnitude > 0.15f)
         {
+            spriteController.SetSprite(movementVector);
+
             Vector3 targetVelocity = movementVector * maxSpeed;
             Vector3 velocityChange = targetVelocity - horizontalVelocity;
             rb.AddForce(velocityChange * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
@@ -104,6 +114,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void UpdateAim()
+    {
+        if (aimVector.magnitude > 0.1f)
+        {
+            float angle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
+            weaponPivot.rotation = Quaternion.AngleAxis(angle, Vector3.down);
+        }
+    }
+
     private void InitializeMovementStats()
     {
         baseMaxSpeed = PlayerManager.Instance.GetMaxSpeed();
@@ -116,16 +135,6 @@ public class PlayerController : MonoBehaviour
         maxSpeed = baseMaxSpeed * PlayerManager.Instance.GetSpdModifier();
         acceleration = baseAcceleration * PlayerManager.Instance.GetAccModifier();
         deceleration = baseDeceleration * PlayerManager.Instance.GetDecelModifier();
-    }
-
-    private void OnDisable()
-    {
-        if (rb != null) rb.linearVelocity = Vector3.zero;
-    }
-
-    private void OnEnable()
-    {
-        if (rb != null) rb.linearVelocity = Vector3.zero;
     }
 
     public void ToggleCollider(bool state)

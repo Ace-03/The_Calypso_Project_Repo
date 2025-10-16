@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerHealthData : HealthData
 {
     public float invulnerabilityDuration;
@@ -23,4 +25,21 @@ public class ItemDrop
     public float dropChance;
     public int minAmount;
     public int maxAmount;
+}
+
+[System.Serializable]
+public struct playerSprites
+{
+    public Sprite backSprite;
+    public Sprite frontSprite;
+    public Sprite leftSprite;
+    public Sprite rightSprite;
+}
+
+[System.Serializable]
+public struct playerRenderers
+{
+    public SpriteRenderer player;
+    public SpriteRenderer weapon;
+    public SpriteRenderer shadow;
 }

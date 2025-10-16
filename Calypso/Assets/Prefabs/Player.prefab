@@ -14925,6 +14925,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPivot: {fileID: 5554833905175610038}
+  playerSprites:
+    backSprite: {fileID: 21300000, guid: b9e60ca5abbb0af4fbd3f230fa14ced0, type: 3}
+    frontSprite: {fileID: 21300000, guid: c47ccf160458ceb49b67387d8b1da437, type: 3}
+    leftSprite: {fileID: 21300000, guid: 6b625655cdb6d3a47b905d2c81fd2145, type: 3}
+    rightSprite: {fileID: 21300000, guid: d85b3f02ba598714cb971e4785fe1276, type: 3}
+  spriteRenderer: {fileID: 2525287216681894628}
 --- !u!114 &6693502108835353163
 MonoBehaviour:
   m_ObjectHideFlags: 0
