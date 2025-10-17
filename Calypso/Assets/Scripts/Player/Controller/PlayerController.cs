@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private IInteractable currentInteractable;
     private Vector3 movementVector;
     private Vector3 aimVector;
+    private Vector3 horizontalVelocity;
 
     private void Start()
     {
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour
         ApplyMovementModifiers();
         spriteController.Initialize(spriteData);
         spriteController.bobAmmount = bobAmmount / 100;
+        
+        Invoke("ClearInteractable", 0.05f);
     }
 
     private void OnDisable()
@@ -54,7 +57,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+
         MovePlayer();
+        UpdateSprite();
         UpdateAim();
     }
 
@@ -91,21 +97,14 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-
         if (movementVector.magnitude > 0.15f)
         {
-            spriteController.SetSprite(movementVector);
-            TryBobbing();
-
             Vector3 targetVelocity = movementVector * maxSpeed;
             Vector3 velocityChange = targetVelocity - horizontalVelocity;
             rb.AddForce(velocityChange * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
         else if (movementVector.magnitude <= 0.15f)
         {
-            spriteController.StopBob();
-
             Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * Time.fixedDeltaTime;
             rb.AddForce(brakingForce, ForceMode.VelocityChange);
         
@@ -121,6 +120,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void UpdateSprite()
+    {
+        if (movementVector.magnitude >= 0.15f)
+        {
+            spriteController.SetSprite(movementVector);
+            TryBobbing();
+        }
+        else
+        {
+            spriteController.StopBob();
+        }
+    }
+
+    private void UpdateAim()
+    {
+        if (aimVector.magnitude > 0.1f)
+        {
+            float angle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
+            weaponPivot.rotation = Quaternion.AngleAxis(angle, Vector3.down);
+        }
+    }
+
     public void ApplyMovementModifiers()
     {
         maxSpeed = baseMaxSpeed * PlayerManager.Instance.GetSpdModifier();
@@ -131,15 +152,6 @@ public class PlayerController : MonoBehaviour
     public void ToggleCollider(bool state)
     {
         GetComponent<Collider>().enabled = state;
-    }
-
-    private void UpdateAim()
-    {
-        if (aimVector.magnitude > 0.1f)
-        {
-            float angle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
-            weaponPivot.rotation = Quaternion.AngleAxis(angle, Vector3.down);
-        }
     }
 
     private void InitializeMovementStats()
@@ -157,5 +169,10 @@ public class PlayerController : MonoBehaviour
             bobTimer = 0;
             spriteController.BobSprite();
         }
+    }
+
+    private void ClearInteractable()
+    {
+        currentInteractable = null;
     }
 }
