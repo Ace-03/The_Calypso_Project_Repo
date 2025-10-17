@@ -29,6 +29,14 @@ public class ItemDrop
 }
 
 [System.Serializable]
+public struct spriteControllerData
+{
+    public playerRenderers renderers;
+    public playerSprites player;
+    public weaponSprites weapon;
+}
+
+[System.Serializable]
 public struct playerSprites
 {
     public Sprite backSprite;

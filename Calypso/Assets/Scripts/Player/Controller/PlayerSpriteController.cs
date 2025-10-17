@@ -9,11 +9,11 @@ public class PlayerSpriteController
     private playerSprites ps;
     private weaponSprites ws;
 
-    public void Initialize(playerRenderers renderer, playerSprites player, weaponSprites weapon)
+    public void Initialize(spriteControllerData scData)
     {
-        sr = renderer;
-        ps = player;
-        ws = weapon;
+        sr = scData.renderer;
+        ps = scData.player;
+        ws = scData.weapon;
     }
 
     public void SetSprite(Vector3 dir)

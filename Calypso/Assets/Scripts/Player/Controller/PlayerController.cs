@@ -11,15 +11,7 @@ public class PlayerController : MonoBehaviour
     private Transform weaponPivot;
 
     [SerializeField]
-    private playerSprites playerSprites;
-
-    [SerializeField]
-    private weaponSprites weaponSprites;
-
-    [SerializeField]
-    private playerRenderers renderers;
-
-
+    private spriteControllerData scData;
 
     private float baseMaxSpeed;
     private float baseAcceleration;
@@ -46,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
         InitializeMovementStats();
         ApplyMovementModifiers();
-        spriteController.Initialize(renderers, playerSprites, weaponSprites);
+        spriteController.Initialize(scData);
         spriteController.bobAmmount = bobAmmount / 100;
     }
 
