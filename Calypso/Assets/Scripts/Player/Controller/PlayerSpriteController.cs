@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerSpriteController
@@ -11,7 +10,7 @@ public class PlayerSpriteController
 
     public void Initialize(spriteControllerData scData)
     {
-        sr = scData.renderer;
+        sr = scData.renderers;
         ps = scData.player;
         ws = scData.weapon;
     }
@@ -56,7 +55,8 @@ public class PlayerSpriteController
         bobAmmount *= -1;
 
         sr.player.transform.localPosition = new Vector3(0, bobAmmount, 0);
-        sr.weapon.transform.localPosition = new Vector3(sr.weapon.transform.localPosition.x, bobAmmount, 0);
+        sr.weapon.transform.localPosition = new Vector3(sr.weapon.transform.localPosition.x, bobAmmount * 0.6f, 0);
+        sr.shadow.transform.localPosition = new Vector3(0, -bobAmmount, 0);
     }
 
     public void StopBob()
