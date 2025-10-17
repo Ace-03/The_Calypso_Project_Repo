@@ -17,18 +17,21 @@ public class PlayerSpriteController
 
     public void SetSprite(Vector3 dir)
     {
+        int playerLayer = sr.player.sortingOrder;
+
         if (Mathf.Abs(dir.x) > Mathf.Abs(dir.z))
         {
+
             if (dir.x < 0)
             {
                 UpdatePlayer(ps.leftSprite);
-                UpdateWeapon(ws.sideSprite, 1, -1, -0.06f);
+                UpdateWeapon(ws.sideSprite, playerLayer - 1, -1, -0.06f);
                 UpdateShadow(1.2f);
             }
             else
             {
                 UpdatePlayer(ps.rightSprite);
-                UpdateWeapon(ws.sideSprite, 3, 1, 0.06f);
+                UpdateWeapon(ws.sideSprite, playerLayer + 1, 1, 0.06f);
                 UpdateShadow(1.2f);
             }
         }
@@ -37,13 +40,13 @@ public class PlayerSpriteController
             if (dir.z <= 0)
             {
                 UpdatePlayer(ps.frontSprite);
-                UpdateWeapon(ws.forwardSprite, 3, 1);
+                UpdateWeapon(ws.forwardSprite, playerLayer + 1, 1);
                 UpdateShadow(1.5f);
             }
             else
             {
                 UpdatePlayer(ps.backSprite);
-                UpdateWeapon(ws.forwardSprite, 1, -1);
+                UpdateWeapon(ws.forwardSprite, playerLayer - 1, -1);
                 UpdateShadow(1.5f);
             }
 
