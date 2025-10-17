@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class PlayerHealthData : HealthData
@@ -34,6 +35,13 @@ public struct playerSprites
     public Sprite frontSprite;
     public Sprite leftSprite;
     public Sprite rightSprite;
+}
+
+[System.Serializable]
+public struct weaponSprites
+{
+    public Sprite forwardSprite;
+    public Sprite sideSprite;
 }
 
 [System.Serializable]

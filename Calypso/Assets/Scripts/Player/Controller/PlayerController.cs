@@ -3,13 +3,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private float bobAmmount = 0.5f;
+
+    [SerializeField]
     private Transform weaponPivot;
 
     [SerializeField]
     private playerSprites playerSprites;
 
     [SerializeField]
+    private weaponSprites weaponSprites;
+
+    [SerializeField]
     private playerRenderers renderers;
+
+
 
     private float baseMaxSpeed;
     private float baseAcceleration;
@@ -35,7 +43,8 @@ public class PlayerController : MonoBehaviour
 
         InitializeMovementStats();
         ApplyMovementModifiers();
-        spriteController.Initialize(renderers, playerSprites);
+        spriteController.Initialize(renderers, playerSprites, weaponSprites);
+        spriteController.bobAmmount = bobAmmount / 100;
     }
 
     private void OnDisable()
@@ -92,6 +101,7 @@ public class PlayerController : MonoBehaviour
         if (movementVector.magnitude > 0.15f)
         {
             spriteController.SetSprite(movementVector);
+            spriteController.BobSprite();
 
             Vector3 targetVelocity = movementVector * maxSpeed;
             Vector3 velocityChange = targetVelocity - horizontalVelocity;
@@ -99,6 +109,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (movementVector.magnitude <= 0.15f)
         {
+            spriteController.StopBob();
+
             Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * Time.fixedDeltaTime;
             rb.AddForce(brakingForce, ForceMode.VelocityChange);
         

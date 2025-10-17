@@ -1,14 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerSpriteController
 {
+    public float bobAmmount = 0.01f;
+
     private playerRenderers sr;
     private playerSprites ps;
+    private weaponSprites ws;
 
-    public void Initialize(playerRenderers renderer, playerSprites sprites)
+    public void Initialize(playerRenderers renderer, playerSprites player, weaponSprites weapon)
     {
         sr = renderer;
-        ps = sprites;
+        ps = player;
+        ws = weapon;
     }
 
     public void SetSprite(Vector3 dir)
@@ -17,38 +22,71 @@ public class PlayerSpriteController
         {
             if (dir.x < 0)
             {
-                //sr.sprite = ps.leftSprite;
+                UpdatePlayer(ps.leftSprite);
+                UpdateWeapon(ws.sideSprite, 1, -1, -0.06f);
+                UpdateShadow(1.2f);
             }
             else
             {
-                //sr.sprite = ps.rightSprite;
+                UpdatePlayer(ps.rightSprite);
+                UpdateWeapon(ws.sideSprite, 3, 1, 0.06f);
+                UpdateShadow(1.2f);
             }
         }
         else
         {
             if (dir.z <= 0)
             {
-                //sr.sprite = ps.frontSprite;
+                UpdatePlayer(ps.frontSprite);
+                UpdateWeapon(ws.forwardSprite, 3, 1);
+                UpdateShadow(1.5f);
             }
             else
             {
-                //sr.sprite = ps.backSprite;
+                UpdatePlayer(ps.backSprite);
+                UpdateWeapon(ws.forwardSprite, 1, -1);
+                UpdateShadow(1.5f);
             }
+
         }
     }
 
-    private void UpdatePlayer()
+    public void BobSprite()
     {
+        bobAmmount *= -1;
 
+        sr.player.transform.localPosition = new Vector3(0, bobAmmount, 0);
+        sr.weapon.transform.localPosition = new Vector3(sr.weapon.transform.localPosition.x, bobAmmount, 0);
     }
 
-    private void UpdateWeapon()
+    public void StopBob()
     {
-
+        sr.player.transform.localPosition = Vector3.zero;
+        sr.weapon.transform.localPosition = new Vector3(sr.weapon.transform.localPosition.x, 0, 0);
     }
 
-    private void UpdateShadow()
+    private void UpdatePlayer(Sprite sprite)
     {
+        sr.player.sprite = sprite;
+    }
 
+    private void UpdateWeapon(Sprite sprite, int layerOrder, float scale)
+    {
+        sr.weapon.sprite = sprite;
+        sr.weapon.sortingOrder = layerOrder;
+        sr.weapon.transform.localScale = new Vector3(scale, 1, 1);
+        sr.weapon.transform.localPosition = new Vector3(0, sr.weapon.transform.localPosition.y, 0);
+    }
+    private void UpdateWeapon(Sprite sprite, int layerOrder, float scale, float offSet)
+    {
+        sr.weapon.sprite = sprite;
+        sr.weapon.sortingOrder = layerOrder;
+        sr.weapon.transform.localScale = new Vector3(scale, 1, 1);
+        sr.weapon.transform.localPosition = new Vector3(offSet, sr.weapon.transform.localPosition.y, 0);
+    }
+
+    private void UpdateShadow(float scale)
+    {
+        sr.shadow.transform.localScale = new Vector3(scale, 1.5f, 1.5f);
     }
 }
