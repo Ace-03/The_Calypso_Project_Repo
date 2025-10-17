@@ -4,6 +4,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float bobAmmount = 0.5f;
+    [SerializeField]
+    private float bobSpeed = 0.1f;
 
     [SerializeField]
     private Transform weaponPivot;
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private float maxSpeed;
     private float acceleration;
     private float deceleration;
+    private float bobTimer = 0f;
 
     private PlayerSpriteController spriteController = new PlayerSpriteController();
     private Rigidbody rb;
@@ -101,7 +104,7 @@ public class PlayerController : MonoBehaviour
         if (movementVector.magnitude > 0.15f)
         {
             spriteController.SetSprite(movementVector);
-            spriteController.BobSprite();
+            TryBobbing();
 
             Vector3 targetVelocity = movementVector * maxSpeed;
             Vector3 velocityChange = targetVelocity - horizontalVelocity;
@@ -126,6 +129,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ApplyMovementModifiers()
+    {
+        maxSpeed = baseMaxSpeed * PlayerManager.Instance.GetSpdModifier();
+        acceleration = baseAcceleration * PlayerManager.Instance.GetAccModifier();
+        deceleration = baseDeceleration * PlayerManager.Instance.GetDecelModifier();
+    }
+
+    public void ToggleCollider(bool state)
+    {
+        GetComponent<Collider>().enabled = state;
+    }
+
     private void UpdateAim()
     {
         if (aimVector.magnitude > 0.1f)
@@ -142,15 +157,13 @@ public class PlayerController : MonoBehaviour
         baseDeceleration = PlayerManager.Instance.GetDeceleration();
     }
 
-    public void ApplyMovementModifiers()
+    private void TryBobbing()
     {
-        maxSpeed = baseMaxSpeed * PlayerManager.Instance.GetSpdModifier();
-        acceleration = baseAcceleration * PlayerManager.Instance.GetAccModifier();
-        deceleration = baseDeceleration * PlayerManager.Instance.GetDecelModifier();
-    }
-
-    public void ToggleCollider(bool state)
-    {
-        GetComponent<Collider>().enabled = state;
+        bobTimer += Time.deltaTime;
+        if (bobTimer >= bobSpeed)
+        {
+            bobTimer = 0;
+            spriteController.BobSprite();
+        }
     }
 }
