@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
         ApplyMovementModifiers();
         spriteController.Initialize(spriteData);
         spriteController.bobAmmount = bobAmmount / 100;
-        
+
         Invoke("ClearInteractable", 0.05f);
     }
 
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
         UpdateSprite();
         UpdateAim();
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -107,7 +109,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * Time.fixedDeltaTime;
             rb.AddForce(brakingForce, ForceMode.VelocityChange);
-        
+
             if (horizontalVelocity.magnitude < 0.5f)
             {
                 rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
