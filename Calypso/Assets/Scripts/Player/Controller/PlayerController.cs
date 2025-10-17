@@ -1,10 +1,17 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private float bobAmmount = 0.5f;
+    [SerializeField]
+    private float bobSpeed = 0.1f;
+
+    [SerializeField]
     private Transform weaponPivot;
+
+    [SerializeField]
+    private spriteControllerData spriteData;
 
     private float baseMaxSpeed;
     private float baseAcceleration;
@@ -13,7 +20,9 @@ public class PlayerController : MonoBehaviour
     private float maxSpeed;
     private float acceleration;
     private float deceleration;
+    private float bobTimer = 0f;
 
+    private PlayerSpriteController spriteController = new PlayerSpriteController();
     private Rigidbody rb;
     private IInteractable currentInteractable;
     private Vector3 movementVector;
@@ -29,21 +38,24 @@ public class PlayerController : MonoBehaviour
 
         InitializeMovementStats();
         ApplyMovementModifiers();
+        spriteController.Initialize(spriteData);
+        spriteController.bobAmmount = bobAmmount / 100;
+    }
+
+    private void OnDisable()
+    {
+        if (rb != null) rb.linearVelocity = Vector3.zero;
+    }
+
+    private void OnEnable()
+    {
+        if (rb != null) rb.linearVelocity = Vector3.zero;
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
         UpdateAim();
-    }
-
-    private void UpdateAim()
-    {
-        if (aimVector.magnitude > 0.1f)
-        {
-            float angle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
-            weaponPivot.rotation = Quaternion.AngleAxis(angle, Vector3.down);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,14 +93,19 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
-        if (movementVector.magnitude > 0)
+        if (movementVector.magnitude > 0.15f)
         {
+            spriteController.SetSprite(movementVector);
+            TryBobbing();
+
             Vector3 targetVelocity = movementVector * maxSpeed;
             Vector3 velocityChange = targetVelocity - horizontalVelocity;
             rb.AddForce(velocityChange * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
         else if (movementVector.magnitude <= 0.15f)
         {
+            spriteController.StopBob();
+
             Vector3 brakingForce = -horizontalVelocity.normalized * deceleration * Time.fixedDeltaTime;
             rb.AddForce(brakingForce, ForceMode.VelocityChange);
         
@@ -104,13 +121,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void InitializeMovementStats()
-    {
-        baseMaxSpeed = PlayerManager.Instance.GetMaxSpeed();
-        baseAcceleration = PlayerManager.Instance.GetAcceleration();
-        baseDeceleration = PlayerManager.Instance.GetDeceleration();
-    }
-
     public void ApplyMovementModifiers()
     {
         maxSpeed = baseMaxSpeed * PlayerManager.Instance.GetSpdModifier();
@@ -118,18 +128,34 @@ public class PlayerController : MonoBehaviour
         deceleration = baseDeceleration * PlayerManager.Instance.GetDecelModifier();
     }
 
-    private void OnDisable()
-    {
-        if (rb != null) rb.linearVelocity = Vector3.zero;
-    }
-
-    private void OnEnable()
-    {
-        if (rb != null) rb.linearVelocity = Vector3.zero;
-    }
-
     public void ToggleCollider(bool state)
     {
         GetComponent<Collider>().enabled = state;
+    }
+
+    private void UpdateAim()
+    {
+        if (aimVector.magnitude > 0.1f)
+        {
+            float angle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
+            weaponPivot.rotation = Quaternion.AngleAxis(angle, Vector3.down);
+        }
+    }
+
+    private void InitializeMovementStats()
+    {
+        baseMaxSpeed = PlayerManager.Instance.GetMaxSpeed();
+        baseAcceleration = PlayerManager.Instance.GetAcceleration();
+        baseDeceleration = PlayerManager.Instance.GetDeceleration();
+    }
+
+    private void TryBobbing()
+    {
+        bobTimer += Time.deltaTime;
+        if (bobTimer >= bobSpeed)
+        {
+            bobTimer = 0;
+            spriteController.BobSprite();
+        }
     }
 }

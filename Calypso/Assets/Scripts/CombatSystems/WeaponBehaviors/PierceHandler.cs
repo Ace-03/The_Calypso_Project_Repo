@@ -1,12 +1,10 @@
 using NUnit;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class PierceHandler : MonoBehaviour
 {
-    public ParticleSystem particleSystem;
+    public ParticleSystem ps;
     public ParticleWeaponBase weaponBehavior;
     public float detectionRadius = 1f;
     public LayerMask layerMask;
@@ -27,10 +25,10 @@ public class PierceHandler : MonoBehaviour
 
     void Start()
     {
-        if (particleSystem == null)
-            particleSystem = GetComponent<ParticleSystem>();
+        if (ps == null)
+            ps = GetComponent<ParticleSystem>();
 
-        particles = new ParticleSystem.Particle[particleSystem.main.maxParticles];
+        particles = new ParticleSystem.Particle[ps.main.maxParticles];
         layerMask = LayerMask.GetMask("Enemy");
     }
     private float timePerTick = 0.1f;
@@ -46,7 +44,7 @@ public class PierceHandler : MonoBehaviour
     }
     void CheckCollision()
     {
-        int particleCount = particleSystem.GetParticles(particles);
+        int particleCount = ps.GetParticles(particles);
         int hitcount = 0;
 
         for (int i = 0; i < particleCount; i++)
@@ -54,8 +52,8 @@ public class PierceHandler : MonoBehaviour
             var particle = particles[i];
             Vector3 particlePosition = particles[i].position;
 
-            if (particleSystem.main.simulationSpace == ParticleSystemSimulationSpace.Local)
-                particlePosition = particleSystem.transform.TransformPoint(particlePosition);
+            if (ps.main.simulationSpace == ParticleSystemSimulationSpace.Local)
+                particlePosition = ps.transform.TransformPoint(particlePosition);
 
             Collider[] hits = Physics.OverlapSphere(particlePosition, detectionRadius, layerMask);
 
@@ -129,7 +127,7 @@ public class PierceHandler : MonoBehaviour
     }
     void UpdateParticles()
     {
-        particleSystem.Clear();
-        particleSystem.SetParticles(particles, particles.Length);
+        ps.Clear();
+        ps.SetParticles(particles, particles.Length);
     }
 }
