@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 956043934538963729}
   - component: {fileID: 3401332194034932682}
   m_Layer: 5
-  m_Name: Slot Background Sprite
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 2837970531077014698}
   - component: {fileID: 7764179785650722329}
   m_Layer: 5
-  m_Name: Slot Item Sprite
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
