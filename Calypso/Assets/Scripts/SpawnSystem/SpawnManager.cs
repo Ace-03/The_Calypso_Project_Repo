@@ -105,7 +105,6 @@ public class SpawnManager : MonoBehaviour
             initializer.Initialize(enemyType);
         }
 
-            enemyInstance.GetComponent<EnemyInitializer>().Initialize(enemyType);
         if (enemyInstance == null )
         {
             Debug.LogError($"Failed to spawn enemy of type {enemyType.name}");

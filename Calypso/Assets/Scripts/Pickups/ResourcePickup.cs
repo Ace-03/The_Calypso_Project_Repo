@@ -7,7 +7,7 @@ public class ResourcePickup : Pickup
         switch (data.resourceType)
         {
             case ResourceType.iron:
-                ResourceTracker.Instance.AddIron(data.pickupValue);
+                ResourceTracker.Instance.SetIron(data.pickupValue);
                 break;
             case ResourceType.exp:
                 LevelManager.Instance.AddExperience(data.pickupValue);
