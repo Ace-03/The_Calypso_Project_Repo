@@ -9,7 +9,7 @@ public class ResourcesUI : MonoBehaviour
     }
     public void UpdateResourceText(int resources)
     {
-        resourceElements.resourceText.text = resources.ToString();
+        resourceElements.resourceText.text = "Iron:" + resources.ToString();
     }
 
     public void UpdateBoatIcon(int index, Sprite sprite)
