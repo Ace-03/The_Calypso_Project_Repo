@@ -51,6 +51,6 @@ public class LevelManager : MonoBehaviour
 
     private void updateUI()
     {
-
+        HudManager.Instance.level.UpdateLevelText(currentLevel);
     }
 }

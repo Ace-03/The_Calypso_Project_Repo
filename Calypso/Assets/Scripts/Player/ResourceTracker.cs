@@ -15,13 +15,9 @@ public class ResourceTracker : MonoBehaviour
             Instance = this;
     }
 
-    public void AddIron(int amount)
+    public void SetIron(int amount)
     {
         iron += amount;
-    }
-
-    public void RemoveIron(int ammount)
-    {
-        iron -= ammount;
+        HudManager.Instance.resources.UpdateResourceText(iron);
     }
 }
