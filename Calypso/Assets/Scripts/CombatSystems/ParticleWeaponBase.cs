@@ -35,6 +35,7 @@ public class ParticleWeaponBase : MonoBehaviour
                 break;
             default:
                 col.collidesWith = LayerMask.GetMask("Environment");
+                gameObject.AddComponent<PierceHandler>();
                 break;
         }
     }
