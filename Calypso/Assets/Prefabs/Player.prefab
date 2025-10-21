@@ -4942,7 +4942,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 69640c76463c4134d9d90e4837e226ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.6784314}
   m_FlipX: 0
@@ -5029,7 +5029,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 68605e2c14fb9bb46b42b8db21ea9a90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -14910,7 +14910,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &2636485834852036548
 MonoBehaviour:
@@ -14924,7 +14924,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a27aa4ead78114fbcb886350f57aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bobAmmount: 0.65
+  bobSpeed: 0.1
   weaponPivot: {fileID: 5554833905175610038}
+  spriteData:
+    renderers:
+      player: {fileID: 2525287216681894628}
+      weapon: {fileID: 1449230654758240534}
+      shadow: {fileID: 1121018769412299596}
+    player:
+      backSprite: {fileID: 21300000, guid: b9e60ca5abbb0af4fbd3f230fa14ced0, type: 3}
+      frontSprite: {fileID: 21300000, guid: c47ccf160458ceb49b67387d8b1da437, type: 3}
+      leftSprite: {fileID: 21300000, guid: 6b625655cdb6d3a47b905d2c81fd2145, type: 3}
+      rightSprite: {fileID: 21300000, guid: d85b3f02ba598714cb971e4785fe1276, type: 3}
+    weapon:
+      forwardSprite: {fileID: 21300000, guid: 68605e2c14fb9bb46b42b8db21ea9a90, type: 3}
+      sideSprite: {fileID: 21300000, guid: a705a6ac82afabb49abbc649c7399865, type: 3}
 --- !u!114 &6693502108835353163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14954,7 +14969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 0
   hp: 0
-  vfxHandler: {fileID: 0}
+  vfxHandler: {fileID: 2971592590130550337}
 --- !u!114 &2971592590130550337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15100,13 +15115,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a4f25f7f59ae6e347a276d478e65b073, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: c47ccf160458ceb49b67387d8b1da437, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.35555556, y: 0.35555556}
+  m_Size: {x: 0.24444444, y: 0.33333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
