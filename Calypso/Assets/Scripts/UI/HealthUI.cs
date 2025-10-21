@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthUI : MonoBehaviour
@@ -9,21 +10,24 @@ public class HealthUI : MonoBehaviour
         healthElements = elements;
     }
 
-    public void UpdatePlayerHealth(int hp, int maxHp)
+    public void UpdatePlayerHealth(float hp, float maxHp)
     {
-        float healthPercentage = hp / maxHp;
-        int hpToSpriteRatio = (int)Mathf.Round((healthElements.playerHealthSprites.Count) / maxHp);
-        Sprite newHPSprite = healthElements.playerHealthSprites[hpToSpriteRatio];
-
-        healthElements.healthIcon.sprite = newHPSprite;
+        healthElements.healthIcon.sprite = SetHealthSprite(hp, maxHp, healthElements.playerHealthSprites);
     }
 
     public void UpdateBaseHealth(int hp, int maxHp)
     {
-        float healthPercentage = hp / maxHp;
-        int hpToSpriteRatio = (int)Mathf.Round((healthElements.playerHealthSprites.Count) / maxHp);
-        Sprite newHPSprite = healthElements.playerHealthSprites[hpToSpriteRatio];
+        healthElements.healthIcon.sprite = SetHealthSprite(hp, maxHp, healthElements.baseHealthSprites);
+    }
 
-        healthElements.healthIcon.sprite = newHPSprite;
+    private Sprite SetHealthSprite(float hp, float maxHp, List<Sprite> SpriteList)
+    {
+        float healthPercentage = (hp / maxHp);
+        float healthSpriteCount = SpriteList.Count;
+        int hpToSpriteRatio = (int)(healthSpriteCount - Mathf.Round(healthSpriteCount * healthPercentage));
+
+        hpToSpriteRatio = (int)Mathf.Clamp(hpToSpriteRatio, 0, healthSpriteCount - 1);
+
+        return SpriteList[hpToSpriteRatio];
     }
 }

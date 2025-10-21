@@ -3,6 +3,17 @@ using UnityEngine;
 public class HudManager : MonoBehaviour
 {
     [SerializeField]
+    private GameObject hotBarGroup;
+    [SerializeField]
+    private GameObject levelGroup;
+    [SerializeField]
+    private GameObject healthGroup;
+    [SerializeField]
+    private GameObject resourcesGroup;
+    [SerializeField]
+    private GameObject gameOverScreen;
+
+    [SerializeField]
     private HotBarUIElements hotBarElements;
     [SerializeField]
     private LevelUIElements levelElements;
@@ -11,9 +22,13 @@ public class HudManager : MonoBehaviour
     [SerializeField]
     private ResourceUIElements resourcesElements;
 
+    [HideInInspector]
     public HotBarUI hotBar;
+    [HideInInspector]
     public LevelUI level;
+    [HideInInspector]
     public HealthUI health;
+    [HideInInspector]
     public ResourcesUI resources;
 
     public static HudManager Instance;
@@ -36,6 +51,8 @@ public class HudManager : MonoBehaviour
         level.SetElements(levelElements);
         health.SetElements(healthElements);
         resources.SetElements(resourcesElements);
+
+        gameOverScreen.SetActive(false);
     }
 
     private void Awake()
@@ -51,5 +68,15 @@ public class HudManager : MonoBehaviour
         }
 
         InitializeComponents();
+    }
+
+    public void StartGameOver()
+    {
+        hotBarGroup.SetActive(false);
+        levelGroup.SetActive(false);
+        healthGroup.SetActive(false);
+        resourcesGroup.SetActive(false);
+
+        gameOverScreen.SetActive(true);
     }
 }

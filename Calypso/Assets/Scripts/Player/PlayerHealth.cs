@@ -41,6 +41,8 @@ public class PlayerHealth : GenericHealth
             rb.AddForce(Vector3.up * 100, ForceMode.Impulse);
         }
 
+        HudManager.Instance.StartGameOver();
+
         base.Die();
     }
 
@@ -61,6 +63,7 @@ public class PlayerHealth : GenericHealth
         invulnerabilityDuration = data.invulnerabilityDuration;
         maxHP = data.maxHP;
         hp = data.maxHP;
+
     }
 
     public override void TakeDamageRaw(int damage)
@@ -76,6 +79,8 @@ public class PlayerHealth : GenericHealth
         hp -= (int)Mathf.Clamp(damage, 0f, maxHP);
         invulnerabilityTimer = invulnerabilityDuration;
         invulnerable = true;
+
+        HudManager.Instance.health.UpdatePlayerHealth(hp, maxHP);
 
         if (hp <= 0)
             Die();
