@@ -47,3 +47,13 @@ public struct HotBarIcon
     public Image backgroundImage;
     public Image iconImage;
 }
+
+public enum LightingSate
+{
+    sunrise,
+    morning,
+    daylight,
+    evening,
+    sunset,
+    night,
+}
