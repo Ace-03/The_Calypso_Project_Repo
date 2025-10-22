@@ -8,16 +8,14 @@ public class DayCycle : MonoBehaviour
     private float cycleClock = 0f;
 
     private float currentTimeCheck = 0f;
-    private float currentLightingCheck = 0f;
-    private LightingSate lightState = LightingSate.sunrise;
+    private LightingState lightingSate = LightingState.sunrise;
     bool isDayTime = true;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         StartDay();
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateClock();
@@ -27,11 +25,7 @@ public class DayCycle : MonoBehaviour
     {
         cycleClock += Time.deltaTime;
 
-        if (CheckTimer(cycleClock, currentLightingCheck))
-        {
-            UpdateLighting();
-            UpdateLightCheck();
-        }
+        UpdateLighting();
 
         if (CheckTimer(cycleClock, currentTimeCheck))
         {
@@ -42,39 +36,6 @@ public class DayCycle : MonoBehaviour
     private void UpdateLighting()
     {
 
-    }
-
-    private void UpdateLightCheck()
-    {
-        switch (lightState)
-        {
-            case LightingSate.sunrise:
-                currentLightingCheck = currentTimeCheck * 0.25f;
-                lightState = LightingSate.morning;
-                break;
-            case LightingSate.morning:
-                currentLightingCheck = currentTimeCheck * 0.5f;
-                lightState = LightingSate.daylight;
-                break;
-            case LightingSate.daylight:
-                currentLightingCheck = currentTimeCheck * 0.75f;
-                lightState = LightingSate.evening;
-                break;
-            case LightingSate.evening:
-                currentLightingCheck = currentTimeCheck;
-                lightState = LightingSate.sunset;
-                break;
-            case LightingSate.sunset:
-                currentLightingCheck = currentTimeCheck * 0.25f;
-                lightState = LightingSate.night;
-                break;
-            case LightingSate.night:
-                currentLightingCheck = currentTimeCheck * 0f;
-                lightState = LightingSate.sunrise;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
     }
 
     private void StartDay()

@@ -48,7 +48,7 @@ public struct HotBarIcon
     public Image iconImage;
 }
 
-public enum LightingSate
+public enum LightingState
 {
     sunrise,
     morning,
@@ -56,4 +56,21 @@ public enum LightingSate
     evening,
     sunset,
     night,
+}
+
+[System.Serializable]
+public struct dayCycleData
+{
+    public Light light;
+    public Transform lightPivot;
+
+    public float dayStartangle;
+    public float nightStartangle;
+
+    public Color sunriseColor;
+    public Color morningColor;
+    public Color daylightColor;
+    public Color eveningColor;
+    public Color sunsetColor;
+    public Color nightColor;
 }
