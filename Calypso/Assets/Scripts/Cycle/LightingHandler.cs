@@ -26,11 +26,6 @@ public class LightingHandler : MonoBehaviour
         {
             rotationRange = lightingData.dayStartangle - lightingData.nightStartangle;
         }
-
-
-
-        float newRotationZ = Mathf.Lerp(currentrotationZ, );
-        lightingData.lightPivot.rotation =
     }
 
     public LightingState TransitionLightState(LightingState state)
