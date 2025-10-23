@@ -1,79 +1,121 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class LightingHandler : MonoBehaviour
+public class LightingHandler
 {
-    private dayCycleData lightingData;
+    private DayCycleData lightingData;
 
+    private float middayAngle;
+    private float midnightAngle;
 
-
-    public void SetLightingData()
+    public void SetLightingData(DayCycleData data)
     {
-
+        lightingData = data;
+        (middayAngle, midnightAngle) = CalculateMidAngles(lightingData.dayStartAngle, lightingData.nightStartAngle);
     }
 
     public void UpdateLighting(float cycleProgression, bool isDay)
     {
-        float currentrotationZ = lightingData.lightPivot.rotation.z;
-        float rotationRange = 0f;
+        Vector3 currentEuler = lightingData.lightPivot.localEulerAngles;
 
+        // Update Light Rotation
+        float dayStart = lightingData.dayStartAngle;
+        float nightStart = lightingData.nightStartAngle;
+        float midday = middayAngle;
+        float midnight = midnightAngle;
 
-        if (isDay)
+        float startAngle;
+        float endAngle;
+        float lerpT;
+
+        if (cycleProgression <= 0.25f) // Q1: Sunrise to Midday
         {
-            rotationRange = lightingData.nightStartangle - lightingData.dayStartangle;
+            startAngle = dayStart;
+            endAngle = midday;
+            lerpT = cycleProgression * 4f; // Remap 0.0-0.25 to 0.0-1.0
         }
+        else if (cycleProgression <= 0.50f) // Q2: Midday to Sunset
+        {
+            startAngle = midday;
+            endAngle = nightStart;
+            lerpT = (cycleProgression - 0.25f) * 4f; // Remap 0.25-0.50 to 0.0-1.0
+        }
+        else if (cycleProgression <= 0.75f) // Q3: Sunset to Midnight
+        {
+            startAngle = nightStart;
+            endAngle = midnight;
+            lerpT = (cycleProgression - 0.50f) * 4f; // Remap 0.50-0.75 to 0.0-1.0
+        }
+        else // Q4: Midnight to Sunrise (End of Cycle)
+        {
+            startAngle = midnight;
+            // The crucial fix: ensure a full rotation back to the start angle
+            endAngle = dayStart + 360f;
+            lerpT = (cycleProgression - 0.75f) * 4f; // Remap 0.75-1.0 to 0.0-1.0
+        }
+
+        Quaternion startRot = Quaternion.Euler(currentEuler.x, currentEuler.y, startAngle);
+        Quaternion endRot = Quaternion.Euler(currentEuler.x, currentEuler.y, endAngle);
+
+        lightingData.lightPivot.localRotation = Quaternion.Slerp(startRot, endRot, lerpT);
+
+        // Update Light Color and Intensity
+        Color startColor = new Color();
+        Color endColor = new Color();
+
+        float startIntensity = 0f;
+        float endIntensity = 0f;
+
+        if (cycleProgression <= 0.25f)
+        {
+            startColor = lightingData.sunriseColor;
+            endColor = lightingData.daylightColor;
+            startIntensity = lightingData.sunriseIntensity;
+            endIntensity = lightingData.dayIntensity;
+        }
+        // Q2: 0.25 to 0.50 (Midday to Sunset)
+        else if (cycleProgression <= 0.50f)
+        {
+            startColor = lightingData.daylightColor;
+            endColor = lightingData.sunsetColor;
+            startIntensity = lightingData.dayIntensity;
+            endIntensity = lightingData.sunsetIntensity;
+        }
+        // Q3: 0.50 to 0.75 (Sunset to Midnight)
+        else if (cycleProgression <= 0.75f)
+        {
+            startColor = lightingData.sunsetColor;
+            endColor = lightingData.daylightColor;
+            startIntensity = lightingData.sunsetIntensity;
+            endIntensity = lightingData.dayIntensity;
+        }
+        // Q4: 0.75 to 1.00 (Midnight to Sunrise)
         else
         {
-            rotationRange = lightingData.dayStartangle - lightingData.nightStartangle;
+            startColor = lightingData.nightColor;
+            endColor = lightingData.sunriseColor;
+            startIntensity = lightingData.nightIntensity;
+            endIntensity = lightingData.sunriseIntensity;
         }
+
+        lightingData.light.color = Color.Lerp(startColor, endColor, lerpT);
+        lightingData.light.intensity = Mathf.Lerp(startIntensity, endIntensity, lerpT);
     }
 
-    public LightingState TransitionLightState(LightingState state)
+    public (float, float) CalculateMidAngles(float dayStart, float nightStart)
     {
-        LightingState newState = state;
-        Color newColor = Color.black;
+        float dayShift = nightStart - dayStart;
 
-        switch (state)
+        if (dayShift < 0)
         {
-            case LightingState.sunrise:
-                newState = LightingState.morning;
-                newColor = lightingData.morningColor;
-                // Implement sunrise lighting changes
-                break;
-            case LightingState.morning:
-                newState = LightingState.daylight;
-                newColor = lightingData.daylightColor;
-                // Implement morning lighting changes
-                break;
-            case LightingState.daylight:
-                newState = LightingState.evening;
-                newColor = lightingData.eveningColor;
-                // Implement daylight lighting changes
-                break;
-            case LightingState.evening:
-                newState = LightingState.sunset;
-                newColor = lightingData.sunsetColor;
-                // Implement evening lighting changes
-                break;
-            case LightingState.sunset:
-                newState = LightingState.night;
-                newColor = lightingData.nightColor;
-                // Implement sunset lighting changes
-                break;
-            case LightingState.night:
-                newState = LightingState.sunrise;
-                newColor = lightingData.sunriseColor;
-                // Implement night lighting changes
-                break;
-            default:
-                Debug.LogWarning("Unknown lighting state");
-                break;
-
-
+            dayShift += 360f;
         }
 
-        lightingData.light.color = Color.Lerp(lightingData.light.color, newColor, Time.deltaTime);
-        return newState;
+        float middayAngle = (dayStart + (dayShift / 2f)) % 360f;
 
+        float nightShift = 360f - dayShift;
+
+        float midnightAngle = (nightStart + (nightShift / 2f)) % 360f;
+
+        return (middayAngle, midnightAngle);
     }
 }

@@ -1,18 +1,28 @@
-using System;
 using UnityEngine;
 
 public class DayCycle : MonoBehaviour
 {
-    public float dayTime = 120f;
-    public float nightTime = 120f;
-    private float cycleClock = 0f;
+    public DayCycleData lightingData;
 
-    private float currentTimeCheck = 0f;
-    private LightingState lightingSate = LightingState.sunrise;
+    public float dayDuration = 10f;
+    public float nightDuration = 10f;
+
+    private LightingHandler lh = new LightingHandler();
+    private float cycleClock = 0f;
+    private float currentDuration = 0f;
     bool isDayTime = true;
-    
+
     void Start()
     {
+        if (lightingData.lightPivot == null || lightingData.light == null)
+        {
+            Debug.LogError("Lighting data is missing Light Pivot or Light component!");
+            enabled = false;
+            return;
+        }
+
+        lh.SetLightingData(lightingData);
+   
         StartDay();
     }
 
@@ -25,9 +35,7 @@ public class DayCycle : MonoBehaviour
     {
         cycleClock += Time.deltaTime;
 
-        UpdateLighting();
-
-        if (CheckTimer(cycleClock, currentTimeCheck))
+        if (cycleClock >= currentDuration)
         {
             ChangeDayState();
         }
@@ -35,22 +43,27 @@ public class DayCycle : MonoBehaviour
 
     private void UpdateLighting()
     {
-
+        float cycleProgression = cycleClock / currentDuration;
+        
+        lh.UpdateLighting(cycleProgression, isDayTime);
     }
 
     private void StartDay()
     {
-        // Code to Activate Day
         isDayTime = true;
-        currentTimeCheck = dayTime;
-        Debug.Log("Day time. Please Implement Daytime Code.");
+        currentDuration = dayDuration;
+        cycleClock = 0f;
+
+        Debug.Log("Starting Day");
     }
     private void StartNight()
     {
         // Code to Activate Night
         isDayTime = false;
-        currentTimeCheck = nightTime;
-        Debug.Log("Night time. Please Implement Nighttime Code.");
+        currentDuration = nightDuration;
+        cycleClock = 0f;
+
+        Debug.Log("Starting Night");
     }
 
     private void ChangeDayState()
@@ -63,17 +76,5 @@ public class DayCycle : MonoBehaviour
         {
             StartDay();
         }
-
-        ResetTimer();
-    }
-
-    private bool CheckTimer(float timer, float ValueToCheck)
-    {
-        return timer > ValueToCheck;
-    }
-
-    private void ResetTimer()
-    {
-        cycleClock = 0f;
     }
 }

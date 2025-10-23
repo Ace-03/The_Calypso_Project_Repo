@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
-[System.Serializable]
+[Serializable]
 public struct HotBarUIElements
 {
     public GameObject hotBarSlotPrefab;
@@ -15,7 +16,7 @@ public struct HotBarUIElements
     public List<HotBarIcon> passiveSlots;
 }
 
-[System.Serializable]
+[Serializable]
 public struct HealthUIElements
 {
     public Image healthIcon;
@@ -25,7 +26,7 @@ public struct HealthUIElements
     public List<Sprite> baseHealthSprites;
 }
 
-[System.Serializable]
+[Serializable]
 
 public struct ResourceUIElements
 {
@@ -34,18 +35,39 @@ public struct ResourceUIElements
     public List<Image> boatIcons;
 }
 
-[System.Serializable]
+[Serializable]
 public struct LevelUIElements
 {
     public TextMeshProUGUI levelText;
 }
 
-[System.Serializable]
+[Serializable]
 public struct HotBarIcon
 {
     public GameObject slotObject;
     public Image backgroundImage;
     public Image iconImage;
+}
+
+
+[Serializable]
+public class DayCycleData
+{
+    public Light light;
+    public Transform lightPivot;
+
+    [Range(0, 360)] public float dayStartAngle;
+    [Range(0, 360)] public float nightStartAngle;
+
+    public Color sunriseColor;
+    public Color daylightColor;
+    public Color sunsetColor;
+    public Color nightColor;
+
+    public float sunriseIntensity;
+    public float dayIntensity;
+    public float sunsetIntensity;
+    public float nightIntensity;
 }
 
 public enum LightingState
@@ -56,21 +78,4 @@ public enum LightingState
     evening,
     sunset,
     night,
-}
-
-[System.Serializable]
-public struct dayCycleData
-{
-    public Light light;
-    public Transform lightPivot;
-
-    public float dayStartangle;
-    public float nightStartangle;
-
-    public Color sunriseColor;
-    public Color morningColor;
-    public Color daylightColor;
-    public Color eveningColor;
-    public Color sunsetColor;
-    public Color nightColor;
 }
