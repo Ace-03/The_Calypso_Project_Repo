@@ -48,34 +48,3 @@ public struct HotBarIcon
     public Image backgroundImage;
     public Image iconImage;
 }
-
-
-[Serializable]
-public class DayCycleData
-{
-    public Light light;
-    public Transform lightPivot;
-
-    [Range(0, 360)] public float dayStartAngle;
-    [Range(0, 360)] public float nightStartAngle;
-
-    public Color sunriseColor;
-    public Color daylightColor;
-    public Color sunsetColor;
-    public Color nightColor;
-
-    public float sunriseIntensity;
-    public float dayIntensity;
-    public float sunsetIntensity;
-    public float nightIntensity;
-}
-
-public enum LightingState
-{
-    sunrise,
-    morning,
-    daylight,
-    evening,
-    sunset,
-    night,
-}

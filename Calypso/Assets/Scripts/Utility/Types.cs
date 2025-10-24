@@ -1,4 +1,5 @@
-using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealthData : HealthData
@@ -19,7 +20,7 @@ public struct DamageInfo
     public float slowDuration;
 }
 
-[System.Serializable]
+[Serializable]
 public class ItemDrop
 {
     public PickupSO data;
@@ -28,7 +29,7 @@ public class ItemDrop
     public int maxAmount;
 }
 
-[System.Serializable]
+[Serializable]
 public struct spriteControllerData
 {
     public playerRenderers renderers;
@@ -36,7 +37,7 @@ public struct spriteControllerData
     public weaponSprites weapon;
 }
 
-[System.Serializable]
+[Serializable]
 public struct playerSprites
 {
     public Sprite backSprite;
@@ -45,17 +46,52 @@ public struct playerSprites
     public Sprite rightSprite;
 }
 
-[System.Serializable]
+[Serializable]
 public struct weaponSprites
 {
     public Sprite forwardSprite;
     public Sprite sideSprite;
 }
 
-[System.Serializable]
+[Serializable]
 public struct playerRenderers
 {
     public SpriteRenderer player;
     public SpriteRenderer weapon;
     public SpriteRenderer shadow;
+}
+
+[Serializable]
+public class DayCycleData
+{
+    public Light light;
+    public Transform lightPivot;
+
+    [Range(0, 360)] public float dayStartAngle;
+    [Range(0, 360)] public float nightStartAngle;
+
+    public Color sunriseColor;
+    public Color daylightColor;
+    public Color sunsetColor;
+    public Color nightColor;
+
+    public float sunriseIntensity;
+    public float dayIntensity;
+    public float sunsetIntensity;
+    public float nightIntensity;
+
+    public float sunriseShadow;
+    public float dayShadow;
+    public float sunsetShadow;
+    public float nightShadow;
+}
+
+public enum LightingState
+{
+    sunrise,
+    morning,
+    daylight,
+    evening,
+    sunset,
+    night,
 }

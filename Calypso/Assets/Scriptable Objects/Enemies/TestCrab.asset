@@ -27,4 +27,6 @@ MonoBehaviour:
   stunResistance: 0
   poisonResistance: 0
   slowResistance: 0
+  bobAmount: 0.5
+  bobSpeed: 0.1
   possibleDrops: []
