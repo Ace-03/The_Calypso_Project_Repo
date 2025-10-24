@@ -395,8 +395,8 @@ MonoBehaviour:
     dayShadow: 1
     sunsetShadow: 0.6
     nightShadow: 0
-  dayDuration: 30
-  dayLengthPercentage: 0.5
+  dayDuration: 600
+  dayLengthPercentage: 0.48
   spawner: {fileID: 5570168739754423075}
 --- !u!1 &5429708752120696351
 GameObject:
