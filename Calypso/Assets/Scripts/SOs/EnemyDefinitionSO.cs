@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewEnemyDefinition", menuName = "EnemySO")]
 public class EnemyDefinitionSO : ScriptableObject
 {
+    [Header("Main")]
     public string enemyName;
     public Sprite sprite;
     public Color spriteColor = Color.white;
@@ -15,10 +16,16 @@ public class EnemyDefinitionSO : ScriptableObject
     public float DifficultyModifier;
     public float aimSpeed;
     public WeaponDefinitionSO weapon;
+
+    [Header("Status")]
     public float knockbackResistance;
     public float stunResistance;
     public float poisonResistance;
     public float slowResistance;
+
+    [Header("Visual")]
+    public float bobAmount;
+    public float bobSpeed;
 
     public List<ItemDrop> possibleDrops;
 

@@ -2,45 +2,98 @@ using UnityEngine;
 
 public class DayCycle : MonoBehaviour
 {
-    public float cycleClock = 0f;
-    public float dayTime = 120f;
-    public float nightTime = 120f;
+    public DayCycleData lightingData;
+
+    public float dayDuration = 120f;
+    [Range(0, 1)]public float dayLengthPercentage;
+
+    public SpawnManager spawner;
+
+    private LightingHandler lh = new LightingHandler();
+    private float cycleClock = 0f;
+    private float dayNightClock = 0f;
+    private int dayCount = 0;
     bool isDayTime = true;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
+        if (lightingData.lightPivot == null || lightingData.light == null)
+        {
+            Debug.LogError("Lighting data is missing Light Pivot or Light component!");
+            enabled = false;
+            return;
+        }
+
+        lh.SetLightingData(lightingData);
+   
         StartDay();
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateClock();
+        UpdateLighting();
     }
     void UpdateClock()
     {
         cycleClock += Time.deltaTime;
-        if (cycleClock > dayTime && isDayTime)
+        dayNightClock += Time.deltaTime;
+
+        float dayNightRatio = isDayTime ? dayDuration * dayLengthPercentage :
+            dayDuration * (1 - dayLengthPercentage);
+
+        if (dayNightClock >= (dayNightRatio))
+            ChangeDayState();
+
+        if (cycleClock >= dayDuration)
+            CompleteCycle();
+    }
+
+    private void UpdateLighting()
+    {
+        float cycleProgression = cycleClock / dayDuration;
+        
+        lh.UpdateLighting(cycleProgression, isDayTime);
+    }
+
+    private void StartDay()
+    {
+        Debug.Log("Starting Day");
+
+        isDayTime = true;
+        dayCount++;
+
+        spawner.ToggleSpawning(false);
+        spawner.ResetSpawner();
+
+    }
+    private void StartNight()
+    {
+        Debug.Log("Starting Night");
+
+        isDayTime = false;
+
+        spawner.SetCurrentWave(dayCount - 1);
+        spawner.ToggleSpawning(true);
+
+    }
+
+    private void ChangeDayState()
+    {
+        if (isDayTime)
         {
             StartNight();
         }
-        if(cycleClock > dayTime+nightTime && !isDayTime)
+        else
         {
-            cycleClock = 0f;
             StartDay();
         }
+
+        dayNightClock = 0f;
     }
 
-    void StartDay()
+    private void CompleteCycle()
     {
-        // Code to Activate Day
-        isDayTime = true;
-        Debug.Log("Day time. Please Implement Daytime Code.");
-    }
-    void StartNight()
-    {
-        // Code to Activate Night
-        isDayTime = false;
-        Debug.Log("Night time. Please Implement Nighttime Code.");
+        cycleClock = 0f;
     }
 }
