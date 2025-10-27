@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealthData : HealthData
@@ -94,4 +93,13 @@ public enum LightingState
     evening,
     sunset,
     night,
+}
+
+public enum Rarity
+{
+    common,
+    uncommon,
+    rare,
+    epic,
+    legendary
 }
