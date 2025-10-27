@@ -7,6 +7,8 @@ public class WeaponController : MonoBehaviour
     private WeaponDefinitionSO weaponData;
     [SerializeField]
     public Transform weaponPivot;
+    [SerializeField]
+    private bool autoInitialize = false;
 
     public readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
 
@@ -16,11 +18,17 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        Initialize();
+        if (autoInitialize)
+            Initialize();
     }
 
-    private void Initialize()
+    public void Initialize()
     {
+        if (weaponData == null)
+        {
+            Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
+            return;
+        }
         InitializeData();
         RecalculateStats();
         weaponBehavior?.ApplyWeaponStats(this);
@@ -29,6 +37,11 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
+        if (weaponData == null)
+        {
+            Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
+            return;
+        }
         if (Time.time >= nextAttackTime)
         {
             Attack();
@@ -36,7 +49,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public void InitializeData()
+    private void InitializeData()
     {
         if (weaponInstance != null)
             Destroy(weaponInstance);
@@ -49,12 +62,19 @@ public class WeaponController : MonoBehaviour
 
         if (weaponPivot == null)
         {
-            GameObject pivotObject = Instantiate(new GameObject(), transform);
+            if (transform.Find("WeaponPivot") != null)
+            {
+                weaponPivot = transform.Find("WeaponPivot");
+            }
+            else
+            {
+                GameObject pivotObject = Instantiate(new GameObject(), transform);
 
-            weaponPivot = pivotObject.transform;
-            pivotObject.name = "Weapon Pivot";
-            pivotObject.tag = "Enemy";
-            pivotObject.layer = 7;
+                weaponPivot = pivotObject.transform;
+                pivotObject.name = "WeaponPivot";
+                pivotObject.tag = "Enemy";
+                pivotObject.layer = 7;
+            }
         }
 
         weaponInstance = Instantiate(weaponData.weaponBehaviorPrefab, weaponPivot);
@@ -118,36 +138,64 @@ public class WeaponController : MonoBehaviour
 
     #region Getters
 
+    private void CheckForStat(string stat)
+    {
+        if (!currentStats.ContainsKey(stat))
+        {
+            RecalculateStats();
+
+            if (!currentStats.ContainsKey(stat))
+            {
+                Debug.LogError($"Stat {stat} not found in currentStats after recalculation. Setting to 0.");
+                currentStats[stat] = 0;
+            }
+        }
+    }
+
     public float GetCooldown()
     {
+        CheckForStat("Cooldown");
         return currentStats["Cooldown"];
     }
     public int GetAmount()
     {
+        CheckForStat("Amount");
         return (int)currentStats["Amount"];
     }
     public float GetDuration()
     {
+        CheckForStat("Duration");
         return currentStats["Duration"];
     }
     public float GetSpeed()
     {
+        CheckForStat("Speed");
         return currentStats["Speed"];
     }
     public float GetAOETick()
     {
+        CheckForStat("AOETick");
         return currentStats["AOETick"];
     }
     public float GetArea()
     {
+        CheckForStat("Area");
         return currentStats["Area"];
     }
 
     public float GetAccuracy()
     {
+        CheckForStat("accuracy");
         return currentStats["accuracy"];
     }
 
+    public Material GetSprite()
+    {
+        if (weaponData != null)
+            return weaponData.bulletSprite;
+        else
+            return null;
+    }
     public GameObject GetWeaponInstance()
     {
         return weaponInstance;
@@ -159,4 +207,17 @@ public class WeaponController : MonoBehaviour
     }
 
     #endregion
+
+    private void OnDisable()
+    {
+        if (weaponInstance == null) return;
+
+        weaponInstance.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        if (weaponInstance == null) return;
+        weaponInstance.SetActive(true);
+    }
 }

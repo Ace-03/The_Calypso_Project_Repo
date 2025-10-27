@@ -1,13 +1,19 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class EnemyInitializer : MonoBehaviour
 {
+    private Animator animator;
     private EnemyDefinitionSO enemyData;
     private EnemyHealth healthSystem;
+    private EnemySpriteBob bob;
+    private VisualEffectsHandler VfxHandler;
     private PooledObject pooledObject;
     private SpriteRenderer sr;
     private IEnemyMovement ai;
+
+    private Color deathParticleColor;
 
     private void Awake()
     {
@@ -16,9 +22,22 @@ public class EnemyInitializer : MonoBehaviour
         
         if (!TryGetComponent<EnemyHealth>(out healthSystem))
             healthSystem = gameObject.AddComponent<EnemyHealth>();
-        
+
+        if (!TryGetComponent<VisualEffectsHandler>(out var vfx))
+            VfxHandler = gameObject.AddComponent<VisualEffectsHandler>();
+
         if (!TryGetComponent<IEnemyMovement>(out ai))
             ai = gameObject.AddComponent<AI_NAV>();
+
+        if (!TryGetComponent<EnemySpriteBob>(out bob))
+            bob = gameObject.AddComponent<EnemySpriteBob>();
+
+        animator = GetComponentInChildren<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogError("couldn't find animator on: " + name);
+        }
 
         if (!GetComponentInChildren<SpriteRenderer>())
             sr = Instantiate(new GameObject("Sprite"), transform).AddComponent<SpriteRenderer>();
@@ -33,14 +52,22 @@ public class EnemyInitializer : MonoBehaviour
         InitializeHealth(data);
         InitializeMovement(data);
         InitializeSprite(data);
+        InitializeVFX(data);
         InitializeWeapon(data.weapon);
+        InitializeVFX(data);
 
-        // Initialize other components like health, speed, etc. based on enemyData
+        StartCoroutine(ResetAnimator());
     }
 
     private void InitializeHealth(EnemyDefinitionSO data)
     {
         healthSystem.Initialize(new HealthData { maxHP = data.maxHealth });
+    }
+
+    private void InitializeVFX(EnemyDefinitionSO data)
+    {
+        bob.Initialize(data, sr);
+        VfxHandler.Initialize(sr, healthSystem.maxHP);
     }
 
     private void InitializeMovement(EnemyDefinitionSO data)
@@ -53,6 +80,7 @@ public class EnemyInitializer : MonoBehaviour
         sr.sprite = data.sprite;
         sr.color = data.spriteColor;
         transform.localScale *= data.sizeModifier;
+        deathParticleColor = SpriteAverageColor.GetAverageColor(data.sprite) * data.spriteColor;
     }
 
     private void InitializeWeapon(WeaponDefinitionSO weaponData)
@@ -67,7 +95,7 @@ public class EnemyInitializer : MonoBehaviour
             weaponController = gameObject.AddComponent<WeaponController>();
 
         weaponController.SetWeaponData(weaponData);
-
+        weaponController.Initialize();
 
         if (weaponController.GetWeaponBehavior().IsAimable())
         {
@@ -76,6 +104,15 @@ public class EnemyInitializer : MonoBehaviour
 
             aim.Initialize(weaponController, enemyData.aimSpeed);
         }
+    }
+
+    private IEnumerator ResetAnimator()
+    {
+        animator.enabled = true;
+
+        yield return new WaitForSeconds(0.4f);
+
+        animator.enabled = false;
     }
 
     public EnemyDefinitionSO GetEnemyData()
@@ -92,9 +129,15 @@ public class EnemyInitializer : MonoBehaviour
     {
         PickupSpawner.RollForItemDrop(enemyData, transform.position);
 
-        pooledObject.DeactivateAndReturn();
+        RemoveEnemy();
 
-        //Invoke("RemoveEnemy", 5f);
+        if (enemyData.deathEffect != null)
+        {
+            ParticleSystem ps = Instantiate(enemyData.deathEffect, transform.position, Quaternion.identity)
+                .GetComponentInChildren<ParticleSystem>();
+
+            GeneralModifier.SetColor(ps, deathParticleColor);
+        }
     }
 
     void RemoveEnemy()

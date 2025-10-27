@@ -76,4 +76,18 @@ public class SimpleInputManager : MonoBehaviour
         arrows,
         withMovement,
     }
+
+    private void OnDisable()
+    {
+        if (player == null) return;
+
+        player.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        if (player == null) return;
+        
+        player.enabled = true;
+    }
 }

@@ -34,7 +34,6 @@ public class PropGenerator : MonoBehaviour
 
         if (propPrefab == null)
         {
-            Debug.LogError("Prop Prefab is not assigned in the Inspector!");
             return;
         }
 

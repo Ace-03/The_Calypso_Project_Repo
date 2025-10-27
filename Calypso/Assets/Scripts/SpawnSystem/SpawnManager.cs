@@ -1,29 +1,55 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public List<WaveDefinitionSO> waveSequence;
+    public List<WaveSequenceDefinitionSO> waveComposite;
     public Transform playerTransform;
 
-    private int currentWaveIndex = 0;
+    private WaveSequenceDefinitionSO currentSequence;
+    private int currentWaveIndex = -1;
     private float waveTimer = 0f;
 
-    private void Awake()
+    private bool spawningActive = false;
+    public void ToggleSpawning(bool toggle)
     {
-        InitializeEnemyPools();
+        if (toggle == false)
+        {
+            StopAllCoroutines();
+        }
+        else
+        {
+            Debug.Log("Spawning set to true");
+        }
+            spawningActive = toggle;
+    }
 
-        waveTimer = waveSequence[0].waveDuration;
-        StartCoroutine(SpawnEnemies());
+    public void ResetSpawner()
+    {
+        waveTimer = 0f;
+        currentWaveIndex = -1;
+    }
+
+    public void SetCurrentWave(WaveSequenceDefinitionSO sequence)
+    {
+        currentSequence = sequence;
+    }
+
+    public void SetCurrentWave(int index)
+    {
+        if (index >= waveComposite.Count)
+            return;
+
+        currentSequence = waveComposite[index];
+        InitializeEnemyPools();
     }
 
     private void InitializeEnemyPools()
     {
         HashSet<EnemyDefinitionSO> uniqueEnemies = new HashSet<EnemyDefinitionSO>();
         
-        foreach (var wave in waveSequence)
+        foreach (var wave in currentSequence.waveDefinitions)
         {
             foreach (var enemySpawnInfo in wave.enemiesInWave)
             {
@@ -39,17 +65,24 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
+        if (!spawningActive)
+        {
+            return;
+        }
+
         if (waveTimer <= 0)
         {
             currentWaveIndex++;
-            if (currentWaveIndex < waveSequence.Count)
+
+            if (currentWaveIndex < currentSequence.waveDefinitions.Count)
             {
-                waveTimer = waveSequence[currentWaveIndex].waveDuration;
+                Debug.Log("Found Wave index");
+                waveTimer = currentSequence.waveDefinitions[currentWaveIndex].waveDuration;
                 StartCoroutine(SpawnEnemies());
             }
             else
             {
-                Debug.Log("All waves completed!");
+                StopAllCoroutines();
             }
         }
         waveTimer -= Time.deltaTime;
@@ -57,9 +90,10 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
+        Debug.Log("Coroutine is active");
         while (true)
         {
-            WaveDefinitionSO currentWave = waveSequence[currentWaveIndex];
+            WaveDefinitionSO currentWave = currentSequence.waveDefinitions[currentWaveIndex];
 
             foreach (var enemySpawnInfo in currentWave.enemiesInWave)
             {
@@ -77,6 +111,7 @@ public class SpawnManager : MonoBehaviour
 
                 if (totalEnemies < enemySpawnInfo.maxActiveEnemies)
                 {
+                    Debug.Log("Spawning enemy");
                     SpawnEnemy(enemySpawnInfo.enemyDefinition);
                 }
                 else
@@ -105,7 +140,6 @@ public class SpawnManager : MonoBehaviour
             initializer.Initialize(enemyType);
         }
 
-            enemyInstance.GetComponent<EnemyInitializer>().Initialize(enemyType);
         if (enemyInstance == null )
         {
             Debug.LogError($"Failed to spawn enemy of type {enemyType.name}");

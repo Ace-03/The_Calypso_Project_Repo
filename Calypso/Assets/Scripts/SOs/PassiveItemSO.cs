@@ -1,16 +1,9 @@
 using UnityEngine;
 
-public class PassiveItemSO : MonoBehaviour
+[CreateAssetMenu(fileName = "NewPassiveDefinition", menuName = "PassiveItemSO")]
+public class PassiveItemSO : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public string itemName;
+    public Sprite sprite;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

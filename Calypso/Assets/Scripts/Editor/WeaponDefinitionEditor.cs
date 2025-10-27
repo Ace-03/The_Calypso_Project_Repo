@@ -6,7 +6,7 @@ public class WeaponDefinitionEditor : Editor
 {
     SerializedProperty weaponName;
     SerializedProperty weaponBehaviorPrefab;
-    SerializedProperty icon;
+    SerializedProperty bulletSprite;
     SerializedProperty baseCooldown;
     SerializedProperty baseDamage;
     SerializedProperty baseProjectileSpeed;
@@ -27,7 +27,7 @@ public class WeaponDefinitionEditor : Editor
     {
         weaponName = serializedObject.FindProperty("weaponName");
         weaponBehaviorPrefab = serializedObject.FindProperty("weaponBehaviorPrefab");
-        icon = serializedObject.FindProperty("icon");
+        bulletSprite = serializedObject.FindProperty("bulletSprite");
         baseCooldown = serializedObject.FindProperty("baseCooldown");
         baseDamage = serializedObject.FindProperty("baseDamage");
         baseProjectileSpeed = serializedObject.FindProperty("baseProjectileSpeed");
@@ -51,7 +51,7 @@ public class WeaponDefinitionEditor : Editor
 
         EditorGUILayout.PropertyField(weaponName);
         EditorGUILayout.PropertyField(weaponBehaviorPrefab);
-        EditorGUILayout.PropertyField(icon);
+        EditorGUILayout.PropertyField(bulletSprite);
         EditorGUILayout.PropertyField(baseCooldown);
         EditorGUILayout.PropertyField(baseDamage);
         EditorGUILayout.PropertyField(baseProjectileSpeed);

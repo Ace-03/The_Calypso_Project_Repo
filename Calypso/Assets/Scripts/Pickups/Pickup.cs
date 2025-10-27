@@ -19,7 +19,6 @@ public abstract class Pickup : MonoBehaviour
     void Awake()
     {
         SetUpComponents();
-        LaunchPickup();
     }
 
 
@@ -73,8 +72,9 @@ public abstract class Pickup : MonoBehaviour
     public void InitializeData()
     {
         sr.sprite = pickupData.sprite;
+        SpriteNormalizer.NormalizeSprite(sr.gameObject);
         sr.transform.localScale *= pickupData.sizeModifier;
-        pickupTrigger.transform.localScale *= pickupData.sizeModifier;
+        //pickupTrigger.transform.localScale *= pickupData.sizeModifier;
     }
 
     private void PlayVisualAnimation()
@@ -103,9 +103,8 @@ public abstract class Pickup : MonoBehaviour
 
 }
 
-
 public enum ResourceType
 {
-    Resin,
-    Stone,
+    iron,
+    exp,
 }
