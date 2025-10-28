@@ -29,14 +29,4 @@ public class EquippedItemInstance
         itemLevel++;
         itemValue += valueIncrease;
     }
-
-    public void OnEquipped()
-    {
-        itemData.itemBehavior.OnAquired();
-    }
-
-    public void OnUnequipped()
-    {
-        itemData.itemBehavior.OnRemove();
-    }
 }

@@ -41,7 +41,7 @@ public class InventoryManager : MonoBehaviour
         EquippedItemInstance newItem = new EquippedItemInstance(item);
         passiveItems.Add(newItem);
 
-        newItem.OnEquipped();
+        newItem.GetItemData().itemBehavior.OnAquired(newItem, ContextRegister.Instance.GetContext());
     }
 
     private void UpgradeItem(EquippedItemInstance item, float value)

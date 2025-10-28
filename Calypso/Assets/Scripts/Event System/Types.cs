@@ -1,12 +1,15 @@
-
 using UnityEngine;
 
-public class RewardPayload
+public class GameEventPayload
+{
+}
+
+public class RewardPayload : GameEventPayload
 {
 
 }
 
-public class DamagePayload
+public class DamagePayload : GameEventPayload
 {
     public DamageInfo damageInfo;
     public GameObject attacker;
@@ -14,12 +17,12 @@ public class DamagePayload
     public Vector3 hitPosition;
 }
 
-public class DeathPayload
+public class DeathPayload : GameEventPayload
 {
     public GameObject entity;
 }
 
-public class RewardOption
+public class RewardOption : GameEventPayload
 {
     public PassiveItemSO itemData;
     public float itemValueIncrease;
