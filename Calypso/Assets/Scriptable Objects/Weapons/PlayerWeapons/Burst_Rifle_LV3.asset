@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
+  m_Name: Burst_Rifle_LV3
+  m_EditorClassIdentifier: 
+  weaponName: Burst Rifle
+  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: a13e7225c1e8d7f4eb74ca0b47210ab5, type: 3}
+  bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
+  baseCooldown: 0.65
+  baseDamage: 4
+  baseProjectileSpeed: 4
+  baseAccuracy: 200
+  baseDuration: 0.15
+  baseAmount: 1
+  requiredResources: 0
+  hasAOE: 0
+  aoeAreaSize: 5
+  aoeTickRate: 0
+  aoeShape: 0
+  baseKnockback: 10
+  baseStun: 0
+  basePoison: 0
+  baseSlowdown: 0

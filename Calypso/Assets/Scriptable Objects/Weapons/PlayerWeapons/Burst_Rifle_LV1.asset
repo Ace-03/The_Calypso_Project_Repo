@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: BURST_RIFLE
+  m_Name: Burst_Rifle_LV1
   m_EditorClassIdentifier: 
   weaponName: Burst Rifle
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 656adfd913d3b53449b3dce7c8dbdfcd, type: 3}
