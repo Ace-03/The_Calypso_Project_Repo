@@ -1,10 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class EnemyInitializer : MonoBehaviour
 {
+    private Animator animator;
     private EnemyDefinitionSO enemyData;
     private EnemyHealth healthSystem;
+    private EnemySpriteBob bob;
     private VisualEffectsHandler VfxHandler;
     private PooledObject pooledObject;
     private SpriteRenderer sr;
@@ -26,6 +29,16 @@ public class EnemyInitializer : MonoBehaviour
         if (!TryGetComponent<IEnemyMovement>(out ai))
             ai = gameObject.AddComponent<AI_NAV>();
 
+        if (!TryGetComponent<EnemySpriteBob>(out bob))
+            bob = gameObject.AddComponent<EnemySpriteBob>();
+
+        animator = GetComponentInChildren<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogError("couldn't find animator on: " + name);
+        }
+
         if (!GetComponentInChildren<SpriteRenderer>())
             sr = Instantiate(new GameObject("Sprite"), transform).AddComponent<SpriteRenderer>();
         else
@@ -39,8 +52,11 @@ public class EnemyInitializer : MonoBehaviour
         InitializeHealth(data);
         InitializeMovement(data);
         InitializeSprite(data);
-        InitializeVFX();
+        InitializeVFX(data);
         InitializeWeapon(data.weapon);
+        InitializeVFX(data);
+
+        StartCoroutine(ResetAnimator());
     }
 
     private void InitializeHealth(EnemyDefinitionSO data)
@@ -48,8 +64,9 @@ public class EnemyInitializer : MonoBehaviour
         healthSystem.Initialize(new HealthData { maxHP = data.maxHealth });
     }
 
-    private void InitializeVFX()
+    private void InitializeVFX(EnemyDefinitionSO data)
     {
+        bob.Initialize(data, sr);
         VfxHandler.Initialize(sr, healthSystem.maxHP);
     }
 
@@ -87,6 +104,15 @@ public class EnemyInitializer : MonoBehaviour
 
             aim.Initialize(weaponController, enemyData.aimSpeed);
         }
+    }
+
+    private IEnumerator ResetAnimator()
+    {
+        animator.enabled = true;
+
+        yield return new WaitForSeconds(0.4f);
+
+        animator.enabled = false;
     }
 
     public EnemyDefinitionSO GetEnemyData()

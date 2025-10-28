@@ -297,8 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5628187c675c37847a57bc7123e68562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveSequence:
-  - {fileID: 11400000, guid: b87ee3b3752d7124aab0d66562c6ef0d, type: 2}
+  waveComposite:
+  - {fileID: 11400000, guid: 194a230e4c0ca464893311d8ff8c5f2a, type: 2}
   playerTransform: {fileID: 0}
 --- !u!1 &4295427921680926931
 GameObject:
@@ -334,6 +334,70 @@ Transform:
   - {fileID: 8244882149775979760}
   m_Father: {fileID: 8581233837381546114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4408177894731126439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6931822044479365446}
+  - component: {fileID: 1580633339944615185}
+  m_Layer: 0
+  m_Name: Day/Night Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6931822044479365446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4408177894731126439}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.412271, y: 15.316761, z: -16.36212}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8581233837381546114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580633339944615185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4408177894731126439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64e812279033214fa26801709bb4f91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightingData:
+    light: {fileID: 0}
+    lightPivot: {fileID: 0}
+    dayStartAngle: 95
+    nightStartAngle: 285
+    sunriseColor: {r: 1, g: 0.6627451, b: 0.65882355, a: 0}
+    daylightColor: {r: 1, g: 0.95686275, b: 0.8392157, a: 0}
+    sunsetColor: {r: 0.53333336, g: 0.25490198, b: 0.4862745, a: 0}
+    nightColor: {r: 0, g: 0, b: 0, a: 0}
+    sunriseIntensity: 0.3
+    dayIntensity: 1
+    sunsetIntensity: 0.3
+    nightIntensity: 0
+    sunriseShadow: 0.6
+    dayShadow: 1
+    sunsetShadow: 0.6
+    nightShadow: 0
+  dayDuration: 600
+  dayLengthPercentage: 0.48
+  spawner: {fileID: 5570168739754423075}
 --- !u!1 &5429708752120696351
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +518,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6931822044479365446}
   - {fileID: 4458722998238892975}
   - {fileID: 1821145134494683166}
   - {fileID: 6416200940466887147}

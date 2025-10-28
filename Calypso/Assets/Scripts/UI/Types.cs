@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
-[System.Serializable]
+[Serializable]
 public struct HotBarUIElements
 {
     public GameObject hotBarSlotPrefab;
@@ -15,7 +16,7 @@ public struct HotBarUIElements
     public List<HotBarIcon> passiveSlots;
 }
 
-[System.Serializable]
+[Serializable]
 public struct HealthUIElements
 {
     public Image healthIcon;
@@ -25,7 +26,7 @@ public struct HealthUIElements
     public List<Sprite> baseHealthSprites;
 }
 
-[System.Serializable]
+[Serializable]
 
 public struct ResourceUIElements
 {
@@ -34,13 +35,13 @@ public struct ResourceUIElements
     public List<Image> boatIcons;
 }
 
-[System.Serializable]
+[Serializable]
 public struct LevelUIElements
 {
     public TextMeshProUGUI levelText;
 }
 
-[System.Serializable]
+[Serializable]
 public struct HotBarIcon
 {
     public GameObject slotObject;
