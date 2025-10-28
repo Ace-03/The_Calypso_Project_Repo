@@ -56626,6 +56626,10 @@ PrefabInstance:
       propertyPath: aimMethod
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3054410031940882545, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4436632043945299436, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: playerWeaponController
       value: 
