@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EXPLOSIVE_SHOTGUN
   m_EditorClassIdentifier: 
   weaponName: SHOTGUN
-  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 2561c71646b49d94f93c0099f266e5c3, type: 3}
+  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 9a8c46c20e0eaed4b840977e9f005c5a, type: 3}
   bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
   baseCooldown: 1.5
   baseDamage: 3
