@@ -3,6 +3,9 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField]
+    private OnDeathEventSO deathEvent;
+
+    [SerializeField]
     private GameObject playerVisuals;
     [SerializeField]
     private GameObject inputManager;
@@ -289,6 +292,13 @@ public class PlayerManager : MonoBehaviour
 
     public void OnDeath()
     {
+        DeathPayload payload = new DeathPayload()
+        {
+            entity = player,
+        };
+
+        deathEvent.Raise(payload);
+
         ToggleMovement(false);
         ToggleWeapons(false);
         ToggleVisuals(false);
@@ -296,7 +306,7 @@ public class PlayerManager : MonoBehaviour
         SpawnDeathParticle();
         Debug.Log("Game Over");
 
-        // Game Over UI and other Logic Here
+        HudManager.Instance.StartGameOver();
     }
 
     #region Player State Handlers

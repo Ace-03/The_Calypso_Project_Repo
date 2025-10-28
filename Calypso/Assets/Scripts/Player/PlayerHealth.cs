@@ -28,21 +28,9 @@ public class PlayerHealth : GenericHealth
 
     public override void Die()
     {
-        // Game Over Logic Here
+        Debug.Log("Player Died");
 
         PlayerManager.Instance.OnDeath();
-
-        // stubbed out for now
-        Debug.Log("Player Died");
-        Rigidbody rb = GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            rb.AddForce(Vector3.up * 100, ForceMode.Impulse);
-        }
-
-        HudManager.Instance.StartGameOver();
-
         base.Die();
     }
 

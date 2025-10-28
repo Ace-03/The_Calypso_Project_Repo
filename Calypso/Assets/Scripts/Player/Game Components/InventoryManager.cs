@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private PlayerManager playerManager;
+    [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
+    [SerializeField] private int maxPassiveItems;
+    [SerializeField] private int maxWeapons;
+
+    private void OnEnable()
     {
-        
+        rewardSelectedEvent.RegisterListener(ProcessSelectedReward);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        rewardSelectedEvent.RegisterListener(ProcessSelectedReward);
+
+    }
+
+    private void ProcessSelectedReward(RewardOption option)
+    {
+
     }
 }

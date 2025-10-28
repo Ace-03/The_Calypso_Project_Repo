@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class BulletTrigger : MonoBehaviour
 {
+    [SerializeField]
+    private OnDamageDealtEventSO damageDealtEvent;
+    [SerializeField]
+    private OnDamageTakenEventSO damageTakenEvent;
+
     WeaponDefinitionSO weaponData;
     EnemyDefinitionSO enemyData;
 
@@ -29,19 +34,31 @@ public class BulletTrigger : MonoBehaviour
         {
             DamageInfo damageInfo = new DamageInfo();
 
+            DamagePayload damagePayload = new DamagePayload()
+            {
+                damageInfo = damageInfo,
+                attacker = this.gameObject,
+                receiver = other.gameObject,
+            };
+
             if (other.CompareTag("Player"))
             {
                 if (enemyData == null)
                     enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
 
+                damageTakenEvent.Raise(damagePayload);
+
                 damageInfo = DamageCalculator.GetDamageToPlayer(enemyData);
-                other.GetComponent<GenericHealth>().TakeDamage(damageInfo);
             }
             else if (other.CompareTag("Enemy"))
             {
+                damageDealtEvent.Raise(damagePayload);
+
                 damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
-                other.GetComponent<GenericHealth>().TakeDamage(damageInfo);
             }
+
+            other.GetComponent<GenericHealth>().TakeDamage(damageInfo);
+
         }
     }
 }

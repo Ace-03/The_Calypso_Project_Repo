@@ -12,3 +12,13 @@ public class DamagePayload
     public GameObject attacker;
     public GameObject receiver;
 }
+
+public class DeathPayload
+{
+    public GameObject entity;
+}
+
+public class RewardOption
+{
+
+}

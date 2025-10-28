@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb25fb9c97c7c34c99a520b9747e730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathEvent: {fileID: 11400000, guid: 6e21a232539e09c4b8940d472c33fc13, type: 2}
   playerVisuals: {fileID: 0}
   inputManager: {fileID: 0}
   deathParticle: {fileID: 0}
