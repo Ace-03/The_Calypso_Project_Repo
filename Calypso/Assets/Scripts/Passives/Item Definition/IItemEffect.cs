@@ -1,4 +1,4 @@
-public interface IPassiveItem
+public interface IItemEffect
 {
     void OnAquired();
     void ExecuteEffect();

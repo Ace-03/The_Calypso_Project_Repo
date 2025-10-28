@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField]
-    private OnDeathEventSO deathEvent;
+    [SerializeField] private OnDeathEventSO deathEvent;
 
-    [SerializeField]
-    private GameObject playerVisuals;
-    [SerializeField]
-    private GameObject inputManager;
-    [SerializeField]
-    private GameObject deathParticle;
+    [SerializeField] private GameObject playerVisuals;
+    [SerializeField] private GameObject inputManager;
+    [SerializeField] private GameObject deathParticle;
 
     private GameObject player;
 
@@ -334,17 +330,7 @@ public class PlayerManager : MonoBehaviour
         GameObject particle = Instantiate(deathParticle, player.transform.position, Quaternion.identity);
     }
 
-    /* ApplyPassiveModifiers exists to apply passive item
-     * effects to the weapon. 
-     * 
-     * the number of passive items and specific effects are
-     * unknown. To approach this there will likely be a
-     * "passives controller" script which holds an array of
-     * passive items. each passive will have an interface with
-     * a "ApplyModifier(PlayerStats stats)" method that 
-     * will do the work to modify the stats.
-     * 
-     */
+
     public void ApplyPassiveModifiers()
     {
 

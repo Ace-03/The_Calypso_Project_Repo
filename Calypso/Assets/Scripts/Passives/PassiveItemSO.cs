@@ -5,5 +5,6 @@ public class PassiveItemSO : ScriptableObject
 {
     public string itemName;
     public Sprite sprite;
-    public IPassiveItem itemBehavior;
+    public float itemBaseValue;
+    public IItemEffect itemBehavior;
 }
