@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GiantIronPickup
   m_EditorClassIdentifier: 
   pickupName: Big Iron
+  pickupType: iron
   pickupValue: 10
   sprite: {fileID: 21300000, guid: 521f8968b82356f4382fda932e13481f, type: 3}
   sizeModifier: 3
   prefab: {fileID: 8462755256029153103, guid: 49ee8dd931ab4544ab5caa5933d2d3cc, type: 3}
-  resourceType: 0

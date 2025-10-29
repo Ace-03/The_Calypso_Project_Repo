@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceTracker : MonoBehaviour
@@ -5,7 +6,9 @@ public class ResourceTracker : MonoBehaviour
     public static ResourceTracker Instance;
 
     [SerializeField]
-    private int iron;
+    private List<string> resourceTypes;
+
+    private Dictionary<string, int> resources = new Dictionary<string, int>();
 
     private void Awake()
     {
@@ -13,11 +16,21 @@ public class ResourceTracker : MonoBehaviour
             Destroy(this.gameObject);
         else
             Instance = this;
+
+        foreach (string type in resourceTypes)
+        {
+            resources[type] = 0;
+        }
     }
 
-    public void SetIron(int amount)
+    public void SetResource(string name, int value)
     {
-        iron += amount;
-        HudManager.Instance.resources.UpdateResourceText(iron);
+        if (!resources.ContainsKey(name))
+        {
+            Debug.LogError("Unknown Resource Passed. Check Resource Type in Pickup Scriptable Object for " + name);
+            return;
+        }
+        resources[name] += value;
+        HudManager.Instance.resources.UpdateResourceText(name, resources[name]);
     }
 }

@@ -30,7 +30,8 @@ public struct HealthUIElements
 
 public struct ResourceUIElements
 {
-    public TextMeshProUGUI resourceText;
+    public TextMeshProUGUI ironText;
+    public TextMeshProUGUI stoneText;
 
     public List<Image> boatIcons;
 }

@@ -7,9 +7,16 @@ public class ResourcesUI : MonoBehaviour
     {
         resourceElements = elements;
     }
-    public void UpdateResourceText(int resources)
+    public void UpdateResourceText(string name, int value)
     {
-        resourceElements.resourceText.text = "Iron:" + resources.ToString();
+        if (name == "stone")
+        {
+            resourceElements.stoneText.text = $"{name}: " + value.ToString();
+        }
+        else if (name == "iron")
+        {
+            resourceElements.ironText.text = $"{name}: " + value.ToString();
+        }
     }
 
     public void UpdateBoatIcon(int index, Sprite sprite)

@@ -4,17 +4,13 @@ public class ResourcePickup : Pickup
 {
     public override void CollectPickup(PickupSO data)
     {
-        switch (data.resourceType)
+        if (data.pickupType == "exp")
         {
-            case ResourceType.iron:
-                ResourceTracker.Instance.SetIron(data.pickupValue);
-                break;
-            case ResourceType.exp:
-                LevelManager.Instance.AddExperience(data.pickupValue);
-                break;
-            default:
-                Debug.LogWarning("Unhandled resource type: " + data.resourceType);
-                break;
+            LevelManager.Instance.AddExperience(data.pickupValue);
+        }
+        else 
+        {
+            ResourceTracker.Instance.SetResource(data.pickupType, data.pickupValue);
         }
 
         Destroy(this.gameObject);

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: IronPickup
   m_EditorClassIdentifier: 
   pickupName: Iron
+  pickupType: iron
   pickupValue: 1
   sprite: {fileID: 21300000, guid: fd33ab82f964c9b47bd0d4bc7804cc63, type: 3}
   sizeModifier: 1
   prefab: {fileID: 8462755256029153103, guid: 49ee8dd931ab4544ab5caa5933d2d3cc, type: 3}
-  resourceType: 0

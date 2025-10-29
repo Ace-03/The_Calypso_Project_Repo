@@ -2,19 +2,13 @@ using UnityEngine;
 
 public abstract class Pickup : MonoBehaviour
 {
-    [SerializeField]
-    private SphereCollider pickupTrigger;
-    [SerializeField]
-    private SphereCollider attractorTrigger;
-    [SerializeField]
-    private Animator animator;
-    [SerializeField]
-    private SpriteRenderer sr;
-
+    [SerializeField] private SphereCollider pickupTrigger;
+    [SerializeField] private SphereCollider attractorTrigger;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer sr;
 
     private PickupSO pickupData;
     private Rigidbody rb;
-
 
     void Awake()
     {
@@ -74,7 +68,6 @@ public abstract class Pickup : MonoBehaviour
         sr.sprite = pickupData.sprite;
         SpriteNormalizer.NormalizeSprite(sr.gameObject);
         sr.transform.localScale *= pickupData.sizeModifier;
-        //pickupTrigger.transform.localScale *= pickupData.sizeModifier;
     }
 
     private void PlayVisualAnimation()
@@ -100,11 +93,4 @@ public abstract class Pickup : MonoBehaviour
     }
 
     public abstract void CollectPickup(PickupSO data);
-
-}
-
-public enum ResourceType
-{
-    iron,
-    exp,
 }
