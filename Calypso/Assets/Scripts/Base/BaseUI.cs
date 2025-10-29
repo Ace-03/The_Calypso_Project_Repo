@@ -5,9 +5,10 @@ public class BaseUI : MonoBehaviour
     [SerializeField] private GameObject MenuCanvas;
     [SerializeField] private GameObject BaseLevelUpScreen;
     [SerializeField] private GameObject WeaponCraftingScreen;
-    [SerializeField] private GameObject PrimaryWeaponUpgradesScreen;
+    [SerializeField] private GameObject PrimaryWeaponUpgradeScreen;
     [SerializeField] private GameObject MainBaseScreen;
 
+    [HideInInspector]
     public bool isOpen = false;
 
     public void OnBaseLevelUpButton()
@@ -22,7 +23,7 @@ public class BaseUI : MonoBehaviour
 
     public void OnPrimaryWeaponButton()
     {
-        SetScreen(PrimaryWeaponUpgradesScreen);
+        SetScreen(PrimaryWeaponUpgradeScreen);
     }
 
     public void OnReturnToMainMenu()
@@ -44,7 +45,7 @@ public class BaseUI : MonoBehaviour
     {
         BaseLevelUpScreen.SetActive(false);
         WeaponCraftingScreen.SetActive(false);
-        PrimaryWeaponUpgradesScreen.SetActive(false);
+        PrimaryWeaponUpgradeScreen.SetActive(false);
         MainBaseScreen.SetActive(false);
 
         activeScreen.SetActive(true);

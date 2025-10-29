@@ -10,7 +10,7 @@ public class BaseManager : MonoBehaviour
 
     private void Start()
     {
-        BaseLevel = 1;
+        BaseLevel = 0;
     }
 
     public void UpgradeBase()
