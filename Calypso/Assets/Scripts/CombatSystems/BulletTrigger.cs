@@ -5,7 +5,7 @@ public class BulletTrigger : MonoBehaviour
     [SerializeField]
     private OnDamageDealtEventSO damageDealtEvent;
     [SerializeField]
-    private OnDamageTakenEventSO damageTakenEvent;
+    private OnDamageDealtEventSO damageTakenEvent;
 
     WeaponDefinitionSO weaponData;
     EnemyDefinitionSO enemyData;

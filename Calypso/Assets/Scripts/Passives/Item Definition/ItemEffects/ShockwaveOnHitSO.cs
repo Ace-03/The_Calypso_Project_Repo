@@ -1,16 +1,31 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class ShockwaveOnHitSO : MonoBehaviour
+[CreateAssetMenu(fileName = "NewShockwaveOnHit", menuName = "Scriptable Objects/ShockwaveOnHitSO")]
+public class ShockwaveOnHitSO : ScriptableObject, IItemEffect
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private OnDamageDealtEventSO damageTakenEvent;
+
+    private UnityAction<DamagePayload> damageListener;
+
+
+    public void ExecuteEffect(PlayerContext context, GameEventPayload payload)
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnAquired(EquippedItemInstance itemInstance, PlayerContext context)
     {
-        
+        damageListener = (damagePayload) =>
+        {
+            ExecuteEffect(context, damagePayload);
+        };
+
+        damageTakenEvent.RegisterListener(damageListener);
+    }
+
+    public void OnRemove(EquippedItemInstance itemInstance, PlayerContext context)
+    {
+        damageTakenEvent.UnregisterListener(damageListener);
     }
 }

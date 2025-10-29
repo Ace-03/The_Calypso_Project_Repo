@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "NewIncreaseSpeed", menuName = "Scriptable Objects/IncreaseSpeedSO")]
 public class IncreaseSpeedSO : ScriptableObject, IItemEffect
 {
 
