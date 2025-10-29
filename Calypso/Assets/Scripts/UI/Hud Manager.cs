@@ -71,11 +71,15 @@ public class HudManager : MonoBehaviour
 
     public void StartGameOver()
     {
-        hotBarGroup.SetActive(false);
-        levelGroup.SetActive(false);
-        healthGroup.SetActive(false);
-        resourcesGroup.SetActive(false);
-
+        ToggleHud(false);
         gameOverScreen.SetActive(true);
+    }
+
+    public void ToggleHud(bool toggle)
+    {
+        hotBarGroup.SetActive(toggle);
+        levelGroup.SetActive(toggle);
+        healthGroup.SetActive(toggle);
+        resourcesGroup.SetActive(toggle);
     }
 }

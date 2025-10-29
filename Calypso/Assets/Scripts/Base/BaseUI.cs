@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BaseUI : MonoBehaviour
@@ -11,26 +12,26 @@ public class BaseUI : MonoBehaviour
     [HideInInspector]
     public bool isOpen = false;
 
-    public void OnBaseLevelUpButton()
-    {
-        SetScreen(BaseLevelUpScreen);
-    }
-
-    public void OnWeaponCraftingButton()
-    {
-        SetScreen(WeaponCraftingScreen);
-    }
-
-    public void OnPrimaryWeaponButton()
-    {
-        SetScreen(PrimaryWeaponUpgradeScreen);
-    }
-
-    public void OnReturnToMainMenu()
+    public void OnMainMenu()
     {
         SetScreen(MainBaseScreen);
     }
 
+    public void OnCraftingScreen()
+    {
+        SetScreen(WeaponCraftingScreen);
+    }
+
+    public void OnPrimaryWeaponScreen()
+    {
+        SetScreen(PrimaryWeaponUpgradeScreen);
+    }
+
+    public void OnBuildBaseScreen()
+    {
+        SetScreen(BaseLevelUpScreen);
+    }
+    
     public void ToggleBaseMenu(bool toggle)
     {
         isOpen = toggle;
@@ -39,6 +40,7 @@ public class BaseUI : MonoBehaviour
 
         PlayerManager.Instance.ToggleMovement(!toggle);
         PlayerManager.Instance.ToggleWeapons(!toggle);
+        HudManager.Instance.ToggleHud(!toggle);
     }
 
     private void SetScreen(GameObject activeScreen)
@@ -50,5 +52,4 @@ public class BaseUI : MonoBehaviour
 
         activeScreen.SetActive(true);
     }
-
 }
