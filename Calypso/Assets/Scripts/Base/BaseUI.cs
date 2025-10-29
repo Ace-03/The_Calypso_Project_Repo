@@ -31,6 +31,16 @@ public class BaseUI : MonoBehaviour
     {
         SetScreen(BaseLevelUpScreen);
     }
+
+    public void OnTryBaseUpgrade()
+    {
+
+    }
+
+    public void OnTryPrimaryWeaponUpgrade()
+    {
+
+    }
     
     public void ToggleBaseMenu(bool toggle)
     {
