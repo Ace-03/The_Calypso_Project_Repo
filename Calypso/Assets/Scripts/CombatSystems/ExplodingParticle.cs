@@ -3,6 +3,7 @@ using UnityEngine;
 public class ExplodingParticle : MonoBehaviour
 {
     ParticleSystem ps;
+    BulletTrigger trigger;
     public GameObject explosionPrefab;
     public float radius;
     public float time;
@@ -10,6 +11,7 @@ public class ExplodingParticle : MonoBehaviour
     private void Start()
     {
         ps = GetComponent<ParticleSystem>();
+        trigger = GetComponent<BulletTrigger>();
     }
     // Jetsune Code, but stripped down because I'm not making a pool. (Feel free to change)
     void OnParticleCollision(GameObject other)
@@ -31,6 +33,6 @@ public class ExplodingParticle : MonoBehaviour
         GameObject explosion;
 
         explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
-        explosion.GetComponent<Explosion>().Setup(radius, time);
+        explosion.GetComponent<Explosion>().Setup(radius, time, trigger);
     }
 }

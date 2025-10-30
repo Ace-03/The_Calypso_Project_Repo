@@ -9744,7 +9744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 1535104038364102487, guid: ab43e7df294279f48aa23dda5ef214dc, type: 3}
-  radius: 5
+  radius: 20
   time: 0.2
 --- !u!199 &7562424797762174138
 ParticleSystemRenderer:
