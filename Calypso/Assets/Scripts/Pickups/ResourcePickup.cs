@@ -10,7 +10,7 @@ public class ResourcePickup : Pickup
                 ResourceTracker.Instance.SetIron(data.pickupValue);
                 break;
             case ResourceType.exp:
-                LevelManager.Instance.AddExperience(data.pickupValue);
+                PlayerLevelManager.Instance.AddExperience(data.pickupValue);
                 break;
             default:
                 Debug.LogWarning("Unhandled resource type: " + data.resourceType);

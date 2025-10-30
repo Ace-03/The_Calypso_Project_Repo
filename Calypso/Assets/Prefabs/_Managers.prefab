@@ -348,7 +348,7 @@ MonoBehaviour:
   playerManager: {fileID: 7466764017000435719}
   inventoryManager: {fileID: 7395360150752522894}
   resourceTracker: {fileID: 1157612700944467293}
-  levelManager: {fileID: 3184684172584757092}
+  levelManager: {fileID: 0}
   DayCycle: {fileID: 1580633339944615185}
   spawnManager: {fileID: 5570168739754423075}
 --- !u!1 &4295427921680926931
@@ -458,7 +458,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6623516765586379087}
-  - component: {fileID: 3184684172584757092}
+  - component: {fileID: 9134716833754117431}
   m_Layer: 0
   m_Name: _LevelManager
   m_TagString: Untagged
@@ -481,7 +481,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8581233837381546114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3184684172584757092
+--- !u!114 &9134716833754117431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -490,7 +490,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5429708752120696351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015ee97dd32e6c54eb32aaf7287510fa, type: 3}
+  m_Script: {fileID: 11500000, guid: c7e04be2ab60af447adecedd7bcdcd06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   progressionData: {fileID: 11400000, guid: ecd20c157944cf64a9e273c2060edc23, type: 2}

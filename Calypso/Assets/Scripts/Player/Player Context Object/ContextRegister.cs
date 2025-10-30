@@ -8,7 +8,7 @@ public class ContextRegister : MonoBehaviour
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private ResourceTracker resourceTracker;
-    [SerializeField] private LevelManager levelManager;
+    [SerializeField] private PlayerLevelManager levelManager;
     [SerializeField] private DayCycle DayCycle;
     [SerializeField] private SpawnManager spawnManager;
     private Transform playerTransform;
@@ -57,7 +57,7 @@ public class PlayerContext
     public InventoryManager inventoryManager;
     public Transform playerTransform;
     public ResourceTracker resourceTracker;
-    public LevelManager levelManager;
+    public PlayerLevelManager levelManager;
     public DayCycle DayCycle;
     public SpawnManager spawnManager;
 }

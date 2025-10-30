@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class PlayerLevelManager : MonoBehaviour
 {
     [SerializeField]
     private LevelProgressionSO progressionData; 
@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
 
     public int currentLevel = 1;
 
-    public static LevelManager Instance;
+    public static PlayerLevelManager Instance;
 
     private void Awake()
     {
