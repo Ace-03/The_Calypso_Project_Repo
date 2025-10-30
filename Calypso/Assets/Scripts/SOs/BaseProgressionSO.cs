@@ -6,11 +6,11 @@ using UnityEngine;
 public class BaseProgressionSO : ScriptableObject
 {
     [Tooltip("Experience is cumulative across levels. The list starts at level 2.")]
-    public List<BaseLevelUpRequirements> BaseLevelProgression;
+    public List<BaseProgressionInfo> BaseLevelProgression;
 }
 
 [Serializable]
-public class BaseLevelUpRequirements
+public class BaseProgressionInfo
 {
     public int playerLevel;
     public int iron;

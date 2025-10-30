@@ -6,7 +6,7 @@ public class ResourcePickup : Pickup
     {
         if (data.pickupType == "exp")
         {
-            LevelManager.Instance.AddExperience(data.pickupValue);
+            PlayerLevelManager.Instance.AddExperience(data.pickupValue);
         }
         else 
         {

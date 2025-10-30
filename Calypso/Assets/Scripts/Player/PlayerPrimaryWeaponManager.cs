@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class PlayerPrimaryWeaponManager : MonoBehaviour
 {
+    public int weaponLevel = 1;
     [SerializeField] private WeaponController playerWeaponController;
-    [SerializeField] private int weaponLevel = 1;
     [SerializeField] private PrimaryWeaponProgressionSO progressionData;
 
-    private WeaponProgressionInfo currentProgressionState;
+    public WeaponProgressionInfo currentProgressionState;
 
     private void Start()
     {
@@ -17,13 +17,13 @@ public class PlayerPrimaryWeaponManager : MonoBehaviour
 
     public void UpgradeWeapon()
     {
+        playerWeaponController.SetWeaponData(GetRewardWeapon());
         currentProgressionState = progressionData.weaponLevelProgression[Mathf.Clamp(weaponLevel, 0, progressionData.weaponLevelProgression.Count - 1)];
         weaponLevel++;
 
-        playerWeaponController.SetWeaponData(GetCurrentWeapon());
     }
 
-    public bool CheckRequirements(BaseLevelUpRequirements currentStatus)
+    public bool CheckRequirements(WeaponProgressionInfo currentStatus)
     {
         bool passes = true;
         string logMessage = "Weapon Upgrade Status: ";
@@ -56,8 +56,13 @@ public class PlayerPrimaryWeaponManager : MonoBehaviour
         return passes;
     }
 
-    public WeaponDefinitionSO GetCurrentWeapon()
+    public WeaponProgressionInfo GetCurrentStatus()
     {
-        return currentProgressionState.weapon;
+        return currentProgressionState;
+    }
+
+    public WeaponDefinitionSO GetRewardWeapon()
+    {
+        return currentProgressionState.LevelUpReward;
     }
 }

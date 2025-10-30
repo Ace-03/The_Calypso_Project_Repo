@@ -2,25 +2,24 @@ using UnityEngine;
 
 public class BaseManager : MonoBehaviour
 {
-    [SerializeField] private int BaseLevel;
+    public int baseLevel;
     [SerializeField] private BaseProgressionSO progressionData;
-    [SerializeField] private PlayerPrimaryWeaponManager primaryWeaponManager;
 
-    private BaseLevelUpRequirements currentRequirements;
+    public BaseProgressionInfo currentRequirements;
 
     private void Start()
     {
-        currentRequirements = progressionData.BaseLevelProgression[BaseLevel];
-        BaseLevel = 0;
+        currentRequirements = progressionData.BaseLevelProgression[baseLevel];
+        baseLevel = 0;
     }
 
     public void UpgradeBase()
     {
-        BaseLevel++;
-        currentRequirements = progressionData.BaseLevelProgression[BaseLevel];
+        baseLevel++;
+        currentRequirements = progressionData.BaseLevelProgression[baseLevel];
     }
 
-    public bool CheckRequirements(BaseLevelUpRequirements currentStatus)
+    public bool CheckRequirements(BaseProgressionInfo currentStatus)
     {
         bool passes = true;
         string logMessage = "Base Upgrade Status: ";
@@ -58,8 +57,8 @@ public class BaseManager : MonoBehaviour
             return passes;
     }
 
-    public void UpgradePrimaryWeapon()
+    public BaseProgressionInfo GetCurrentRequirements()
     {
-        primaryWeaponManager.UpgradeWeapon();
+        return currentRequirements;
     }
 }

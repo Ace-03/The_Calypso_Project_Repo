@@ -15,5 +15,5 @@ public class WeaponProgressionInfo
     public int playerLevel;
     public int iron;
     public int stone;
-    public WeaponDefinitionSO weapon;
+    public WeaponDefinitionSO LevelUpReward;
 }

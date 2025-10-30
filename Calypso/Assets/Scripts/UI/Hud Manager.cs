@@ -52,6 +52,7 @@ public class HudManager : MonoBehaviour
         health.SetElements(healthElements);
         resources.SetElements(resourcesElements);
 
+        resources.UpdateBoatIcons(0);
         gameOverScreen.SetActive(false);
     }
 

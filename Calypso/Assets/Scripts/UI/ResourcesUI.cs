@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourcesUI : MonoBehaviour
 {
@@ -19,9 +20,23 @@ public class ResourcesUI : MonoBehaviour
         }
     }
 
-    public void UpdateBoatIcon(int index, Sprite sprite)
+    public void UpdateBoatIcons(int count)
     {
-        resourceElements.boatIcons[index].sprite = sprite;
+        ClearBoats();
+
+        for (int i = 0; i < count; i++)
+        {
+            Debug.Log("Updating Sprite on index " + i + " for:" + resourceElements.boatIcons[i].name);
+            resourceElements.boatIcons[i].sprite = resourceElements.aquiredBoatSprite;
+        }
+    }
+
+    public void ClearBoats()
+    {
+        foreach (Image icon in resourceElements.boatIcons)
+        {
+            icon.sprite = resourceElements.EmptyBoatSprite;
+        }
     }
 
     public void ToggleIconVisibility(int index, bool toggle)

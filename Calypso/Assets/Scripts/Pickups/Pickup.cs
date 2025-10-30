@@ -68,6 +68,7 @@ public abstract class Pickup : MonoBehaviour
         sr.sprite = pickupData.sprite;
         SpriteNormalizer.NormalizeSprite(sr.gameObject);
         sr.transform.localScale *= pickupData.sizeModifier;
+        GetComponent<BoxCollider>().size *= pickupData.sizeModifier;
     }
 
     private void PlayVisualAnimation()

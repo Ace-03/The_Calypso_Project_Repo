@@ -33,6 +33,9 @@ public struct ResourceUIElements
     public TextMeshProUGUI ironText;
     public TextMeshProUGUI stoneText;
 
+    public Sprite EmptyBoatSprite;
+    public Sprite aquiredBoatSprite;
+
     public List<Image> boatIcons;
 }
 

@@ -33,4 +33,9 @@ public class ResourceTracker : MonoBehaviour
         resources[name] += value;
         HudManager.Instance.resources.UpdateResourceText(name, resources[name]);
     }
+
+    public int GetResource(string name)
+    {
+        return resources[name];
+    }
 }
