@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dbf352a61a8c734c8e2487e2c8ccb88, type: 3}
-  m_Name: GiantIronPickup
+  m_Name: StonePickup
   m_EditorClassIdentifier: 
-  pickupName: Big Iron
-  pickupValue: 10
-  sprite: {fileID: 21300000, guid: 521f8968b82356f4382fda932e13481f, type: 3}
-  sizeModifier: 3
+  pickupName: Stone
+  pickupType: stone
+  pickupValue: 1
+  sprite: {fileID: 21300000, guid: fd33ab82f964c9b47bd0d4bc7804cc63, type: 3}
+  sizeModifier: 1
   prefab: {fileID: 8462755256029153103, guid: 49ee8dd931ab4544ab5caa5933d2d3cc, type: 3}
-  resourceType: 0

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64c3a8dfa8ea7c4a9445073e0d1ef9a, type: 3}
+  m_Name: BaseProgression
+  m_EditorClassIdentifier: 
+  BaseLevelProgression:
+  - playerLevel: 1
+    iron: 12
+    stone: 8
+    boatCount: 1
+  - playerLevel: 3
+    iron: 25
+    stone: 20
+    boatCount: 2
+  - playerLevel: 6
+    iron: 40
+    stone: 38
+    boatCount: 3
+  - playerLevel: 9
+    iron: 60
+    stone: 55
+    boatCount: 4
+  - playerLevel: 12
+    iron: 80
+    stone: 75
+    boatCount: 5
