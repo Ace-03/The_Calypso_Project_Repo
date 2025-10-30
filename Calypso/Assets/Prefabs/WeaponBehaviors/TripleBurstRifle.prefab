@@ -9794,7 +9794,6 @@ GameObject:
   - component: {fileID: 1627494714008052900}
   - component: {fileID: 7562424797762174138}
   - component: {fileID: 1812151299177642501}
-  - component: {fileID: 2853458620770060330}
   - component: {fileID: 276625120787129068}
   m_Layer: 0
   m_Name: TripleBurstRifle
@@ -14633,7 +14632,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
+  - {fileID: 2100000, guid: 5cc0f8786889c044799f0c562696978f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14698,21 +14697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d953b6e385ff240b46ce8be9bcca84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2853458620770060330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2735682749369207564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f732b7ad8f0ec394d9ddc32cadfaf85e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ps: {fileID: 0}
-  team: 0
-  pierce: 0
 --- !u!114 &276625120787129068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24804,7 +24788,6 @@ GameObject:
   - component: {fileID: 308954085907622632}
   - component: {fileID: 3123853631692994391}
   - component: {fileID: 8565804532500809551}
-  - component: {fileID: 5604440874166737640}
   m_Layer: 0
   m_Name: Stream2
   m_TagString: Untagged
@@ -29640,7 +29623,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
+  - {fileID: 2100000, guid: 5cc0f8786889c044799f0c562696978f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29705,21 +29688,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d953b6e385ff240b46ce8be9bcca84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5604440874166737640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3660339923265727535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f732b7ad8f0ec394d9ddc32cadfaf85e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ps: {fileID: 0}
-  team: 0
-  pierce: 0
 --- !u!1 &4247744160129770993
 GameObject:
   m_ObjectHideFlags: 0
@@ -34762,7 +34730,6 @@ GameObject:
   - component: {fileID: 8738098931793707137}
   - component: {fileID: 4253867020776135556}
   - component: {fileID: 1264426620083446583}
-  - component: {fileID: 3730945890619446786}
   m_Layer: 0
   m_Name: Stream3
   m_TagString: Untagged
@@ -39598,7 +39565,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
+  - {fileID: 2100000, guid: 5cc0f8786889c044799f0c562696978f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -39663,21 +39630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d953b6e385ff240b46ce8be9bcca84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3730945890619446786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5637018966187178581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f732b7ad8f0ec394d9ddc32cadfaf85e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ps: {fileID: 0}
-  team: 0
-  pierce: 0
 --- !u!1 &6216561512987016870
 GameObject:
   m_ObjectHideFlags: 0
