@@ -1,17 +1,17 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BulletTrigger))]
 [RequireComponent(typeof(ParticleSystem))]
 public class ParticleWeaponBase : MonoBehaviour
 {
-    BulletTrigger bulletTrigger;
     public ParticleSystem ps;
     public TEAM team;
     public bool pierce;
     private void Awake()
     {
         ps = GetComponent<ParticleSystem>();
-        bulletTrigger = GetComponent<BulletTrigger>();
         UpdateTeam();
 
         if (transform.parent.CompareTag("Player"))
@@ -55,6 +55,17 @@ public class ParticleWeaponBase : MonoBehaviour
 
         GeneralModifier.SetSprite(ps, weapon.GetSprite());
     }
+
+    public virtual void ApplyWeaponStats(WeaponController weapon, List<ParticleSystem> particle)
+    {
+        StopAttack();
+
+        foreach (ParticleSystem ps in particle)
+        {
+            GeneralModifier.SetSprite(ps, weapon.GetSprite());
+        }
+    }
+
     public virtual bool IsAimable()
     {
         return true;

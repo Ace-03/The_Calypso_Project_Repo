@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: BURST_RIFLE
+  m_Name: EmptyHanded
   m_EditorClassIdentifier: 
-  weaponName: Burst Rifle
-  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 656adfd913d3b53449b3dce7c8dbdfcd, type: 3}
-  bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
-  baseCooldown: 0.8
+  weaponName: Empty Handed
+  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 1651e34653973c8408358cb10d10f24c, type: 3}
+  bulletSprite: {fileID: 0}
+  baseCooldown: 0
   baseDamage: 3
-  baseProjectileSpeed: 4
-  baseAccuracy: 200
-  baseDuration: 0.075
-  baseAmount: 1
+  baseProjectileSpeed: 0
+  baseAccuracy: 0
+  baseDuration: 0
+  baseAmount: 0
   requiredResources: 0
-  hasAOE: 0
-  aoeAreaSize: 5
+  hasAOE: 1
+  aoeAreaSize: 0.6
   aoeTickRate: 0
   aoeShape: 0
-  baseKnockback: 10
+  baseKnockback: 0
   baseStun: 0
   basePoison: 0
   baseSlowdown: 0
