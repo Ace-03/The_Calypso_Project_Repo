@@ -33,7 +33,7 @@ public class PlayerLevelManager : MonoBehaviour
     {
         currentExperience += value;
 
-        if (currentExperience >=  toNextLevel) LevelUp();
+        if (currentExperience >=  toNextLevel && maxLevel == false) LevelUp();
     }
 
     private void LevelUp()
