@@ -3,11 +3,11 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
     [SerializeField]
-    private OnChestOpenedEventSO chestOpenedEvent;
+    private OnRewardRequestedEventSO chestOpenedEvent;
 
     public void OnOpened()
     {
-        var payload = new RewardPayload();
+        var payload = new SelectedRewardPayload();
         {
             // Initialize payload properties likely through a RewardGenerator
         }

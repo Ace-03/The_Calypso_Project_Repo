@@ -95,11 +95,3 @@ public enum LightingState
     night,
 }
 
-public enum Rarity
-{
-    common,
-    uncommon,
-    rare,
-    epic,
-    legendary
-}

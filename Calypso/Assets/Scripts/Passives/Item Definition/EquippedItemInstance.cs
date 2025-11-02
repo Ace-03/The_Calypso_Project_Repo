@@ -4,20 +4,10 @@ using UnityEngine;
 [Serializable]
 public class EquippedItemInstance
 {
-    private int itemLevel;
-    private float itemValue;
-    private PassiveItemSO itemData;
-
-    public EquippedItemInstance(PassiveItemSO data)
-    {
-        itemData = data;
-        itemValue = data.itemBaseValue;
-    }
-
-    public PassiveItemSO GetItemData()
-    {
-        return itemData;
-    }
+    public PassiveItemSO itemData;
+    public int itemLevel;
+    public float itemValue;
+    public string instanceID;
 
     public int GetItemLevel()
     {
@@ -28,5 +18,13 @@ public class EquippedItemInstance
     {
         itemLevel++;
         itemValue += valueIncrease;
+    }
+
+    public EquippedItemInstance(PassiveItemSO data, string instanceId)
+    {
+        itemData = data;
+        itemValue = data.itemBaseValue;
+        itemLevel = 1;
+        instanceID = instanceId;
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PassiveUpgrade : MonoBehaviour
 {
-    private Rarity upgradeRarity;
+    private ItemRarity upgradeRarity;
 
     public void ApplyRarity()
     {

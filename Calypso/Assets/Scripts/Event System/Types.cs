@@ -1,12 +1,14 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameEventPayload
 {
 }
 
-public class RewardPayload : GameEventPayload
+public class SelectedRewardPayload : GameEventPayload
 {
-
+    public PassiveItemSO itemData;
 }
 
 public class DamagePayload : GameEventPayload
@@ -22,8 +24,7 @@ public class DeathPayload : GameEventPayload
     public GameObject entity;
 }
 
-public class RewardOption : GameEventPayload
+public class RewardOptionsPayload : GameEventPayload
 {
-    public PassiveItemSO itemData;
-    public float itemValueIncrease;
+    public List<RewardOption> options;
 }

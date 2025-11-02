@@ -19,12 +19,11 @@ public class InventoryManager : MonoBehaviour
     private void OnDisable()
     {
         rewardSelectedEvent.RegisterListener(ProcessSelectedReward);
-
     }
 
-    private void ProcessSelectedReward(RewardOption option)
+    private void ProcessSelectedReward(SelectedRewardPayload option)
     {
-        EquippedItemInstance existingInstance = passiveItems.Find(i => i.GetItemData() == option.itemData);
+        EquippedItemInstance existingInstance = passiveItems.Find(i => i.itemData == option.itemData);
 
         if (existingInstance == null)
         {
@@ -32,21 +31,21 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            UpgradeItem(existingInstance, option.itemValueIncrease);
+            UpgradeItem(existingInstance);
         }
     }
 
     private void AddNewItem(PassiveItemSO item)
     {
-        EquippedItemInstance newItem = new EquippedItemInstance(item);
-        passiveItems.Add(newItem);
+        // EquippedItemInstance newItem = new EquippedItemInstance(item);
+        // passiveItems.Add(newItem);
 
-        newItem.GetItemData().itemBehavior.OnAquired(newItem, ContextRegister.Instance.GetContext());
+        // newItem.GetItemData().itemBehavior.OnAquired(newItem, ContextRegister.Instance.GetContext());
     }
 
-    private void UpgradeItem(EquippedItemInstance item, float value)
+    private void UpgradeItem(EquippedItemInstance item)
     {
-        item.LevelUp(value);
+        //item.LevelUp(value);
     }
 
     public List<EquippedItemInstance> GetPassiveItems()
@@ -57,6 +56,24 @@ public class InventoryManager : MonoBehaviour
     public List<WeaponController> GetWeapons()
     {
         return weapons;
+    }
+
+    public bool HasItem(PassiveItemSO itemToCheck)
+    {
+        foreach (EquippedItemInstance equippedItem in passiveItems)
+        {
+            if (equippedItem.itemData == itemToCheck) return true;
+        }
+        return false;
+    }
+
+    public bool HasWeapon(WeaponDefinitionSO weaponToCheck)
+    {
+        foreach(WeaponController weapon in weapons)
+        {
+            if (weapon.GetWeaponData() == weaponToCheck) return true;
+        }
+        return false;
     }
 
     public bool IsNewItemSlotAvailable()

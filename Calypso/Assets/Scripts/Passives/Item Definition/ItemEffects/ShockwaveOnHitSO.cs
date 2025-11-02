@@ -11,7 +11,7 @@ public class ShockwaveOnHitSO : ScriptableObject, IItemEffect
 
     public void ExecuteEffect(PlayerContext context, GameEventPayload payload)
     {
-
+        Debug.Log("Executing Shockwave on hit");
     }
 
     public void OnAquired(EquippedItemInstance itemInstance, PlayerContext context)

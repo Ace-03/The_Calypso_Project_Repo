@@ -21,15 +21,10 @@ public class ContextRegister : MonoBehaviour
             Instance = this;
         else
             Destroy(this);
-    }
 
-    private void Start()
-    {
         playerTransform = FindFirstObjectByType<PlayerController>().transform;
-
         GenerateContext();
     }
-
     public PlayerContext GetContext()
     {
         return playerContext;
