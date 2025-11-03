@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -68,6 +67,7 @@ public class RewardGenerator : MonoBehaviour
         return selectableRewards;
     }
 
+    // Logic to select random Items based on weight defined by rarity
     private List<RewardOption> SelectWeightedOptions(List<PassiveItemSO> eligibleRewards, int count)
     {
         List<RewardOption> finalOptions = new List<RewardOption>();
@@ -138,5 +138,32 @@ public class RewardGenerator : MonoBehaviour
         }
 
         return finalOptions;
+    }
+
+    public List<StatModifier> RollModifiersForLevel(
+    PassiveItemSO itemData,
+    int level,
+    string sourceInstanceID)
+    {
+        var newModifiers = new List<StatModifier>();
+
+        /*
+        foreach (var template in itemData.ModifierTemplates)
+        {
+            float rolledValue = Random.Range(template.MinValue, template.MaxValue);
+
+            float finalValue = rolledValue * level;
+
+            var modifier = new StatModifier(
+                template.Type,
+                finalValue,
+                template.ModType,
+                sourceInstanceID
+            );
+
+            newModifiers.Add(modifier);
+        }
+        */
+        return newModifiers;
     }
 }

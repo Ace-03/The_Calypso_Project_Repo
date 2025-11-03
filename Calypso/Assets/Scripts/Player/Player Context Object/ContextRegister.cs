@@ -11,6 +11,8 @@ public class ContextRegister : MonoBehaviour
     [SerializeField] private PlayerLevelManager levelManager;
     [SerializeField] private DayCycle DayCycle;
     [SerializeField] private SpawnManager spawnManager;
+    [SerializeField] private RewardGenerator rewardGenerator;
+    [SerializeField] private StatSystem statSystem;
     private Transform playerTransform;
 
     public static ContextRegister Instance { get; private set; }
@@ -40,7 +42,10 @@ public class ContextRegister : MonoBehaviour
             resourceTracker = resourceTracker,
             levelManager = levelManager,
             DayCycle = DayCycle,
-            spawnManager = spawnManager
+            spawnManager = spawnManager,
+            statSystem = statSystem,
+            rewardGenerator = rewardGenerator
+            
         };
     }
 }
@@ -55,4 +60,6 @@ public class PlayerContext
     public PlayerLevelManager levelManager;
     public DayCycle DayCycle;
     public SpawnManager spawnManager;
+    public StatSystem statSystem;
+    public RewardGenerator rewardGenerator;
 }

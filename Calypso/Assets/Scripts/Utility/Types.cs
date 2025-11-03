@@ -94,4 +94,3 @@ public enum LightingState
     sunset,
     night,
 }
-

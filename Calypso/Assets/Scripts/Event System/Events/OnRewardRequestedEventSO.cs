@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewOnChestOpenedEventSO", menuName = "Events/OnChestOpenedEventSO")]
+[CreateAssetMenu(fileName = "NewOnRewardRequestedEventSO", menuName = "Events/OnRewardRequestedEventSO")]
 public class OnRewardRequestedEventSO : BaseGameEventSO<SelectedRewardPayload>
 {
 }
