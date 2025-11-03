@@ -12,14 +12,7 @@ public class IncreaseStatOnAquireSO : IItemEffectSO
     {
         string modifierSourceID = $"{itemInstance.instanceID}_{type}";
 
-        StatModifier modifier = new StatModifier(
-            type,
-            valueToIncrease,
-            ModifierType,
-            modifierSourceID);
-
-
-        context.statSystem.AddModifier(type, modifier);
+        //query reward generator to make new stat modifier.
     }
 
     public override void OnRemove(EquippedItemInstance itemInstance, PlayerContext context)
