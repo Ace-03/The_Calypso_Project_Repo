@@ -1,3 +1,6 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+
 public static class RarityWeights
 {
     public static float GetWeightMultiplier(ItemRarity rarity)
@@ -11,11 +14,6 @@ public static class RarityWeights
             default: return 0f;
         }
     }
-}
-
-public class RewardOption
-{
-    public PassiveItemSO itemData;
 }
 
 public enum ItemRarity

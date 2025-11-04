@@ -8,7 +8,7 @@ public class StatContainer
     public List<StatModifier> Modifiers;
 }
 
-public readonly struct StatModifier
+public class StatModifier
 {
     public readonly StatType StatType;
     public readonly float Value;

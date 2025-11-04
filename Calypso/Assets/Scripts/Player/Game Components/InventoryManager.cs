@@ -4,7 +4,6 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     private PlayerContext playerContext;
-    private RewardGenerator rewardGenerator;
     private StatSystem statSystem;
 
     [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
@@ -18,7 +17,6 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         playerContext = ContextRegister.Instance.GetContext();
-        rewardGenerator = playerContext.rewardGenerator;
         statSystem = playerContext.statSystem;
     }
 
@@ -32,34 +30,28 @@ public class InventoryManager : MonoBehaviour
         rewardSelectedEvent.RegisterListener(ProcessSelectedReward);
     }
 
-    private void ProcessSelectedReward(SelectedRewardPayload option)
+    private void ProcessSelectedReward(SelectedRewardPayload reward)
     {
-        EquippedItemInstance existingInstance = passiveItems.Find(i => i.itemData == option.itemData);
+        EquippedItemInstance existingInstance = passiveItems.Find(i => i.itemData == reward.option.itemData);
 
         if (existingInstance == null)
         {
-            AddNewItem(option.itemData);
+            AddNewItem(reward);
         }
         else
         {
-            UpgradeItem(existingInstance);
+            UpgradeItem(existingInstance, reward.option.modifiers);
         }
     }
 
-    private void AddNewItem(PassiveItemSO itemData)
+    private void AddNewItem(SelectedRewardPayload reward)
     {
         if (passiveItems.Count >= maxPassiveItems) return;
 
-        // 1. Generate unique Instance ID
-        string instanceID = System.Guid.NewGuid().ToString();
+        string instanceID = reward.option.instanceID;
+        PassiveItemSO itemData = reward.option.itemData;
+        List<StatModifier> levelOneModifiers = reward.option.modifiers;
 
-        // 2. Roll Modifiers for Level 1 (Channel 1: Leveling Data)
-        List<StatModifier> levelOneModifiers = rewardGenerator.RollModifiersForLevel(
-            itemData,
-            1,
-            instanceID);
-
-        // 3. Create and store the runtime instance
         EquippedItemInstance newItemInstance = new EquippedItemInstance(
             itemData,
             instanceID,
@@ -67,7 +59,6 @@ public class InventoryManager : MonoBehaviour
 
         passiveItems.Add(newItemInstance);
 
-        // 4. Apply Modifiers to StatSystem (Channel 1 Execution)
         if (levelOneModifiers.Count > 0)
         {
             foreach (StatModifier modifier in levelOneModifiers)
@@ -76,38 +67,21 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // 5. Execute IItemEffect Hooks (Channel 2: Behavior)
         foreach (ItemEffectSO effect in itemData.itemBehaviors)
         {
             effect.OnAcquired(newItemInstance, playerContext);
         }
     }
 
-    private void UpgradeItem(EquippedItemInstance itemInstance)
+    private void UpgradeItem(EquippedItemInstance itemInstance, List<StatModifier> newModifiers)
     {
-        int newLevel = itemInstance.itemLevel + 1;
-        string instanceID = itemInstance.instanceID;
-
-        // --- CRITICAL ATOMIC REPLACEMENT PHASE ---
-
-        // 1. REMOVE OLD Modifiers (CRITICAL STEP)
-        // Removes all modifiers associated with the item's unique InstanceID
         foreach (StatModifier modifier in itemInstance.modifiers)
         {
-            statSystem.RemoveAllModifiersBySource(modifier.StatType, instanceID);
+            statSystem.RemoveAllModifiersBySource(modifier.StatType, itemInstance.instanceID);
         }
 
-        // 2. Roll NEW Modifiers (Data update for Level N+1)
-        List<StatModifier> newModifiers = rewardGenerator.RollModifiersForLevel(
-            itemInstance.itemData,
-            newLevel,
-            instanceID);
-
-        // 3. Update the runtime instance data
-        itemInstance.itemLevel = newLevel;
+        itemInstance.itemLevel = itemInstance.itemLevel + 1;
         itemInstance.modifiers = newModifiers;
-
-        // 4. APPLY NEW Modifiers (Execution)
 
         if (newModifiers.Count > 0)
         {
@@ -117,7 +91,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // Note: The IItemEffect hooks (Channel 2) remain untouched as the item is still active.
         // Optional: Broadcast event that an item was upgraded
     }
 
@@ -126,14 +99,24 @@ public class InventoryManager : MonoBehaviour
         return passiveItems.FindAll(i => i.itemLevel < i.itemData.maxLevel);
     }
 
-    public List<EquippedItemInstance> GetPassiveItems()
+    public List<EquippedItemInstance> GetAllPassiveItems()
     {
         return passiveItems;
     }
 
-    public List<WeaponController> GetWeapons()
+    public List<WeaponController> GetAllWeapons()
     {
         return weapons;
+    }
+
+    public EquippedItemInstance GetItem(PassiveItemSO data)
+    {
+        return passiveItems.Find(i => i.itemData == data);
+    }
+
+    public WeaponController GetWeapon(WeaponDefinitionSO data)
+    {
+        return weapons.Find(w => w.GetWeaponData() == data);
     }
 
     public bool HasItem(PassiveItemSO itemToCheck)

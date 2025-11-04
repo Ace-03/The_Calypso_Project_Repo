@@ -8,7 +8,7 @@ public class GameEventPayload
 
 public class SelectedRewardPayload : GameEventPayload
 {
-    public PassiveItemSO itemData;
+    public RewardOption option;
 }
 
 public class DamagePayload : GameEventPayload
@@ -27,4 +27,19 @@ public class DeathPayload : GameEventPayload
 public class RewardOptionsPayload : GameEventPayload
 {
     public List<RewardOption> options;
+}
+
+public class RewardOption
+{
+    public PassiveItemSO itemData;
+    public List<StatModifier> modifiers;
+    public List<StatChangeDelta> deltaValues;
+    public string instanceID;
+}
+
+public class StatChangeDelta
+{
+    public StatType Type;
+    public float DeltaValue;
+    public StatModifierType ModType;
 }

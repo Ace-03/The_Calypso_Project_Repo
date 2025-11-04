@@ -8,7 +8,6 @@ public class RewardGenerator : MonoBehaviour
     private PlayerContext playerContext;
 
     [SerializeField] private OnRewardRequestedEventSO requestEvent;
-    [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
     [SerializeField] private OnRewardsGeneratedSO requestGeneratedEvent;
 
     [SerializeField] private PassiveItemSetSO passiveItemPool;
@@ -125,18 +124,45 @@ public class RewardGenerator : MonoBehaviour
             // 4. Finalize Selection
             if (selectedItem != null)
             {
-                finalOptions.Add(new RewardOption { itemData = selectedItem });
-                pool.Remove(selectedItem); // Remove the selected item to ensure uniqueness in this reward offer
+                RewardOption newOption = new RewardOption();
+
+                List<StatModifier> rolledModifiers = new List<StatModifier>();
+                EquippedItemInstance existingInstance = null;
+                string instanceID;
+
+
+                if (inventoryManager.HasItem(selectedItem))
+                {
+                    existingInstance = inventoryManager.GetItem(selectedItem);
+
+                    int level = existingInstance.itemLevel + 1;
+                    instanceID = existingInstance.instanceID;
+
+                    rolledModifiers = RollModifiersForLevel(selectedItem, level, instanceID);
+                }
+                else
+                {
+                    instanceID = System.Guid.NewGuid().ToString();
+                    rolledModifiers = RollModifiersForLevel(selectedItem, 1, instanceID);
+                }
+
+                newOption.itemData = selectedItem;
+                newOption.modifiers = rolledModifiers;
+                newOption.instanceID = instanceID;
+                newOption.deltaValues = CalculateStatDifferenceForUpgrade(existingInstance, rolledModifiers);
+
+                finalOptions.Add(newOption);
+                pool.Remove(selectedItem);
             }
         }
-
         return finalOptions;
     }
 
     public List<StatModifier> RollModifiersForLevel(
     PassiveItemSO itemData,
     int level,
-    string sourceInstanceID)
+    string sourceInstanceID,
+    List<StatModifier> currentModifiers = null)
     {
         if (itemData.modifierTemplates == null) return null;
 
@@ -144,13 +170,20 @@ public class RewardGenerator : MonoBehaviour
 
         foreach (StatModifierTemplate template in itemData.modifierTemplates)
         {
-            float rolledValue = Random.Range(template.MinValue, template.MaxValue);
+            float currentTotalValue = 0f;
+            if (currentModifiers != null)
+            {
+                currentTotalValue = currentModifiers.FirstOrDefault(m => m.StatType == template.Type)?.Value ?? 0f;
+            }
 
-            float finalValue = rolledValue * level;
+            float minPossibleValue = template.MinValue + currentTotalValue;
+            float maxPossibleValue = template.MaxValue * level;
+
+            float rolledValue = Random.Range(minPossibleValue, maxPossibleValue);
 
             var modifier = new StatModifier(
                 template.Type,
-                finalValue,
+                rolledValue,
                 template.ModType,
                 sourceInstanceID
             );
@@ -158,5 +191,32 @@ public class RewardGenerator : MonoBehaviour
             newModifiers.Add(modifier);
         }
         return newModifiers;
+    }
+
+    public List<StatChangeDelta> CalculateStatDifferenceForUpgrade(
+        EquippedItemInstance existingInstance,
+        List<StatModifier> newMods)
+    {
+        List<StatModifier> oldMods = existingInstance.modifiers;
+
+        List<StatChangeDelta> deltas = new List<StatChangeDelta>();
+
+        foreach (StatModifier newMod in newMods)
+        {
+            var oldMod = oldMods.FirstOrDefault(m => m.StatType == newMod.StatType);
+
+            float delta = newMod.Value - oldMod.Value;
+
+            if (Mathf.Abs(delta) > 0.001f)
+            {
+                deltas.Add(new StatChangeDelta
+                {
+                    Type = newMod.StatType,
+                    DeltaValue = delta,
+                    ModType = newMod.ModType
+                });
+            }
+        }
+        return deltas;
     }
 }

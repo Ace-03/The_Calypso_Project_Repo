@@ -76,6 +76,11 @@ public abstract class Pickup : MonoBehaviour
         animator.Play("PickupIdle");
     }
 
+    public void StopAnimation()
+    {
+        animator.StopPlayback();
+    }
+
     public void LaunchPickup()
     {
         Vector3 LaunchDirection = new Vector3(Random.Range(-0.5f, 0.5f), 1f, Random.Range(-0.5f, 0.5f)).normalized;
