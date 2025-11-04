@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -6,25 +8,16 @@ public class EquippedItemInstance
 {
     public PassiveItemSO itemData;
     public int itemLevel;
-    public float itemValue;
-    public string instanceID;
+    public string instanceID { get; private set; }
 
-    public int GetItemLevel()
-    {
-        return itemLevel;
-    }
+    public List<StatModifier> modifiers;
 
-    public void LevelUp(float valueIncrease)
-    {
-        itemLevel++;
-        itemValue += valueIncrease;
-    }
 
-    public EquippedItemInstance(PassiveItemSO data, string instanceId)
+    public EquippedItemInstance(PassiveItemSO data, string instanceId, List<StatModifier> LevelOneModifiers)
     {
         itemData = data;
-        itemValue = data.itemBaseValue;
         itemLevel = 1;
         instanceID = instanceId;
+        modifiers = LevelOneModifiers;
     }
 }

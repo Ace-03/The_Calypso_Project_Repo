@@ -14,10 +14,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private spriteControllerData spriteData;
 
-    private float baseMaxSpeed;
-    private float baseAcceleration;
-    private float baseDeceleration;
-
     private float maxSpeed;
     private float acceleration;
     private float deceleration;
@@ -30,16 +26,19 @@ public class PlayerController : MonoBehaviour
     private Vector3 aimVector;
     private Vector3 horizontalVelocity;
 
+    private StatSystem stats;
+
     private void Start()
     {
+        stats = ContextRegister.Instance.GetContext().statSystem;
+
         if (!TryGetComponent<Rigidbody>(out rb))
         {
             rb = gameObject.AddComponent<Rigidbody>();
             rb.freezeRotation = true;
         }
 
-        InitializeMovementStats();
-        ApplyMovementModifiers();
+        RecalculateMovementStats();
         spriteController.Initialize(spriteData);
         spriteController.bobAmmount = bobAmmount / 100;
 
@@ -144,23 +143,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ApplyMovementModifiers()
-    {
-        maxSpeed = baseMaxSpeed * PlayerManager.Instance.GetSpdModifier();
-        acceleration = baseAcceleration * PlayerManager.Instance.GetAccModifier();
-        deceleration = baseDeceleration * PlayerManager.Instance.GetDecelModifier();
-    }
-
     public void ToggleCollider(bool state)
     {
         GetComponent<Collider>().enabled = state;
     }
 
-    private void InitializeMovementStats()
+    public void RecalculateMovementStats()
     {
-        baseMaxSpeed = PlayerManager.Instance.GetMaxSpeed();
-        baseAcceleration = PlayerManager.Instance.GetAcceleration();
-        baseDeceleration = PlayerManager.Instance.GetDeceleration();
+        maxSpeed = stats.GetFinalValue(StatType.MaxSpeed);
+        acceleration = stats.GetFinalValue(StatType.Accel);
+        deceleration = stats.GetFinalValue(StatType.Decel);
     }
 
     private void TryBobbing()

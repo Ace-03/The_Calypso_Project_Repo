@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "NewPickupDefinition", menuName = "Scriptable Objects/PickupSO")]
+[CreateAssetMenu(fileName = "NewPickupDefinition", menuName = "Scriptable Objects/Pickup")]
 public class PickupSO : ScriptableObject
 {
     public string pickupName;

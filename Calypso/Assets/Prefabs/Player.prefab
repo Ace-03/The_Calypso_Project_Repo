@@ -14860,6 +14860,7 @@ GameObject:
   - component: {fileID: 2971592590130550337}
   - component: {fileID: 1569674386504143639}
   - component: {fileID: 3842321106409920161}
+  - component: {fileID: 8529168100601639270}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -15022,6 +15023,39 @@ MonoBehaviour:
   teleportHomeButton: 104
   homeWaypoint: {fileID: 0}
   verticleOffset: 1.94
+--- !u!114 &8529168100601639270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887405348467899213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb25fb9c97c7c34c99a520b9747e730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathEvent: {fileID: 11400000, guid: 6e21a232539e09c4b8940d472c33fc13, type: 2}
+  playerVisuals: {fileID: 8166983347140975720}
+  inputManager: {fileID: 0}
+  deathParticle: {fileID: 1469735650166152172, guid: b7eb6d1ae35ee604a8353b5211a34e95, type: 3}
+  maxHealth: 20
+  armor: 0
+  recovery: 1
+  invulnerabilityPeriod: 0.5
+  luck: 100
+  maxSpeed: 10
+  acceleration: 20
+  deceleration: 40
+  spdModifier: 1
+  accModifier: 1
+  decelModifier: 1
+  strength: 1
+  dexterity: 1
+  area: 1
+  cooldown: 1
+  duration: 1
+  ammount: 1
 --- !u!1 &7063436058657950361
 GameObject:
   m_ObjectHideFlags: 0

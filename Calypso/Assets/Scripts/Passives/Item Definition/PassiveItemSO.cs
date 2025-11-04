@@ -13,7 +13,7 @@ public class PassiveItemSO : ScriptableObject
     public ItemRarity rarity;
 
     [Header("Behavior Implementations")]
-    public List<IItemEffectSO> itemBehavior;
+    public List<ItemEffectSO> itemBehaviors;
 
     [Header("Stat Modifier Templates")]
     public List<StatModifierTemplate> modifierTemplates;

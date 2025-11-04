@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "NewShockwaveOnHit", menuName = "Scriptable Objects/ShockwaveOnHitSO")]
-public class ShockwaveOnHitSO : IItemEffectSO
+[CreateAssetMenu(fileName = "NewShockwaveOnHit", menuName = "Item Effects/ShockwaveOnHit")]
+public class ShockwaveOnHitSO : ItemEffectSO
 {
     [SerializeField] private OnDamageDealtEventSO damageTakenEvent;
 
@@ -14,7 +14,7 @@ public class ShockwaveOnHitSO : IItemEffectSO
         Debug.Log("Executing Shockwave on hit");
     }
 
-    public override void OnAquired(EquippedItemInstance itemInstance, PlayerContext context)
+    public override void OnAcquired(EquippedItemInstance itemInstance, PlayerContext context)
     {
         damageListener = (damagePayload) =>
         {

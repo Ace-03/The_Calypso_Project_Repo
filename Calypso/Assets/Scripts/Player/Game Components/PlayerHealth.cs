@@ -8,6 +8,13 @@ public class PlayerHealth : GenericHealth
     private float invulnerabilityDuration = 0.5f;
     private float invulnerabilityTimer;
 
+    PlayerManager playerManager;
+
+    private void Awake()
+    {
+        playerManager = GetComponent<PlayerManager>();
+    }
+
     private void Update()
     {
         if (!invulnerable) { return; }
@@ -30,7 +37,7 @@ public class PlayerHealth : GenericHealth
     {
         Debug.Log("Player Died");
 
-        PlayerManager.Instance.OnDeath();
+        playerManager.OnDeath();
         base.Die();
     }
 

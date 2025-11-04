@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RewardGenerator : MonoBehaviour
@@ -32,7 +33,7 @@ public class RewardGenerator : MonoBehaviour
 
     private void GenerateRewardOptions(SelectedRewardPayload payload)
     {
-        List<EquippedItemInstance> equippedItems = inventoryManager.GetPassiveItems();
+        List<EquippedItemInstance> equippedItems = inventoryManager.GetUpgradeableItems();
         bool canAquireNewItem = inventoryManager.IsNewItemSlotAvailable();
 
         List<PassiveItemSO> possibleRewards = FilterRewards(equippedItems, canAquireNewItem);
@@ -44,15 +45,7 @@ public class RewardGenerator : MonoBehaviour
 
     private List<PassiveItemSO> FilterRewards(List<EquippedItemInstance> equipped, bool canAquireNew)
     {
-        List<PassiveItemSO> selectableRewards = new List<PassiveItemSO>();
-
-        foreach (EquippedItemInstance equippedItem in equipped)
-        {
-            if (equippedItem.itemLevel < equippedItem.itemData.maxLevel)
-            {
-                selectableRewards.Add(equippedItem.itemData);
-            }
-        }
+        List<PassiveItemSO> selectableRewards = equipped.Select(item => item.itemData).ToList();
 
         if (canAquireNew)
         {
@@ -145,10 +138,11 @@ public class RewardGenerator : MonoBehaviour
     int level,
     string sourceInstanceID)
     {
-        var newModifiers = new List<StatModifier>();
+        if (itemData.modifierTemplates == null) return null;
 
-        /*
-        foreach (var template in itemData.ModifierTemplates)
+        List<StatModifier> newModifiers = new List<StatModifier>();
+
+        foreach (StatModifierTemplate template in itemData.modifierTemplates)
         {
             float rolledValue = Random.Range(template.MinValue, template.MaxValue);
 
@@ -163,7 +157,6 @@ public class RewardGenerator : MonoBehaviour
 
             newModifiers.Add(modifier);
         }
-        */
         return newModifiers;
     }
 }

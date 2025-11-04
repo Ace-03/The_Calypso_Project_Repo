@@ -58169,6 +58169,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8529168100601639270, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 274683945}
     - target: {fileID: 8736910140015896842, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
       propertyPath: m_Constraints
       value: 116
@@ -58203,6 +58207,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 4476139965934755000}
+  - {fileID: 2159647458854289139}
   - {fileID: 182832939}
   - {fileID: 1623878346}
   - {fileID: 1977835619}
@@ -58213,7 +58218,6 @@ SceneRoots:
   - {fileID: 1928115310}
   - {fileID: 1789919095}
   - {fileID: 1455535533}
-  - {fileID: 2159647458854289139}
   - {fileID: 2817462900132755830}
   - {fileID: 2004973670}
   - {fileID: 730942798}

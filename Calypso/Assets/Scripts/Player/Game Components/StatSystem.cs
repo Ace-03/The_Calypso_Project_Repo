@@ -4,22 +4,39 @@ using System.Linq;
 
 public class StatSystem : MonoBehaviour
 {
-    private Dictionary<StatType, StatContainer> _stats = new Dictionary<StatType, StatContainer>();
+    [SerializeField] private PlayerBaseStatsSO baseStats;
+    private Dictionary<StatType, StatContainer> stats = new Dictionary<StatType, StatContainer>();
 
     private void Awake()
     {
-        InitializeStat(StatType.MaxSpeed, 5f);
-        InitializeStat(StatType.MaxHealth, 100f);
+        InitializeStat(StatType.MaxHealth, baseStats.maxHealth);
+        InitializeStat(StatType.Armor, baseStats.armor);
+        InitializeStat(StatType.Recovery, baseStats.recovery);
+        InitializeStat(StatType.Invulnerability, baseStats.invulnerabilityPeriod);
+        InitializeStat(StatType.Luck, baseStats.luck);
+        InitializeStat(StatType.MaxSpeed, baseStats.maxSpeed);
+        InitializeStat(StatType.Strength, baseStats.strength);
+        InitializeStat(StatType.Dexterity, baseStats.dexterity);
+        InitializeStat(StatType.Size, baseStats.size);
+        InitializeStat(StatType.Cooldown, baseStats.cooldown);
+        InitializeStat(StatType.Duration, baseStats.duration);
+        InitializeStat(StatType.Amount, baseStats.ammount);
+
+        InitializeStat(StatType.Accel, baseStats.acceleration);
+        InitializeStat(StatType.Decel, baseStats.deceleration);
     }
 
     private void InitializeStat(StatType type, float baseValue)
     {
-        _stats.Add(type, new StatContainer { BaseValue = baseValue, Modifiers = new List<StatModifier>() });
+        stats.Add(type, new StatContainer { BaseValue = baseValue, Modifiers = new List<StatModifier>() });
+        CalculateFinalValue(type);
     }
 
     public void AddModifier(StatType type, StatModifier modifier)
     {
-        if (_stats.TryGetValue(type, out StatContainer container))
+        if (type == StatType.none) return;
+
+        if (stats.TryGetValue(type, out StatContainer container))
         {
             container.Modifiers.Add(modifier);
             CalculateFinalValue(type);
@@ -28,7 +45,7 @@ public class StatSystem : MonoBehaviour
 
     public void RemoveAllModifiersBySource(StatType type, string sourceId)
     {
-        if (_stats.TryGetValue(type, out StatContainer container))
+        if (stats.TryGetValue(type, out StatContainer container))
         {
             container.Modifiers.RemoveAll(mod => mod.SourceID == sourceId);
             CalculateFinalValue(type);
@@ -37,7 +54,7 @@ public class StatSystem : MonoBehaviour
 
     public float GetFinalValue(StatType type)
     {
-        if (_stats.TryGetValue(type, out StatContainer container))
+        if (stats.TryGetValue(type, out StatContainer container))
         {
             return container.FinalValue;
         }
@@ -46,20 +63,23 @@ public class StatSystem : MonoBehaviour
 
     private void CalculateFinalValue(StatType type)
     {
-        if (!_stats.TryGetValue(type, out StatContainer container)) return;
+        if (!stats.TryGetValue(type, out StatContainer container)) return;
 
         float finalValue = container.BaseValue;
+
 
         float flatAdd = container.Modifiers
             .Where(m => m.ModType == StatModifierType.FlatAdd)
             .Sum(m => m.Value);
         finalValue += flatAdd;
 
+
         float percentAddSum = container.Modifiers
             .Where(m => m.ModType == StatModifierType.AdditivePercentage)
             .Sum(m => m.Value);
         finalValue *= (1 + percentAddSum);
 
+        
         foreach (var mod in container.Modifiers.Where(m => m.ModType == StatModifierType.MultPercentage))
         {
             finalValue *= (1 + mod.Value);

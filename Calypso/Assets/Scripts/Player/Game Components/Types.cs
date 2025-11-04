@@ -50,7 +50,12 @@ public enum StatType
     MaxSpeed,
     Strength,
     Dexterity,
+    Size,
     Cooldown,
     Duration,
     Amount,
+    none,
+
+    Accel,
+    Decel,
 }
