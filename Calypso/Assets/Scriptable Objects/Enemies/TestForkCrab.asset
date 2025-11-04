@@ -27,6 +27,8 @@ MonoBehaviour:
   stunResistance: 0
   poisonResistance: 0
   slowResistance: 0
+  bobAmount: 0.5
+  bobSpeed: 0.1
   possibleDrops:
   - data: {fileID: 11400000, guid: 56c6c9fb01d602846bb6c6f4d6b325f8, type: 2}
     dropChance: 20

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c59793dcf3fff478f6287a69de345e, type: 3}
+  m_Name: WeaponProgression
+  m_EditorClassIdentifier: 
+  weaponLevelProgression:
+  - playerLevel: 1
+    iron: 5
+    stone: 3
+    LevelUpReward: {fileID: 11400000, guid: 08b5135d76af6ba478a0d320cb99736f, type: 2}
+  - playerLevel: 3
+    iron: 20
+    stone: 15
+    LevelUpReward: {fileID: 11400000, guid: d03bd6dc04fc70b4980c468420953a0f, type: 2}
+  - playerLevel: 5
+    iron: 40
+    stone: 30
+    LevelUpReward: {fileID: 11400000, guid: ea8de3f937f1407429266178c6c986d5, type: 2}
