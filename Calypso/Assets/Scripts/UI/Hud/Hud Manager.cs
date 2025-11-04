@@ -2,34 +2,24 @@ using UnityEngine;
 
 public class HudManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject hotBarGroup;
-    [SerializeField]
-    private GameObject levelGroup;
-    [SerializeField]
-    private GameObject healthGroup;
-    [SerializeField]
-    private GameObject resourcesGroup;
-    [SerializeField]
-    private GameObject gameOverScreen;
+    [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
 
-    [SerializeField]
-    private HotBarUIElements hotBarElements;
-    [SerializeField]
-    private LevelUIElements levelElements;
-    [SerializeField]
-    private HealthUIElements healthElements;
-    [SerializeField]
-    private ResourceUIElements resourcesElements;
+    [SerializeField] private GameObject hotBarGroup;
+    [SerializeField] private GameObject levelGroup;
+    [SerializeField] private GameObject healthGroup;
+    [SerializeField] private GameObject resourcesGroup;
+    [SerializeField] private GameObject gameOverScreen;
 
-    [HideInInspector]
-    public HotBarUI hotBar;
-    [HideInInspector]
-    public LevelUI level;
-    [HideInInspector]
-    public HealthUI health;
-    [HideInInspector]
-    public ResourcesUI resources;
+    [SerializeField] private HotBarUIElements hotBarElements;
+    [SerializeField] private LevelUIElements levelElements;
+    [SerializeField] private HealthUIElements healthElements;
+    [SerializeField] private ResourceUIElements resourcesElements;
+
+    [HideInInspector] public HotBarUI hotBar;
+    [HideInInspector] public LevelUI level;
+    [HideInInspector] public HealthUI health;
+    [HideInInspector] public ResourcesUI resources;
+
 
     public static HudManager Instance;
 
@@ -70,6 +60,16 @@ public class HudManager : MonoBehaviour
         InitializeComponents();
     }
 
+    private void OnEnable()
+    {
+        rewardSelectedEvent.RegisterListener(AddNewItem);
+    }
+
+    private void OnDisable()
+    {
+        rewardSelectedEvent.UnregisterListener(AddNewItem);
+    }
+
     public void StartGameOver()
     {
         ToggleHud(false);
@@ -82,5 +82,10 @@ public class HudManager : MonoBehaviour
         levelGroup.SetActive(toggle);
         healthGroup.SetActive(toggle);
         resourcesGroup.SetActive(toggle);
+    }
+
+    private void AddNewItem(SelectedRewardPayload payload)
+    {
+        hotBar.AddItem(hotBarElements.PassiveBar, payload.option.itemData);
     }
 }

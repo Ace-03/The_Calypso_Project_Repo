@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject playerVisuals;
     [SerializeField] private GameObject inputManager;
     [SerializeField] private GameObject deathParticle;
+    [SerializeField] private SphereCollider attractorTrigger;
 
     private StatSystem statSystem;
 
@@ -85,5 +86,10 @@ public class PlayerManager : MonoBehaviour
     public void SpawnDeathParticle()
     {
         GameObject particle = Instantiate(deathParticle, transform.position, Quaternion.identity);
+    }
+
+    public void UpdateAttractorSize(float value)
+    {
+        attractorTrigger.radius = value;
     }
 }

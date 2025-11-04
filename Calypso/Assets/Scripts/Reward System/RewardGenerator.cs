@@ -129,7 +129,7 @@ public class RewardGenerator : MonoBehaviour
                 List<StatModifier> rolledModifiers = new List<StatModifier>();
                 EquippedItemInstance existingInstance = null;
                 string instanceID;
-
+                bool isNew = false;
 
                 if (inventoryManager.HasItem(selectedItem))
                 {
@@ -137,11 +137,13 @@ public class RewardGenerator : MonoBehaviour
 
                     int level = existingInstance.itemLevel + 1;
                     instanceID = existingInstance.instanceID;
+                    isNew = true;
 
                     rolledModifiers = RollModifiersForLevel(selectedItem, level, instanceID);
                 }
                 else
                 {
+                    isNew = false;
                     instanceID = System.Guid.NewGuid().ToString();
                     rolledModifiers = RollModifiersForLevel(selectedItem, 1, instanceID);
                 }
@@ -150,6 +152,7 @@ public class RewardGenerator : MonoBehaviour
                 newOption.modifiers = rolledModifiers;
                 newOption.instanceID = instanceID;
                 newOption.deltaValues = CalculateStatDifferenceForUpgrade(existingInstance, rolledModifiers);
+                newOption.isNew = isNew;
 
                 finalOptions.Add(newOption);
                 pool.Remove(selectedItem);
@@ -203,7 +206,7 @@ public class RewardGenerator : MonoBehaviour
 
         foreach (StatModifier newMod in newMods)
         {
-            var oldMod = oldMods.FirstOrDefault(m => m.StatType == newMod.StatType);
+            StatModifier oldMod = oldMods.FirstOrDefault(m => m.StatType == newMod.StatType);
 
             float delta = newMod.Value - oldMod.Value;
 
@@ -212,7 +215,9 @@ public class RewardGenerator : MonoBehaviour
                 deltas.Add(new StatChangeDelta
                 {
                     Type = newMod.StatType,
-                    DeltaValue = delta,
+                    oldValue = oldMod.Value,
+                    newValue = newMod.Value,
+                    delta = delta,
                     ModType = newMod.ModType
                 });
             }

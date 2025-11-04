@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,106 +11,53 @@ public class HotBarUI : MonoBehaviour
         hotBarElements = elements;
     }
 
-    public void AddWeaponSlot(Sprite weaponIcon)
+    public void AddItem(HotBar bar, WeaponDefinitionSO weaponData)
     {
-        HotBarIcon slot = new HotBarIcon();
-        GameObject slotObject = Instantiate(hotBarElements.hotBarSlotPrefab, hotBarElements.weaponBar.transform);
-        
-        slot.slotObject = slotObject;
-        slot.backgroundImage = slotObject.transform.Find("Background").GetComponent<Image>();
-        slot.iconImage = slotObject.transform.Find("Icon").GetComponent<Image>();
+        HotBarSlot openSlot = bar.Slots.FirstOrDefault(m => m.isFilled == false);
 
-        UpdateWeaponSlot(slot, weaponIcon);
-    }
-
-    public void AddPassiveSlot(Sprite passiveIcon)
-    {
-        HotBarIcon slot = new HotBarIcon();
-        GameObject slotObject = Instantiate(hotBarElements.hotBarSlotPrefab, hotBarElements.weaponBar.transform);
-
-        slot.slotObject = slotObject;
-        slot.backgroundImage = slotObject.transform.Find("Background").GetComponent<Image>();
-        slot.iconImage = slotObject.transform.Find("Icon").GetComponent<Image>();
-
-        UpdateWeaponSlot(slot, passiveIcon);
-    }
-
-    public bool RemoveWeaponSlot(HotBarIcon slot)
-    {
-        if (hotBarElements.weaponSlots.Contains(slot))
+        if (openSlot.isLocked == false)
         {
-            hotBarElements.weaponSlots.Remove(slot);
-            Destroy(slot.slotObject);
-            hotBarElements.weaponSlots.Remove(slot);
-
-            return true;
+            openSlot.iconImage.sprite = weaponData.icon;
+            openSlot.isFilled = true;
         }
-        return false;
     }
 
-    public bool RemovePassiveSlot(HotBarIcon slot)
+    public void AddItem(HotBar bar, PassiveItemSO passiveItemData)
     {
-        if (hotBarElements.passiveSlots.Contains(slot))
+        HotBarSlot openSlot = bar.Slots.FirstOrDefault(m => m.isFilled == false);
+
+        if (openSlot.isLocked == false)
         {
-            hotBarElements.passiveSlots.Remove(slot);
-            Destroy(slot.slotObject);
-            hotBarElements.passiveSlots.Remove(slot);
-            return true;
+            openSlot.iconImage.sprite = passiveItemData.sprite;
+            openSlot.isFilled = true;
         }
-        return false;
     }
 
-    public void UpdateWeaponSlot(int index, Sprite weaponIcon)
+    public void UnlockNewSlot(HotBar bar)
     {
-        if (index < 0 || index >= hotBarElements.weaponSlots.Count)
-        {
-            Debug.LogError("Invalid weapon slot index");
-            return;
-        }
-        var slotImage = hotBarElements.weaponSlots[index].iconImage;
-        slotImage.sprite = weaponIcon;
+        HotBarSlot lockedSlot = bar.Slots.FirstOrDefault(m => m.isLocked == true);
+
+        lockedSlot.isLocked = false;
+        lockedSlot.backgroundImage.sprite = hotBarElements.UnlockedBarSprite;
     }
 
-    public void UpdatePassiveSlot(int index, Sprite passiveIcon)
+    public HotBarSlot GetHotBarSlot(WeaponDefinitionSO weaponData)
     {
-        if (index < 0 || index >= hotBarElements.passiveSlots.Count)
-        {
-            Debug.LogError("Invalid passive slot index");
-            return;
-        }
-        var slotImage = hotBarElements.passiveSlots[index].iconImage;
-        slotImage.sprite = passiveIcon;
+        return hotBarElements.WeaponBar.Slots.Find(m => m.assignedWeapon == weaponData);
     }
 
-    public void UpdateWeaponSlot(HotBarIcon slot, Sprite weaponIcon)
+    public HotBarSlot GetHotBarSlot(PassiveItemSO ItemData)
     {
-        if (!hotBarElements.weaponSlots.Contains(slot))
-        {
-            Debug.LogError("Invalid Weapon Slot");
-            return;
-        }
-        var slotImage = slot.iconImage;
-        slotImage.sprite = weaponIcon;
-    }
-
-    public void UpdatePassiveSlot(HotBarIcon slot, Sprite passiveIcon)
-    {
-        if (!hotBarElements.weaponSlots.Contains(slot))
-        {
-            Debug.LogError("Invalid Passive Slot");
-            return;
-        }
-        var slotImage = slot.iconImage;
-        slotImage.sprite = passiveIcon;
+        return hotBarElements.WeaponBar.Slots.Find(m => m.assignedPassiveItem == ItemData);
     }
 
     public void ToggleWeaponBar(bool isVisible)
     {
-        hotBarElements.weaponBar.SetActive(isVisible);
+        hotBarElements.WeaponBar.BarParent.SetActive(isVisible);
     }
 
     public void TogglePassivesBar(bool isVisible)
     {
-        hotBarElements.passivesBar.SetActive(isVisible);
+        hotBarElements.PassiveBar.BarParent.SetActive(isVisible);
     }
 }

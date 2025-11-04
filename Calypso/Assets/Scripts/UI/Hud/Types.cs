@@ -9,11 +9,18 @@ public struct HotBarUIElements
 {
     public GameObject hotBarSlotPrefab;
 
-    public GameObject weaponBar;
-    public List<HotBarIcon> weaponSlots;
+    public HotBar WeaponBar;
+    public HotBar PassiveBar;
 
-    public GameObject passivesBar;
-    public List<HotBarIcon> passiveSlots;
+    public Sprite LockedBarSprite;
+    public Sprite UnlockedBarSprite;
+}
+
+[Serializable]
+public struct HotBar
+{
+    public GameObject BarParent;
+    public List<HotBarSlot> Slots;
 }
 
 [Serializable]
@@ -46,9 +53,13 @@ public struct LevelUIElements
 }
 
 [Serializable]
-public struct HotBarIcon
+public struct HotBarSlot
 {
+    public PassiveItemSO assignedPassiveItem;
+    public WeaponController assignedWeapon;
     public GameObject slotObject;
     public Image backgroundImage;
     public Image iconImage;
+    public bool isFilled;
+    public bool isLocked;
 }

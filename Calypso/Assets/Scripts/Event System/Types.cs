@@ -29,17 +29,25 @@ public class RewardOptionsPayload : GameEventPayload
     public List<RewardOption> options;
 }
 
+public class TimerPayload : GameEventPayload
+{
+
+}
+
 public class RewardOption
 {
     public PassiveItemSO itemData;
     public List<StatModifier> modifiers;
     public List<StatChangeDelta> deltaValues;
     public string instanceID;
+    public bool isNew;
 }
 
 public class StatChangeDelta
 {
     public StatType Type;
-    public float DeltaValue;
+    public float oldValue;
+    public float newValue;
+    public float delta;
     public StatModifierType ModType;
 }

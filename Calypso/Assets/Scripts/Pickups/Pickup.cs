@@ -3,7 +3,6 @@ using UnityEngine;
 public abstract class Pickup : MonoBehaviour
 {
     [SerializeField] private SphereCollider pickupTrigger;
-    [SerializeField] private SphereCollider attractorTrigger;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
 
@@ -26,16 +25,6 @@ public abstract class Pickup : MonoBehaviour
             pickupTrigger = triggerObject.AddComponent<SphereCollider>();
             pickupTrigger.isTrigger = true;
             pickupTrigger.radius = 0.6f;
-        }
-
-        if (attractorTrigger == null)
-        {
-            GameObject triggerObject = Instantiate(new GameObject(), transform);
-            triggerObject.name = "AttractorTrigger";
-            triggerObject.AddComponent<AttractorTrigger>();
-            attractorTrigger = triggerObject.AddComponent<SphereCollider>();
-            attractorTrigger.isTrigger = true;
-            attractorTrigger.radius = 12f;
         }
 
         if (sr == null)

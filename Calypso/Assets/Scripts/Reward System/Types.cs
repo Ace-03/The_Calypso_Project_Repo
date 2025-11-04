@@ -1,6 +1,3 @@
-using NUnit.Framework;
-using System.Collections.Generic;
-
 public static class RarityWeights
 {
     public static float GetWeightMultiplier(ItemRarity rarity)

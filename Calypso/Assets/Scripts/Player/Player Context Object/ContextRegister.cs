@@ -5,6 +5,7 @@ public class ContextRegister : MonoBehaviour
 
     private PlayerContext playerContext;
 
+    [SerializeField] private PlayerManager playerManager;
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private ResourceTracker resourceTracker;
     [SerializeField] private PlayerLevelManager levelManager;
@@ -35,6 +36,7 @@ public class ContextRegister : MonoBehaviour
     {
         playerContext = new PlayerContext()
         {
+            playerManager = playerManager,
             inventoryManager = inventoryManager,
             playerTransform = playerTransform,
             resourceTracker = resourceTracker,
@@ -51,6 +53,8 @@ public class ContextRegister : MonoBehaviour
 
 public class PlayerContext
 {
+
+    public PlayerManager playerManager;
     public InventoryManager inventoryManager;
     public Transform playerTransform;
     public ResourceTracker resourceTracker;
