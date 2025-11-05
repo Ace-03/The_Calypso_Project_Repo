@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceDrop:
-    data: {fileID: 11400000, guid: 41e6bd7787ed08345bf510daf918f179, type: 2}
+    data: {fileID: 11400000, guid: 415624a556cd8664a9b09553963639d3, type: 2}
     dropChance: 100
     minAmount: 3
     maxAmount: 8
