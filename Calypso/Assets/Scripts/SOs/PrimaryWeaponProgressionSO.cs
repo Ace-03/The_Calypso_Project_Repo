@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewPrimaryWeaponProgressionDefinition", menuName = "PrimaryWeaponProgressionSO")]
+[CreateAssetMenu(fileName = "NewPrimaryWeaponProgressionDefinition", menuName = "Progression/PrimaryWeaponProgression")]
 public class PrimaryWeaponProgressionSO : ScriptableObject
 {
     [Tooltip("Experience is cumulative across levels. The list starts at level 2.")]

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfb8fd06fa89164b99a25e7c7979c9e, type: 3}
+  m_Name: BaseStats
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  armor: 0
+  recovery: 1
+  invulnerabilityPeriod: 0.5
+  luck: 100
+  maxSpeed: 10
+  acceleration: 20
+  deceleration: 40
+  strength: 1
+  dexterity: 1
+  size: 1
+  cooldown: 1
+  duration: 1
+  ammount: 0
