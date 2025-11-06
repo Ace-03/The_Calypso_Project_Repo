@@ -98,22 +98,22 @@ public class StatusSystem : MonoBehaviour
     }
     private void UpdateStacks()
     {
-        if (stunTimer > maxStatTime && stunStacks < maxStatStacks)
+        while (stunTimer > maxStatTime && stunStacks < maxStatStacks)
         {
             stunStacks = Mathf.Clamp(stunStacks + 1, 0, MAX_STUN_STACKS);
             stunTimer = Mathf.Clamp(stunTimer - maxStatTime, 1f, maxStatTime);
         }
-        if (poisonTimer > maxStatTime && poisonStacks < maxStatStacks)
+        while (poisonTimer > maxStatTime && poisonStacks < maxStatStacks)
         {
             poisonStacks = Mathf.Clamp(poisonStacks + 1, 0, maxStatStacks);
             poisonTimer = Mathf.Clamp(poisonTimer - maxStatTime, 1f, maxStatTime);
         }
-        if(slowdownTimer > maxStatTime && slowdownStacks < maxStatStacks)
+        while (slowdownTimer > maxStatTime && slowdownStacks < maxStatStacks)
         {
             slowdownStacks = Mathf.Clamp(slowdownStacks + 1, 0, maxStatStacks);
             slowdownTimer = Mathf.Clamp(slowdownTimer - maxStatTime, 1f, maxStatTime);
         }
-        if(knockbackTimer > maxStatTime && knockbackStacks < maxStatStacks)
+        while (knockbackTimer > maxStatTime && knockbackStacks < maxStatStacks)
         {
             knockbackStacks = Mathf.Clamp(knockbackStacks + 1, 0, maxStatStacks);
             knockbackTimer = Mathf.Clamp(knockbackTimer - maxStatTime, 1f, maxStatTime);
@@ -180,7 +180,7 @@ public class StatusSystem : MonoBehaviour
             return;
         }
         float maxSpeed = ai.GetMaxSpeed();
-        ai.speed = maxSpeed - (maxSpeed * 0.1f * slowdownStacks);
+        ai.speed = maxSpeed - (maxSpeed * 0.2f * slowdownStacks);
     }
     public void DoKnockback()
     {
