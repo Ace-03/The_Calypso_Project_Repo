@@ -16,6 +16,8 @@ public class WeaponController : MonoBehaviour
     private IWeaponBehavior weaponBehavior;
     private float nextAttackTime;
 
+    private StatSystem stats;
+
     private void Start()
     {
         if (autoInitialize)
@@ -24,6 +26,8 @@ public class WeaponController : MonoBehaviour
 
     public void Initialize()
     {
+        stats = ContextRegister.Instance.GetContext().statSystem;
+     
         if (weaponData == null)
         {
             Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
@@ -33,6 +37,7 @@ public class WeaponController : MonoBehaviour
         RecalculateStats();
         weaponBehavior?.ApplyWeaponStats(this);
         nextAttackTime = Time.time + GetCooldown();
+
     }
 
     private void Update()
@@ -111,13 +116,13 @@ public class WeaponController : MonoBehaviour
             return;
         }
 
-        currentStats["Cooldown"] = weaponData.baseCooldown * PlayerManager.Instance.GetCooldown();
-        currentStats["Amount"] = weaponData.baseAmount + PlayerManager.Instance.GetAmount();
-        currentStats["Duration"] = weaponData.baseDuration * PlayerManager.Instance.GetDuration();
-        currentStats["accuracy"] = weaponData.baseAccuracy + PlayerManager.Instance.GetDexterity();
-        currentStats["Speed"] = weaponData.baseProjectileSpeed * PlayerManager.Instance.GetDexterity();
-        currentStats["AOETick"] = weaponData.aoeTickRate * PlayerManager.Instance.GetCooldown();
-        currentStats["Area"] = weaponData.aoeAreaSize * PlayerManager.Instance.GetArea();
+        currentStats["Cooldown"] = weaponData.baseCooldown * stats.GetFinalValue(StatType.Cooldown);
+        currentStats["Amount"] = weaponData.baseAmount + stats.GetFinalValue(StatType.Amount);
+        currentStats["Duration"] = weaponData.baseDuration * stats.GetFinalValue(StatType.Duration);
+        currentStats["accuracy"] = weaponData.baseAccuracy + stats.GetFinalValue(StatType.Dexterity);
+        currentStats["Speed"] = weaponData.baseProjectileSpeed * stats.GetFinalValue(StatType.Dexterity);
+        currentStats["AOETick"] = weaponData.aoeTickRate * stats.GetFinalValue(StatType.Cooldown);
+        currentStats["Area"] = weaponData.aoeAreaSize * stats.GetFinalValue(StatType.Size);
     }
 
     public void Attack()

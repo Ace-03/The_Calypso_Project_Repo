@@ -1,54 +1,31 @@
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
-using System;
+using TMPro;
 
-[Serializable]
-public struct HotBarUIElements
+[System.Serializable]
+public struct RewardScreenUIComponents
 {
-    public GameObject hotBarSlotPrefab;
-
-    public GameObject weaponBar;
-    public List<HotBarIcon> weaponSlots;
-
-    public GameObject passivesBar;
-    public List<HotBarIcon> passiveSlots;
+    public GameObject RewardScreenParent;
+    public GameObject RewardsContainer;
+    public List<RewardOptionUIComponents> rewardOptions;
 }
 
-[Serializable]
-public struct HealthUIElements
+
+[System.Serializable]
+public struct RewardOptionUIComponents
 {
-    public Image healthIcon;
-    public Image baseIcon;
-
-    public List<Sprite> playerHealthSprites;
-    public List<Sprite> baseHealthSprites;
-}
-
-[Serializable]
-
-public struct ResourceUIElements
-{
-    public TextMeshProUGUI ironText;
-    public TextMeshProUGUI stoneText;
-
-    public Sprite EmptyBoatSprite;
-    public Sprite aquiredBoatSprite;
-
-    public List<Image> boatIcons;
-}
-
-[Serializable]
-public struct LevelUIElements
-{
-    public TextMeshProUGUI levelText;
-}
-
-[Serializable]
-public struct HotBarIcon
-{
-    public GameObject slotObject;
-    public Image backgroundImage;
+    public RewardOption assignedItem;
     public Image iconImage;
+    public GameObject isNewText;
+    public RewardInfoPanelComponents rewardInfoPanel;
+}
+
+[System.Serializable]
+public struct RewardInfoPanelComponents
+{
+    public GameObject infoPanelParent;
+    public TextMeshProUGUI itemName;
+    public TextMeshProUGUI itemDescription;
+    public TextMeshProUGUI statInfo;
 }

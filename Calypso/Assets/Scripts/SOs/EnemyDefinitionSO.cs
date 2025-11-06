@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEnemyDefinition", menuName = "EnemySO")]
+[CreateAssetMenu(fileName = "NewEnemyDefinition", menuName = "Scriptable Objects/Enemy")]
 public class EnemyDefinitionSO : ScriptableObject
 {
     [Header("Main")]

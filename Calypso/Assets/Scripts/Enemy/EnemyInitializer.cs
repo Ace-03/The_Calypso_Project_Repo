@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyInitializer : MonoBehaviour
 {
+    [SerializeField]
+    private OnEnemyDeathEventSO deathEvent;
+
     private Animator animator;
     private EnemyDefinitionSO enemyData;
     private EnemyHealth healthSystem;
@@ -128,6 +131,13 @@ public class EnemyInitializer : MonoBehaviour
     internal void OnDeath()
     {
         PickupSpawner.RollForItemDrop(enemyData, transform.position);
+
+        DeathPayload payload = new DeathPayload()
+        {
+            entity = gameObject,
+        };
+
+        deathEvent.Raise(payload);
 
         RemoveEnemy();
 
