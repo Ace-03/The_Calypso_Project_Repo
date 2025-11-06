@@ -5041,6 +5041,74 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2387042473704752997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3105209095593448553}
+  - component: {fileID: 3722212198466870024}
+  - component: {fileID: 695748068894085245}
+  m_Layer: 8
+  m_Name: Attractor Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3105209095593448553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2387042473704752997}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3373966260996384910}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &3722212198466870024
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2387042473704752997}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &695748068894085245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2387042473704752997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2442599d49069945a472a74ddb5f53b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attractForce: 50
+  attractorTag: Item
 --- !u!1 &3775258095935814946
 GameObject:
   m_ObjectHideFlags: 0
@@ -14860,6 +14928,7 @@ GameObject:
   - component: {fileID: 2971592590130550337}
   - component: {fileID: 1569674386504143639}
   - component: {fileID: 3842321106409920161}
+  - component: {fileID: 8529168100601639270}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -14884,6 +14953,7 @@ Transform:
   - {fileID: 7764472329224569483}
   - {fileID: 5554833905175610038}
   - {fileID: 5536432772658178411}
+  - {fileID: 3105209095593448553}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8736910140015896842
@@ -15022,6 +15092,27 @@ MonoBehaviour:
   teleportHomeButton: 104
   homeWaypoint: {fileID: 0}
   verticleOffset: 1.94
+--- !u!114 &8529168100601639270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887405348467899213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb25fb9c97c7c34c99a520b9747e730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathEvent: {fileID: 11400000, guid: 6e21a232539e09c4b8940d472c33fc13, type: 2}
+  statsUpdatedEvent: {fileID: 11400000, guid: 8cbde4debb08a654f9e12db0d1d50805, type: 2}
+  playerVisuals: {fileID: 8166983347140975720}
+  inputManager: {fileID: 0}
+  deathParticle: {fileID: 1469735650166152172, guid: b7eb6d1ae35ee604a8353b5211a34e95, type: 3}
+  attractorTrigger: {fileID: 3722212198466870024}
+  primaryWeapon: {fileID: 6693502108835353163}
+  playerHealth: {fileID: 5034327732661880448}
+  playerController: {fileID: 2636485834852036548}
 --- !u!1 &7063436058657950361
 GameObject:
   m_ObjectHideFlags: 0

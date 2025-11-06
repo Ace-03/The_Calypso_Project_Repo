@@ -23930,9 +23930,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a64e812279033214fa26801709bb4f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cycleClock: 0
-  dayTime: 5
-  nightTime: 5
+  lightingData:
+    light: {fileID: 0}
+    lightPivot: {fileID: 0}
+    dayStartAngle: 0
+    nightStartAngle: 0
+    sunriseColor: {r: 0, g: 0, b: 0, a: 0}
+    daylightColor: {r: 0, g: 0, b: 0, a: 0}
+    sunsetColor: {r: 0, g: 0, b: 0, a: 0}
+    nightColor: {r: 0, g: 0, b: 0, a: 0}
+    sunriseIntensity: 0
+    dayIntensity: 0
+    sunsetIntensity: 0
+    nightIntensity: 0
+    sunriseShadow: 0
+    dayShadow: 0
+    sunsetShadow: 0
+    nightShadow: 0
+  dayDuration: 120
+  dayLengthPercentage: 0
+  spawner: {fileID: 0}
 --- !u!4 &949690278
 Transform:
   m_ObjectHideFlags: 0
