@@ -101,22 +101,22 @@ public class StatusSystem : MonoBehaviour
         while (stunTimer > maxStatTime && stunStacks < maxStatStacks)
         {
             stunStacks = Mathf.Clamp(stunStacks + 1, 0, MAX_STUN_STACKS);
-            stunTimer = Mathf.Clamp(stunTimer - maxStatTime, 1f, maxStatTime);
+            stunTimer = Mathf.Clamp(stunTimer - maxStatTime, 2f, maxStatTime);
         }
         while (poisonTimer > maxStatTime && poisonStacks < maxStatStacks)
         {
             poisonStacks = Mathf.Clamp(poisonStacks + 1, 0, maxStatStacks);
-            poisonTimer = Mathf.Clamp(poisonTimer - maxStatTime, 1f, maxStatTime);
+            poisonTimer = Mathf.Clamp(poisonTimer - maxStatTime, 2f, maxStatTime);
         }
         while (slowdownTimer > maxStatTime && slowdownStacks < maxStatStacks)
         {
             slowdownStacks = Mathf.Clamp(slowdownStacks + 1, 0, maxStatStacks);
-            slowdownTimer = Mathf.Clamp(slowdownTimer - maxStatTime, 1f, maxStatTime);
+            slowdownTimer = Mathf.Clamp(slowdownTimer - maxStatTime, 2f, maxStatTime);
         }
         while (knockbackTimer > maxStatTime && knockbackStacks < maxStatStacks)
         {
             knockbackStacks = Mathf.Clamp(knockbackStacks + 1, 0, maxStatStacks);
-            knockbackTimer = Mathf.Clamp(knockbackTimer - maxStatTime, 1f, maxStatTime);
+            knockbackTimer = Mathf.Clamp(knockbackTimer - maxStatTime, 2f, maxStatTime);
         }
     }
     public void ApplyStun(float time)

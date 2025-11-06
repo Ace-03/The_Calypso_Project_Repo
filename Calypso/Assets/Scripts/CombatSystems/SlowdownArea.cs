@@ -7,7 +7,7 @@ public class SlowdownArea : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             StatusSystem enemyStatusComponent = other.GetComponent<StatusSystem>();
-            enemyStatusComponent.ApplySlowdown(10f * Time.deltaTime);
+            enemyStatusComponent.ApplySlowdown(100f * Time.deltaTime);
         }
     }
 }
