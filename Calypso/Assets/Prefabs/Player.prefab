@@ -15041,7 +15041,6 @@ MonoBehaviour:
   maxHP: 0
   hp: 0
   vfxHandler: {fileID: 2971592590130550337}
-  statsUpdatedEvent: {fileID: 11400000, guid: 8cbde4debb08a654f9e12db0d1d50805, type: 2}
 --- !u!114 &2971592590130550337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15112,6 +15111,8 @@ MonoBehaviour:
   deathParticle: {fileID: 1469735650166152172, guid: b7eb6d1ae35ee604a8353b5211a34e95, type: 3}
   attractorTrigger: {fileID: 3722212198466870024}
   primaryWeapon: {fileID: 6693502108835353163}
+  playerHealth: {fileID: 5034327732661880448}
+  playerController: {fileID: 2636485834852036548}
 --- !u!1 &7063436058657950361
 GameObject:
   m_ObjectHideFlags: 0

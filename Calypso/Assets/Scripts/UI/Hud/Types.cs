@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 [Serializable]
-public struct HotBarUIElements
+public class HotBarUIElements
 {
     public Sprite emptySlotSprite;
     public GameObject hotBarSlotPrefab;
@@ -19,14 +19,14 @@ public struct HotBarUIElements
 }
 
 [Serializable]
-public struct HotBar
+public class HotBar
 {
     public GameObject BarParent;
     public List<HotBarSlot> Slots;
 }
 
 [Serializable]
-public struct HealthUIElements
+public class HealthUIElements
 {
     public Image healthIcon;
     public Image baseIcon;
@@ -37,7 +37,7 @@ public struct HealthUIElements
 
 [Serializable]
 
-public struct ResourceUIElements
+public class ResourceUIElements
 {
     public TextMeshProUGUI ironText;
     public TextMeshProUGUI stoneText;
@@ -49,7 +49,7 @@ public struct ResourceUIElements
 }
 
 [Serializable]
-public struct LevelUIElements
+public class LevelUIElements
 {
     public TextMeshProUGUI levelText;
 }

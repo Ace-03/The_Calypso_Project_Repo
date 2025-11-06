@@ -54,7 +54,6 @@ public class RewardScreenUI : MonoBehaviour
 
     public void OnRewardSelected(int index)
     {
-        Debug.Log($"index sekected is: {index}");
         SelectedRewardPayload payload = new SelectedRewardPayload()
         {
             option = components.rewardOptions[index].assignedItem,
@@ -65,13 +64,11 @@ public class RewardScreenUI : MonoBehaviour
     }
     public void OnDisplayInfoPanel(int index)
     {
-        Debug.Log("Display Info Panel");
         components.rewardOptions[index].rewardInfoPanel.infoPanelParent.SetActive(true);
     }
 
     public void OnHideInfoPanel(int index)
     {
-        Debug.Log("Hide Info Panel");
         components.rewardOptions[index].rewardInfoPanel.infoPanelParent.SetActive(false);
 
     }
@@ -80,6 +77,11 @@ public class RewardScreenUI : MonoBehaviour
     {
         Time.timeScale = 1;
         components.RewardScreenParent.SetActive(false);
+
+        for (int i = 0; i < components.rewardOptions.Count; i++)
+        {
+            OnHideInfoPanel(i);
+        }
     }
 
     private string GetBaseStatInfo(RewardOption option)

@@ -180,6 +180,8 @@ public class RewardGenerator : MonoBehaviour
                 currentTotalValue = currentModifiers.FirstOrDefault(m => m.StatType == template.Type)?.Value ?? 0f;
             }
 
+            Debug.Log($"Rolling stat for {template.Type} at level {level}. Current total value: {currentTotalValue}");
+
             float minPossibleValue = template.MinValue + currentTotalValue;
             float maxPossibleValue = template.MaxValue * level;
 

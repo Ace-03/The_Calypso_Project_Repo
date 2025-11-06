@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject deathParticle;
     [SerializeField] private SphereCollider attractorTrigger;
     [SerializeField] private WeaponController primaryWeapon;
+    [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PlayerController playerController;
 
     private StatSystem statSystem;
 
@@ -17,12 +19,12 @@ public class PlayerManager : MonoBehaviour
 
     private void OnEnable()
     {
-        statsUpdatedEvent.RegisterListener(UpdatePlayerWeapons);
+        statsUpdatedEvent.RegisterListener(UpdatePlayerStats);
     }
 
     private void OnDisable()
     {
-        statsUpdatedEvent.UnregisterListener(UpdatePlayerWeapons);
+        statsUpdatedEvent.UnregisterListener(UpdatePlayerStats);
     }
 
     private void Awake()
@@ -105,8 +107,10 @@ public class PlayerManager : MonoBehaviour
         attractorTrigger.radius = value;
     }
 
-    private void UpdatePlayerWeapons(StatUpdatePayload payload)
+    private void UpdatePlayerStats(StatUpdatePayload payload)
     {
         primaryWeapon.RecalculateStats();
+        playerHealth.UpdateHealthStats(payload.statSystem);
+        playerController.RecalculateMovementStats(payload.statSystem);
     }
 }

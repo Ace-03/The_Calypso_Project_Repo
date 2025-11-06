@@ -26,19 +26,15 @@ public class PlayerController : MonoBehaviour
     private Vector3 aimVector;
     private Vector3 horizontalVelocity;
 
-    private StatSystem stats;
-
     private void Start()
     {
-        stats = ContextRegister.Instance.GetContext().statSystem;
-
         if (!TryGetComponent<Rigidbody>(out rb))
         {
             rb = gameObject.AddComponent<Rigidbody>();
             rb.freezeRotation = true;
         }
 
-        RecalculateMovementStats();
+        RecalculateMovementStats(ContextRegister.Instance.GetContext().statSystem);
         spriteController.Initialize(spriteData);
         spriteController.bobAmmount = bobAmmount / 100;
 
@@ -148,7 +144,7 @@ public class PlayerController : MonoBehaviour
         GetComponent<Collider>().enabled = state;
     }
 
-    public void RecalculateMovementStats()
+    public void RecalculateMovementStats(StatSystem stats)
     {
         maxSpeed = stats.GetFinalValue(StatType.MaxSpeed);
         acceleration = stats.GetFinalValue(StatType.Accel);

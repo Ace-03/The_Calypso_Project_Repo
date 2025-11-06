@@ -123,8 +123,6 @@ public class WeaponController : MonoBehaviour
         currentStats["Speed"] = weaponData.baseProjectileSpeed * stats.GetFinalValue(StatType.Dexterity);
         currentStats["AOETick"] = weaponData.aoeTickRate * stats.GetFinalValue(StatType.Cooldown);
         currentStats["Area"] = weaponData.aoeAreaSize * stats.GetFinalValue(StatType.Size);
-
-        Debug.Log(GetDuration());
     }
 
     public void Attack()

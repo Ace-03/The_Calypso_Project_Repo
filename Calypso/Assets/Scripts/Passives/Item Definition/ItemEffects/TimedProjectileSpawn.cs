@@ -1,4 +1,3 @@
-using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,10 +19,9 @@ public class TimedProjectileSpawnSO : ItemEffectSO
 
     public override void OnAcquired(EquippedItemInstance itemInstance, PlayerContext context)
     {
-        timerEvent = new GenericTimerEventSO();
+        timerEvent = CreateInstance<GenericTimerEventSO>();
         timer = context.playerManager.AddComponent<GenericTimer>();
-
-        timer.timerEvent = timerEvent;
+        timer.Initialize(timerEvent, timerLength);
 
         timerListener = (TimerPayload) =>
         {

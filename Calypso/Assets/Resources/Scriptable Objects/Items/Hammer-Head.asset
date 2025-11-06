@@ -17,8 +17,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 5e4e411d56119cd4bbb57bb492d69db1, type: 3}
   maxLevel: 5
   rarity: 0
-  itemBehaviors:
-  - {fileID: 0}
+  itemBehaviors: []
   modifierTemplates:
   - Type: 8
     ModType: 1

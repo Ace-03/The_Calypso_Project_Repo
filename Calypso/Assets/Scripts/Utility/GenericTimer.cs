@@ -12,6 +12,12 @@ public class GenericTimer : MonoBehaviour
         currentTime = 0;
     }
 
+    public void Initialize(GenericTimerEventSO eventObject, float TimeToReset)
+    {
+        timerEvent = eventObject;
+        resetTime = TimeToReset;
+    }
+
     private void FixedUpdate()
     {
         currentTime += Time.deltaTime;

@@ -67,24 +67,36 @@ public class StatSystem : MonoBehaviour
 
         float finalValue = container.BaseValue;
 
-
         float flatAdd = container.Modifiers
             .Where(m => m.ModType == StatModifierType.FlatAdd)
             .Sum(m => m.Value);
         finalValue += flatAdd;
 
-
         float percentAddSum = container.Modifiers
             .Where(m => m.ModType == StatModifierType.AdditivePercentage)
             .Sum(m => m.Value);
-        finalValue *= (1 + percentAddSum);
+        finalValue *= (1 + (percentAddSum / 100));
 
-        
-        foreach (var mod in container.Modifiers.Where(m => m.ModType == StatModifierType.MultPercentage))
+        foreach (StatModifier mod in container.Modifiers.Where(m => m.ModType == StatModifierType.MultPercentage))
         {
-            finalValue *= (1 + mod.Value);
+            finalValue *= (1 + (mod.Value / 100));
         }
 
         container.FinalValue = Mathf.Max(0f, finalValue); 
+    }
+
+    public void DebugStatAndModifiers(StatType type)
+    {
+        Debug.Log($"Debugging Stat: {type}");
+        Debug.Log($"Base value of stat {type} is: {stats[type].BaseValue}");
+        Debug.Log($"Final value of stat {type} is: {GetFinalValue(type)}");
+        
+        if (stats.TryGetValue(type, out StatContainer container))
+        {
+            foreach (var mod in container.Modifiers)
+            {
+                Debug.Log($"Modifier - Type: {mod.ModType}, Value: {mod.Value}, SourceID: {mod.SourceID}");
+            }
+        }
     }
 }
