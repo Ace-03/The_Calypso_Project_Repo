@@ -51,3 +51,25 @@ public class StatChangeDelta
     public float delta;
     public StatModifierType ModType;
 }
+
+public class StatUpdatePayload : GameEventPayload
+{
+    public StatSystem statSystem;
+
+    public StatUpdatePayload(StatSystem statSystem)
+    {
+        this.statSystem = statSystem;
+    }
+}
+
+public class UpdateHotBarPayload : GameEventPayload
+{
+    public List<WeaponDefinitionSO> currentWeapons;
+    public List<PassiveItemSO> passiveItems;
+
+    public UpdateHotBarPayload(List<WeaponDefinitionSO> currentWeapons, List<PassiveItemSO> passiveItems)
+    {
+        this.currentWeapons = currentWeapons;
+        this.passiveItems = passiveItems;
+    }
+}

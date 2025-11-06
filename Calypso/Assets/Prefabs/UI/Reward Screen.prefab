@@ -169,8 +169,8 @@ RectTransform:
   m_Children:
   - {fileID: 4241596222037655805}
   - {fileID: 795904539442347375}
-  - {fileID: 3822587661813443022}
   - {fileID: 8139979559648685755}
+  - {fileID: 3822587661813443022}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -470,7 +470,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2086487958905987756, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_Name
-      value: Reward Option
+      value: Reward Option 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667065298809218437, guid: fe486ab3063a1274bbab52334109d283, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -183
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667065298809218437, guid: fe486ab3063a1274bbab52334109d283, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 4153728351282149950, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_Pivot.x
@@ -558,7 +566,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: c34955c9933abd34dadca4f192a7adbd, type: 3}
     - target: {fileID: 7391899326760385948, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -584,15 +592,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2086487958905987756, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_Name
-      value: Reward Option
+      value: Reward Option 3
       objectReference: {fileID: 0}
     - target: {fileID: 2667065298809218437, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -177.43
+      value: 194
       objectReference: {fileID: 0}
     - target: {fileID: 2667065298809218437, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 179
+      value: 137
       objectReference: {fileID: 0}
     - target: {fileID: 4153728351282149950, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_Pivot.x
@@ -706,15 +714,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2086487958905987756, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_Name
-      value: Reward Option
+      value: Reward Option 2
       objectReference: {fileID: 0}
     - target: {fileID: 2667065298809218437, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -198.3
+      value: -0.000015259
       objectReference: {fileID: 0}
     - target: {fileID: 2667065298809218437, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 175
+      value: 212
       objectReference: {fileID: 0}
     - target: {fileID: 4153728351282149950, guid: fe486ab3063a1274bbab52334109d283, type: 3}
       propertyPath: m_Pivot.x

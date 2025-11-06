@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerHealth : GenericHealth
 {
+    [SerializeField] private OnStatsUpdatedSO statsUpdatedEvent;
+
     private int bonusHP;
     private bool invulnerable;
 
@@ -9,6 +11,16 @@ public class PlayerHealth : GenericHealth
     private float invulnerabilityTimer;
 
     PlayerManager playerManager;
+
+    private void OnEnable()
+    {
+        statsUpdatedEvent.RegisterListener(UpdateHealthStats);
+    }
+
+    private void OnDisable()
+    {
+        statsUpdatedEvent.UnregisterListener(UpdateHealthStats);
+    }
 
     private void Awake()
     {
@@ -59,6 +71,12 @@ public class PlayerHealth : GenericHealth
         maxHP = data.maxHP;
         hp = data.maxHP;
 
+    }
+
+    public void UpdateHealthStats(StatUpdatePayload payload)
+    {
+        maxHP = (int)payload.statSystem.GetFinalValue(StatType.MaxHealth);
+        invulnerabilityDuration = payload.statSystem.GetFinalValue(StatType.Invulnerability);
     }
 
     public override void TakeDamageRaw(int damage)

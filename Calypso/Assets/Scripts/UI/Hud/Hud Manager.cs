@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HudManager : MonoBehaviour
 {
-    [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
+    [SerializeField] private OnUpdateHotBarSO updateHotbarEvent;
 
     [SerializeField] private GameObject hotBarGroup;
     [SerializeField] private GameObject levelGroup;
@@ -62,12 +62,12 @@ public class HudManager : MonoBehaviour
 
     private void OnEnable()
     {
-        rewardSelectedEvent.RegisterListener(AddNewItem);
+        updateHotbarEvent.RegisterListener(UpdateHotbar);
     }
 
     private void OnDisable()
     {
-        rewardSelectedEvent.UnregisterListener(AddNewItem);
+        updateHotbarEvent.UnregisterListener(UpdateHotbar);
     }
 
     public void StartGameOver()
@@ -84,8 +84,9 @@ public class HudManager : MonoBehaviour
         resourcesGroup.SetActive(toggle);
     }
 
-    private void AddNewItem(SelectedRewardPayload payload)
+    private void UpdateHotbar(UpdateHotBarPayload payload)
     {
-        hotBar.AddItem(hotBarElements.PassiveBar, payload.option.itemData);
+        hotBar.RefreshBar(hotBarElements.WeaponBar, payload.currentWeapons);
+        hotBar.RefreshBar(hotBarElements.PassiveBar, payload.passiveItems);
     }
 }

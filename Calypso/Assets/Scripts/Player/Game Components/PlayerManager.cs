@@ -3,16 +3,28 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private OnDeathEventSO deathEvent;
+    [SerializeField] private OnStatsUpdatedSO statsUpdatedEvent;
 
     [SerializeField] private GameObject playerVisuals;
     [SerializeField] private GameObject inputManager;
     [SerializeField] private GameObject deathParticle;
     [SerializeField] private SphereCollider attractorTrigger;
+    [SerializeField] private WeaponController primaryWeapon;
 
     private StatSystem statSystem;
 
     public static PlayerManager Instance;
-    
+
+    private void OnEnable()
+    {
+        statsUpdatedEvent.RegisterListener(UpdatePlayerWeapons);
+    }
+
+    private void OnDisable()
+    {
+        statsUpdatedEvent.UnregisterListener(UpdatePlayerWeapons);
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -91,5 +103,10 @@ public class PlayerManager : MonoBehaviour
     public void UpdateAttractorSize(float value)
     {
         attractorTrigger.radius = value;
+    }
+
+    private void UpdatePlayerWeapons(StatUpdatePayload payload)
+    {
+        primaryWeapon.RecalculateStats();
     }
 }

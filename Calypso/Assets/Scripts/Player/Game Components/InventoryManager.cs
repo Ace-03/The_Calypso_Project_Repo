@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -7,6 +8,8 @@ public class InventoryManager : MonoBehaviour
     private StatSystem statSystem;
 
     [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
+    [SerializeField] private OnStatsUpdatedSO statsUpdatedEvent;
+    [SerializeField] private OnUpdateHotBarSO updateHotBarEvent;
     [SerializeField] private int maxPassiveItems;
     [SerializeField] private int maxWeapons;
 
@@ -71,6 +74,12 @@ public class InventoryManager : MonoBehaviour
         {
             effect.OnAcquired(newItemInstance, playerContext);
         }
+
+        List<PassiveItemSO> currentItems = passiveItems.Select(item => item.itemData).ToList();
+        List<WeaponDefinitionSO> currentWeapons = weapons.Select(weapon => weapon.GetWeaponData()).ToList();
+
+        updateHotBarEvent.Raise(new UpdateHotBarPayload(currentWeapons, currentItems));
+        statsUpdatedEvent.Raise(new StatUpdatePayload(statSystem));
     }
 
     private void UpgradeItem(EquippedItemInstance itemInstance, List<StatModifier> newModifiers)
@@ -91,7 +100,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // Optional: Broadcast event that an item was upgraded
+        statsUpdatedEvent.Raise(new StatUpdatePayload(statSystem));
     }
 
     public List<EquippedItemInstance> GetUpgradeableItems()

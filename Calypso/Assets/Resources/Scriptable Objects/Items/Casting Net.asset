@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 238a0bd59faa38e47b4e173765307487, type: 3}
-  m_Name: Item 3
+  m_Name: Casting Net
   m_EditorClassIdentifier: 
-  itemName: New Item
-  description: Basic Upgrade
-  sprite: {fileID: 0}
-  maxLevel: 0
-  itemBaseValue: 0
-  rarity: 0
-  itemBehaviors: []
+  itemName: Casting Net
+  description: Occasionallty drop a net that slows down enemies
+  sprite: {fileID: 21300000, guid: a29b2ad3e2535e64384580154a99960f, type: 3}
+  maxLevel: 5
+  rarity: 1
+  itemBehaviors:
+  - {fileID: 11400000, guid: 4ad16478b1b78ab4e9f2fac0a7de6f65, type: 2}
   modifierTemplates: []
-  primaryStatType: 5

@@ -9,7 +9,7 @@ public class PassiveItemSO : ScriptableObject
     public string description = "Basic Upgrade";
     public Sprite sprite;
     public int maxLevel;
-    public float itemBaseValue;
+    // public float itemBaseValue;
     public ItemRarity rarity;
 
     [Header("Behavior Implementations")]
@@ -18,9 +18,9 @@ public class PassiveItemSO : ScriptableObject
     [Header("Stat Modifier Templates")]
     public List<StatModifierTemplate> modifierTemplates;
 
-    [Header("Upgrade Configuration")]
+    //[Header("Upgrade Configuration")]
 
-    public StatType primaryStatType = StatType.MaxSpeed;
+    //public StatType primaryStatType = StatType.MaxSpeed;
 
     // additional info could be placed here like evolution info, synergies, and costs
 }

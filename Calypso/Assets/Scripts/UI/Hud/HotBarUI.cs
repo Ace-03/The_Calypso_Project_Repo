@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HotBarUI : MonoBehaviour
 {
@@ -10,26 +10,23 @@ public class HotBarUI : MonoBehaviour
     {
         hotBarElements = elements;
     }
-
-    public void AddItem(HotBar bar, WeaponDefinitionSO weaponData)
+    public void RefreshBar(HotBar bar, List<PassiveItemSO> passiveItems)
     {
-        HotBarSlot openSlot = bar.Slots.FirstOrDefault(m => m.isFilled == false);
+        clearBar(bar);
 
-        if (openSlot.isLocked == false)
+        foreach (PassiveItemSO item in passiveItems)
         {
-            openSlot.iconImage.sprite = weaponData.icon;
-            openSlot.isFilled = true;
+            AddItem(bar, item);
         }
     }
 
-    public void AddItem(HotBar bar, PassiveItemSO passiveItemData)
+    public void RefreshBar(HotBar bar, List<WeaponDefinitionSO> passiveItems)
     {
-        HotBarSlot openSlot = bar.Slots.FirstOrDefault(m => m.isFilled == false);
+        clearBar(bar);
 
-        if (openSlot.isLocked == false)
+        foreach (WeaponDefinitionSO item in passiveItems)
         {
-            openSlot.iconImage.sprite = passiveItemData.sprite;
-            openSlot.isFilled = true;
+            AddItem(bar, item);
         }
     }
 
@@ -49,6 +46,44 @@ public class HotBarUI : MonoBehaviour
     public HotBarSlot GetHotBarSlot(PassiveItemSO ItemData)
     {
         return hotBarElements.WeaponBar.Slots.Find(m => m.assignedPassiveItem == ItemData);
+    }
+
+    private void AddItem(HotBar bar, WeaponDefinitionSO weaponData)
+    {
+        HotBarSlot openSlot = bar.Slots.FirstOrDefault(m => m.isFilled == false);
+
+        if (openSlot.isLocked == false)
+        {
+            openSlot.iconImage.sprite = weaponData.icon;
+            openSlot.isFilled = true;
+        }
+    }
+
+    private void AddItem(HotBar bar, PassiveItemSO passiveItemData)
+    {
+        HotBarSlot openSlot = bar.Slots.FirstOrDefault(m => m.isFilled == false);
+
+        if (openSlot.isLocked == false)
+        {
+            openSlot.iconImage.sprite = passiveItemData.sprite;
+            openSlot.isFilled = true;
+        }
+    }
+
+    private void removeItem(HotBarSlot slot)
+    {
+        slot.assignedPassiveItem = null;
+        slot.assignedWeapon = null;
+        slot.iconImage.sprite = hotBarElements.emptySlotSprite;
+        slot.isFilled = false;
+    }
+
+    private void clearBar(HotBar bar)
+    {
+        foreach (HotBarSlot slot in bar.Slots)
+        {
+            removeItem(slot);
+        }
     }
 
     public void ToggleWeaponBar(bool isVisible)

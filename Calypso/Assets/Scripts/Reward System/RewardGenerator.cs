@@ -128,6 +128,7 @@ public class RewardGenerator : MonoBehaviour
 
                 List<StatModifier> rolledModifiers = new List<StatModifier>();
                 EquippedItemInstance existingInstance = null;
+                List<StatChangeDelta> deltas = null;
                 string instanceID;
                 bool isNew = false;
 
@@ -137,13 +138,13 @@ public class RewardGenerator : MonoBehaviour
 
                     int level = existingInstance.itemLevel + 1;
                     instanceID = existingInstance.instanceID;
-                    isNew = true;
 
                     rolledModifiers = RollModifiersForLevel(selectedItem, level, instanceID);
+                    deltas = CalculateStatDifferenceForUpgrade(existingInstance, rolledModifiers);
                 }
                 else
                 {
-                    isNew = false;
+                    isNew = true;
                     instanceID = System.Guid.NewGuid().ToString();
                     rolledModifiers = RollModifiersForLevel(selectedItem, 1, instanceID);
                 }
@@ -151,7 +152,7 @@ public class RewardGenerator : MonoBehaviour
                 newOption.itemData = selectedItem;
                 newOption.modifiers = rolledModifiers;
                 newOption.instanceID = instanceID;
-                newOption.deltaValues = CalculateStatDifferenceForUpgrade(existingInstance, rolledModifiers);
+                newOption.deltaValues = deltas;
                 newOption.isNew = isNew;
 
                 finalOptions.Add(newOption);
@@ -200,6 +201,20 @@ public class RewardGenerator : MonoBehaviour
         EquippedItemInstance existingInstance,
         List<StatModifier> newMods)
     {
+        if (existingInstance == null)
+        {
+            Debug.LogError("Trying to calculate for stat difference in item that does not exist");
+
+            return newMods.Select(mod => new StatChangeDelta
+            {
+                Type = mod.StatType,
+                oldValue = 0f,
+                newValue = mod.Value,
+                delta = mod.Value,
+                ModType = mod.ModType
+            }).ToList();
+        }
+
         List<StatModifier> oldMods = existingInstance.modifiers;
 
         List<StatChangeDelta> deltas = new List<StatChangeDelta>();

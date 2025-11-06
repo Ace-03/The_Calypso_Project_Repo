@@ -48,14 +48,15 @@ public enum StatType
     Invulnerability,
     Luck,
     MaxSpeed,
+    Accel,
+    Decel,
     Strength,
     Dexterity,
     Size,
     Cooldown,
     Duration,
     Amount,
+    ItemAttraction,
     none,
 
-    Accel,
-    Decel,
 }

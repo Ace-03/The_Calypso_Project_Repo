@@ -7,7 +7,9 @@ using System;
 [Serializable]
 public struct HotBarUIElements
 {
+    public Sprite emptySlotSprite;
     public GameObject hotBarSlotPrefab;
+
 
     public HotBar WeaponBar;
     public HotBar PassiveBar;
@@ -53,7 +55,7 @@ public struct LevelUIElements
 }
 
 [Serializable]
-public struct HotBarSlot
+public class HotBarSlot
 {
     public PassiveItemSO assignedPassiveItem;
     public WeaponController assignedWeapon;

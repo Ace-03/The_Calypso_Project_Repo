@@ -10,14 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 238a0bd59faa38e47b4e173765307487, type: 3}
-  m_Name: Item
+  m_Name: Hammer-Head
   m_EditorClassIdentifier: 
-  itemName: New Item
-  description: Basic Upgrade
-  sprite: {fileID: 0}
-  maxLevel: 0
-  itemBaseValue: 0
+  itemName: Hammer-Head
+  description: Increase Strength
+  sprite: {fileID: 21300000, guid: 5e4e411d56119cd4bbb57bb492d69db1, type: 3}
+  maxLevel: 5
   rarity: 0
-  itemBehaviors: []
-  modifierTemplates: []
-  primaryStatType: 5
+  itemBehaviors:
+  - {fileID: 0}
+  modifierTemplates:
+  - Type: 8
+    ModType: 1
+    MinValue: 10
+    MaxValue: 20

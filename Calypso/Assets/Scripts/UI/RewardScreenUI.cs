@@ -48,32 +48,32 @@ public class RewardScreenUI : MonoBehaviour
         rewardInfoPanelUI.itemName.text = option.itemData.itemName;
         rewardInfoPanelUI.itemDescription.text = option.itemData.description;
         rewardInfoPanelUI.statInfo.text = upgradeInfo;
+
+        components.rewardOptions[index] = rewardOptionUI;
     }
 
     public void OnRewardSelected(int index)
     {
+        Debug.Log($"index sekected is: {index}");
         SelectedRewardPayload payload = new SelectedRewardPayload()
         {
             option = components.rewardOptions[index].assignedItem,
         };
 
         rewardsSelectedEvent.Raise(payload);
+        HideRewardsScreen();
     }
     public void OnDisplayInfoPanel(int index)
     {
+        Debug.Log("Display Info Panel");
         components.rewardOptions[index].rewardInfoPanel.infoPanelParent.SetActive(true);
     }
 
     public void OnHideInfoPanel(int index)
     {
+        Debug.Log("Hide Info Panel");
         components.rewardOptions[index].rewardInfoPanel.infoPanelParent.SetActive(false);
 
-    }
-
-    public void OnRewardSelected()
-    {
-
-        HideRewardsScreen();
     }
 
     private void HideRewardsScreen()
@@ -102,7 +102,7 @@ public class RewardScreenUI : MonoBehaviour
                 }
             }
 
-            string value = $"{applicationType}{stat.Value}{unitType}";
+            string value = $"{applicationType}{stat.Value.ToString("F1")}{unitType}";
 
             upgradeInfo += $"{stat.StatType}: {value}\n";
         }
@@ -130,8 +130,8 @@ public class RewardScreenUI : MonoBehaviour
                 }
             }
 
-            string oldValue = $"{applicationType}{statChange.oldValue}{unitType}";
-            string newValue = $"{applicationType}{statChange.newValue}{unitType}";
+            string oldValue = $"{applicationType}{statChange.oldValue.ToString("F1")}{unitType}";
+            string newValue = $"{applicationType}{statChange.newValue.ToString("F1")}{unitType}";
 
             upgradeInfo += $"{statChange.Type}: {oldValue} --> {newValue}\n";
         }
