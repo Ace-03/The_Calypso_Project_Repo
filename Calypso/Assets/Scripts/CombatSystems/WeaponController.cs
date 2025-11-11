@@ -3,12 +3,9 @@ using System.Collections.Generic;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField]
-    private WeaponDefinitionSO weaponData;
-    [SerializeField]
+    [SerializeField] private WeaponDefinitionSO weaponData;
     public Transform weaponPivot;
-    [SerializeField]
-    private bool autoInitialize = false;
+    [SerializeField] private bool autoInitialize = false;
 
     public readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
 
@@ -18,12 +15,11 @@ public class WeaponController : MonoBehaviour
 
     private StatSystem stats;
 
-    private void Start()
+    private void Awake()
     {
         if (autoInitialize)
             Initialize();
     }
-
     public void Initialize()
     {
         stats = ContextRegister.Instance.GetContext().statSystem;
@@ -33,6 +29,7 @@ public class WeaponController : MonoBehaviour
             Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
             return;
         }
+        MakeWeaponPivot();
         InitializeData();
         RecalculateStats();
         weaponBehavior?.ApplyWeaponStats(this);
@@ -58,7 +55,7 @@ public class WeaponController : MonoBehaviour
     {
         if (weaponInstance != null)
             Destroy(weaponInstance);
-        
+
         if (weaponData == null)
         {
             Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
@@ -66,21 +63,9 @@ public class WeaponController : MonoBehaviour
         }
 
         if (weaponPivot == null)
-        {
-            if (transform.Find("WeaponPivot") != null)
-            {
-                weaponPivot = transform.Find("WeaponPivot");
-            }
-            else
-            {
-                GameObject pivotObject = Instantiate(new GameObject(), transform);
-
-                weaponPivot = pivotObject.transform;
-                pivotObject.name = "WeaponPivot";
-                pivotObject.tag = "Enemy";
-                pivotObject.layer = 7;
-            }
-        }
+            MakeWeaponPivot();
+        else
+            RenamePivot();
 
         weaponInstance = Instantiate(weaponData.weaponBehaviorPrefab, weaponPivot);
         weaponBehavior = weaponInstance.GetComponent<IWeaponBehavior>();
@@ -139,6 +124,39 @@ public class WeaponController : MonoBehaviour
     {
         weaponData = data;
         Initialize();
+    }
+
+    public void DestroyWeaponInstance()
+    {
+        if (weaponInstance != null) { Destroy(weaponInstance); }
+        if (weaponPivot != null) { Destroy(weaponPivot); }
+    }
+
+    private void MakeWeaponPivot()
+    {
+        if (tag == "Player")
+        {
+            GameObject pivotObject = Instantiate(new GameObject(), transform);
+            pivotObject.name = $"{weaponData.weaponName} Pivot";
+            pivotObject.tag = "Player";
+            pivotObject.layer = 8;
+
+            weaponPivot = pivotObject.transform;
+        }
+        else if (tag == "Enemy")
+        {
+            GameObject pivotObject = Instantiate(new GameObject(), transform);
+            pivotObject.name = $"{weaponData.weaponName} Pivot";
+            pivotObject.tag = "Enemy";
+            pivotObject.layer = 7;
+
+            weaponPivot = pivotObject.transform;
+        }
+    }
+
+    private void RenamePivot()
+    {
+        weaponPivot.name = $"{weaponData.weaponName} Pivot";
     }
 
     #region Getters

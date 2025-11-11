@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float bobSpeed = 0.1f;
 
-    [SerializeField]
     private Transform weaponPivot;
 
     [SerializeField]
@@ -35,6 +34,7 @@ public class PlayerController : MonoBehaviour
         }
 
         RecalculateMovementStats(ContextRegister.Instance.GetContext().statSystem);
+        weaponPivot = ContextRegister.Instance.GetContext().playerManager.GetPrimaryWeapon().weaponPivot;
         spriteController.Initialize(spriteData);
         spriteController.bobAmmount = bobAmmount / 100;
 

@@ -7,13 +7,18 @@ public class InventoryManager : MonoBehaviour
     private PlayerContext playerContext;
     private StatSystem statSystem;
 
+    [Header("Passive Item Events")]
     [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
     [SerializeField] private OnStatsUpdatedSO statsUpdatedEvent;
     [SerializeField] private OnUpdateHotBarSO updateHotBarEvent;
+    
+    [Header("Weapon Events")]
+    [SerializeField] private OnWeaponCraftedEventSO weaponCraftedEvent;
+    [SerializeField] private OnWeaponsUpdatedEventSO weaponsUpdatedEvent;
+
+    [Header("List Info")]
     [SerializeField] private int maxPassiveItems;
     [SerializeField] private int maxWeapons;
-
-
     [SerializeField] private List<EquippedItemInstance> passiveItems;
     [SerializeField] private List<WeaponController> weapons;
 

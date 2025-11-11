@@ -14951,7 +14951,6 @@ Transform:
   m_Children:
   - {fileID: 8876641064343228229}
   - {fileID: 7764472329224569483}
-  - {fileID: 5554833905175610038}
   - {fileID: 5536432772658178411}
   - {fileID: 3105209095593448553}
   m_Father: {fileID: 0}
@@ -14997,7 +14996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bobAmmount: 0.65
   bobSpeed: 0.1
-  weaponPivot: {fileID: 5554833905175610038}
+  weaponPivot: {fileID: 0}
   spriteData:
     renderers:
       player: {fileID: 2525287216681894628}
@@ -15024,7 +15023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 08b5135d76af6ba478a0d320cb99736f, type: 2}
-  weaponPivot: {fileID: 5554833905175610038}
+  weaponPivot: {fileID: 0}
   autoInitialize: 1
 --- !u!114 &5034327732661880448
 MonoBehaviour:
@@ -15113,37 +15112,6 @@ MonoBehaviour:
   primaryWeapon: {fileID: 6693502108835353163}
   playerHealth: {fileID: 5034327732661880448}
   playerController: {fileID: 2636485834852036548}
---- !u!1 &7063436058657950361
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5554833905175610038}
-  m_Layer: 8
-  m_Name: WeaponPivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5554833905175610038
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7063436058657950361}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3373966260996384910}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8166983347140975720
 GameObject:
   m_ObjectHideFlags: 0

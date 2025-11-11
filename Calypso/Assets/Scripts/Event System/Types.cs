@@ -73,3 +73,13 @@ public class UpdateHotBarPayload : GameEventPayload
         this.passiveItems = passiveItems;
     }
 }
+
+public class WeaponCraftedPayload : GameEventPayload
+{
+    public WeaponDefinitionSO weaponData;
+}
+
+public class WeaponsUpdatePayload : GameEventPayload
+{
+    public List<WeaponController> weapons;
+}
