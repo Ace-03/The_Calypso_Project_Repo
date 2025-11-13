@@ -15023,8 +15023,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 08b5135d76af6ba478a0d320cb99736f, type: 2}
-  weaponPivot: {fileID: 0}
   autoInitialize: 1
+  weaponPivot: {fileID: 0}
 --- !u!114 &5034327732661880448
 MonoBehaviour:
   m_ObjectHideFlags: 0
