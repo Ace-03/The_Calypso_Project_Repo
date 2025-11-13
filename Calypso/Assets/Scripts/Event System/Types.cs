@@ -29,11 +29,6 @@ public class RewardOptionsPayload : GameEventPayload
     public List<RewardOption> options;
 }
 
-public class TimerPayload : GameEventPayload
-{
-
-}
-
 public class RewardOption
 {
     public PassiveItemSO itemData;
@@ -72,4 +67,19 @@ public class UpdateHotBarPayload : GameEventPayload
         this.currentWeapons = currentWeapons;
         this.passiveItems = passiveItems;
     }
+}
+
+public class WeaponCraftedPayload : GameEventPayload
+{
+    public WeaponDefinitionSO weaponData;
+}
+
+public class WeaponsUpdatePayload : GameEventPayload
+{
+    public List<WeaponDefinitionSO> weapons;
+}
+
+public class CraftingAttemptPayload : GameEventPayload
+{
+    public WeaponRecipeSO weaponRecipe;
 }

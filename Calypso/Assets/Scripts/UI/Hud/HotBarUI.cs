@@ -20,11 +20,11 @@ public class HotBarUI : MonoBehaviour
         }
     }
 
-    public void RefreshBar(HotBar bar, List<WeaponDefinitionSO> passiveItems)
+    public void RefreshBar(HotBar bar, List<WeaponDefinitionSO> weapons)
     {
         clearBar(bar);
 
-        foreach (WeaponDefinitionSO item in passiveItems)
+        foreach (WeaponDefinitionSO item in weapons)
         {
             AddItem(bar, item);
         }

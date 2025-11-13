@@ -16,7 +16,7 @@ MonoBehaviour:
   - playerLevel: 1
     iron: 5
     stone: 3
-    LevelUpReward: {fileID: 11400000, guid: 08b5135d76af6ba478a0d320cb99736f, type: 2}
+    LevelUpReward: {fileID: 11400000, guid: de911b01e708f2646ac65bac4a9549dc, type: 2}
   - playerLevel: 3
     iron: 20
     stone: 15

@@ -7,10 +7,10 @@ public class TimedProjectileSpawnSO : ItemEffectSO
 {
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float timerLength;
-    private GenericTimerEventSO timerEvent;
+    private OnGenericEventSO timerEvent;
     private GenericTimer timer;
 
-    private UnityAction<TimerPayload> timerListener;
+    private UnityAction<GameEventPayload> timerListener;
 
     public override void ExecuteEffect(PlayerContext context, GameEventPayload payload)
     {
@@ -19,7 +19,7 @@ public class TimedProjectileSpawnSO : ItemEffectSO
 
     public override void OnAcquired(EquippedItemInstance itemInstance, PlayerContext context)
     {
-        timerEvent = CreateInstance<GenericTimerEventSO>();
+        timerEvent = CreateInstance<OnGenericEventSO>();
         timer = context.playerManager.AddComponent<GenericTimer>();
         timer.Initialize(timerEvent, timerLength);
 

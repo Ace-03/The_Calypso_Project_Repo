@@ -113,4 +113,9 @@ public class PlayerManager : MonoBehaviour
         playerHealth.UpdateHealthStats(payload.statSystem);
         playerController.RecalculateMovementStats(payload.statSystem);
     }
+
+    public WeaponController GetPrimaryWeapon()
+    {
+        return primaryWeapon;
+    }
 }

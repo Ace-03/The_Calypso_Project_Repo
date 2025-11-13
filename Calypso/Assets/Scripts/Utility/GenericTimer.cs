@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GenericTimer : MonoBehaviour
 {
-    public GenericTimerEventSO timerEvent;
+    public OnGenericEventSO timerEvent;
     public float resetTime;
 
     private float currentTime;
@@ -12,7 +12,7 @@ public class GenericTimer : MonoBehaviour
         currentTime = 0;
     }
 
-    public void Initialize(GenericTimerEventSO eventObject, float TimeToReset)
+    public void Initialize(OnGenericEventSO eventObject, float TimeToReset)
     {
         timerEvent = eventObject;
         resetTime = TimeToReset;
@@ -25,7 +25,7 @@ public class GenericTimer : MonoBehaviour
         if (currentTime > resetTime)
         {
             currentTime = 0;
-            timerEvent.Raise(new TimerPayload());
+            timerEvent.Raise(new GameEventPayload());
         }
     }
 }
