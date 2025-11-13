@@ -15,7 +15,7 @@ MonoBehaviour:
   maxHealth: 100
   armor: 0
   recovery: 1
-  invulnerabilityPeriod: 0.5
+  invulnerabilityPeriod: 0
   luck: 100
   maxSpeed: 10
   acceleration: 20
