@@ -312,7 +312,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveComposite:
   - {fileID: 11400000, guid: 194a230e4c0ca464893311d8ff8c5f2a, type: 2}
-  playerTransform: {fileID: 0}
 --- !u!1 &3842575261979015506
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +903,8 @@ MonoBehaviour:
   rewardSelectedEvent: {fileID: 11400000, guid: 2715797d4803fd34181804696dcf3b77, type: 2}
   statsUpdatedEvent: {fileID: 11400000, guid: 8cbde4debb08a654f9e12db0d1d50805, type: 2}
   updateHotBarEvent: {fileID: 11400000, guid: 299d2cae329af9b43b4f85f7332d2b47, type: 2}
+  weaponCraftedEvent: {fileID: 11400000, guid: 4b034238c4731c944ac8ff1f31e3e864, type: 2}
+  weaponsUpdatedEvent: {fileID: 11400000, guid: afe29241f1e28ec48b93fe0730e0cfbf, type: 2}
   maxPassiveItems: 4
   maxWeapons: 2
   passiveItems: []
@@ -1001,9 +1002,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
+  primaryWeaponManager: {fileID: 8885991549919542658}
   inventoryManager: {fileID: 5587459107305526663}
   resourceTracker: {fileID: 1157612700944467293}
   levelManager: {fileID: 3221803632770803115}
+  baseManager: {fileID: 6801550527011735892}
   DayCycle: {fileID: 1580633339944615185}
   spawnManager: {fileID: 5570168739754423075}
   rewardGenerator: {fileID: 774743269450103344}
@@ -1118,15 +1121,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52038ad092d767f45aad65b439229bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  craftingAttemptEvent: {fileID: 11400000, guid: d5da17cbb076bee44b7b8b9078497fb9, type: 2}
+  weaponCraftedEvent: {fileID: 11400000, guid: 4b034238c4731c944ac8ff1f31e3e864, type: 2}
   MenuCanvas: {fileID: 3054410031940882545}
   BaseLevelUpScreen: {fileID: 4360014072303015096}
   WeaponCraftingScreen: {fileID: 2689884878698486617}
   PrimaryWeaponUpgradeScreen: {fileID: 4008566821843259043}
   MainBaseScreen: {fileID: 686857966492367864}
-  baseManager: {fileID: 6801550527011735892}
-  weaponManager: {fileID: 8885991549919542658}
-  resourceTracker: {fileID: 1157612700944467293}
-  levelManager: {fileID: 3221803632770803115}
+  statsTextBox: {fileID: 8595699520520112391}
   baseUpgradeUI:
     requirementsText: {fileID: 1362050779084950773}
     levelText: {fileID: 6872546394997660435}
@@ -1440,7 +1442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3620962084623227100, guid: e77bc03c3ca9cb84392635a2da229808, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 216.4855
       objectReference: {fileID: 0}
     - target: {fileID: 3620962084623227100, guid: e77bc03c3ca9cb84392635a2da229808, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1536,7 +1538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4416995633205279046, guid: e77bc03c3ca9cb84392635a2da229808, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4944467502884298635, guid: e77bc03c3ca9cb84392635a2da229808, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1889,6 +1891,17 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8595699520520112391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6946007143154180144, guid: e77bc03c3ca9cb84392635a2da229808, type: 3}
+  m_PrefabInstance: {fileID: 1670593148081875255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 

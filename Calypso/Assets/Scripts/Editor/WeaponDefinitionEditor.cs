@@ -1,10 +1,13 @@
 using UnityEditor;
 using UnityEngine;
 
+/*
 [CustomEditor(typeof(WeaponDefinitionSO))]
 public class WeaponDefinitionEditor : Editor
 {
     SerializedProperty weaponName;
+    SerializedProperty weaponDescription;
+    SerializedProperty icon;
     SerializedProperty weaponBehaviorPrefab;
     SerializedProperty bulletSprite;
     SerializedProperty baseCooldown;
@@ -26,6 +29,8 @@ public class WeaponDefinitionEditor : Editor
     private void OnEnable()
     {
         weaponName = serializedObject.FindProperty("weaponName");
+        weaponName = serializedObject.FindProperty("weaponDescription");
+        weaponName = serializedObject.FindProperty("icon");
         weaponBehaviorPrefab = serializedObject.FindProperty("weaponBehaviorPrefab");
         bulletSprite = serializedObject.FindProperty("bulletSprite");
         baseCooldown = serializedObject.FindProperty("baseCooldown");
@@ -50,6 +55,8 @@ public class WeaponDefinitionEditor : Editor
         serializedObject.Update();
 
         EditorGUILayout.PropertyField(weaponName);
+        EditorGUILayout.PropertyField(weaponDescription);
+        EditorGUILayout.PropertyField(icon);
         EditorGUILayout.PropertyField(weaponBehaviorPrefab);
         EditorGUILayout.PropertyField(bulletSprite);
         EditorGUILayout.PropertyField(baseCooldown);
@@ -80,3 +87,4 @@ public class WeaponDefinitionEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+*/

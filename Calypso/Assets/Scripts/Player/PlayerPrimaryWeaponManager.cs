@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPrimaryWeaponManager : MonoBehaviour
@@ -7,7 +6,7 @@ public class PlayerPrimaryWeaponManager : MonoBehaviour
     [SerializeField] private WeaponController playerWeaponController;
     [SerializeField] private PrimaryWeaponProgressionSO progressionData;
 
-    public WeaponProgressionInfo currentProgressionState;
+    public WeaponProgressionInfo currentProgressionState; 
 
     private void Start()
     {
@@ -20,7 +19,6 @@ public class PlayerPrimaryWeaponManager : MonoBehaviour
         playerWeaponController.SetWeaponData(GetRewardWeapon());
         currentProgressionState = progressionData.weaponLevelProgression[Mathf.Clamp(weaponLevel, 0, progressionData.weaponLevelProgression.Count - 1)];
         weaponLevel++;
-
     }
 
     public bool CheckRequirements(WeaponProgressionInfo currentStatus)

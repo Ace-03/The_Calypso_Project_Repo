@@ -7,15 +7,20 @@ public class InventoryManager : MonoBehaviour
     private PlayerContext playerContext;
     private StatSystem statSystem;
 
+    [Header("Passive Item Events")]
     [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
     [SerializeField] private OnStatsUpdatedSO statsUpdatedEvent;
     [SerializeField] private OnUpdateHotBarSO updateHotBarEvent;
+    
+    [Header("Weapon Events")]
+    [SerializeField] private OnWeaponCraftedEventSO weaponCraftedEvent;
+    [SerializeField] private OnWeaponsUpdatedEventSO weaponsUpdatedEvent;
+
+    [Header("List Info")]
     [SerializeField] private int maxPassiveItems;
     [SerializeField] private int maxWeapons;
-
-
     [SerializeField] private List<EquippedItemInstance> passiveItems;
-    [SerializeField] private List<WeaponController> weapons;
+    [SerializeField] private List<WeaponDefinitionSO> weapons;
 
     private void Start()
     {
@@ -26,11 +31,13 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable()
     {
         rewardSelectedEvent.RegisterListener(ProcessSelectedReward);
+        weaponCraftedEvent.RegisterListener(ProcessCraftedWeapon);
     }
 
     private void OnDisable()
     {
         rewardSelectedEvent.RegisterListener(ProcessSelectedReward);
+        weaponCraftedEvent.RegisterListener(ProcessCraftedWeapon);
     }
 
     private void ProcessSelectedReward(SelectedRewardPayload reward)
@@ -45,6 +52,29 @@ public class InventoryManager : MonoBehaviour
         {
             UpgradeItem(existingInstance, reward.option.modifiers);
         }
+    }
+
+    private void ProcessCraftedWeapon(WeaponCraftedPayload payload)
+    {
+        if (weapons.Count >= maxWeapons)
+        {
+            Debug.LogWarning("Max weapon limit reached. Cannot add new weapon.");
+            Debug.LogWarning("In the future add weapon Swapping System.");
+            return;
+        }
+
+        if (HasWeapon(payload.weaponData))
+        {
+            Debug.LogWarning("Weapon already exists in inventory. Cannot add duplicate weapon.");
+            return;
+        }
+
+        weapons.Add(payload.weaponData);
+
+        List<PassiveItemSO> currentItems = passiveItems.Select(item => item.itemData).ToList();
+
+        weaponsUpdatedEvent.Raise(new WeaponsUpdatePayload() { weapons = weapons });
+        updateHotBarEvent.Raise(new UpdateHotBarPayload(weapons, currentItems));
     }
 
     private void AddNewItem(SelectedRewardPayload reward)
@@ -76,10 +106,9 @@ public class InventoryManager : MonoBehaviour
         }
 
         List<PassiveItemSO> currentItems = passiveItems.Select(item => item.itemData).ToList();
-        List<WeaponDefinitionSO> currentWeapons = weapons.Select(weapon => weapon.GetWeaponData()).ToList();
 
-        updateHotBarEvent.Raise(new UpdateHotBarPayload(currentWeapons, currentItems));
         statsUpdatedEvent.Raise(new StatUpdatePayload(statSystem));
+        updateHotBarEvent.Raise(new UpdateHotBarPayload(weapons, currentItems));
     }
 
     private void UpgradeItem(EquippedItemInstance itemInstance, List<StatModifier> newModifiers)
@@ -113,7 +142,7 @@ public class InventoryManager : MonoBehaviour
         return passiveItems;
     }
 
-    public List<WeaponController> GetAllWeapons()
+    public List<WeaponDefinitionSO> GetAllWeapons()
     {
         return weapons;
     }
@@ -123,9 +152,9 @@ public class InventoryManager : MonoBehaviour
         return passiveItems.Find(i => i.itemData == data);
     }
 
-    public WeaponController GetWeapon(WeaponDefinitionSO data)
+    public WeaponDefinitionSO GetWeapon(WeaponDefinitionSO data)
     {
-        return weapons.Find(w => w.GetWeaponData() == data);
+        return weapons.Find(w => w == data);
     }
 
     public bool HasItem(PassiveItemSO itemToCheck)
@@ -139,9 +168,9 @@ public class InventoryManager : MonoBehaviour
 
     public bool HasWeapon(WeaponDefinitionSO weaponToCheck)
     {
-        foreach(WeaponController weapon in weapons)
+        foreach(WeaponDefinitionSO weapon in weapons)
         {
-            if (weapon.GetWeaponData() == weaponToCheck) return true;
+            if (weapon == weaponToCheck) return true;
         }
         return false;
     }

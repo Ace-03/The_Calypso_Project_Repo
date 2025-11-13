@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplodingParticle : MonoBehaviour
@@ -17,7 +18,7 @@ public class ExplodingParticle : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
         // Get collision point(s)
-        ParticleCollisionEvent[] collisionEvents = new ParticleCollisionEvent[10];
+        List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
         int collisionCount = ps.GetCollisionEvents(other, collisionEvents);
 
         for (int i = 0; i < collisionCount; i++)
