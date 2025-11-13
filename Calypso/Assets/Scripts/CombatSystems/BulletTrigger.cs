@@ -28,6 +28,11 @@ public class BulletTrigger : MonoBehaviour
         TryDamage(other.gameObject);
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        TryDamage(other.gameObject);
+    }
+
     private void TryDamage(GameObject other, bool isExternal = false)
     {
         if (other.GetComponent<GenericHealth>() != null)

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238a0bd59faa38e47b4e173765307487, type: 3}
   m_Name: Magnet
   m_EditorClassIdentifier: 
-  itemName: New Item
-  description: Basic Upgrade
+  itemName: Magnet
+  description: Increase Item pickup range
   sprite: {fileID: 21300000, guid: e18f2155e64a0944cae2c4b0b924c22d, type: 3}
   maxLevel: 5
   rarity: 0
