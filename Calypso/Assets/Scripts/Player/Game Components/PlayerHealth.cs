@@ -58,7 +58,7 @@ public class PlayerHealth : GenericHealth
         invulnerabilityDuration = data.invulnerabilityDuration;
         maxHP = data.maxHP;
         hp = data.maxHP;
-
+        HudManager.Instance.health.UpdatePlayerHealth(hp, maxHP);
     }
 
     public void UpdateHealthStats(StatSystem statSystem)
