@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Burst_Rifle_LV2
   m_EditorClassIdentifier: 
   weaponName: Burst Rifle
+  weaponDescription: 
+  icon: {fileID: 21300000, guid: a705a6ac82afabb49abbc649c7399865, type: 3}
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 656adfd913d3b53449b3dce7c8dbdfcd, type: 3}
   bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
   baseCooldown: 0.8

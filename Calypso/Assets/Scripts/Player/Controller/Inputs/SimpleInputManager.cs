@@ -33,7 +33,7 @@ public class SimpleInputManager : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             moveInput += Vector3.right;
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
             invoker.ExecuteCommand(new InteractCommand(player));
 
         moveInput.Normalize();

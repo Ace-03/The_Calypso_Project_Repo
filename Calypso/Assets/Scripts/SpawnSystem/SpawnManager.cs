@@ -5,13 +5,19 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public List<WaveSequenceDefinitionSO> waveComposite;
-    public Transform playerTransform;
+    private Transform playerTransform;
 
     private WaveSequenceDefinitionSO currentSequence;
     private int currentWaveIndex = -1;
     private float waveTimer = 0f;
 
     private bool spawningActive = false;
+
+    private void Start()
+    {
+        playerTransform = ContextRegister.Instance.GetContext().playerTransform;
+    }
+
     public void ToggleSpawning(bool toggle)
     {
         if (toggle == false)
