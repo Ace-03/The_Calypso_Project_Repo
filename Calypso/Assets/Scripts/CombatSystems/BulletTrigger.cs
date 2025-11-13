@@ -28,7 +28,7 @@ public class BulletTrigger : MonoBehaviour
         TryDamage(other.gameObject);
     }
 
-    private void TryDamage(GameObject other)
+    private void TryDamage(GameObject other, bool isExternal = false)
     {
         if (other.GetComponent<GenericHealth>() != null)
         {
@@ -60,5 +60,9 @@ public class BulletTrigger : MonoBehaviour
             other.GetComponent<GenericHealth>().TakeDamage(damageInfo);
 
         }
+    }
+    public void TryExternalDamage(GameObject other)
+    {
+        TryDamage(other, true);
     }
 }

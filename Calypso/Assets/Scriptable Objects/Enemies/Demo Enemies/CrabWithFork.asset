@@ -22,7 +22,7 @@ MonoBehaviour:
   movementSpeed: 1.5
   DifficultyModifier: 1
   aimSpeed: 1
-  weapon: {fileID: 11400000, guid: e745a26d142d66f4784742b1d07fb3ce, type: 2}
+  weapon: {fileID: 11400000, guid: ea8de3f937f1407429266178c6c986d5, type: 2}
   knockbackResistance: 0
   stunResistance: 0
   poisonResistance: 0

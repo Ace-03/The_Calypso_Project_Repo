@@ -52,17 +52,19 @@ public class PropGenerator : MonoBehaviour
 
             if (useExclusionZones)
             {
+                GameObject prop = SpawnProp();
+                
                 foreach (Collider coll in ExclusionZones)
                 {
-                    if (!coll.bounds.Contains(randomPosition))
-                    {
-                        SpawnProp();
-                    }
-                }
+                    if (prop == null) break;
 
+                    if (coll.bounds.Contains(randomPosition)) 
+                        DestroyImmediate(prop);
+                }
             }
             else
             {
+                Debug.Log("Spawning prop in don't use exclusion zones");
                 SpawnProp();
             }
         }
@@ -83,9 +85,8 @@ public class PropGenerator : MonoBehaviour
             DestroyImmediate(propContainer.GetChild(i).gameObject);
     }
 
-    private void SpawnProp()
+    private GameObject SpawnProp()
     {
-        Instantiate(propPrefab, randomPosition, givenRotation, propContainer);
-
+        return Instantiate(propPrefab, randomPosition, givenRotation, propContainer);
     }
 }

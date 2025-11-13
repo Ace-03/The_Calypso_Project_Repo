@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: SHOTGUN
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: cb4888ab48b37684886b8e43455a7ef7, type: 3}
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
   baseCooldown: 1.5
   baseDamage: 3
   baseProjectileSpeed: 20

@@ -478,7 +478,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3661422097101027746}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: BaseUI, Assembly-CSharp
+        m_MethodName: OnTryPrimaryWeaponUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1032789695102615826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2725,7 +2737,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 716003196895352561}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: BaseUI, Assembly-CSharp
+        m_MethodName: OnTryBaseUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4179854493732282876
 GameObject:
   m_ObjectHideFlags: 0
