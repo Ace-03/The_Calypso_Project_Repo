@@ -1355,7 +1355,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.000000038146, y: 0.226, z: 0.00000019073}
-  m_LocalScale: {x: -10.841971, y: 0.40228, z: 15.390515}
+  m_LocalScale: {x: 10.84197, y: 0.40228, z: 15.390515}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 675840689}
@@ -2283,6 +2283,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 706337086871548832, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ac96350a1b7dd9c4bb8ba0016030e600, type: 3}
     - target: {fileID: 786642881122812090, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: playerManager
       value: 
@@ -2335,6 +2339,14 @@ PrefabInstance:
       propertyPath: stonePrefab
       value: 
       objectReference: {fileID: 8462755256029153103, guid: 49ee8dd931ab4544ab5caa5933d2d3cc, type: 3}
+    - target: {fileID: 1163746043941546006, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -327.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163746043941546006, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000031471
+      objectReference: {fileID: 0}
     - target: {fileID: 1506945111628054301, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_SizeDelta.x
       value: 194.7965
@@ -2369,7 +2381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: dayDuration
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: lightingData.light
@@ -2379,6 +2391,18 @@ PrefabInstance:
       propertyPath: lightingData.lightPivot
       value: 
       objectReference: {fileID: 1922684790}
+    - target: {fileID: 1843003664358446609, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 80.7785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843003664358446609, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 332.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843003664358446609, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000011563
+      objectReference: {fileID: 0}
     - target: {fileID: 1890653585164477424, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2519,6 +2543,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1859690510}
+    - target: {fileID: 2801349000976208651, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: aimMethod
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3053267411439205791, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2618,6 +2646,22 @@ PrefabInstance:
     - target: {fileID: 4944750315392339200, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021345513197674387, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021345513197674387, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5699268
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021345513197674387, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021345513197674387, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278227455
       objectReference: {fileID: 0}
     - target: {fileID: 5225389742469727727, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2795,6 +2839,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7282076204411687154, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7282076204411687154, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.7813139
+      objectReference: {fileID: 0}
+    - target: {fileID: 7282076204411687154, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.41823888
+      objectReference: {fileID: 0}
+    - target: {fileID: 7282076204411687154, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294952811
+      objectReference: {fileID: 0}
     - target: {fileID: 7300349903808620307, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0.5
@@ -2819,6 +2879,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 176.7
       objectReference: {fileID: 0}
+    - target: {fileID: 7310418732824268858, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4a90f7340f8461c409e02a9a50e9f325, type: 3}
     - target: {fileID: 7466764017000435719, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: luck
       value: 1
@@ -2839,6 +2903,10 @@ PrefabInstance:
       propertyPath: playerVisuals
       value: 
       objectReference: {fileID: 1275128795}
+    - target: {fileID: 7591868257140563980, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_Name
+      value: Boats UI
+      objectReference: {fileID: 0}
     - target: {fileID: 7597625183390032460, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

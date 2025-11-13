@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DayCycle : MonoBehaviour
 {
+    [SerializeField] private OnDayStateChangeEventSO DayStateChangeEvent;
+
     public DayCycleData lightingData;
 
     public float dayDuration = 120f;
@@ -89,11 +91,25 @@ public class DayCycle : MonoBehaviour
             StartDay();
         }
 
+        DayStateChangeEvent.Raise(new DayStateChangePayload(isDayTime, dayCount));
         dayNightClock = 0f;
     }
 
     private void CompleteCycle()
     {
         cycleClock = 0f;
+    }
+
+    public float GetDayProgressPercentage()
+    {
+        float dayNightRatio = isDayTime ? dayDuration * dayLengthPercentage :
+        dayDuration * (1 - dayLengthPercentage);
+
+        return dayNightClock / dayNightRatio;
+    }
+
+    public float GetCycleProgressProgression()
+    {
+        return cycleClock / dayDuration;
     }
 }
