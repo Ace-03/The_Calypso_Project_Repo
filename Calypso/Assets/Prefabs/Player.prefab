@@ -14927,8 +14927,9 @@ GameObject:
   - component: {fileID: 5034327732661880448}
   - component: {fileID: 2971592590130550337}
   - component: {fileID: 1569674386504143639}
-  - component: {fileID: 3842321106409920161}
   - component: {fileID: 8529168100601639270}
+  - component: {fileID: 3842321106409920161}
+  - component: {fileID: 6254831323610310648}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -14996,7 +14997,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bobAmmount: 0.65
   bobSpeed: 0.1
-  weaponPivot: {fileID: 0}
   spriteData:
     renderers:
       player: {fileID: 2525287216681894628}
@@ -15076,21 +15076,6 @@ CapsuleCollider:
   m_Height: 0.33
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3842321106409920161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887405348467899213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8429484b68e46344a452efb41e72566, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportHomeButton: 104
-  homeWaypoint: {fileID: 0}
-  verticleOffset: 1.94
 --- !u!114 &8529168100601639270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15112,6 +15097,34 @@ MonoBehaviour:
   primaryWeapon: {fileID: 6693502108835353163}
   playerHealth: {fileID: 5034327732661880448}
   playerController: {fileID: 2636485834852036548}
+--- !u!114 &3842321106409920161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887405348467899213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8429484b68e46344a452efb41e72566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportHomeButton: 104
+  homeWaypoint: {fileID: 0}
+  verticleOffset: 1.94
+--- !u!114 &6254831323610310648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887405348467899213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ecfc72e22d9834fa569ddc45f6ddb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponsUpdatedEvent: {fileID: 11400000, guid: afe29241f1e28ec48b93fe0730e0cfbf, type: 2}
 --- !u!1 &8166983347140975720
 GameObject:
   m_ObjectHideFlags: 0

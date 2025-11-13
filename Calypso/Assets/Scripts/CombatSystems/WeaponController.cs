@@ -4,11 +4,11 @@ using System.Collections.Generic;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private WeaponDefinitionSO weaponData;
-    public Transform weaponPivot;
     [SerializeField] private bool autoInitialize = false;
 
     public readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
 
+    public Transform weaponPivot;
     private GameObject weaponInstance;
     private IWeaponBehavior weaponBehavior;
     private float nextAttackTime;
@@ -29,7 +29,6 @@ public class WeaponController : MonoBehaviour
             Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
             return;
         }
-        MakeWeaponPivot();
         InitializeData();
         RecalculateStats();
         weaponBehavior?.ApplyWeaponStats(this);
@@ -142,6 +141,7 @@ public class WeaponController : MonoBehaviour
             pivotObject.layer = 8;
 
             weaponPivot = pivotObject.transform;
+            Debug.Log("Created Player Weapon Pivot");
         }
         else if (tag == "Enemy")
         {

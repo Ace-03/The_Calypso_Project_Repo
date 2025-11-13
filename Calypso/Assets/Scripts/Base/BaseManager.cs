@@ -57,6 +57,39 @@ public class BaseManager : MonoBehaviour
             return passes;
     }
 
+    public bool CheckRequirements(WeaponCraftingRequirements requirements,  WeaponCraftingRequirements currentStats)
+    {
+        bool passes = true;
+        string logMessage = "Crafting Status: ";
+
+        if (currentStats.baseLevel < requirements.baseLevel)
+        {
+            logMessage += "Base Level Is too low, ";
+            passes = false;
+        }
+        if (currentStats.ironCost < requirements.ironCost)
+        {
+            logMessage += "Not Enough Iron, ";
+            passes = false;
+        }
+        if (currentStats.stoneCost < requirements.stoneCost)
+        {
+            logMessage += "Not Enough Stone, ";
+            passes = false;
+        }
+
+        if (passes)
+        {
+            Debug.Log(logMessage + "Success");
+        }
+        else
+        {
+            Debug.LogWarning(logMessage + ": Failed to Craft Weapon");
+        }
+
+        return passes;
+    }
+
     public BaseProgressionInfo GetCurrentRequirements()
     {
         return currentRequirements;

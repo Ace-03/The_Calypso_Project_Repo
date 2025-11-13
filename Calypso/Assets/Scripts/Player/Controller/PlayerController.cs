@@ -165,4 +165,9 @@ public class PlayerController : MonoBehaviour
     {
         currentInteractable = null;
     }
+
+    public void UpdateWeaponPivot()
+    {
+        weaponPivot = ContextRegister.Instance.GetContext().playerManager.GetPrimaryWeapon().weaponPivot;
+    }
 }

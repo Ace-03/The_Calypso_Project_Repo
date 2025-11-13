@@ -5,6 +5,7 @@ public class WeaponDefinitionSO : ScriptableObject
 {
     [Header("Weapon Base Stats")]
     public string weaponName;
+    public string weaponDescription;
     public Sprite icon;
     public GameObject weaponBehaviorPrefab;
     public Material bulletSprite;

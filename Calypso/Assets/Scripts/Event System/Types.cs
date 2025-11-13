@@ -29,11 +29,6 @@ public class RewardOptionsPayload : GameEventPayload
     public List<RewardOption> options;
 }
 
-public class TimerPayload : GameEventPayload
-{
-
-}
-
 public class RewardOption
 {
     public PassiveItemSO itemData;
@@ -81,5 +76,10 @@ public class WeaponCraftedPayload : GameEventPayload
 
 public class WeaponsUpdatePayload : GameEventPayload
 {
-    public List<WeaponController> weapons;
+    public List<WeaponDefinitionSO> weapons;
+}
+
+public class CraftingAttemptPayload : GameEventPayload
+{
+    public WeaponRecipeSO weaponRecipe;
 }
