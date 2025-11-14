@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1812ec03c7a8549859579f89456d1e, type: 3}
   m_Name: TimedNetSpawner
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
-  timerLength: 20
+  projectilePrefab: {fileID: 1873094201366657868, guid: 5a1c06cb40b00284da4fc22ba3893701, type: 3}
+  timerLength: 9

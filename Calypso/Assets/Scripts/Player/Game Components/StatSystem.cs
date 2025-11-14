@@ -20,7 +20,8 @@ public class StatSystem : MonoBehaviour
         InitializeStat(StatType.Size, baseStats.size);
         InitializeStat(StatType.Cooldown, baseStats.cooldown);
         InitializeStat(StatType.Duration, baseStats.duration);
-        InitializeStat(StatType.Amount, baseStats.ammount);
+        InitializeStat(StatType.Amount, baseStats.amount);
+        InitializeStat(StatType.ItemAttraction, baseStats.ItemAttraction);
 
         InitializeStat(StatType.Accel, baseStats.acceleration);
         InitializeStat(StatType.Decel, baseStats.deceleration);

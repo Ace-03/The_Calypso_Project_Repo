@@ -9,6 +9,7 @@ public class PlayerBaseStatsSO : ScriptableObject
     public float recovery = 1; // health regen per second
     public float invulnerabilityPeriod = 0.5f;
     public int luck = 100; // affects loot drops and critical hits
+    public float ItemAttraction = 1.2f; // radius for item attraction
 
     [Header("Movement Stats")]
     public float maxSpeed = 10;
@@ -21,5 +22,5 @@ public class PlayerBaseStatsSO : ScriptableObject
     public float size = 1f;
     public float cooldown = 1f;
     public float duration = 1f;
-    public int ammount = 0;
+    public int amount = 0;
 }

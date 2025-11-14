@@ -112,6 +112,7 @@ public class PlayerManager : MonoBehaviour
         primaryWeapon.RecalculateStats();
         playerHealth.UpdateHealthStats(payload.statSystem);
         playerController.RecalculateMovementStats(payload.statSystem);
+        gameObject.GetComponentInChildren<AttractorTrigger>().SetAttractorRadius(payload.statSystem);
     }
 
     public WeaponController GetPrimaryWeapon()

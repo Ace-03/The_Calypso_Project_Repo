@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class SpawnManager : MonoBehaviour
 {
     [Tooltip("Distance to sample NavMesh for valid spawn positions.")]
-    [SerializeField]
-    private float navMeshSampleDistance = 10.0f;
+    [SerializeField] private float navMeshSampleDistance = 10.0f;
+    [SerializeField] private bool spawnOnStart = false;
     public List<WaveSequenceDefinitionSO> waveComposite;
     private Transform playerTransform;
 
@@ -20,6 +20,17 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         playerTransform = ContextRegister.Instance.GetContext().playerTransform;
+        
+        if (spawnOnStart && waveComposite.Count > 0)
+        {
+            Invoke(nameof(StartSpawning), 2f);
+        }
+    }
+
+    private void StartSpawning()
+    {
+        SetCurrentWave(0);
+        ToggleSpawning(true);
     }
 
     public void ToggleSpawning(bool toggle)

@@ -14,7 +14,7 @@ public class TimedProjectileSpawnSO : ItemEffectSO
 
     public override void ExecuteEffect(PlayerContext context, GameEventPayload payload)
     {
-        Instantiate(projectilePrefab, context.playerManager.transform);
+        SpawnNet(context);
     }
 
     public override void OnAcquired(EquippedItemInstance itemInstance, PlayerContext context)
@@ -29,10 +29,22 @@ public class TimedProjectileSpawnSO : ItemEffectSO
         };
 
         timerEvent.RegisterListener(timerListener);
+        SpawnNet(context);
     }
 
     public override void OnRemove(EquippedItemInstance itemInstance, PlayerContext context)
     {
         timerEvent.UnregisterListener(timerListener);
+    }
+
+
+    private void SpawnNet(PlayerContext context)
+    {
+        Vector3 spawnPosition = new Vector3(context.playerTransform.position.x, 0.2f, context.playerTransform.position.z);
+
+        GameObject net = Instantiate(projectilePrefab);
+        net.transform.position = spawnPosition;
+
+        Destroy(net, 15f);
     }
 }

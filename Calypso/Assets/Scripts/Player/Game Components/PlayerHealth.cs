@@ -63,8 +63,14 @@ public class PlayerHealth : GenericHealth
 
     public void UpdateHealthStats(StatSystem statSystem)
     {
-        maxHP = (int)statSystem.GetFinalValue(StatType.MaxHealth);
+        int newMaxHP = (int)statSystem.GetFinalValue(StatType.MaxHealth);
+        int hpDiff = newMaxHP - maxHP;
+
+        maxHP = newMaxHP;
+        hp += hpDiff;
         invulnerabilityDuration = statSystem.GetFinalValue(StatType.Invulnerability);
+
+        HudManager.Instance.health.UpdatePlayerHealth(hp, maxHP);
     }
 
     public override void TakeDamageRaw(int damage)
