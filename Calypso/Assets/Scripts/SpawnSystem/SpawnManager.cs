@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
+    [Tooltip("Distance to sample NavMesh for valid spawn positions.")]
+    [SerializeField]
+    private float navMeshSampleDistance = 10.0f;
     public List<WaveSequenceDefinitionSO> waveComposite;
     private Transform playerTransform;
 
@@ -155,6 +159,18 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 GetRandomSpawnPosition()
     {
-        return playerTransform.position + new Vector3(UnityEngine.Random.Range(-30, 30), 0, UnityEngine.Random.Range(-30, 30));
+        Vector3 randomPosition = playerTransform.position + new Vector3(Random.Range(-30, 30), 0, Random.Range(-30, 30));
+
+        NavMeshHit hit;
+
+        if (NavMesh.SamplePosition(randomPosition, out hit, navMeshSampleDistance, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+        else
+        {
+            Debug.LogWarning("Failed to find valid NavMesh position for spawning. Spawning near player.");
+            return playerTransform.position + Vector3.forward * 2;
+        }
     }
 }
