@@ -7,43 +7,11 @@ using UnityEngine;
 public class ParticleWeaponBase : MonoBehaviour
 {
     public ParticleSystem ps;
-    public TEAM team;
-    public bool pierce;
     private void Awake()
     {
         ps = GetComponent<ParticleSystem>();
-        UpdateTeam();
-
-        if (transform.parent.CompareTag("Player"))
-            SetTeam(TEAM.Player);
-        else if (transform.parent.CompareTag("Enemy"))
-            SetTeam(TEAM.Enemy);
-        if(pierce)
-            SetTeam(TEAM.PlayerPierce);
     }
 
-    public void UpdateTeam()
-    {
-        var col = ps.collision;
-        switch (team)
-        {
-            case TEAM.Player:
-                col.collidesWith = LayerMask.GetMask("Enemy", "Environment");
-                break;
-            case TEAM.Enemy:
-                col.collidesWith = LayerMask.GetMask("Player", "Environment");
-                break;
-            default:
-                col.collidesWith = LayerMask.GetMask("Environment");
-                gameObject.AddComponent<PierceHandler>();
-                break;
-        }
-    }
-    public void SetTeam(TEAM t)
-    {
-        team = t;
-        UpdateTeam();
-    }
     public virtual void Attack(WeaponController weapon)
     {
         if (ps != null && !ps.isPlaying)
@@ -52,8 +20,7 @@ public class ParticleWeaponBase : MonoBehaviour
     public virtual void ApplyWeaponStats(WeaponController weapon)
     {
         StopAttack();
-
-        GeneralModifier.SetSprite(ps, weapon.GetSprite());
+        ApplyModifiers(weapon, ps);
     }
 
     public virtual void ApplyWeaponStats(WeaponController weapon, List<ParticleSystem> particle)
@@ -62,8 +29,14 @@ public class ParticleWeaponBase : MonoBehaviour
 
         foreach (ParticleSystem ps in particle)
         {
-            GeneralModifier.SetSprite(ps, weapon.GetSprite());
+            ApplyModifiers(weapon, ps);
         }
+    }
+
+    private void ApplyModifiers(WeaponController weapon, ParticleSystem ps)
+    {
+        GeneralModifier.SetSprite(ps, weapon.GetSprite());
+        GeneralModifier.UpdateTeam(ps, weapon.team);
     }
 
     public virtual bool IsAimable()

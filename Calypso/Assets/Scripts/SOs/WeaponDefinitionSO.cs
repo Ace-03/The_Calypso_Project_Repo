@@ -17,7 +17,7 @@ public class WeaponDefinitionSO : ScriptableObject
     public float baseAccuracy;
     public float baseDuration;
     public float baseAmount;
-    public int requiredResources;
+    public bool pierce;
 
     [Header("AOE Stats")]
     [SerializeField]

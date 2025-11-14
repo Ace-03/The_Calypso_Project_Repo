@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
@@ -8,6 +8,7 @@ public class WeaponController : MonoBehaviour
 
     public readonly Dictionary<string, float> currentStats = new Dictionary<string, float>();
 
+    public TEAM team;
     public Transform weaponPivot;
     private GameObject weaponInstance;
     private IWeaponBehavior weaponBehavior;
@@ -60,6 +61,14 @@ public class WeaponController : MonoBehaviour
             Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
             return;
         }
+
+        if (CompareTag("Player"))
+            team = TEAM.Player;
+        else if (CompareTag("Enemy"))
+            team = TEAM.Enemy;
+
+        if (weaponData.pierce)
+            team = TEAM.PlayerPierce;
 
         if (weaponPivot == null)
             MakeWeaponPivot();
@@ -133,7 +142,7 @@ public class WeaponController : MonoBehaviour
 
     private void MakeWeaponPivot()
     {
-        if (tag == "Player")
+        if (CompareTag("Player"))
         {
             GameObject pivotObject = Instantiate(new GameObject(), transform);
             pivotObject.name = $"{weaponData.weaponName} Pivot";
@@ -143,9 +152,10 @@ public class WeaponController : MonoBehaviour
             weaponPivot = pivotObject.transform;
             Debug.Log("Created Player Weapon Pivot");
         }
-        else if (tag == "Enemy")
+        else if (CompareTag("Enemy"))
         {
-            GameObject pivotObject = Instantiate(new GameObject(), transform);
+            Debug.Log("pivot container: " + transform.Find("Pivot Container").name);
+            GameObject pivotObject = Instantiate(new GameObject(), transform.Find("Pivot Container"));
             pivotObject.name = $"{weaponData.weaponName} Pivot";
             pivotObject.tag = "Enemy";
             pivotObject.layer = 7;

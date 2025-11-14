@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: Burst_Rifle_LV3
+  m_Name: Player_RadarWeapon
   m_EditorClassIdentifier: 
-  weaponName: Burst Rifle
-  weaponDescription: 
-  icon: {fileID: 21300000, guid: a705a6ac82afabb49abbc649c7399865, type: 3}
-  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: a13e7225c1e8d7f4eb74ca0b47210ab5, type: 3}
-  bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
-  baseCooldown: 0.65
+  weaponName: Radar
+  weaponDescription: Attack Enemies in an area around you with a rotating radar beam
+  icon: {fileID: 21300000, guid: 6752cd666cea5444e9b4082ff4a6cda2, type: 3}
+  weaponBehaviorPrefab: {fileID: 4508658942375460982, guid: 8f3f799bcc1b6d2428a15f834359298f, type: 3}
+  bulletSprite: {fileID: 0}
+  baseCooldown: 3
   baseDamage: 4
-  baseProjectileSpeed: 4
-  baseAccuracy: 200
-  baseDuration: 0.15
+  baseProjectileSpeed: 1
+  baseAccuracy: 1
+  baseDuration: 1
   baseAmount: 1
-  requiredResources: 0
+  pierce: 0
   hasAOE: 0
-  aoeAreaSize: 5
+  aoeAreaSize: 1
   aoeTickRate: 0
   aoeShape: 0
   baseKnockback: 10
-  baseStun: 0
+  baseStun: 2
   basePoison: 0
   baseSlowdown: 0

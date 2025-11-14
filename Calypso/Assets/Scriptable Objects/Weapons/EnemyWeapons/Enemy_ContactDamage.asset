@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: SHOTGUN
+  m_Name: Enemy_ContactDamage
   m_EditorClassIdentifier: 
-  weaponName: SHOTGUN
-  weaponDescription: 
-  icon: {fileID: 499668931, guid: d9b64f5d227c93e47a3047e4a4a713a8, type: 3}
-  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: cb4888ab48b37684886b8e43455a7ef7, type: 3}
-  bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
-  baseCooldown: 1.5
+  weaponName: Contact Damage
+  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 1651e34653973c8408358cb10d10f24c, type: 3}
+  icon: {fileID: 0}
+  baseCooldown: 0
   baseDamage: 3
-  baseProjectileSpeed: 20
+  baseProjectileSpeed: 0
   baseAccuracy: 0
-  baseDuration: 5
-  baseAmount: 3
+  baseDuration: 0
+  baseAmount: 0
   requiredResources: 0
-  hasAOE: 0
-  aoeAreaSize: 0
+  hasAOE: 1
+  aoeAreaSize: 0.6
   aoeTickRate: 0
   aoeShape: 0
-  baseKnockback: 20
+  baseKnockback: 0
   baseStun: 0
   basePoison: 0
   baseSlowdown: 0

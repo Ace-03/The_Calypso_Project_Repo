@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: AutoSHOTGUN 1
+  m_Name: Player_PIERCE_SHOTGUN
   m_EditorClassIdentifier: 
   weaponName: SHOTGUN
-  icon: {fileID: 0}
-  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 8f41da9c28254c94595a61c70594fe4b, type: 3}
+  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 2561c71646b49d94f93c0099f266e5c3, type: 3}
   bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
   baseCooldown: 1.5
   baseDamage: 3

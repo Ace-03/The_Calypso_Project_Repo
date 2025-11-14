@@ -50,4 +50,22 @@ public static class GeneralModifier
         Shape.arc = arcSize;
         Shape.rotation = new Vector3(Shape.rotation.x, arcSize/2, Shape.rotation.z);
     }
+
+    public static void UpdateTeam(ParticleSystem ps, TEAM team)
+    {
+        var col = ps.collision;
+        switch (team)
+        {
+            case TEAM.Player:
+                col.collidesWith = LayerMask.GetMask("Enemy", "Environment");
+                break;
+            case TEAM.Enemy:
+                col.collidesWith = LayerMask.GetMask("Player", "Environment");
+                break;
+            default:
+                col.collidesWith = LayerMask.GetMask("Environment");
+                ps.gameObject.AddComponent<PierceHandler>();
+                break;
+        }
+    }
 }

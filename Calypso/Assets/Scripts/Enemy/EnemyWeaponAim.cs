@@ -5,6 +5,7 @@ public class EnemyWeaponAim : MonoBehaviour
 {
     [SerializeField]
     private WeaponController weapon;
+    private Transform playerTransform;
     private float aimSpeed;
 
     private void FixedUpdate()
@@ -14,30 +15,30 @@ public class EnemyWeaponAim : MonoBehaviour
 
     private void AimAtPlayer()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
-        {
-            Debug.LogError("Could Not Find Player In Enemy Weapon Aimer");
-            return;
-        }
         if (weapon == null)
         {
             Debug.LogError("Cuold Not Find Weapon Transform In Enemy Weapon Aimer");
             return;
         }
 
-        Transform weaponPivot = weapon.weaponPivot;
+        Vector3 directionToPlayer = (playerTransform.position - weapon.weaponPivot.position).normalized;
 
-        Vector3 directionToPlayer = (player.transform.position - weaponPivot.position).normalized;
+        Debug.Log("Direction to Player: " + directionToPlayer);
+
+        Debug.Log("Weapon Pivot Position: " + weapon.weaponPivot.position);
+
+        Debug.Log("Player Position: " + playerTransform.position);
+
+        Debug.Log("Player is: " + playerTransform.name);
 
         Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer) * Quaternion.Euler(0, -90, 0);
-        weaponPivot.rotation = Quaternion.Slerp(weaponPivot.rotation, targetRotation, Time.deltaTime * aimSpeed);
+        weapon.weaponPivot.rotation = Quaternion.Slerp(weapon.weaponPivot.rotation, targetRotation, Time.deltaTime * aimSpeed);
     }
 
     internal void Initialize(WeaponController enemyWeapon, float newAimSpeed)
     {
         weapon = enemyWeapon;
         aimSpeed = newAimSpeed;
-
+        playerTransform = ContextRegister.Instance.GetContext().playerTransform;
     }
 }
