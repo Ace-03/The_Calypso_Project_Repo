@@ -5,6 +5,7 @@ public class DayCycle : MonoBehaviour
     [SerializeField] private OnDayStateChangeEventSO DayStateChangeEvent;
 
     public DayCycleData lightingData;
+    public DayCycleProgressionStages progressionStages;
 
     public float dayDuration = 120f;
     [Range(0, 1)]public float dayLengthPercentage;
@@ -26,7 +27,7 @@ public class DayCycle : MonoBehaviour
             return;
         }
 
-        lh.SetLightingData(lightingData);
+        lh.SetLightingData(lightingData, progressionStages);
    
         StartDay();
     }
@@ -113,3 +114,4 @@ public class DayCycle : MonoBehaviour
         return cycleClock / dayDuration;
     }
 }
+

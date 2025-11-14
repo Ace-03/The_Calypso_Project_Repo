@@ -2381,7 +2381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: dayDuration
-      value: 300
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: lightingData.light
@@ -2391,6 +2391,42 @@ PrefabInstance:
       propertyPath: lightingData.lightPivot
       value: 
       objectReference: {fileID: 1922684790}
+    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: lightingData.nightIntensity
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: progressionStages.NoonStart
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: lightingData.sunsetIntensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: progressionStages.NightStart
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: lightingData.sunriseIntensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: progressionStages.noonToNight
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: progressionStages.morningStart
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: progressionStages.morningToNoon
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: progressionStages.nightToMorning
+      value: 0.85
+      objectReference: {fileID: 0}
     - target: {fileID: 1843003664358446609, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_SizeDelta.x
       value: 80.7785

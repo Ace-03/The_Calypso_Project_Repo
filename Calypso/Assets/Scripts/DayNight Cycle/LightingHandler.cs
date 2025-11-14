@@ -3,13 +3,15 @@ using UnityEngine;
 public class LightingHandler
 {
     private DayCycleData lightingData;
+    private DayCycleProgressionStages stages;
 
     private float middayAngle;
     private float midnightAngle;
 
-    public void SetLightingData(DayCycleData data)
+    public void SetLightingData(DayCycleData data, DayCycleProgressionStages stages)
     {
         lightingData = data;
+        this.stages = stages;
 
         // swapping Assignment because calculation gets them backwards
         (midnightAngle, middayAngle) = CalculateMidAngles(lightingData.dayStartAngle, lightingData.nightStartAngle);
@@ -38,7 +40,7 @@ public class LightingHandler
         float startShadowStrength = 0f;
         float endShadowStrength = 0f;
 
-        if (cycleProgression <= 0.25f)
+        if (cycleProgression <= stages.morningStart)
         {
             startAngle = dayStart;
             endAngle = midday;
@@ -51,9 +53,9 @@ public class LightingHandler
             startShadowStrength = lightingData.sunriseShadow;
             endShadowStrength = lightingData.dayShadow;
 
-            lerpT = cycleProgression * 4f;
+            lerpT = cycleProgression / stages.morningStart;
         }
-        else if (cycleProgression <= 0.50f)
+        else if (cycleProgression <= stages.NoonStart)
         {
             startAngle = midday;
             endAngle = nightStart;
@@ -66,9 +68,11 @@ public class LightingHandler
             startShadowStrength = lightingData.dayShadow;
             endShadowStrength = lightingData.sunsetShadow;
 
-            lerpT = (cycleProgression - 0.25f) * 4f;
+            float dayDuration = stages.NoonStart - stages.morningStart;
+
+            lerpT = (cycleProgression - stages.morningStart) / dayDuration;
         }
-        else if (cycleProgression <= 0.75f)
+        else if (cycleProgression <= stages.NightStart)
         {
             startAngle = nightStart;
             endAngle = midnight;
@@ -80,8 +84,9 @@ public class LightingHandler
 
             startShadowStrength = lightingData.sunsetShadow;
             endShadowStrength = lightingData.nightShadow;
-
-            lerpT = (cycleProgression - 0.50f) * 4f;
+            
+            float eveningDuration = stages.NightStart - stages.NoonStart;
+            lerpT = (cycleProgression - stages.NoonStart) / eveningDuration;
         }
         else
         {
@@ -95,8 +100,9 @@ public class LightingHandler
 
             startShadowStrength = lightingData.nightShadow;
             endShadowStrength = lightingData.sunriseShadow;
-
-            lerpT = (cycleProgression - 0.75f) * 4f;
+            
+            float nightDuration = 1f - stages.NightStart;
+            lerpT = (cycleProgression - stages.NightStart) / nightDuration;
         }
 
         Quaternion startRot = Quaternion.Euler(currentEuler.x, currentEuler.y, startAngle);
