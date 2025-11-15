@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class DayCycle : MonoBehaviour
 {
+    [SerializeField] private OnDayStateChangeEventSO DayStateChangeEvent;
+
     public DayCycleData lightingData;
+    public DayCycleProgressionStages progressionStages;
 
     public float dayDuration = 120f;
     [Range(0, 1)]public float dayLengthPercentage;
@@ -24,7 +27,7 @@ public class DayCycle : MonoBehaviour
             return;
         }
 
-        lh.SetLightingData(lightingData);
+        lh.SetLightingData(lightingData, progressionStages);
    
         StartDay();
     }
@@ -89,6 +92,7 @@ public class DayCycle : MonoBehaviour
             StartDay();
         }
 
+        DayStateChangeEvent.Raise(new DayStateChangePayload(isDayTime, dayCount));
         dayNightClock = 0f;
     }
 
@@ -96,4 +100,18 @@ public class DayCycle : MonoBehaviour
     {
         cycleClock = 0f;
     }
+
+    public float GetDayProgressPercentage()
+    {
+        float dayNightRatio = isDayTime ? dayDuration * dayLengthPercentage :
+        dayDuration * (1 - dayLengthPercentage);
+
+        return dayNightClock / dayNightRatio;
+    }
+
+    public float GetCycleProgressProgression()
+    {
+        return cycleClock / dayDuration;
+    }
 }
+

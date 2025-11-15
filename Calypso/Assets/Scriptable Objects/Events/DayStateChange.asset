@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac1812ec03c7a8549859579f89456d1e, type: 3}
-  m_Name: TimedNetSpawner
+  m_Script: {fileID: 11500000, guid: d96e3ed742c6d37429b3302626e2257e, type: 3}
+  m_Name: DayStateChange
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1873094201366657868, guid: 5a1c06cb40b00284da4fc22ba3893701, type: 3}
-  timerLength: 9
