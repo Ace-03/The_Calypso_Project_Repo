@@ -13,11 +13,14 @@ public class HealthUI : MonoBehaviour
     public void UpdatePlayerHealth(float hp, float maxHp)
     {
         healthElements.healthIcon.sprite = SetHealthSprite(hp, maxHp, healthElements.playerHealthSprites);
+        healthElements.healthText.text = $"{hp}";
     }
 
     public void UpdateBaseHealth(int hp, int maxHp)
     {
         healthElements.healthIcon.sprite = SetHealthSprite(hp, maxHp, healthElements.baseHealthSprites);
+        healthElements.baseText.text = $"{hp}";
+
     }
 
     private Sprite SetHealthSprite(float hp, float maxHp, List<Sprite> SpriteList)

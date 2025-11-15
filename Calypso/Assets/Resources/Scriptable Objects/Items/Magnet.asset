@@ -18,4 +18,8 @@ MonoBehaviour:
   maxLevel: 5
   rarity: 0
   itemBehaviors: []
-  modifierTemplates: []
+  modifierTemplates:
+  - Type: 14
+    ModType: 1
+    MinValue: 10
+    MaxValue: 20

@@ -30,6 +30,8 @@ public class HealthUIElements
 {
     public Image healthIcon;
     public Image baseIcon;
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI baseText;
 
     public List<Sprite> playerHealthSprites;
     public List<Sprite> baseHealthSprites;
@@ -64,4 +66,18 @@ public class HotBarSlot
     public Image iconImage;
     public bool isFilled;
     public bool isLocked;
+}
+
+[Serializable]
+public class DayTimerUIElements
+{
+    public OnDayStateChangeEventSO dayStateChangeEvent;
+
+    public int maxTimeLineWaves = 11;
+    public Sprite sunSprite;
+    public Sprite moonSprite;
+    public Image TimelineStartIcon;
+    public Image TimelineEndIcon;
+    public GameObject TimelineWavePrefab;
+    public Transform timeLineContainer;
 }

@@ -85,6 +85,15 @@ public class DayCycleData
     public float nightShadow;
 }
 
+
+[Serializable]
+public class DayCycleProgressionStages
+{
+    public float morningStart = 0.25f;
+    public float NoonStart = 0.5f;
+    public float NightStart = 0.75f;
+}
+
 public enum LightingState
 {
     sunrise,

@@ -8,17 +8,20 @@ public class HudManager : MonoBehaviour
     [SerializeField] private GameObject levelGroup;
     [SerializeField] private GameObject healthGroup;
     [SerializeField] private GameObject resourcesGroup;
+    [SerializeField] private GameObject dayTimerGroup;
     [SerializeField] private GameObject gameOverScreen;
 
     [SerializeField] private HotBarUIElements hotBarElements;
     [SerializeField] private LevelUIElements levelElements;
     [SerializeField] private HealthUIElements healthElements;
     [SerializeField] private ResourceUIElements resourcesElements;
+    [SerializeField] private DayTimerUIElements dayTimerElements;
 
     [HideInInspector] public HotBarUI hotBar;
     [HideInInspector] public LevelUI level;
     [HideInInspector] public HealthUI health;
     [HideInInspector] public ResourcesUI resources;
+    [HideInInspector] public DayTimerUI dayTimer;
 
 
     public static HudManager Instance;
@@ -36,11 +39,15 @@ public class HudManager : MonoBehaviour
 
         if (!TryGetComponent<ResourcesUI>(out resources))
             resources = gameObject.AddComponent<ResourcesUI>();
-    
+
+        if (!TryGetComponent<DayTimerUI>(out dayTimer))
+            dayTimer = gameObject.AddComponent<DayTimerUI>();
+
         hotBar.SetElements(hotBarElements);
         level.SetElements(levelElements);
         health.SetElements(healthElements);
         resources.SetElements(resourcesElements);
+        dayTimer.SetElements(dayTimerElements);
 
         resources.UpdateBoatIcons(0);
         gameOverScreen.SetActive(false);
@@ -82,6 +89,7 @@ public class HudManager : MonoBehaviour
         levelGroup.SetActive(toggle);
         healthGroup.SetActive(toggle);
         resourcesGroup.SetActive(toggle);
+        dayTimerGroup.SetActive(toggle);
     }
 
     private void UpdateHotbar(UpdateHotBarPayload payload)

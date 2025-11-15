@@ -83,3 +83,15 @@ public class CraftingAttemptPayload : GameEventPayload
 {
     public WeaponRecipeSO weaponRecipe;
 }
+
+public class DayStateChangePayload : GameEventPayload
+{
+    public bool isDayTime;
+    public int dayCount;
+
+    public DayStateChangePayload(bool isDayTime, int dayCount)
+    {
+        this.isDayTime = isDayTime;
+        this.dayCount = dayCount;
+    }
+}
