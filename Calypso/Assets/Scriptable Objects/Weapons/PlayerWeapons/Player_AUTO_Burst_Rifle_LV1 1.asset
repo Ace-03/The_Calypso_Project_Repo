@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: Player_AUTO_Burst_Rifle_LV1 1
   m_EditorClassIdentifier: 
   weaponName: Burst Rifle
+  weaponDescription: 
   icon: {fileID: 0}
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 21119df84ab5e4344b5bfd17c79636f4, type: 3}
   bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
-  baseCooldown: 0.05
-  baseDamage: 3
-  baseProjectileSpeed: 4
-  baseAccuracy: 200
-  baseDuration: 0.2
-  baseAmount: 1
-  requiredResources: 0
-  hasAOE: 0
-  aoeAreaSize: 5
-  aoeTickRate: 0
-  aoeShape: 0
+  baseStats:
+    Cooldown: 0.05
+    Damage: 3
+    Amount: 1
+    Duration: 0.2
+    accuracy: 200
+    Speed: 4
+    AOETick: 0
+    Area: 5
+  pierce: 0
   baseKnockback: 10
   baseStun: 0
   basePoison: 0

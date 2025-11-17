@@ -14,12 +14,15 @@ public class RadarWeaponBehavior : MonoBehaviour, IWeaponBehavior
     public void ApplyWeaponStats(WeaponController weapon)
     {
         BeamSpeed = weapon.GetCooldown();
-
-        MakeBeams(weapon.GetAmount(), beamBaseLength + weapon.GetArea());
+        MakeBeams(weapon);
     }
 
-    private void MakeBeams(int beamCount, float length)
+    private void MakeBeams(WeaponController weapon)
     {
+        float beamCount = weapon.GetAmount();
+        float length = beamBaseLength + weapon.GetArea();
+        float aoeTickRate = weapon.GetAOETick();
+
         foreach (GameObject beam in beamInstances)
         {
             Destroy(beam);
@@ -30,6 +33,12 @@ public class RadarWeaponBehavior : MonoBehaviour, IWeaponBehavior
         {
             GameObject newBeam = Instantiate(beamPrefab, beamPivotTransform);
             newBeam.transform.localScale = new Vector3(newBeam.transform.localScale.x, length, newBeam.transform.localScale.z) / 5;
+            BulletTrigger bt = newBeam.GetComponent<BulletTrigger>();
+
+            bt.SetData(weapon.GetWeaponData());
+            bt.weaponData = weapon.GetWeaponData();
+            bt.SetTickInterval(weapon.GetAOETick());
+
             beamInstances.Add(newBeam);
         }
 

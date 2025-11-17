@@ -4,12 +4,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(BulletTrigger))]
 [RequireComponent(typeof(ParticleSystem))]
-public class ParticleWeaponBase : MonoBehaviour
+public class BaseParticleWeapon : MonoBehaviour
 {
+    [SerializeField] private BulletTrigger bt;
     public ParticleSystem ps;
     private void Awake()
     {
         ps = GetComponent<ParticleSystem>();
+
     }
 
     public virtual void Attack(WeaponController weapon)
@@ -21,6 +23,8 @@ public class ParticleWeaponBase : MonoBehaviour
     {
         StopAttack();
         ApplyModifiers(weapon, ps);
+        bt.SetData(weapon.GetWeaponData());
+        bt.weaponData = weapon.GetWeaponData();
     }
 
     public virtual void ApplyWeaponStats(WeaponController weapon, List<ParticleSystem> particle)

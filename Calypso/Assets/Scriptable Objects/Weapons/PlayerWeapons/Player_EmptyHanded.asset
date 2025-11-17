@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: Player_EmptyHanded
   m_EditorClassIdentifier: 
   weaponName: Empty Handed
+  weaponDescription: 
+  icon: {fileID: 0}
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 1651e34653973c8408358cb10d10f24c, type: 3}
   bulletSprite: {fileID: 0}
-  baseCooldown: 0
-  baseDamage: 3
-  baseProjectileSpeed: 0
-  baseAccuracy: 0
-  baseDuration: 0
-  baseAmount: 0
-  requiredResources: 0
-  hasAOE: 1
-  aoeAreaSize: 0.6
-  aoeTickRate: 0
-  aoeShape: 0
+  baseStats:
+    Cooldown: 0
+    Damage: 3
+    Amount: 0
+    Duration: 0
+    accuracy: 0
+    Speed: 0
+    AOETick: 0.5
+    Area: 0.6
+  pierce: 0
   baseKnockback: 0
   baseStun: 0
   basePoison: 0

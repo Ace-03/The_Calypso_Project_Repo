@@ -33,7 +33,7 @@ public class EnemyDefinitionSO : ScriptableObject
     {
         return new DamageInfo
         {
-            damage = weapon.baseDamage * DifficultyModifier,
+            damage = weapon.baseStats.Damage * DifficultyModifier,
             knockbackStrength = weapon.baseKnockback * DifficultyModifier,
             stunDuration = weapon.baseStun * DifficultyModifier,
             poisonDuration = weapon.basePoison * DifficultyModifier,

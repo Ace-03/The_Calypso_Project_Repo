@@ -17,17 +17,16 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a705a6ac82afabb49abbc649c7399865, type: 3}
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 656adfd913d3b53449b3dce7c8dbdfcd, type: 3}
   bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
-  baseCooldown: 0.8
-  baseDamage: 3
-  baseProjectileSpeed: 4
-  baseAccuracy: 200
-  baseDuration: 0.2
-  baseAmount: 2
-  requiredResources: 0
-  hasAOE: 0
-  aoeAreaSize: 5
-  aoeTickRate: 0
-  aoeShape: 0
+  baseStats:
+    Cooldown: 0.8
+    Damage: 3
+    Amount: 2
+    Duration: 0.2
+    accuracy: 200
+    Speed: 4
+    AOETick: 0
+    Area: 5
+  pierce: 0
   baseKnockback: 10
   baseStun: 0
   basePoison: 0

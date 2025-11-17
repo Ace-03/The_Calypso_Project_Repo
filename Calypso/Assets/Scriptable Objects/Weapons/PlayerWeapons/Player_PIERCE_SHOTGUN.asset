@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: Player_PIERCE_SHOTGUN
   m_EditorClassIdentifier: 
   weaponName: SHOTGUN
+  weaponDescription: 
+  icon: {fileID: 0}
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 2561c71646b49d94f93c0099f266e5c3, type: 3}
   bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
-  baseCooldown: 1.5
-  baseDamage: 3
-  baseProjectileSpeed: 20
-  baseAccuracy: 0
-  baseDuration: 5
-  baseAmount: 3
-  requiredResources: 0
-  hasAOE: 0
-  aoeAreaSize: 0
-  aoeTickRate: 0
-  aoeShape: 0
+  baseStats:
+    Cooldown: 1.5
+    Damage: 3
+    Amount: 3
+    Duration: 5
+    accuracy: 0
+    Speed: 20
+    AOETick: 0
+    Area: 0
+  pierce: 0
   baseKnockback: 20
   baseStun: 0
   basePoison: 0

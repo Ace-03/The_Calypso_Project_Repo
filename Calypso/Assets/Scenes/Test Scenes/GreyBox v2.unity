@@ -2396,16 +2396,8 @@ PrefabInstance:
       value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
-      propertyPath: progressionStages.NoonStart
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: lightingData.sunsetIntensity
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
-      propertyPath: progressionStages.NightStart
-      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: lightingData.sunriseIntensity
@@ -2414,10 +2406,6 @@ PrefabInstance:
     - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: progressionStages.noonToNight
       value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
-      propertyPath: progressionStages.morningStart
-      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: progressionStages.morningToNoon
@@ -2733,7 +2721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5570168739754423075, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: spawnOnStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5570168739754423075, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: playerTransform
@@ -3999,7 +3987,7 @@ PrefabInstance:
     - target: {fileID: 6693502108835353163, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
       propertyPath: weaponData
       value: 
-      objectReference: {fileID: 11400000, guid: de911b01e708f2646ac65bac4a9549dc, type: 2}
+      objectReference: {fileID: 11400000, guid: 42b7728c6f395914cb8deed3bacfbec0, type: 2}
     - target: {fileID: 6887405348467899213, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
       propertyPath: m_Name
       value: Player

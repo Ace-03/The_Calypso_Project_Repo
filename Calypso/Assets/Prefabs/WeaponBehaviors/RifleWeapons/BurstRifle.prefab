@@ -9806,6 +9806,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
+  enemyTickDamage: 0
+  weaponData: {fileID: 0}
+  enemyData: {fileID: 0}
 --- !u!114 &2853458620770060330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9818,6 +9821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f732b7ad8f0ec394d9ddc32cadfaf85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletTrigger: {fileID: 1812151299177642501}
   ps: {fileID: 1627494714008052900}
 --- !u!1 &3247799907809243447
 GameObject:

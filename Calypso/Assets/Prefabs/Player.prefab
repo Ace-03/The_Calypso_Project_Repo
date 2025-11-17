@@ -14922,11 +14922,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3373966260996384910}
   - component: {fileID: 8736910140015896842}
+  - component: {fileID: 1569674386504143639}
   - component: {fileID: 2636485834852036548}
   - component: {fileID: 6693502108835353163}
   - component: {fileID: 5034327732661880448}
   - component: {fileID: 2971592590130550337}
-  - component: {fileID: 1569674386504143639}
   - component: {fileID: 8529168100601639270}
   - component: {fileID: 3842321106409920161}
   - component: {fileID: 6254831323610310648}
@@ -14983,6 +14983,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!136 &1569674386504143639
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887405348467899213}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 0.33
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2636485834852036548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15024,6 +15047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 08b5135d76af6ba478a0d320cb99736f, type: 2}
   autoInitialize: 1
+  team: 0
   weaponPivot: {fileID: 0}
 --- !u!114 &5034327732661880448
 MonoBehaviour:
@@ -15053,29 +15077,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoInitialize: 1
---- !u!136 &1569674386504143639
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887405348467899213}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Height: 0.33
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8529168100601639270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15112,6 +15113,9 @@ MonoBehaviour:
   teleportHomeButton: 104
   homeWaypoint: {fileID: 0}
   verticleOffset: 1.94
+  teleportDelay: 1
+  teleporting: 0
+  teleParticles: {fileID: 0}
 --- !u!114 &6254831323610310648
 MonoBehaviour:
   m_ObjectHideFlags: 0

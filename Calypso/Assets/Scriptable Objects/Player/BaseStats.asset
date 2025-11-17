@@ -17,6 +17,7 @@ MonoBehaviour:
   recovery: 1
   invulnerabilityPeriod: 0.5
   luck: 100
+  ItemAttraction: 1.2
   maxSpeed: 10
   acceleration: 20
   deceleration: 40
@@ -25,4 +26,4 @@ MonoBehaviour:
   size: 1
   cooldown: 1
   duration: 1
-  ammount: 0
+  amount: 0

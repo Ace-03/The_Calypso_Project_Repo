@@ -7,6 +7,11 @@ public class GenericHealth : MonoBehaviour
     public int hp;
     public VisualEffectsHandler vfxHandler;
 
+    protected bool invulnerable;
+
+    protected float invulnerabilityDuration = 0.1f;
+    protected float invulnerabilityTimer;
+
     private bool dead;
 
     private void Awake()
@@ -14,8 +19,21 @@ public class GenericHealth : MonoBehaviour
         Initialize(new HealthData { maxHP = maxHP });
     }
 
+
+    private void Update()
+    {
+        if (!invulnerable) { return; }
+
+        invulnerabilityTimer -= Time.deltaTime;
+
+        if (invulnerabilityTimer <= 0)
+            invulnerable = false;
+    }
+
+
     public virtual void TakeDamage(DamageInfo info)
     {
+        if (invulnerable) { return; }
 
         TakeDamageRaw((int)info.damage);
 
@@ -27,7 +45,10 @@ public class GenericHealth : MonoBehaviour
 
     public virtual void TakeDamageRaw(int damage)
     {
-        hp -= (int)damage;
+        hp -= damage;
+
+        invulnerabilityTimer = invulnerabilityDuration;
+        invulnerable = true;
 
         if (hp <= 0)
             Die();

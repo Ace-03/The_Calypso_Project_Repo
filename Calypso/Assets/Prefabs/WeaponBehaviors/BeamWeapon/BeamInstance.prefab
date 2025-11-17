@@ -254,6 +254,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
+  enemyTickDamage: 1
+  weaponData: {fileID: 0}
+  enemyData: {fileID: 0}
 --- !u!1 &8320451214837906389
 GameObject:
   m_ObjectHideFlags: 0

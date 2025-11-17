@@ -5,7 +5,7 @@ using UnityEngine;
 public class PierceHandler : MonoBehaviour
 {
     public ParticleSystem ps;
-    public ParticleWeaponBase weaponBehavior;
+    public BaseParticleWeapon weaponBehavior;
     public float detectionRadius = 1f;
     public LayerMask layerMask;
     public int maxCollisionTicks = 2;

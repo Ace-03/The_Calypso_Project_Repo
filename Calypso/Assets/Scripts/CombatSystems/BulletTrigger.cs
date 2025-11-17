@@ -7,8 +7,13 @@ public class BulletTrigger : MonoBehaviour
     [SerializeField]
     private OnDamageDealtEventSO damageTakenEvent;
 
-    WeaponDefinitionSO weaponData;
-    EnemyDefinitionSO enemyData;
+    [SerializeField] private bool enemyTickDamage;
+    private float tickInterval = 1f;
+    private bool isTicking = false;
+    private float tickTimer = 0f;
+
+    [HideInInspector] public WeaponDefinitionSO weaponData;
+    [HideInInspector] public EnemyDefinitionSO enemyData;
 
     private void Awake()
     {
@@ -17,7 +22,15 @@ public class BulletTrigger : MonoBehaviour
         enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
     }
 
-    
+    private void Update()
+    {
+        if (!isTicking) { return; }
+
+        tickTimer -= Time.deltaTime;
+
+        if (tickTimer <= 0f) { isTicking = false; }
+    }
+
     void OnParticleCollision(GameObject other)
     {
         TryDamage(other);
@@ -30,42 +43,99 @@ public class BulletTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        TryDamage(other.gameObject);
+        TryPlayerDamage(other.gameObject);
+
+        if (enemyTickDamage && !isTicking)
+        {
+            TryEnemyDamage(other.gameObject);
+            isTicking = true;
+            tickTimer = tickInterval;
+        }
     }
 
     private void TryDamage(GameObject other, bool isExternal = false)
     {
         if (other.GetComponent<GenericHealth>() != null)
         {
-            DamageInfo damageInfo = new DamageInfo();
+            DamagePayload payload = MakePayload(other);
 
-            DamagePayload damagePayload = new DamagePayload()
+            if (other.CompareTag("Player"))
             {
-                damageInfo = damageInfo,
-                attacker = this.gameObject,
-                receiver = other.gameObject,
-            };
+                payload.damageInfo = DamageCalculator.GetDamageToPlayer(enemyData);
+                damageTakenEvent.Raise(payload);
+
+            }
+            else if (other.CompareTag("Enemy"))
+            {
+                payload.damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
+                damageDealtEvent.Raise(payload);
+
+            }
+
+            other.GetComponent<GenericHealth>().TakeDamage(payload.damageInfo);
+        }
+    }
+
+    private void TryPlayerDamage(GameObject other)
+    {
+        if (other.GetComponent<GenericHealth>() != null)
+        {
+            DamagePayload payload = MakePayload(other);
 
             if (other.CompareTag("Player"))
             {
                 if (enemyData == null)
                     enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
 
-                damageTakenEvent.Raise(damagePayload);
+                payload.damageInfo = DamageCalculator.GetDamageToPlayer(enemyData);
+                damageTakenEvent.Raise(payload);
 
-                damageInfo = DamageCalculator.GetDamageToPlayer(enemyData);
+                other.GetComponent<GenericHealth>().TakeDamage(payload.damageInfo);
             }
-            else if (other.CompareTag("Enemy"))
-            {
-                damageDealtEvent.Raise(damagePayload);
-
-                damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
-            }
-
-            other.GetComponent<GenericHealth>().TakeDamage(damageInfo);
-
         }
     }
+
+    private void TryEnemyDamage(GameObject other)
+    {
+        if (other.GetComponent<GenericHealth>() != null)
+        {
+            DamagePayload payload = MakePayload(other);
+
+            if (other.CompareTag("Enemy"))
+            {
+                payload.damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
+                damageDealtEvent.Raise(payload);
+
+                other.GetComponent<GenericHealth>().TakeDamage(payload.damageInfo);
+            }
+        }
+    }
+
+    private DamagePayload MakePayload(GameObject other)
+    {
+        return new DamagePayload()
+        {
+            damageInfo = new DamageInfo(),
+            attacker = gameObject,
+            receiver = other.gameObject,
+        };
+    }
+
+    public void SetData(WeaponDefinitionSO weapon)
+    {
+        weaponData = weapon;
+    }
+
+    public void SetData(EnemyDefinitionSO enemy)
+    {
+        enemyData = enemy;
+    }
+
+    public void SetTickInterval(float interval)
+    {
+        tickInterval = interval;
+    }
+
     public void TryExternalDamage(GameObject other)
     {
         TryDamage(other, true);

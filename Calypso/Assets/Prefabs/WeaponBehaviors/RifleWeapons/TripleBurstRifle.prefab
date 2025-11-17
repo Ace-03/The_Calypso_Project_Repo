@@ -14699,6 +14699,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
+  enemyTickDamage: 0
+  weaponData: {fileID: 0}
+  enemyData: {fileID: 0}
 --- !u!114 &276625120787129068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14711,13 +14714,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d22d9687dc26f4d8eeba07bc7db498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletTrigger: {fileID: 1812151299177642501}
   ps: {fileID: 1627494714008052900}
-  team: 0
-  pierce: 0
   particles:
   - {fileID: 1627494714008052900}
   - {fileID: 308954085907622632}
   - {fileID: 8738098931793707137}
+  bulletTriggers:
+  - {fileID: 1812151299177642501}
+  - {fileID: 8565804532500809551}
+  - {fileID: 1264426620083446583}
 --- !u!1 &3247799907809243447
 GameObject:
   m_ObjectHideFlags: 0
@@ -29692,6 +29698,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
+  enemyTickDamage: 0
+  weaponData: {fileID: 0}
+  enemyData: {fileID: 0}
 --- !u!1 &4247744160129770993
 GameObject:
   m_ObjectHideFlags: 0
@@ -39636,6 +39645,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
+  enemyTickDamage: 0
+  weaponData: {fileID: 0}
+  enemyData: {fileID: 0}
 --- !u!1 &6216561512987016870
 GameObject:
   m_ObjectHideFlags: 0
