@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 167297522}
   - component: {fileID: 167297521}
   - component: {fileID: 167297520}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: Area_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2855,6 +2855,10 @@ PrefabInstance:
       propertyPath: 'waveSequence.Array.data[3]'
       value: 
       objectReference: {fileID: 11400000, guid: db13450beda215448b9fe19a41934272, type: 2}
+    - target: {fileID: 5570168739754423075, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: 'waveComposite.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 50c40b0ab6b19a94aa7b0beb9bdaffb9, type: 2}
     - target: {fileID: 5639543204932331321, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_ReverseArrangement
       value: 0
