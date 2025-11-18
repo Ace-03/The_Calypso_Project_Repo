@@ -22,4 +22,7 @@ MonoBehaviour:
   - enemyDefinition: {fileID: 11400000, guid: 2a05a2ca8763a064c98627ff2d04b552, type: 2}
     spawnRate: 0.5
     maxActiveEnemies: 25
+  - enemyDefinition: {fileID: 11400000, guid: 7d3c46207015e5c4696eef5cfd26310e, type: 2}
+    spawnRate: 0.001
+    maxActiveEnemies: 1
   waveDuration: 120
