@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c70da5ccaa8cd499de59d5caaae957, type: 3}
   m_Name: ShotGun Recipe
   m_EditorClassIdentifier: 
-  rewardWeapon: {fileID: 11400000, guid: e5c86aee0b0a38e45a0d5e9a2dbb4d86, type: 2}
+  rewardWeapon: {fileID: 11400000, guid: 5cb4344bd74f3ad4bab8db87b014cfea, type: 2}
   craftingRequirements:
     ironCost: 5
     stoneCost: 10
