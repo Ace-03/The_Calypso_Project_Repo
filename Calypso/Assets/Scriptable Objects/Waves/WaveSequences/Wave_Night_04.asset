@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c179c097528e1478747b8d91b80aef, type: 3}
+  m_Name: Wave_Night_04
+  m_EditorClassIdentifier: 
+  waveDefinitions:
+  - {fileID: 11400000, guid: 1e7d40b63b3d78449b1dff191ca91ea9, type: 2}
+  - {fileID: 11400000, guid: 8a9e3cb566079f74a860d406b57dee65, type: 2}
+  - {fileID: 11400000, guid: 5623febe8ea82914fbb9d899a41b22be, type: 2}
