@@ -15,14 +15,14 @@ MonoBehaviour:
   enemyName: Boss Crab
   sprite: {fileID: 21300000, guid: 5e6664a008d677746853d9f365301130, type: 3}
   spriteColor: {r: 0.8805031, g: 0.18551464, b: 0.18551464, a: 1}
-  sizeModifier: 5
+  sizeModifier: 1
   enemyPrefab: {fileID: 936472771579500139, guid: 465b6aeb9fa55a74d9e0631fb381f028, type: 3}
   deathEffect: {fileID: 1469735650166152172, guid: 0cc132ba384097843aea95a07323bd74, type: 3}
   maxHealth: 50
   movementSpeed: 2
   DifficultyModifier: 1
   aimSpeed: 1
-  weapon: {fileID: 11400000, guid: 08b5135d76af6ba478a0d320cb99736f, type: 2}
+  weapon: {fileID: 11400000, guid: c7139475d8162ee4eb2f83184c095dd6, type: 2}
   knockbackResistance: 0
   stunResistance: 0
   poisonResistance: 0

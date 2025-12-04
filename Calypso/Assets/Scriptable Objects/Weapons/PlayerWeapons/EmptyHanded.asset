@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: EmptyHanded
   m_EditorClassIdentifier: 
   weaponName: Empty Handed
+  weaponDescription: 
+  icon: {fileID: 0}
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 1651e34653973c8408358cb10d10f24c, type: 3}
   bulletSprite: {fileID: 0}
   baseCooldown: 0
-  baseDamage: 3
+  baseDamage: 20
   baseProjectileSpeed: 0
   baseAccuracy: 0
   baseDuration: 0
