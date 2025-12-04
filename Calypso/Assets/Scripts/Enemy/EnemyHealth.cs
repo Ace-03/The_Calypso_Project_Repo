@@ -19,6 +19,8 @@ public class EnemyHealth : GenericHealth
 
     public override void TakeDamage(DamageInfo info)
     {
+        if (invulnerable) { return; }
+
         if (statusSystem != null)
         {
             statusSystem.ApplyPoison(info.poisonDuration);
@@ -36,10 +38,7 @@ public class EnemyHealth : GenericHealth
         if (DEBUG_MATS)
             DEBUG_Change_Mat();
 
-        hp -= (int)damage;
-        
-        if (hp <= 0)
-            Die();
+        base.TakeDamageRaw(damage);
     }
     
     public override void Die()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BasicWeapon : ParticleWeaponBase, IWeaponBehavior
+public class BasicWeapon : BaseParticleWeapon, IWeaponBehavior
 {
     private ParticleSystem system;
 

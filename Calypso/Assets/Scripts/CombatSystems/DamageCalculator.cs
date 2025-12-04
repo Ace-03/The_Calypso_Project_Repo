@@ -8,7 +8,7 @@ public static class DamageCalculator
 
         return new DamageInfo
         {
-            damage = weaponData.baseDamage * stats.GetFinalValue(StatType.Strength),
+            damage = weaponData.baseStats.Damage * stats.GetFinalValue(StatType.Strength),
             knockbackStrength = weaponData.baseKnockback * stats.GetFinalValue(StatType.Strength),
             stunDuration = weaponData.baseStun * stats.GetFinalValue(StatType.Dexterity),
             poisonDuration = weaponData.basePoison * stats.GetFinalValue(StatType.Duration),

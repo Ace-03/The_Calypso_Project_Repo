@@ -22,6 +22,11 @@ public class AutoAim : MonoBehaviour
         LookAtTarget();
         if (alsoAutoOff)
         {
+            if (target == null)
+            {
+                ps.Stop();
+                return;
+            }
             bool inRange = CheckRange();
             if (inRange)
             {

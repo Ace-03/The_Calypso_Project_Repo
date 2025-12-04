@@ -3,10 +3,6 @@ using UnityEngine;
 public class PlayerHealth : GenericHealth
 {
     private int bonusHP;
-    private bool invulnerable;
-
-    private float invulnerabilityDuration = 0.5f;
-    private float invulnerabilityTimer;
 
     PlayerManager playerManager;
 

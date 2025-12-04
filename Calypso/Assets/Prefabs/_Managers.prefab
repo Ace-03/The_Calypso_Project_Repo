@@ -323,6 +323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5628187c675c37847a57bc7123e68562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navMeshSampleDistance: 10
+  spawnOnStart: 0
   waveComposite:
   - {fileID: 11400000, guid: 194a230e4c0ca464893311d8ff8c5f2a, type: 2}
 --- !u!1 &3842575261979015506
@@ -493,6 +495,10 @@ MonoBehaviour:
     dayShadow: 1
     sunsetShadow: 0.6
     nightShadow: 0
+  progressionStages:
+    morningStart: 0.3
+    NoonStart: 0.5
+    NightStart: 0.65
   dayDuration: 600
   dayLengthPercentage: 0.48
   spawner: {fileID: 5570168739754423075}
