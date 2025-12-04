@@ -1,15 +1,18 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CraftingOption : MonoBehaviour
 {
     public WeaponRecipeSO weaponRecipe;
     [SerializeField] private OnCraftingAttemptEventSO craftingAttemptEvent;
     [SerializeField] private InfoPanelComponents infoPanelComponents;
+    [SerializeField] private Image weaponIcon;
 
     private void Start()
     {
         SetupInfoPanel();
+        weaponIcon.sprite = weaponRecipe.rewardWeapon.icon;
     }
 
     public void SetupInfoPanel()

@@ -836,3 +836,4 @@ MonoBehaviour:
     weaponNameText: {fileID: 7911106345861103846}
     requirementsText: {fileID: 7141438006476790788}
     descriptionText: {fileID: 1184694566837803166}
+  weaponIcon: {fileID: 4950701104083402929}

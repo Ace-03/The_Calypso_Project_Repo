@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BurstRifleBehavior : ParticleWeaponBase, IWeaponBehavior
+public class BurstRifleBehavior : BaseParticleWeapon, IWeaponBehavior
 {
 
     public override void ApplyWeaponStats(WeaponController weapon)

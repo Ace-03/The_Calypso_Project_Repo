@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: TestWeapon
   m_EditorClassIdentifier: 
   weaponName: DEBUG_WEAPON
-  weaponBehaviorPrefab: {fileID: 7467138609195483652, guid: 91569182eaa218b4c8f403b9f99173a0, type: 3}
+  weaponDescription: 
   icon: {fileID: 0}
-  baseCooldown: 1.2
-  baseDamage: 1
-  baseProjectileSpeed: 20
-  baseAccuracy: 0
-  baseDuration: 5
-  baseAmount: 2
-  requiredResources: 0
-  hasAOE: 0
-  aoeAreaSize: 0
-  aoeTickRate: 0
-  aoeShape: 0
+  weaponBehaviorPrefab: {fileID: 7467138609195483652, guid: 91569182eaa218b4c8f403b9f99173a0, type: 3}
+  bulletSprite: {fileID: 0}
+  baseStats:
+    Cooldown: 1.2
+    Damage: 1
+    Amount: 2
+    Duration: 5
+    accuracy: 0
+    Speed: 20
+    AOETick: 0
+    Area: 0
+  pierce: 0
   baseKnockback: 0
   baseStun: 0
   basePoison: 0

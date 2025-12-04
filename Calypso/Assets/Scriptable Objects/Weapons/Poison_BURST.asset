@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: Poison_BURST
   m_EditorClassIdentifier: 
   weaponName: Burst Rifle
-  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 656adfd913d3b53449b3dce7c8dbdfcd, type: 3}
+  weaponDescription: 
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  baseCooldown: 0.3
-  baseDamage: 0
-  baseProjectileSpeed: 4
-  baseAccuracy: 200
-  baseDuration: 3
-  baseAmount: 5
-  requiredResources: 0
-  hasAOE: 0
-  aoeAreaSize: 0
-  aoeTickRate: 0
-  aoeShape: 0
+  weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 656adfd913d3b53449b3dce7c8dbdfcd, type: 3}
+  bulletSprite: {fileID: 0}
+  baseStats:
+    Cooldown: 0.3
+    Damage: 0
+    Amount: 5
+    Duration: 3
+    accuracy: 200
+    Speed: 4
+    AOETick: 0
+    Area: 0
+  pierce: 0
   baseKnockback: 6
   baseStun: 2
   basePoison: 2

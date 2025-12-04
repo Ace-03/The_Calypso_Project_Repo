@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShotgunBehavior : ParticleWeaponBase, IWeaponBehavior
+public class ShotgunBehavior : BaseParticleWeapon, IWeaponBehavior
 {
     public override void ApplyWeaponStats(WeaponController weapon)
     {
