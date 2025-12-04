@@ -33,7 +33,7 @@ public class RadarWeaponBehavior : MonoBehaviour, IWeaponBehavior
         {
             GameObject newBeam = Instantiate(beamPrefab, beamPivotTransform);
             newBeam.transform.localScale = new Vector3(newBeam.transform.localScale.x, length, newBeam.transform.localScale.z) / 5;
-            BulletTrigger bt = newBeam.GetComponent<BulletTrigger>();
+            BulletTrigger bt = newBeam.GetComponentInChildren<BulletTrigger>();
 
             bt.SetData(weapon.GetWeaponData());
             bt.weaponData = weapon.GetWeaponData();

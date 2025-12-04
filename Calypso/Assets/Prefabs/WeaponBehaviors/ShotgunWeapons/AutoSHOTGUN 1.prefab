@@ -9728,9 +9728,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa88a6c8937b0b241a0128ffb62365db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 0}
-  team: 0
-  pierce: 0
+  bt: {fileID: 1812151299177642501}
+  ps: {fileID: 1627494714008052900}
 --- !u!199 &7562424797762174138
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -9822,6 +9821,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
+  enemyTickDamage: 0
+  weaponData: {fileID: 0}
+  enemyData: {fileID: 0}
 --- !u!114 &4493479910104911110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9837,6 +9839,8 @@ MonoBehaviour:
   target: {fileID: 0}
   targetList: []
   t_List: []
+  alsoAutoOff: 0
+  rangeOfEngage: 20
 --- !u!1 &3247799907809243447
 GameObject:
   m_ObjectHideFlags: 0

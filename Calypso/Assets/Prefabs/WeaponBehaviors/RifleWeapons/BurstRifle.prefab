@@ -9821,7 +9821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f732b7ad8f0ec394d9ddc32cadfaf85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletTrigger: {fileID: 1812151299177642501}
+  bt: {fileID: 1812151299177642501}
   ps: {fileID: 1627494714008052900}
 --- !u!1 &3247799907809243447
 GameObject:

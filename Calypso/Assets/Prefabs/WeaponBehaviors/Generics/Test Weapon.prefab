@@ -4905,9 +4905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8891a04f8c097e9429e80133e675386a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 0}
-  team: 0
-  pierce: 0
+  bt: {fileID: 6041201740007281172}
+  ps: {fileID: 7318057924441467903}
 --- !u!114 &6041201740007281172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4922,3 +4921,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
+  enemyTickDamage: 0
+  weaponData: {fileID: 0}
+  enemyData: {fileID: 0}

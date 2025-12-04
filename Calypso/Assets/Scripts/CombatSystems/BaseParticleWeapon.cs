@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +22,7 @@ public class BaseParticleWeapon : MonoBehaviour
     {
         StopAttack();
         ApplyModifiers(weapon, ps);
+        Debug.Log("Bullet Trigger is: " + bt);
         bt.SetData(weapon.GetWeaponData());
         bt.weaponData = weapon.GetWeaponData();
     }

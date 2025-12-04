@@ -14714,7 +14714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d22d9687dc26f4d8eeba07bc7db498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletTrigger: {fileID: 1812151299177642501}
+  bt: {fileID: 1812151299177642501}
   ps: {fileID: 1627494714008052900}
   particles:
   - {fileID: 1627494714008052900}
