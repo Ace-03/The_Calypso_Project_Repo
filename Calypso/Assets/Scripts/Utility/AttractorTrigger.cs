@@ -11,13 +11,22 @@ public class AttractorTrigger : MonoBehaviour
     private void Start()
     {
         col = GetComponent<SphereCollider>();
-        SetAttractorRadius(ContextRegister.Instance.GetContext().statSystem); 
+        SetAttractorRadius(ContextRegister.Instance.GetContext().statSystem);
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag(attractorTag))
         {
+            if (other.GetComponent<Pickup>() != null)
+            {
+                if (other.GetComponent<Pickup>().delayAttraction == true)
+                {
+                    return;
+                }
+            }
+
+
             if (!other.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
                 Debug.Log($"Item: {other.name} is missing a rigidbody and will fail to attract to player");
@@ -34,5 +43,10 @@ public class AttractorTrigger : MonoBehaviour
     {
         col.radius = stats.GetFinalValue(StatType.ItemAttraction);
         Debug.Log($"Attractor Radius updated to {col.radius}");
+    }
+
+    private void EnableTrigger()
+    {
+        col.enabled = true;
     }
 }
