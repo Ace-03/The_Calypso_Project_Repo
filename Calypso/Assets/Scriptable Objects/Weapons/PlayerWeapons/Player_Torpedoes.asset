@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: Player_AUTO_Burst_Rifle_LV1 1
+  m_Name: Player_Torpedoes
   m_EditorClassIdentifier: 
-  weaponName: Burst Rifle
-  weaponDescription: 
-  icon: {fileID: 0}
+  weaponName: Torpedoes
+  weaponDescription: Small torpedoes that target and fire at nearby enemies
+  icon: {fileID: 21300000, guid: 2ac9ab7627bed8b4cae1d869bead2089, type: 3}
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 21119df84ab5e4344b5bfd17c79636f4, type: 3}
-  bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
+  bulletSprite: {fileID: 2100000, guid: 62665a653618d484aa7afe323752269c, type: 2}
   baseStats:
     Cooldown: 0.05
     Damage: 3
     Amount: 1
     Duration: 0.2
-    accuracy: 200
+    accuracy: 212
     Speed: 4
     AOETick: 0
     Area: 5
