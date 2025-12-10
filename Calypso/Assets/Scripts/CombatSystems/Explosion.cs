@@ -1,6 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
+
 public class Explosion : MonoBehaviour
 {
     float dieTimer = 1f;

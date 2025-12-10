@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9c70da5ccaa8cd499de59d5caaae957, type: 3}
-  m_Name: Torpedo Recipe
+  m_Name: MineRecipe
   m_EditorClassIdentifier: 
-  rewardWeapon: {fileID: 11400000, guid: ff0db6aa3be43df45b209ed8bd608699, type: 2}
+  rewardWeapon: {fileID: 11400000, guid: ac1b7eba0a2893f44bee19d19bff67b9, type: 2}
   craftingRequirements:
-    ironCost: 10
-    stoneCost: 15
+    ironCost: 30
+    stoneCost: 8
     baseLevel: 1
