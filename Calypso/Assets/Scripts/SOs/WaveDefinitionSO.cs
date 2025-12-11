@@ -9,7 +9,7 @@ public class WaveDefinitionSO : ScriptableObject
     public class EnemySpawnInfo
     {
         public EnemyDefinitionSO enemyDefinition;
-        public float spawnRate;
+        [Range(1, 250)] public float spawnRate;
         public int maxActiveEnemies;
     }
 
