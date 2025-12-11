@@ -12,7 +12,6 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     [Header("Particle Config")]
     public GameObject particlePrefab;
     public List<Transform> particlePositions = new List<Transform>();
-    public Color particleColor = Color.grey;
 
     [Tooltip("Higher Rate means more particles")]
     public float particleRate = 20f;
@@ -31,7 +30,6 @@ public class MiningInteractable : MonoBehaviour, IInteractable
 
         particleRate = Mathf.Clamp(particleRate, 0f, 5000f);
         particleController.SetPrefab(particlePrefab);
-        particleController.SetColor(particleColor);
         particleController.AddPosition(particlePositions);
     }
 

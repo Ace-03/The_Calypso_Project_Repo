@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1556892626866507060}
   - component: {fileID: 7843618239630536904}
   - component: {fileID: 6872015049528353849}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: PickupTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03489bc6a82fc1b40a3ba161573a925b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickup: {fileID: 0}
+  pickup: {fileID: 1417527732851818462}
 --- !u!1 &5528931290286656765
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 3760277076098861880}
   - component: {fileID: 5497843044083496596}
   - component: {fileID: 5940503243813190446}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 6573841048537319783}
   - component: {fileID: 8762230415278044143}
   - component: {fileID: 1417527732851818462}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ChestPickup
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 32896
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -289,4 +289,5 @@ MonoBehaviour:
   pickupTrigger: {fileID: 7843618239630536904}
   animator: {fileID: 5497843044083496596}
   sr: {fileID: 3760277076098861880}
+  delayAttraction: 1
   chestOpenedEvent: {fileID: 11400000, guid: 2b4f6a0527c216b46b1ba32c50329290, type: 2}

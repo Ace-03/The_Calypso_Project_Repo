@@ -17,9 +17,15 @@ public class BulletTrigger : MonoBehaviour
 
     private void Awake()
     {
-        // assumes info is attatched to same object.
-        weaponData = GetComponentInParent<WeaponController>()?.GetWeaponData();
-        enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
+        if (weaponData == null)
+        {
+            weaponData = GetComponentInParent<WeaponController>()?.GetWeaponData();
+        }
+
+        if (enemyData == null)
+        {
+            enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
+        }
     }
 
     private void Update()

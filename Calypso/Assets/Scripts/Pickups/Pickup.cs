@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Pickup : MonoBehaviour
@@ -5,13 +6,19 @@ public abstract class Pickup : MonoBehaviour
     [SerializeField] private SphereCollider pickupTrigger;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
+    [HideInInspector] public bool delayAttraction = true;
 
     private PickupSO pickupData;
     private Rigidbody rb;
 
+
     void Awake()
     {
         SetUpComponents();
+
+        Invoke(nameof(startAttraction), 1f);
+        StartCoroutine(delayCollision());
+
     }
 
 
@@ -88,4 +95,16 @@ public abstract class Pickup : MonoBehaviour
     }
 
     public abstract void CollectPickup(PickupSO data);
+
+    private void startAttraction()
+    {
+        delayAttraction = false;
+    }
+
+    IEnumerator delayCollision()
+    {
+        GetComponent<BoxCollider>().enabled = false;
+        yield return new WaitForSeconds(0.6f);
+        GetComponent<BoxCollider>().enabled = true;
+    }
 }

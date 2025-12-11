@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1556892626866507060}
   - component: {fileID: 7843618239630536904}
   - component: {fileID: 6872015049528353849}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: PickupTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 4953050696757501395}
   - component: {fileID: 3760277076098861880}
   - component: {fileID: 5497843044083496596}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 6573841048537319783}
   - component: {fileID: 8762230415278044143}
   - component: {fileID: 8376452172720459285}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ResourcePrefab
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -232,14 +232,14 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32896
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &8762230415278044143
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -253,7 +253,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 32896
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -276,3 +276,4 @@ MonoBehaviour:
   pickupTrigger: {fileID: 7843618239630536904}
   animator: {fileID: 5497843044083496596}
   sr: {fileID: 3760277076098861880}
+  delayAttraction: 1

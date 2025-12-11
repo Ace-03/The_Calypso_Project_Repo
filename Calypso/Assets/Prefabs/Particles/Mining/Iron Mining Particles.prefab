@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5246161955506681382}
   m_Layer: 0
-  m_Name: GenericDeathParticle
+  m_Name: Iron Mining Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,7 +255,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 0.6901961, g: 0.5254902, b: 0.27058825, a: 1}
-      maxColor: {r: 0.2627451, g: 0.454902, b: 0.5803922, a: 1}
+      maxColor: {r: 0.5647059, g: 0.5529412, b: 0.227451, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
