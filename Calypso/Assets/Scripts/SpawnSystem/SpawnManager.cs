@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour
     [Tooltip("Distance to sample NavMesh for valid spawn positions.")]
     [SerializeField] private float navMeshSampleDistance = 10.0f;
     [SerializeField] private bool spawnOnStart = false;
+    [SerializeField] private int poolSize = 80;
     public List<WaveSequenceDefinitionSO> waveComposite;
     private Transform playerTransform;
 
@@ -81,7 +82,7 @@ public class SpawnManager : MonoBehaviour
 
         foreach (var enemyData in uniqueEnemies)
         {
-            PoolManager.Instance.CreatePool(enemyData.name, enemyData.enemyPrefab, 50);
+            PoolManager.Instance.CreatePool(enemyData.name, enemyData.enemyPrefab, poolSize);
         }
     }
 
