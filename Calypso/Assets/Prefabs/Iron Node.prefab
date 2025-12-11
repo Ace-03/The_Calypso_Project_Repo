@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9018152280602895752}
   - component: {fileID: 4793556067613120018}
   - component: {fileID: 6223630662146781946}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Iron Node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,6 +56,7 @@ MonoBehaviour:
     maxAmount: 8
   spawnPoint: {fileID: 7325785119240536770}
   mineTime: 2
+  hp: 3
   particlePrefab: {fileID: 1469735650166152172, guid: 716ca306d7f2a344d944e16759029f25, type: 3}
   particlePositions:
   - {fileID: 5833387688087399880}
@@ -83,8 +84,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 4.56
+  m_Center: {x: -0.7, y: 0, z: -0.69}
 --- !u!1 &667641937440472098
 GameObject:
   m_ObjectHideFlags: 0

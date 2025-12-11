@@ -5,13 +5,14 @@ using UnityEngine;
 public class MiningInteractable : MonoBehaviour, IInteractable
 {
     [Header("Mining Config")]
-    public ItemDrop resourceDrop;
-    public Transform spawnPoint;
-    public float mineTime = 2f;
+    [SerializeField] private ItemDrop resourceDrop;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private float mineTime = 2f;
+    [SerializeField] private int hp = 3;
 
     [Header("Particle Config")]
-    public GameObject particlePrefab;
-    public List<Transform> particlePositions = new List<Transform>();
+    [SerializeField] private GameObject particlePrefab;
+    [SerializeField] private List<Transform> particlePositions = new List<Transform>();
 
     [Tooltip("Higher Rate means more particles")]
     public float particleRate = 20f;
@@ -66,5 +67,16 @@ public class MiningInteractable : MonoBehaviour, IInteractable
         PlayerManager.Instance.ToggleMovement(true);
         PlayerManager.Instance.ToggleWeapons(true);
         currentMineTimer = 0f;
+        --hp;
+
+        if (hp <= 0)
+        {
+            DepleteNode();
+        }
+    }
+
+    private void DepleteNode()
+    {
+        Destroy(gameObject);
     }
 }

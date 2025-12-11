@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -147,10 +148,19 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy(EnemyDefinitionSO enemyType)
     {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
+        Nullable<Vector3> spawnPosition = GetRandomSpawnPosition();
+        GameObject enemyInstance = null;
 
-        GameObject enemyInstance =  PoolManager.Instance.GetFromPool(enemyType.name, spawnPosition, Quaternion.identity);
-        
+        if (spawnPosition.HasValue)
+        {
+            enemyInstance = PoolManager.Instance.GetFromPool(enemyType.name, spawnPosition.Value, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogWarning($"Failed To Spawn Enemy of Type {enemyType.name}, spawn position was invalid");
+            return; 
+        }
+
         if (!enemyInstance.TryGetComponent<EnemyInitializer>(out var initializer))
         {
             Debug.LogError($"Enemy prefab {enemyType.name} does not have an EnemyInitializer component.");
@@ -163,14 +173,14 @@ public class SpawnManager : MonoBehaviour
 
         if (enemyInstance == null )
         {
-            Debug.LogError($"Failed to spawn enemy of type {enemyType.name}");
+            Debug.LogError($"Failed to spawn enemy of type {enemyType.name}, enemy instance null");
             return;
         }
     }
 
-    private Vector3 GetRandomSpawnPosition()
+    private Nullable<Vector3> GetRandomSpawnPosition()
     {
-        Vector3 randomPosition = playerTransform.position + new Vector3(Random.Range(-30, 30), 0, Random.Range(-30, 30));
+        Vector3 randomPosition = playerTransform.position + new Vector3(UnityEngine.Random.Range(-30, 30), 0, UnityEngine.Random.Range(-30, 30));
 
         NavMeshHit hit;
 
@@ -180,8 +190,7 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Failed to find valid NavMesh position for spawning. Spawning near player.");
-            return playerTransform.position + Vector3.forward * 2;
+            return null;
         }
     }
 }

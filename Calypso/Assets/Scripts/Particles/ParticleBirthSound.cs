@@ -40,7 +40,7 @@ public class ParticleBirthSound : MonoBehaviour
 
     private void OnParticleTrigger()
     {
-        PlaySound();
+        //PlaySound();
     }
 
     private void PlaySound()
