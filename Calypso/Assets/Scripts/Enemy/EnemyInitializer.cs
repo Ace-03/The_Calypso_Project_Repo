@@ -98,6 +98,7 @@ public class EnemyInitializer : MonoBehaviour
             weaponController = gameObject.AddComponent<WeaponController>();
 
         weaponController.SetWeaponData(weaponData);
+        weaponController.SetDamageSource(new DamageSource(weaponData, gameObject, enemyData));
         weaponController.Initialize();
 
         if (weaponController.GetWeaponBehavior().IsAimable())

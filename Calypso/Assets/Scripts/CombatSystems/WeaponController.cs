@@ -10,9 +10,11 @@ public class WeaponController : MonoBehaviour
 
     public TEAM team;
     public Transform weaponPivot;
+
     private GameObject weaponInstance;
     private IWeaponBehavior weaponBehavior;
     private float nextAttackTime;
+    private DamageSource damageSource;
 
     private StatSystem stats;
 
@@ -36,6 +38,7 @@ public class WeaponController : MonoBehaviour
         nextAttackTime = Time.time + GetCooldown();
 
     }
+
 
     private void Update()
     {
@@ -153,6 +156,11 @@ public class WeaponController : MonoBehaviour
         weaponPivot.name = $"{weaponData.weaponName} Pivot";
     }
 
+    public void SetDamageSource(DamageSource src)
+    {
+        damageSource = src;
+    }
+
     #region Getters
     public float GetCooldown()
     {
@@ -199,6 +207,11 @@ public class WeaponController : MonoBehaviour
     public IWeaponBehavior GetWeaponBehavior()
     {
         return weaponBehavior;
+    }
+
+    public DamageSource GetDamageSource()
+    {
+        return damageSource;
     }
 
     #endregion

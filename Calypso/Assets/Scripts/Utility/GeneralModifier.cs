@@ -51,7 +51,7 @@ public static class GeneralModifier
         Shape.rotation = new Vector3(Shape.rotation.x, arcSize/2, Shape.rotation.z);
     }
 
-    public static void UpdateTeam(ParticleSystem ps, TEAM team)
+    public static void UpdateTeam(ParticleSystem ps, TEAM team, DamageSource src = null)
     {
         var col = ps.collision;
         switch (team)
@@ -64,7 +64,8 @@ public static class GeneralModifier
                 break;
             default:
                 col.collidesWith = LayerMask.GetMask("Environment");
-                ps.gameObject.AddComponent<PierceHandler>();
+                PierceHandler prc = ps.gameObject.AddComponent<PierceHandler>();
+                prc.SetDamageSource(src);
                 break;
         }
     }

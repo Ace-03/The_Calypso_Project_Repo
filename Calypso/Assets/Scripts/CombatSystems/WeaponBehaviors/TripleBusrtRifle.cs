@@ -22,8 +22,7 @@ public class TripleBurstRifle : BaseParticleWeapon, IWeaponBehavior
 
         foreach (BulletTrigger bt in bulletTriggers)
         {
-            bt.SetData(weapon.GetWeaponData());
-            bt.weaponData = weapon.GetWeaponData();
+            bt.SetDamageSource(weapon.GetDamageSource());
         }
 
         base.ApplyWeaponStats(weapon, particles);

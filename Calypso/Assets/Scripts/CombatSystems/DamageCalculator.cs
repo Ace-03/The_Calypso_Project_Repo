@@ -2,9 +2,10 @@ using UnityEngine;
 
 public static class DamageCalculator
 {
-    public static DamageInfo GetDamageFromPlayer(WeaponDefinitionSO weaponData)
+    public static DamageInfo CalculateDamageToEnemy(DamageSource src)
     {
         StatSystem stats = ContextRegister.Instance.GetContext().statSystem;
+        WeaponDefinitionSO weaponData = src.weapon;
 
         return new DamageInfo
         {
@@ -16,8 +17,10 @@ public static class DamageCalculator
         };
     }
 
-    public static DamageInfo GetDamageToPlayer(EnemyDefinitionSO enemyData)
+    public static DamageInfo CalculateDamageToPlayer(DamageSource src)
     {
+        EnemyDefinitionSO enemyData = src.enemyDefinition;
+
         StatSystem stats = ContextRegister.Instance.GetContext().statSystem;
 
         if (enemyData == null)
