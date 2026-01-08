@@ -12,7 +12,7 @@ public class BulletTrigger : MonoBehaviour
     private bool isTicking = false;
     private float tickTimer = 0f;
 
-    [HideInInspector] private DamageSource damageSource;
+    [HideInInspector] private DamageSource damageSource = new DamageSource();
 
     public void SetDamageSource(DamageSource src)
     {

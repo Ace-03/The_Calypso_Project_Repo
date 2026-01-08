@@ -12,7 +12,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     [SerializeField] private float detonationTime;
     [SerializeField] private float volleyRate;
 
-    private DamageSource damageSource;
+    private DamageSource damageSource = new DamageSource();
     private List<Transform> targetList = new List<Transform>();
 
     private IEnumerator ThrowBomb(WeaponController weapon)

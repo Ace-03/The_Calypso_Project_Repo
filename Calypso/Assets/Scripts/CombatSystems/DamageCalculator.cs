@@ -26,6 +26,7 @@ public static class DamageCalculator
         if (enemyData == null)
         {
             Debug.LogWarning("Attack Made has no enemyData");
+            Debug.LogWarning($"source object is {src.sourceObject}");
         }
 
         DamageInfo damageInfo = enemyData.MakeDamageInfo();

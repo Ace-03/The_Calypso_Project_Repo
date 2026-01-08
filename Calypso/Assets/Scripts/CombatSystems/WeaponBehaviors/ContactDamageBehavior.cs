@@ -13,6 +13,7 @@ public class ContactDamageBehavior : MonoBehaviour, IWeaponBehavior
     public void ApplyWeaponStats(WeaponController weapon)
     {
         weaponCollider.radius = weapon.currentStats.Area != 0 ? weapon.currentStats.Area : 0.5f;
+        GetComponent<BulletTrigger>().SetDamageSource(weapon.GetDamageSource());
     }
 
     public void Attack(WeaponController weapon)
