@@ -11,16 +11,14 @@ public class PierceHandler : MonoBehaviour
     public int maxCollisionTicks = 2;
 
     private ParticleSystem.Particle[] particles;
-    WeaponDefinitionSO weaponData;
-    EnemyDefinitionSO enemyData;
+    private DamageSource damageSource;
 
     private Dictionary<uint, int> particleHitCounts = new Dictionary<uint, int>();
     private Dictionary<uint, Collider> particleLastHit = new Dictionary<uint, Collider>();
 
-    private void Awake()
+    public void SetDamageSource(DamageSource src)
     {
-        weaponData = GetComponentInParent<WeaponController>()?.GetWeaponData();
-        enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
+        damageSource = src;
     }
 
     void Start()
@@ -81,7 +79,7 @@ public class PierceHandler : MonoBehaviour
                             if (other.CompareTag("Enemy"))
                             {
                                 Debug.Log($"Particle {id} hit {hit.gameObject.name}, total hits: {particleHitCounts[id]}");
-                                damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
+                                damageInfo = DamageCalculator.CalculateDamageToEnemy(damageSource);
                                 other.GetComponent<GenericHealth>().TakeDamage(damageInfo);
                                 CheckNumberHits(i, id);
                             }

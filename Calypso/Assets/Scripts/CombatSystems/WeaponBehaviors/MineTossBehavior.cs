@@ -12,14 +12,8 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     [SerializeField] private float detonationTime;
     [SerializeField] private float volleyRate;
 
-    private WeaponDefinitionSO weaponData;
-    private EnemyDefinitionSO enemyData;
+    private DamageSource damageSource = new DamageSource();
     private List<Transform> targetList = new List<Transform>();
-
-    private void Start()
-    {
-        enemyData = GetComponent<EnemyInitializer>()?.GetEnemyData();
-    }
 
     private IEnumerator ThrowBomb(WeaponController weapon)
     {
@@ -74,8 +68,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
             Debug.LogError("Explosion is missing bullet trigger");
         }
 
-        explosionTrigger.weaponData = weaponData;
-        explosionTrigger.enemyData = enemyData;
+        explosionTrigger.SetDamageSource(damageSource);
 
         yield return new WaitForSeconds(duration);
 
@@ -86,8 +79,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
     public void ApplyWeaponStats(WeaponController weapon)
     {
-        weaponData = weapon.GetWeaponData();
-
+        damageSource = weapon.GetDamageSource();
     }
 
     public void Attack(WeaponController weapon)

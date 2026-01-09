@@ -3,15 +3,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float bobAmmount = 0.5f;
-    [SerializeField]
-    private float bobSpeed = 0.1f;
+    [SerializeField] private float bobAmmount = 0.5f;
+    [SerializeField] private float bobSpeed = 0.1f;
 
     private Transform weaponPivot;
 
-    [SerializeField]
-    private spriteControllerData spriteData;
+    [SerializeField] private spriteControllerData spriteData;
+
+    [SerializeField] private OnGenericEventSO clearInteractableEvent;
 
     private float maxSpeed;
     private float acceleration;
@@ -44,11 +43,13 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         if (rb != null) rb.linearVelocity = Vector3.zero;
+        clearInteractableEvent.UnregisterListener(ClearInteractable);
     }
 
     private void OnEnable()
     {
         if (rb != null) rb.linearVelocity = Vector3.zero;
+        clearInteractableEvent.RegisterListener(ClearInteractable);
     }
 
     private void FixedUpdate()
@@ -75,6 +76,11 @@ public class PlayerController : MonoBehaviour
 
         if (other.GetComponent<IInteractable>() == currentInteractable)
             currentInteractable = null;
+    }
+
+    private void ClearInteractable(GameEventPayload payload)
+    {
+        currentInteractable = null;
     }
 
     public void SetMovementVector(Vector3 direction)

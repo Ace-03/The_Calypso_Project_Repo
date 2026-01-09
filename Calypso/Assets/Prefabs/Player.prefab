@@ -19966,6 +19966,7 @@ MonoBehaviour:
     weapon:
       forwardSprite: {fileID: 21300000, guid: 68605e2c14fb9bb46b42b8db21ea9a90, type: 3}
       sideSprite: {fileID: 21300000, guid: a705a6ac82afabb49abbc649c7399865, type: 3}
+  clearInteractableEvent: {fileID: 11400000, guid: b48ec32e1db0b374b9e712d7b0747a51, type: 2}
 --- !u!114 &6693502108835353163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19980,6 +19981,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 6ecdd5cd0b9d49a49809929916e42a15, type: 2}
   autoInitialize: 1
+  currentStats:
+    Cooldown: 0
+    Damage: 0
+    Amount: 0
+    Duration: 0
+    accuracy: 0
+    Speed: 0
+    AOETick: 0
+    Area: 0
+  team: 0
   weaponPivot: {fileID: 0}
 --- !u!114 &5034327732661880448
 MonoBehaviour:
@@ -20068,6 +20079,9 @@ MonoBehaviour:
   teleportHomeButton: 104
   homeWaypoint: {fileID: 0}
   verticleOffset: 1.94
+  teleportDelay: 1
+  teleporting: 0
+  teleParticles: {fileID: 0}
 --- !u!114 &6254831323610310648
 MonoBehaviour:
   m_ObjectHideFlags: 0
