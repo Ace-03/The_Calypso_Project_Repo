@@ -131,7 +131,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     private Nullable<Vector3> GetAimVector(Transform target)
     {
         FiringSolution fs = new FiringSolution();
-        fs.useMaxTime = false;
+        fs.useMaxTime = true;
         return fs.Calculate(transform.position, target.transform.position, launchForce, Physics.gravity);
     }
 }
