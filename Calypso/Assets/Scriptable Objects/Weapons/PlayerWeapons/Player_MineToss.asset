@@ -20,9 +20,9 @@ MonoBehaviour:
   baseStats:
     Cooldown: 3
     Damage: 5
-    Amount: 2
+    Amount: 1
     Duration: 0.3
-    accuracy: 23
+    accuracy: 32
     Speed: 0
     AOETick: 0
     Area: 1
