@@ -77,6 +77,6 @@ public class MiningInteractable : MonoBehaviour, IInteractable
 
     private void DepleteNode()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

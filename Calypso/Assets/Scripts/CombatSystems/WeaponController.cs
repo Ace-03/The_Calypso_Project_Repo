@@ -21,8 +21,8 @@ public class WeaponController : MonoBehaviour
     {
         if (autoInitialize)
         {
-            Initialize();
             SetDamageSource(new DamageSource(weaponData, gameObject));
+            Initialize();
         }
     }
 

@@ -58,15 +58,13 @@ public class BulletTrigger : MonoBehaviour
 
             if (other.CompareTag("Player"))
             {
-                payload.damageInfo = DamageCalculator.CalculateDamageToEnemy(damageSource);
+                payload.damageInfo = DamageCalculator.CalculateDamageToPlayer(damageSource);
                 damageTakenEvent.Raise(payload);
-
             }
             else if (other.CompareTag("Enemy"))
             {
-                payload.damageInfo = DamageCalculator.CalculateDamageToPlayer(damageSource);
+                payload.damageInfo = DamageCalculator.CalculateDamageToEnemy(damageSource);
                 damageDealtEvent.Raise(payload);
-
             }
 
             other.GetComponent<GenericHealth>().TakeDamage(payload.damageInfo);
