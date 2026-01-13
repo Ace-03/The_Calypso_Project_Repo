@@ -11,6 +11,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     [SerializeField] private float range;
     [SerializeField] private float detonationTime;
     [SerializeField] private float volleyRate;
+    private Vector3 currentAimVector = Vector3.one;
 
     private DamageSource damageSource = new DamageSource();
     private List<Transform> targetList = new List<Transform>();
@@ -42,14 +43,16 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
             if (aimVector.HasValue)
             {
-                bombRb.linearVelocity = Vector3.zero;
-                bombRb.AddForce(aimVector.Value.normalized * launchForce, ForceMode.Impulse);
-
-                Collider col = newBomb.GetComponentInChildren<Collider>();
-                col.enabled = false;
-                yield return new WaitForSeconds(detonationTime);
-                col.enabled = true;
+                currentAimVector = aimVector.Value;
             }
+
+            bombRb.linearVelocity = Vector3.zero;
+            bombRb.AddForce(currentAimVector.normalized * launchForce, ForceMode.Impulse);
+
+            Collider col = newBomb.GetComponentInChildren<Collider>();
+            col.enabled = false;
+            yield return new WaitForSeconds(detonationTime);
+            col.enabled = true;
 
             StartCoroutine(ExplodeBomb(newBomb, sizeModifier, duration));
         }
