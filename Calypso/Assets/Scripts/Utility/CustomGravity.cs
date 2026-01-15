@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CustomGravity : MonoBehaviour
@@ -25,5 +26,10 @@ public class CustomGravity : MonoBehaviour
     public void SetGravity(float mult)
     {
         gravity = Physics.gravity * rb.mass * mult;
+    }
+
+    internal void SetGravity(object gravityMultiplier)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,7 +20,6 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     private Vector3 currentAimVector = Vector3.one;
 
     private DamageSource damageSource = new DamageSource();
-    private List<Transform> targetList = new List<Transform>();
 
     private IEnumerator ThrowBomb(WeaponController weapon)
     {
@@ -29,9 +27,8 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
         for (int i = 0; i < volleyCount; ++i)
         {
-            UpdateEnemyList();
-            Transform target = GetClosestEnemy(targetList);
-            if (!CheckRange(target.position))
+            Transform target = TargetCalculator.GetClosestEnemy(transform.position);
+            if (!TargetCalculator.CheckRange(target.position, transform.position, range))
             {
                 continue;
             }
@@ -108,41 +105,6 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     public bool IsAimable()
     {
         return false;
-    }
-
-    Transform GetClosestEnemy(List<Transform> enemies)
-    {
-        Transform tMin = null;
-        float minDist = Mathf.Infinity;
-        Vector3 currentPos = transform.position;
-        foreach (Transform t in enemies)
-        {
-            float dist = Vector3.Distance(t.position, currentPos);
-            if (dist < minDist)
-            {
-                tMin = t;
-                minDist = dist;
-            }
-        }
-        return tMin;
-    }
-
-    void UpdateEnemyList()
-    {
-        List<AI_NAV> navAgents = new List<AI_NAV>();
-
-        navAgents.AddRange(FindObjectsByType<AI_NAV>(FindObjectsSortMode.None));
-        targetList.Clear();
-        foreach (AI_NAV aI_NAV in navAgents)
-        {
-            targetList.Add(aI_NAV.transform);
-        }
-    }
-
-    bool CheckRange(Vector3 targetPos)
-    {
-        float distance = Vector3.Distance(targetPos, transform.position);
-        return !(distance > range);
     }
 
     private Nullable<Vector3> GetAimVector(Transform target)
