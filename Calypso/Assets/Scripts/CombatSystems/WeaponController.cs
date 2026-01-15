@@ -143,11 +143,11 @@ public class WeaponController : MonoBehaviour
             pivotObject.layer = 8;
 
             weaponPivot = pivotObject.transform;
-            Debug.Log("Created Player Weapon Pivot");
+            //Debug.Log("Created Player Weapon Pivot");
         }
         else if (CompareTag("Enemy"))
         {
-            Debug.Log("pivot container: " + transform.Find("Pivot Container").name);
+            //Debug.Log("pivot container: " + transform.Find("Pivot Container").name);
             GameObject pivotObject = Instantiate(new GameObject(), transform.Find("Pivot Container"));
             pivotObject.name = $"{weaponData.weaponName} Pivot";
             pivotObject.tag = "Enemy";
@@ -181,7 +181,7 @@ public class WeaponController : MonoBehaviour
     public void SetDamageSource(DamageSource src)
     {
         damageSource = src;
-        DebugLogDamageSource(damageSource);
+        //DebugLogDamageSource(damageSource);
     }
 
     #endregion

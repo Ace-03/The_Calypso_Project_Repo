@@ -76,9 +76,11 @@ public static class GeneralModifier
         {
             case TEAM.Player:
                 col.includeLayers = LayerMask.GetMask("Enemy", "Environment");
+                col.excludeLayers = LayerMask.GetMask("Player");
                 break;
             case TEAM.Enemy:
                 col.includeLayers = LayerMask.GetMask("Player", "Environment");
+                col.excludeLayers = LayerMask.GetMask("Enemy");
                 break;
             default:
                 col.includeLayers = LayerMask.GetMask("Enemy", "Player", "Environment");

@@ -22,7 +22,7 @@ MonoBehaviour:
     Damage: 5
     Amount: 1
     Duration: 0.3
-    accuracy: 29
+    accuracy: 64
     Speed: 0
     AOETick: 0
     Area: 1

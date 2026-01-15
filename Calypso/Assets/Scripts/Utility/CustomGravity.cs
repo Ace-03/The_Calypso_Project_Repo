@@ -2,15 +2,28 @@ using UnityEngine;
 
 public class CustomGravity : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Rigidbody rb;
+    public Vector3 gravity;
+
+    private void Awake()
     {
-        
+        if (!TryGetComponent<Rigidbody>(out rb))
+        {
+            Debug.LogWarning($"Custom Gravity cannot find Rigidbody on {this}, Adding Rigidbody");
+            rb = gameObject.AddComponent<Rigidbody>();
+        }
+
+        rb.useGravity = false;
+        gravity = Physics.gravity * rb.mass;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        rb.AddForce(gravity);
+    }
+
+    public void SetGravity(float mult)
+    {
+        gravity = Physics.gravity * rb.mass * mult;
     }
 }

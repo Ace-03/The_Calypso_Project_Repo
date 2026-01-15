@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 {
@@ -11,6 +13,11 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     [SerializeField] private float range;
     [SerializeField] private float detonationTime;
     [SerializeField] private float volleyRate;
+    [Tooltip("How far into the future the weapon will try to predict the target position")]
+    [SerializeField] private float predictionTime;
+    [SerializeField] private float gravityMultiplier;
+
+    private Vector3 appliedGravity;
     private Vector3 currentAimVector = Vector3.one;
 
     private DamageSource damageSource = new DamageSource();
@@ -22,7 +29,6 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
         for (int i = 0; i < volleyCount; ++i)
         {
-
             UpdateEnemyList();
             Transform target = GetClosestEnemy(targetList);
             if (!CheckRange(target.position))
@@ -30,15 +36,18 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
                 continue;
             }
 
-
             GameObject newBomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
+
+            CustomGravity grav = newBomb.AddComponent<CustomGravity>();
+            grav.SetGravity(gravityMultiplier);
+            appliedGravity = grav.gravity;
+
             if (!newBomb.TryGetComponent<Rigidbody>(out Rigidbody bombRb))
             {
                 Debug.LogError("No RigidBody On Bomb Prefab");
             }
 
             Nullable<Vector3> aimVector = GetAimVector(target);
-
             if (aimVector.HasValue)
             {
                 currentAimVector = aimVector.Value;
@@ -138,8 +147,16 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
     private Nullable<Vector3> GetAimVector(Transform target)
     {
-        FiringSolution fs = new FiringSolution();
+        Vector3 pos = target.position;
+
+        if (target.TryGetComponent<NavMeshAgent>(out NavMeshAgent navAgent))
+        {
+            pos = navAgent.transform.position + (navAgent.velocity * predictionTime);
+            Debug.Log("trying future position");
+        }
+
+            FiringSolution fs = new FiringSolution();
         fs.useMaxTime = true;
-        return fs.Calculate(transform.position, target.transform.position, launchForce, Physics.gravity);
+        return fs.Calculate(transform.position, pos, launchForce, appliedGravity);
     }
 }
