@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 5541417551828069419, guid: b06db9881e18fb441ba9b1d167cd9c11, type: 3}
   explosionPrefab: {fileID: 5581497663586425458, guid: eb0116d63d9c34a4182f936221c5f19f, type: 3}
-  launchForce: 10
-  range: 10
-  detonationTime: 1.5
-  volleyRate: 1
+  launchForce: 8
+  range: 20
+  detonationTime: 1.8
+  volleyRate: 0.2

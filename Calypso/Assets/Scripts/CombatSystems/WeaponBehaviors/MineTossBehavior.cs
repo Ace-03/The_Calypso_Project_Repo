@@ -19,12 +19,9 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     private IEnumerator ThrowBomb(WeaponController weapon)
     {
         int volleyCount = weapon.GetAmount();
-        float sizeModifier = weapon.GetArea();
-        float duration = weapon.GetDuration();
 
         for (int i = 0; i < volleyCount; ++i)
         {
-            yield return new WaitForSeconds(volleyRate);
 
             UpdateEnemyList();
             Transform target = GetClosestEnemy(targetList);
@@ -33,13 +30,14 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
                 continue;
             }
 
-            Nullable<Vector3> aimVector = GetAimVector(target);
 
             GameObject newBomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
             if (!newBomb.TryGetComponent<Rigidbody>(out Rigidbody bombRb))
             {
                 Debug.LogError("No RigidBody On Bomb Prefab");
             }
+
+            Nullable<Vector3> aimVector = GetAimVector(target);
 
             if (aimVector.HasValue)
             {
@@ -49,31 +47,38 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
             bombRb.linearVelocity = Vector3.zero;
             bombRb.AddForce(currentAimVector.normalized * launchForce, ForceMode.Impulse);
 
-            Collider col = newBomb.GetComponentInChildren<Collider>();
-            col.enabled = false;
-            yield return new WaitForSeconds(detonationTime);
-            col.enabled = true;
-
-            StartCoroutine(ExplodeBomb(newBomb, sizeModifier, duration));
+            StartCoroutine(ExplodeBomb(newBomb, weapon));
+            yield return new WaitForSeconds(volleyRate);
         }
     }
 
-    private IEnumerator ExplodeBomb(GameObject bomb, float sizeMod, float duration)
+    private IEnumerator ExplodeBomb(GameObject bomb, WeaponController weapon)
     {
         yield return new WaitForSeconds(detonationTime);
 
         Destroy(bomb);
         GameObject explosion = Instantiate(explosionPrefab, bomb.transform.position, Quaternion.identity);
-        explosion.transform.localScale *= sizeMod;
+        explosion.transform.localScale *= weapon.GetArea();
+
+        if (!explosion.TryGetComponent<Collider>(out Collider explosionCol))
+        {
+            Debug.LogError("Could Not Find Collider on explosion");
+        }
+        else
+        {
+            GeneralModifier.UpdateCollisionLayers(explosionCol, weapon.team);
+        }
 
         if (!explosion.TryGetComponent<BulletTrigger>(out BulletTrigger explosionTrigger))
         {
             Debug.LogError("Explosion is missing bullet trigger");
         }
+        else
+        {
+            explosionTrigger.SetDamageSource(damageSource);
+        }
 
-        explosionTrigger.SetDamageSource(damageSource);
-
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(weapon.GetDuration());
 
         explosion.GetComponent<Collider>().enabled = false;
 

@@ -40,7 +40,7 @@ public class BaseParticleWeapon : MonoBehaviour
     private void ApplyModifiers(WeaponController weapon, ParticleSystem ps)
     {
         GeneralModifier.SetSprite(ps, weapon.GetSprite());
-        GeneralModifier.UpdateTeam(ps, weapon.team, weapon.GetDamageSource());
+        GeneralModifier.UpdateCollisionLayers(ps, weapon.team, weapon.GetDamageSource());
     }
 
     public virtual bool IsAimable()
