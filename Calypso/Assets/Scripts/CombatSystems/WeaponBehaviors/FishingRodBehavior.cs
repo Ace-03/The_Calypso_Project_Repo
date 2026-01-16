@@ -12,8 +12,16 @@ public class FishingRodBehavior : MonoBehaviour, IWeaponBehavior
     {
         int volleyCount = weapon.GetAmount();
         float volleyRate = volleyDuration / volleyCount;
+        if (ContextRegister.Instance.GetContext().playerManager.GetFacingRight())
+        {
+            transform.eulerAngles = new Vector3 (0f, 0f, 0f);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3 (0f, 180f, 0f);
+        }
 
-        for (int i = 0;  i < volleyCount; i++)
+        for (int i = 0; i < volleyCount; i++)
         {
             triggerObject.SetActive(true);
 
@@ -32,7 +40,7 @@ public class FishingRodBehavior : MonoBehaviour, IWeaponBehavior
     public void ApplyWeaponStats(WeaponController weapon)
     {
         triggerObject.transform.localScale *= weapon.GetArea();
-
+        trigger.SetDamageSource(weapon.GetDamageSource());
     }
 
     public void Attack(WeaponController weapon)

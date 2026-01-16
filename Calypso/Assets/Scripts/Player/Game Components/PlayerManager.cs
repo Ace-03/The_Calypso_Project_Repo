@@ -119,4 +119,14 @@ public class PlayerManager : MonoBehaviour
     {
         return primaryWeapon;
     }
+
+    public bool GetFacingRight()
+    {
+        return playerController.GetFacingRight();
+    }
+
+    public bool GetFacingUo()
+    {
+        return playerController.GetFacingUp();
+    }
 }
