@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7991462304854306161}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.86511, y: 0.48999995, z: -50.600285}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchorPrefab: {fileID: 9057027106591810013, guid: 79c6c8add52a20943a398ba2eb6566bb, type: 3}
-  volleyRate: 0.2
-  gravityMultiplier: 15
-  dropDelay: 3
+  volleyRate: 0.5
+  gravityMultiplier: 10
+  throwStrength: 30
+  dropDelay: 2.5
+  predictionTime: 0.45

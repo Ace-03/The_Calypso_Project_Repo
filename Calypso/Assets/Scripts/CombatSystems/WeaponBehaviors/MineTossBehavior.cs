@@ -87,7 +87,6 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
         yield return new WaitForSeconds(weapon.GetDuration());
 
         explosion.GetComponent<Collider>().enabled = false;
-
         Destroy(explosion);
     }
 

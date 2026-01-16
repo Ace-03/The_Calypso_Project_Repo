@@ -5119,7 +5119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2442599d49069945a472a74ddb5f53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractForce: 50
+  attractForce: 10
   attractorTag: Item
 --- !u!1 &3587824869525600516
 GameObject:

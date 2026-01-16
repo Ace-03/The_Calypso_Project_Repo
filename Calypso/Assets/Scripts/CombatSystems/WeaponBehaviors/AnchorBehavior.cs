@@ -1,14 +1,17 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using static UnityEditor.PlayerSettings;
 
 public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
 {
     [SerializeField] private GameObject anchorPrefab;
     [SerializeField] private float volleyRate;
     [SerializeField] private float gravityMultiplier;
+    [SerializeField] private float throwStrength;
     [SerializeField] private float dropDelay;
+    [Tooltip("How far into the future the weapon will try to predict the target position")]
+    [SerializeField] private float predictionTime;
 
     private DamageSource damageSource;
 
@@ -18,7 +21,8 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
 
         for (int i = 0; i < volleyCount; ++i)
         {
-            GameObject newAnchor = Instantiate(anchorPrefab, transform.position, Quaternion.identity);
+            GameObject newAnchor = Instantiate(anchorPrefab, transform.position + Vector3.up, Quaternion.identity);
+            Debug.Log($"{newAnchor.transform.position}");
             CustomGravity grav = newAnchor.AddComponent<CustomGravity>();
             if (!newAnchor.TryGetComponent<Rigidbody>(out Rigidbody anchorRb))
             {
@@ -28,10 +32,17 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
             {
                 Debug.LogError($"No Bullet Trigger Found On Anchor Prefab");
             }
+            if (!newAnchor.TryGetComponent<Collider>(out Collider anchorCol))
+            {
+                Debug.LogError($"No collider Found On Anchor Prefab");
+            }
 
-            grav.SetGravity(gravityMultiplier);
+            Debug.Log("Tossing Anchor");
+
+            GeneralModifier.UpdateCollisionLayers(anchorCol, weapon.team);
+            grav.SetGravity(0);
             anchorTrigger.SetDamageSource(damageSource);
-            anchorRb.AddForce(Vector3.up * 100, ForceMode.Impulse);
+            anchorRb.AddForce(Vector3.up * throwStrength, ForceMode.Impulse);
             newAnchor.transform.eulerAngles = new Vector3(0, 0, 180);
 
             StartCoroutine(DropAnchor(newAnchor, weapon));
@@ -43,10 +54,38 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
     {
         yield return new WaitForSeconds(dropDelay);
 
+        anchorObject.GetComponent<CustomGravity>().SetGravity(gravityMultiplier);
         Transform target = TargetCalculator.GetClosestEnemy(transform.position);
+        Vector3 targetPos = Vector3.zero;
 
-        anchorObject.transform.position = target.position + Vector3.up * 50f;
+        if (target == null)
+        {
+            Debug.LogWarning("Cannot Find Target, Generating Random position");
+            targetPos = transform.position + new Vector3(
+                UnityEngine.Random.Range(-5f, 5f), 
+                0, 
+                UnityEngine.Random.Range(-5f, 5f));
+        }
+        else
+        {
+            if (target.TryGetComponent<NavMeshAgent>(out NavMeshAgent navAgent))
+            {
+                targetPos = navAgent.transform.position + (navAgent.velocity * predictionTime);
+                Debug.Log("trying future position");
+            }
+            else
+            {
+                targetPos = target.position;
+            }
+        }
+
+        anchorObject.transform.localScale *= weapon.GetArea();
+        anchorObject.transform.position = targetPos + Vector3.up * 40f;
+        anchorObject.GetComponent<Rigidbody>().linearVelocity = Vector3.down * 10;
         anchorObject.transform.rotation = Quaternion.identity;
+
+        yield return new WaitForSeconds(weapon.GetDuration());
+        Destroy(anchorObject);
     }
 
     public void ApplyWeaponStats(WeaponController weapon)
