@@ -21,6 +21,40 @@ public static class TargetCalculator
         return tMin;
     }
 
+    public static Transform GetRandomOfClosestEnemies(Vector3 currentPos)
+    {
+        List<Transform> enemies = MakeEnemyList();
+        List<Transform> validTargets = new List<Transform>();
+        float maxValidDist = Mathf.Infinity;
+        foreach (Transform enemy in enemies)
+        {
+            float dist = Vector3.Distance(enemy.position, currentPos);
+
+            if (dist < maxValidDist)
+            {
+                maxValidDist = dist;
+                validTargets.Add(enemy);
+
+                if (validTargets.Count > 10)
+                {
+                    Transform farthest = null;
+                    float maxdist = 0;
+                    foreach (Transform t in validTargets)
+                    {
+                        float d = Vector3.Distance(t.position, currentPos);
+                        if (d > maxdist)
+                        {
+                            farthest = t;
+                            maxdist = d;
+                        }
+                    }
+                    validTargets.Remove(farthest);
+                }
+            }
+        }
+        return validTargets[Random.Range(0, validTargets.Count)];
+    }
+
     private static List<Transform> MakeEnemyList()
     {
         List<AI_NAV> navAgents = new List<AI_NAV>();

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchorPrefab: {fileID: 9057027106591810013, guid: 79c6c8add52a20943a398ba2eb6566bb, type: 3}
-  volleyRate: 0.5
+  volleyDuration: 1.5
   gravityMultiplier: 10
   throwStrength: 30
   dropDelay: 2.5

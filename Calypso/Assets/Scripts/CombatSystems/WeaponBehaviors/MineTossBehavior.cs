@@ -11,7 +11,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     [SerializeField] private float launchForce;
     [SerializeField] private float range;
     [SerializeField] private float detonationTime;
-    [SerializeField] private float volleyRate;
+    [SerializeField] private float volleyDuration;
     [Tooltip("How far into the future the weapon will try to predict the target position")]
     [SerializeField] private float predictionTime;
     [SerializeField] private float gravityMultiplier;
@@ -24,6 +24,8 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     private IEnumerator ThrowBomb(WeaponController weapon)
     {
         int volleyCount = weapon.GetAmount();
+        float volleyRate = volleyDuration / volleyCount;
+
 
         for (int i = 0; i < volleyCount; ++i)
         {

@@ -6,7 +6,7 @@ using static UnityEditor.PlayerSettings;
 public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
 {
     [SerializeField] private GameObject anchorPrefab;
-    [SerializeField] private float volleyRate;
+    [SerializeField] private float volleyDuration;
     [SerializeField] private float gravityMultiplier;
     [SerializeField] private float throwStrength;
     [SerializeField] private float dropDelay;
@@ -18,6 +18,8 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
     private IEnumerator ThrowAnchor(WeaponController weapon)
     {
         int volleyCount = weapon.GetAmount();
+        float volleyRate = volleyDuration / volleyCount;
+
 
         for (int i = 0; i < volleyCount; ++i)
         {
@@ -55,7 +57,7 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
         yield return new WaitForSeconds(dropDelay);
 
         anchorObject.GetComponent<CustomGravity>().SetGravity(gravityMultiplier);
-        Transform target = TargetCalculator.GetClosestEnemy(transform.position);
+        Transform target = TargetCalculator.GetRandomOfClosestEnemies(transform.position);
         Vector3 targetPos = Vector3.zero;
 
         if (target == null)

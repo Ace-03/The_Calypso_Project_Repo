@@ -49,6 +49,6 @@ MonoBehaviour:
   launchForce: 25
   range: 20
   detonationTime: 1
-  volleyRate: 0.2
+  volleyDuration: 0.8
   predictionTime: 1.2
   gravityMultiplier: 6
