@@ -49,7 +49,6 @@ public class ContextRegister : MonoBehaviour
             spawnManager = spawnManager,
             statSystem = statSystem,
             rewardGenerator = rewardGenerator
-            
         };
     }
 }

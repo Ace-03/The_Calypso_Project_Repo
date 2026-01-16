@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
-  m_Name: Player_MineToss
+  m_Name: Player_FishRod
   m_EditorClassIdentifier: 
-  weaponName: Mine Toss
-  weaponDescription: Throw Mines that explode in an area to damage enemies
-  icon: {fileID: 21300000, guid: 09f03959b3b0dfe4bbb811694ceec41d, type: 3}
-  weaponBehaviorPrefab: {fileID: 5581497663586425458, guid: 70544af0140f5584f8087d126e8cb6ac, type: 3}
+  weaponName: Fishing Rod
+  weaponDescription: Swipe at opponents with your fishing line
+  icon: {fileID: 0}
+  weaponBehaviorPrefab: {fileID: 1613404437958726712, guid: 3706ec582f3ab294a921a56f6a235dee, type: 3}
   bulletSprite: {fileID: 0}
   baseStats:
     Cooldown: 3
-    Damage: 5
+    Damage: 2
     Amount: 1
     Duration: 0.3
     accuracy: 0
@@ -28,6 +28,6 @@ MonoBehaviour:
     Area: 1
   pierce: 0
   baseKnockback: 10
-  baseStun: 3
+  baseStun: 0
   basePoison: 0
   baseSlowdown: 0

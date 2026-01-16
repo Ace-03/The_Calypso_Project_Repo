@@ -7,6 +7,9 @@ public static class DamageCalculator
         StatSystem stats = ContextRegister.Instance.GetContext().statSystem;
         WeaponDefinitionSO weaponData = src.weapon;
 
+        if (src == null)
+            Debug.LogError("Attack To Enemy has No Damage Source");
+
         return new DamageInfo
         {
             damage = weaponData.baseStats.Damage * stats.GetFinalValue(StatType.Strength),

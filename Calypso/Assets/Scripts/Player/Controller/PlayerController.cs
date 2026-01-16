@@ -5,7 +5,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float bobAmmount = 0.5f;
     [SerializeField] private float bobSpeed = 0.1f;
-
     private Transform weaponPivot;
 
     [SerializeField] private spriteControllerData spriteData;
@@ -175,5 +174,15 @@ public class PlayerController : MonoBehaviour
     public void UpdateWeaponPivot()
     {
         weaponPivot = ContextRegister.Instance.GetContext().playerManager.GetPrimaryWeapon().weaponPivot;
+    }
+
+    public bool GetFacingRight()
+    {
+        return spriteController.GetFacingRight();
+    }
+
+    public bool GetFacingUp()
+    {
+        return spriteController.GetFacingUp();
     }
 }

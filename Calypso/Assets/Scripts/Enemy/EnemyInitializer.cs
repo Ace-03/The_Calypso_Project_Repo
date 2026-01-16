@@ -43,7 +43,10 @@ public class EnemyInitializer : MonoBehaviour
         }
 
         if (!GetComponentInChildren<SpriteRenderer>())
+        {
             sr = Instantiate(new GameObject("Sprite"), transform).AddComponent<SpriteRenderer>();
+            sr.gameObject.name = "Sprite object";
+        }
         else
             sr = GetComponentInChildren<SpriteRenderer>();
     }

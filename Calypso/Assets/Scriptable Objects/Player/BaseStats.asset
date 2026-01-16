@@ -18,7 +18,7 @@ MonoBehaviour:
   invulnerabilityPeriod: 0.5
   luck: 100
   ItemAttraction: 1.2
-  maxSpeed: 15
+  maxSpeed: 10
   acceleration: 20
   deceleration: 40
   strength: 1
