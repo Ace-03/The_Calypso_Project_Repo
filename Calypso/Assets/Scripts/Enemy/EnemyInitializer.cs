@@ -43,7 +43,10 @@ public class EnemyInitializer : MonoBehaviour
         }
 
         if (!GetComponentInChildren<SpriteRenderer>())
+        {
             sr = Instantiate(new GameObject("Sprite"), transform).AddComponent<SpriteRenderer>();
+            sr.gameObject.name = "Sprite object";
+        }
         else
             sr = GetComponentInChildren<SpriteRenderer>();
     }
@@ -98,6 +101,7 @@ public class EnemyInitializer : MonoBehaviour
             weaponController = gameObject.AddComponent<WeaponController>();
 
         weaponController.SetWeaponData(weaponData);
+        weaponController.SetDamageSource(new DamageSource(weaponData, gameObject, enemyData));
         weaponController.Initialize();
 
         if (weaponController.GetWeaponBehavior().IsAimable())

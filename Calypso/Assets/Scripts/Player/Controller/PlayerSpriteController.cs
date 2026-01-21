@@ -7,6 +7,9 @@ public class PlayerSpriteController
     private playerRenderers sr;
     private playerSprites ps;
     private weaponSprites ws;
+    private bool facingRight = true;
+    private bool facingUp = true;
+
 
     public void Initialize(spriteControllerData scData)
     {
@@ -27,12 +30,14 @@ public class PlayerSpriteController
                 UpdatePlayer(ps.leftSprite);
                 UpdateWeapon(ws.sideSprite, playerLayer - 1, -1, -0.06f);
                 UpdateShadow(1.2f);
+                facingRight = false;
             }
             else
             {
                 UpdatePlayer(ps.rightSprite);
                 UpdateWeapon(ws.sideSprite, playerLayer + 1, 1, 0.06f);
                 UpdateShadow(1.2f);
+                facingRight = true;
             }
         }
         else
@@ -42,12 +47,14 @@ public class PlayerSpriteController
                 UpdatePlayer(ps.frontSprite);
                 UpdateWeapon(ws.forwardSprite, playerLayer + 1, 1);
                 UpdateShadow(1.5f);
+                facingUp = false;
             }
             else
             {
                 UpdatePlayer(ps.backSprite);
                 UpdateWeapon(ws.forwardSprite, playerLayer - 1, -1);
                 UpdateShadow(1.5f);
+                facingUp = true;
             }
 
         }
@@ -91,5 +98,15 @@ public class PlayerSpriteController
     private void UpdateShadow(float scale)
     {
         sr.shadow.transform.localScale = new Vector3(scale, 1.5f, 1.5f);
+    }
+
+    public bool GetFacingRight()
+    {
+        return facingRight;
+    }
+
+    public bool GetFacingUp()
+    {
+        return facingUp;
     }
 }

@@ -17,6 +17,7 @@ public class PlayerPrimaryWeaponManager : MonoBehaviour
     public void UpgradeWeapon()
     {
         playerWeaponController.SetWeaponData(GetRewardWeapon());
+        playerWeaponController.SetDamageSource(new DamageSource(GetRewardWeapon(), gameObject));
         currentProgressionState = progressionData.weaponLevelProgression[Mathf.Clamp(weaponLevel, 0, progressionData.weaponLevelProgression.Count - 1)];
         weaponLevel++;
     }

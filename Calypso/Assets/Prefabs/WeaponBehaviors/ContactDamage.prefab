@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
+  enemyTickDamage: 0
 --- !u!114 &8040034651907865789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a13af4f95f45aa428c1d376a65c12cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bt: {fileID: 1812151299177642501}
 --- !u!135 &8082526524406474224
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -17,6 +17,9 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     [Tooltip("Higher Rate means more particles")]
     public float particleRate = 20f;
 
+    [Header("Event Object")]
+    [SerializeField] private OnGenericEventSO clearPlayerInteractableEvent;
+
 
     private float currentMineTimer = 0f;
     private bool mining = false;
@@ -77,6 +80,7 @@ public class MiningInteractable : MonoBehaviour, IInteractable
 
     private void DepleteNode()
     {
-        Destroy(gameObject);
+        clearPlayerInteractableEvent.Raise(new GameEventPayload());
+        gameObject.SetActive(false);
     }
 }

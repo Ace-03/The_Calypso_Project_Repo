@@ -65,6 +65,7 @@ MonoBehaviour:
   - {fileID: 9174541193339520836}
   - {fileID: 2335204275174141742}
   particleRate: 300
+  clearPlayerInteractableEvent: {fileID: 11400000, guid: b48ec32e1db0b374b9e712d7b0747a51, type: 2}
 --- !u!135 &6223630662146781946
 SphereCollider:
   m_ObjectHideFlags: 0

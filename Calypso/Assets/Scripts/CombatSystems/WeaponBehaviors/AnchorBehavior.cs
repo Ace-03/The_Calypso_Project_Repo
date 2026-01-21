@@ -1,0 +1,107 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.AI;
+using static UnityEditor.PlayerSettings;
+
+public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
+{
+    [SerializeField] private GameObject anchorPrefab;
+    [SerializeField] private float volleyDuration;
+    [SerializeField] private float gravityMultiplier;
+    [SerializeField] private float throwStrength;
+    [SerializeField] private float dropDelay;
+    [Tooltip("How far into the future the weapon will try to predict the target position")]
+    [SerializeField] private float predictionTime;
+
+    private DamageSource damageSource;
+
+    private IEnumerator ThrowAnchor(WeaponController weapon)
+    {
+        int volleyCount = weapon.GetAmount();
+        float volleyRate = volleyDuration / volleyCount;
+
+
+        for (int i = 0; i < volleyCount; ++i)
+        {
+            GameObject newAnchor = Instantiate(anchorPrefab, transform.position + Vector3.up, Quaternion.identity);
+            Debug.Log($"{newAnchor.transform.position}");
+            CustomGravity grav = newAnchor.AddComponent<CustomGravity>();
+            if (!newAnchor.TryGetComponent<Rigidbody>(out Rigidbody anchorRb))
+            {
+                Debug.LogError("No RigidBody On Anchor Prefab");
+            }
+            if (!newAnchor.TryGetComponent<BulletTrigger>(out BulletTrigger anchorTrigger))
+            {
+                Debug.LogError($"No Bullet Trigger Found On Anchor Prefab");
+            }
+            if (!newAnchor.TryGetComponent<Collider>(out Collider anchorCol))
+            {
+                Debug.LogError($"No collider Found On Anchor Prefab");
+            }
+
+            Debug.Log("Tossing Anchor");
+
+            GeneralModifier.UpdateCollisionLayers(anchorCol, weapon.team);
+            grav.SetGravity(0);
+            anchorTrigger.SetDamageSource(damageSource);
+            anchorRb.AddForce(Vector3.up * throwStrength, ForceMode.Impulse);
+            newAnchor.transform.eulerAngles = new Vector3(0, 0, 180);
+
+            StartCoroutine(DropAnchor(newAnchor, weapon));
+            yield return new WaitForSeconds(volleyRate);
+        }
+    }
+
+    private IEnumerator DropAnchor(GameObject anchorObject, WeaponController weapon)
+    {
+        yield return new WaitForSeconds(dropDelay);
+
+        anchorObject.GetComponent<CustomGravity>().SetGravity(gravityMultiplier);
+        Transform target = TargetCalculator.GetRandomOfClosestEnemies(transform.position);
+        Vector3 targetPos = Vector3.zero;
+
+        if (target == null)
+        {
+            Debug.LogWarning("Cannot Find Target, Generating Random position");
+            targetPos = transform.position + new Vector3(
+                UnityEngine.Random.Range(-5f, 5f), 
+                0, 
+                UnityEngine.Random.Range(-5f, 5f));
+        }
+        else
+        {
+            if (target.TryGetComponent<NavMeshAgent>(out NavMeshAgent navAgent))
+            {
+                targetPos = navAgent.transform.position + (navAgent.velocity * predictionTime);
+                Debug.Log("trying future position");
+            }
+            else
+            {
+                targetPos = target.position;
+            }
+        }
+
+        anchorObject.transform.localScale *= weapon.GetArea();
+        anchorObject.transform.position = targetPos + Vector3.up * 40f;
+        anchorObject.GetComponent<Rigidbody>().linearVelocity = Vector3.down * 10;
+        anchorObject.transform.rotation = Quaternion.identity;
+
+        yield return new WaitForSeconds(weapon.GetDuration());
+        Destroy(anchorObject);
+    }
+
+    public void ApplyWeaponStats(WeaponController weapon)
+    {
+        damageSource = weapon.GetDamageSource();
+    }
+
+    public void Attack(WeaponController weapon)
+    {
+        StartCoroutine(ThrowAnchor(weapon));
+    }
+
+    public bool IsAimable()
+    {
+        return false;
+    }
+}

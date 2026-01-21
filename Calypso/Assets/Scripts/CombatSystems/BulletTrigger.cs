@@ -12,20 +12,11 @@ public class BulletTrigger : MonoBehaviour
     private bool isTicking = false;
     private float tickTimer = 0f;
 
-    [HideInInspector] public WeaponDefinitionSO weaponData;
-    [HideInInspector] public EnemyDefinitionSO enemyData;
+    [HideInInspector] private DamageSource damageSource = new DamageSource();
 
-    private void Awake()
+    public void SetDamageSource(DamageSource src)
     {
-        if (weaponData == null)
-        {
-            weaponData = GetComponentInParent<WeaponController>()?.GetWeaponData();
-        }
-
-        if (enemyData == null)
-        {
-            enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
-        }
+        damageSource = src;
     }
 
     private void Update()
@@ -67,15 +58,13 @@ public class BulletTrigger : MonoBehaviour
 
             if (other.CompareTag("Player"))
             {
-                payload.damageInfo = DamageCalculator.GetDamageToPlayer(enemyData);
+                payload.damageInfo = DamageCalculator.CalculateDamageToPlayer(damageSource);
                 damageTakenEvent.Raise(payload);
-
             }
             else if (other.CompareTag("Enemy"))
             {
-                payload.damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
+                payload.damageInfo = DamageCalculator.CalculateDamageToEnemy(damageSource);
                 damageDealtEvent.Raise(payload);
-
             }
 
             other.GetComponent<GenericHealth>().TakeDamage(payload.damageInfo);
@@ -90,10 +79,12 @@ public class BulletTrigger : MonoBehaviour
 
             if (other.CompareTag("Player"))
             {
+                EnemyDefinitionSO enemyData = damageSource.enemyDefinition;
+
                 if (enemyData == null)
                     enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
 
-                payload.damageInfo = DamageCalculator.GetDamageToPlayer(enemyData);
+                payload.damageInfo = DamageCalculator.CalculateDamageToPlayer(damageSource);
                 damageTakenEvent.Raise(payload);
 
                 other.GetComponent<GenericHealth>().TakeDamage(payload.damageInfo);
@@ -109,7 +100,7 @@ public class BulletTrigger : MonoBehaviour
 
             if (other.CompareTag("Enemy"))
             {
-                payload.damageInfo = DamageCalculator.GetDamageFromPlayer(weaponData);
+                payload.damageInfo = DamageCalculator.CalculateDamageToEnemy(damageSource);
                 damageDealtEvent.Raise(payload);
 
                 other.GetComponent<GenericHealth>().TakeDamage(payload.damageInfo);
@@ -125,16 +116,6 @@ public class BulletTrigger : MonoBehaviour
             attacker = gameObject,
             receiver = other.gameObject,
         };
-    }
-
-    public void SetData(WeaponDefinitionSO weapon)
-    {
-        weaponData = weapon;
-    }
-
-    public void SetData(EnemyDefinitionSO enemy)
-    {
-        enemyData = enemy;
     }
 
     public void SetTickInterval(float interval)

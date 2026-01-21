@@ -51,7 +51,7 @@ public static class GeneralModifier
         Shape.rotation = new Vector3(Shape.rotation.x, arcSize/2, Shape.rotation.z);
     }
 
-    public static void UpdateTeam(ParticleSystem ps, TEAM team)
+    public static void UpdateCollisionLayers(ParticleSystem ps, TEAM team, DamageSource src = null)
     {
         var col = ps.collision;
         switch (team)
@@ -64,7 +64,26 @@ public static class GeneralModifier
                 break;
             default:
                 col.collidesWith = LayerMask.GetMask("Environment");
-                ps.gameObject.AddComponent<PierceHandler>();
+                PierceHandler prc = ps.gameObject.AddComponent<PierceHandler>();
+                prc.SetDamageSource(src);
+                break;
+        }
+    }
+
+    public static void UpdateCollisionLayers(Collider col, TEAM team)
+    {
+        switch (team)
+        {
+            case TEAM.Player:
+                col.includeLayers = LayerMask.GetMask("Enemy", "Environment");
+                col.excludeLayers = LayerMask.GetMask("Player");
+                break;
+            case TEAM.Enemy:
+                col.includeLayers = LayerMask.GetMask("Player", "Environment");
+                col.excludeLayers = LayerMask.GetMask("Enemy");
+                break;
+            default:
+                col.includeLayers = LayerMask.GetMask("Enemy", "Player", "Environment");
                 break;
         }
     }

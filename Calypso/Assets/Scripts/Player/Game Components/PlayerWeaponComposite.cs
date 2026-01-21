@@ -47,12 +47,10 @@ public class PlayerWeaponComposite : MonoBehaviour
             WeaponDefinitionSO weaponData = weaponDefinitions[i];
             WeaponController weaponController = gameObject.AddComponent<WeaponController>();
             weaponController.SetWeaponData(weaponData);
-            weaponInstances.Add(weaponController);
-        }
+            weaponController.SetDamageSource(new DamageSource(weaponData, gameObject));
+            weaponController.Initialize();
 
-        foreach (WeaponController weapon in weaponInstances)
-        {
-            weapon.Initialize();
+            weaponInstances.Add(weaponController);
         }
     }
 }

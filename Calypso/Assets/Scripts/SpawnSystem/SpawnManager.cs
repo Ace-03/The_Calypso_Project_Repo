@@ -134,7 +134,7 @@ public class SpawnManager : MonoBehaviour
 
                 if (totalEnemies < enemySpawnInfo.maxActiveEnemies)
                 {
-                    Debug.Log("Spawning enemy");
+                    //Debug.Log("Spawning enemy");
                     SpawnEnemy(enemySpawnInfo.enemyDefinition);
                 }
                 else
@@ -158,7 +158,7 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Failed To Spawn Enemy of Type {enemyType.name}, spawn position was invalid");
+            //Debug.LogWarning($"Failed To Spawn Enemy of Type {enemyType.name}, spawn position was invalid");
             return; 
         }
 

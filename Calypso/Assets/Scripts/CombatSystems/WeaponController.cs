@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -10,17 +9,36 @@ public class WeaponController : MonoBehaviour
 
     public TEAM team;
     public Transform weaponPivot;
+
     private GameObject weaponInstance;
     private IWeaponBehavior weaponBehavior;
     private float nextAttackTime;
+    private DamageSource damageSource = new DamageSource();
 
     private StatSystem stats;
 
     private void Awake()
     {
         if (autoInitialize)
+        {
+            SetDamageSource(new DamageSource(weaponData, gameObject));
             Initialize();
+        }
     }
+
+    private void OnDisable()
+    {
+        if (weaponInstance == null) return;
+
+        weaponInstance.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        if (weaponInstance == null) return;
+        weaponInstance.SetActive(true);
+    }
+
     public void Initialize()
     {
         stats = ContextRegister.Instance.GetContext().statSystem;
@@ -35,20 +53,6 @@ public class WeaponController : MonoBehaviour
         weaponBehavior?.ApplyWeaponStats(this);
         nextAttackTime = Time.time + GetCooldown();
 
-    }
-
-    private void Update()
-    {
-        if (weaponData == null)
-        {
-            Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
-            return;
-        }
-        if (Time.time >= nextAttackTime)
-        {
-            Attack();
-            nextAttackTime = Time.time + GetCooldown();
-        }
     }
 
     private void InitializeData()
@@ -79,6 +83,25 @@ public class WeaponController : MonoBehaviour
         weaponBehavior = weaponInstance.GetComponent<IWeaponBehavior>();
     }
 
+    private void Update()
+    {
+        if (weaponData == null)
+        {
+            Debug.LogError("Weapon data is not assigned in WeaponController. Weapon is Likely Missing.");
+            return;
+        }
+        if (Time.time >= nextAttackTime)
+        {
+            Attack();
+            nextAttackTime = Time.time + GetCooldown();
+        }
+    }
+    
+    public void Attack()
+    {
+        weaponBehavior?.Attack(this);
+    }
+
     public void RecalculateStats()
     {
         if (weaponData == null)
@@ -100,22 +123,8 @@ public class WeaponController : MonoBehaviour
             currentStats.AOETick = weaponData.baseStats.AOETick * stats.GetFinalValue(StatType.Cooldown);
             currentStats.Area = weaponData.baseStats.Area * stats.GetFinalValue(StatType.Size);
         }
-    }
 
-    public void Attack()
-    {
-        weaponBehavior?.Attack(this);
-    }
-
-    public WeaponDefinitionSO GetWeaponData()
-    {
-        return weaponData;
-    }
-
-    public void SetWeaponData(WeaponDefinitionSO data)
-    {
-        weaponData = data;
-        Initialize();
+        weaponBehavior?.ApplyWeaponStats(this);
     }
 
     public void DestroyWeaponInstance()
@@ -134,11 +143,11 @@ public class WeaponController : MonoBehaviour
             pivotObject.layer = 8;
 
             weaponPivot = pivotObject.transform;
-            Debug.Log("Created Player Weapon Pivot");
+            //Debug.Log("Created Player Weapon Pivot");
         }
         else if (CompareTag("Enemy"))
         {
-            Debug.Log("pivot container: " + transform.Find("Pivot Container").name);
+            //Debug.Log("pivot container: " + transform.Find("Pivot Container").name);
             GameObject pivotObject = Instantiate(new GameObject(), transform.Find("Pivot Container"));
             pivotObject.name = $"{weaponData.weaponName} Pivot";
             pivotObject.tag = "Enemy";
@@ -152,6 +161,30 @@ public class WeaponController : MonoBehaviour
     {
         weaponPivot.name = $"{weaponData.weaponName} Pivot";
     }
+
+    private void DebugLogDamageSource(DamageSource src)
+    {
+        Debug.Log($"Damage Source object exists: {src != null}");
+        Debug.Log($"Damage Source Weapon: {src.weapon}");
+        Debug.Log($"Damage Source parent object: {src.sourceObject}");
+        Debug.Log($"Damage Source enemy data: {src.enemyDefinition}");
+    }
+
+    #region Setters
+
+    public void SetWeaponData(WeaponDefinitionSO data)
+    {
+        weaponData = data;
+        damageSource.weapon = weaponData;
+        Initialize();
+    }
+    public void SetDamageSource(DamageSource src)
+    {
+        damageSource = src;
+        //DebugLogDamageSource(damageSource);
+    }
+
+    #endregion
 
     #region Getters
     public float GetCooldown()
@@ -201,18 +234,15 @@ public class WeaponController : MonoBehaviour
         return weaponBehavior;
     }
 
+    public DamageSource GetDamageSource()
+    {
+        return damageSource;
+    }
+
+    public WeaponDefinitionSO GetWeaponData()
+    {
+        return weaponData;
+    }
+
     #endregion
-
-    private void OnDisable()
-    {
-        if (weaponInstance == null) return;
-
-        weaponInstance.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        if (weaponInstance == null) return;
-        weaponInstance.SetActive(true);
-    }
 }

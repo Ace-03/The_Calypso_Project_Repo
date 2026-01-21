@@ -26,7 +26,7 @@ public class ResourcesUI : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            Debug.Log("Updating Sprite on index " + i + " for:" + resourceElements.boatIcons[i].name);
+            Debug.Log("Updating Sprite on index " + i + " for: " + resourceElements.boatIcons[i].name);
             resourceElements.boatIcons[i].sprite = resourceElements.aquiredBoatSprite;
         }
     }

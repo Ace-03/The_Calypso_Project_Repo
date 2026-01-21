@@ -23,8 +23,7 @@ public class BaseParticleWeapon : MonoBehaviour
         StopAttack();
         ApplyModifiers(weapon, ps);
         Debug.Log("Bullet Trigger is: " + bt);
-        bt.SetData(weapon.GetWeaponData());
-        bt.weaponData = weapon.GetWeaponData();
+        bt.SetDamageSource(weapon.GetDamageSource());
     }
 
     public virtual void ApplyWeaponStats(WeaponController weapon, List<ParticleSystem> particle)
@@ -34,13 +33,14 @@ public class BaseParticleWeapon : MonoBehaviour
         foreach (ParticleSystem ps in particle)
         {
             ApplyModifiers(weapon, ps);
+            bt.SetDamageSource(weapon.GetDamageSource());
         }
     }
 
     private void ApplyModifiers(WeaponController weapon, ParticleSystem ps)
     {
         GeneralModifier.SetSprite(ps, weapon.GetSprite());
-        GeneralModifier.UpdateTeam(ps, weapon.team);
+        GeneralModifier.UpdateCollisionLayers(ps, weapon.team, weapon.GetDamageSource());
     }
 
     public virtual bool IsAimable()

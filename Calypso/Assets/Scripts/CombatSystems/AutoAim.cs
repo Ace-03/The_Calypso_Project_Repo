@@ -17,8 +17,8 @@ public class AutoAim : MonoBehaviour
         {
             ps = GetComponent<ParticleSystem>();
         }
-        UpdateEnemyList();
-        target = GetClosestEnemy(t_List);
+
+        target = TargetCalculator.GetClosestEnemy(transform.position);
         LookAtTarget();
         if (alsoAutoOff)
         {
@@ -27,7 +27,7 @@ public class AutoAim : MonoBehaviour
                 ps.Stop();
                 return;
             }
-            bool inRange = CheckRange();
+            bool inRange = TargetCalculator.CheckRange(target.position, transform.position, rangeOfEngage);
             if (inRange)
             {
                 if (!ps.isPlaying)
@@ -41,6 +41,7 @@ public class AutoAim : MonoBehaviour
             }
         }
     }
+
     void LookAtTarget()
     {
         if (target != null)
@@ -51,36 +52,5 @@ public class AutoAim : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0, eulerY - 90f, 0);
             transform.rotation = rotation;
         }
-    }
-    Transform GetClosestEnemy(List<Transform> enemies)
-    {
-        Transform tMin = null;
-        float minDist = Mathf.Infinity;
-        Vector3 currentPos = transform.position;
-        foreach (Transform t in enemies)
-        {
-            float dist = Vector3.Distance(t.position, currentPos);
-            if (dist < minDist)
-            {
-                tMin = t;
-                minDist = dist;
-            }
-        }
-        return tMin;
-    }
-    void UpdateEnemyList()
-    {
-        targetList.Clear();
-        targetList.AddRange(FindObjectsByType<AI_NAV>(FindObjectsSortMode.None));
-        t_List.Clear();
-        foreach (AI_NAV aI_NAV in targetList)
-        {
-            t_List.Add(aI_NAV.transform);
-        }
-    }
-    bool CheckRange()
-    {
-        float distance = Vector3.Distance(target.position,transform.position);
-        return !(distance>rangeOfEngage);
     }
 }
