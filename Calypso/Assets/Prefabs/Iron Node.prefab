@@ -53,10 +53,10 @@ MonoBehaviour:
     data: {fileID: 11400000, guid: 41e6bd7787ed08345bf510daf918f179, type: 2}
     dropChance: 100
     minAmount: 3
-    maxAmount: 8
+    maxAmount: 6
   spawnPoint: {fileID: 7325785119240536770}
   mineTime: 2
-  hp: 3
+  hp: 1
   particlePrefab: {fileID: 1469735650166152172, guid: 716ca306d7f2a344d944e16759029f25, type: 3}
   particlePositions:
   - {fileID: 5833387688087399880}

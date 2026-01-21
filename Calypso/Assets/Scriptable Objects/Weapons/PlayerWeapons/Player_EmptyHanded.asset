@@ -19,10 +19,10 @@ MonoBehaviour:
   bulletSprite: {fileID: 0}
   baseStats:
     Cooldown: 0
-    Damage: 3
+    Damage: 0
     Amount: 0
     Duration: 0
-    accuracy: 0
+    accuracy: 35
     Speed: 0
     AOETick: 0.5
     Area: 0.6
