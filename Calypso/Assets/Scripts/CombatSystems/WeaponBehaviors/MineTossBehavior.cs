@@ -30,10 +30,33 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
         for (int i = 0; i < volleyCount; ++i)
         {
             Transform target = TargetCalculator.GetClosestEnemy(transform.position);
-            if (!TargetCalculator.CheckRange(target.position, transform.position, range))
+            Nullable<Vector3> aimVector = null;
+
+            if (target == null)
             {
+                /* throw mine in random directions
+                Vector3 targetPos = transform.position + new Vector3(
+                UnityEngine.Random.Range(-5f, 5f),
+                0,
+                UnityEngine.Random.Range(-5f, 5f));
+                
+
+                aimVector = GetAimVector(targetPos);
+                if (aimVector.HasValue)
+                    currentAimVector = aimVector.Value;
+                */
                 continue;
             }
+            else
+            {
+                if (!TargetCalculator.CheckRange(target.position, transform.position, range))
+                    continue;
+
+                aimVector = GetAimVector(target);
+                if (aimVector.HasValue)
+                    currentAimVector = aimVector.Value;
+            }
+
 
             GameObject newBomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
 
@@ -44,12 +67,6 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
             if (!newBomb.TryGetComponent<Rigidbody>(out Rigidbody bombRb))
             {
                 Debug.LogError("No RigidBody On Bomb Prefab");
-            }
-
-            Nullable<Vector3> aimVector = GetAimVector(target);
-            if (aimVector.HasValue)
-            {
-                currentAimVector = aimVector.Value;
             }
 
             bombRb.linearVelocity = Vector3.zero;
@@ -63,6 +80,10 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     private IEnumerator ExplodeBomb(GameObject bomb, WeaponController weapon)
     {
         yield return new WaitForSeconds(detonationTime);
+
+        ParticleSystem ps = bomb.GetComponentInChildren<ParticleSystem>();
+        ps.transform.parent = null;
+        Destroy(ps, 5f);
 
         Destroy(bomb);
         GameObject explosion = Instantiate(explosionPrefab, bomb.transform.position, Quaternion.identity);
@@ -89,6 +110,11 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
         yield return new WaitForSeconds(weapon.GetDuration());
 
         explosion.GetComponent<Collider>().enabled = false;
+
+        ParticleSystem expPs = explosion.GetComponent<ParticleSystem>();
+        if (expPs != null) expPs.transform.parent = null;
+        Destroy(expPs, 5f);
+
         Destroy(explosion);
     }
 
@@ -99,7 +125,6 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
     public void Attack(WeaponController weapon)
     {
-        Debug.Log("Trying to throw mines");
         StartCoroutine(ThrowBomb(weapon));
     }
 
@@ -118,8 +143,14 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
             Debug.Log("trying future position");
         }
 
-            FiringSolution fs = new FiringSolution();
+        FiringSolution fs = new FiringSolution();
         fs.useMaxTime = true;
         return fs.Calculate(transform.position, pos, launchForce, appliedGravity);
+    }
+    private Nullable<Vector3> GetAimVector(Vector3 target)
+    {
+        FiringSolution fs = new FiringSolution();
+        fs.useMaxTime = true;
+        return fs.Calculate(transform.position, target, launchForce, appliedGravity);
     }
 }

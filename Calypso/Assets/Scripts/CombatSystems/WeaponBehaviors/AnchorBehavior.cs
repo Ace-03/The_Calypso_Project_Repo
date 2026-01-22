@@ -62,11 +62,15 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
 
         if (target == null)
         {
+            /* throw anchor in random directions
             Debug.LogWarning("Cannot Find Target, Generating Random position");
             targetPos = transform.position + new Vector3(
                 UnityEngine.Random.Range(-5f, 5f), 
                 0, 
                 UnityEngine.Random.Range(-5f, 5f));
+            */
+
+            yield break;
         }
         else
         {
@@ -87,7 +91,9 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
         anchorObject.transform.rotation = Quaternion.identity;
 
         yield return new WaitForSeconds(weapon.GetDuration());
-        anchorObject.GetComponent<ModelController>().GetModel().SetActive(false);
+        ComponentController componentController = anchorObject.GetComponent<ComponentController>();
+        componentController.GetModel().SetActive(false);
+        componentController.GetTrigger().enabled = false;
         Destroy(anchorObject, 5f);
     }
 

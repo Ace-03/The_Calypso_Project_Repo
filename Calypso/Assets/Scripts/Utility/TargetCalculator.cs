@@ -7,6 +7,8 @@ public static class TargetCalculator
     {
         List<Transform> enemies = MakeEnemyList();
 
+        if (enemies.Count == 0) return null;
+
         Transform tMin = null;
         float minDist = Mathf.Infinity;
         foreach (Transform t in enemies)

@@ -20005,6 +20005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 8521781278455715117}
+  trigger: {fileID: 7216988440282359905}
 --- !u!114 &6326924710156310960
 MonoBehaviour:
   m_ObjectHideFlags: 0
