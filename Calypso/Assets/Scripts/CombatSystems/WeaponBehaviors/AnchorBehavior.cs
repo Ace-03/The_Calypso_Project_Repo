@@ -87,7 +87,8 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
         anchorObject.transform.rotation = Quaternion.identity;
 
         yield return new WaitForSeconds(weapon.GetDuration());
-        Destroy(anchorObject);
+        anchorObject.GetComponent<ModelController>().GetModel().SetActive(false);
+        Destroy(anchorObject, 5f);
     }
 
     public void ApplyWeaponStats(WeaponController weapon)

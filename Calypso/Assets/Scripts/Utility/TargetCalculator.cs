@@ -52,7 +52,12 @@ public static class TargetCalculator
                 }
             }
         }
-        return validTargets[Random.Range(0, validTargets.Count)];
+        if (validTargets.Count > 0)
+        {
+            return validTargets[Random.Range(0, validTargets.Count)];
+        }
+
+        return null;
     }
 
     private static List<Transform> MakeEnemyList()

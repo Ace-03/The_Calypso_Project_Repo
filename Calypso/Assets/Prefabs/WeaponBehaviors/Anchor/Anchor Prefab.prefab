@@ -115,9 +115,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 5
-      minScalar: 5
+      minMaxState: 3
+      scalar: 3
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4843,7 +4843,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2111716326536823065}
   - component: {fileID: 4669667603740622747}
-  - component: {fileID: 2580600096669072519}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -4887,19 +4886,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2, y: 1.64, z: 0.2}
   m_Center: {x: 0, y: 0.75, z: 0}
---- !u!114 &2580600096669072519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648883114640500286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a7b4913a6abc5f48a717866d960e0b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LandingBurst: {fileID: 3695797556601388517}
 --- !u!1 &2576516829093011491
 GameObject:
   m_ObjectHideFlags: 0
@@ -5343,9 +5329,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 5
-      minScalar: 5
+      minMaxState: 3
+      scalar: 3
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10111,7 +10097,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -10176,9 +10162,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 5
-      minScalar: 5
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -11106,21 +11092,21 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: 1
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
+          value: 0
+          inSlope: -3.2074142
+          outSlope: -3.2074142
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.06881595
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -15067,9 +15053,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 5
-      minScalar: 5
+      minMaxState: 3
+      scalar: 3
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19916,6 +19902,8 @@ GameObject:
   - component: {fileID: 818126308865644132}
   - component: {fileID: 7216988440282359905}
   - component: {fileID: 46038532965513070}
+  - component: {fileID: 6851373287457633510}
+  - component: {fileID: 6326924710156310960}
   m_Layer: 0
   m_Name: Anchor Prefab
   m_TagString: Untagged
@@ -20004,6 +19992,32 @@ MonoBehaviour:
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
   enemyTickDamage: 0
+--- !u!114 &6851373287457633510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9057027106591810013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f8be94efdd1d84a86f6b212a2aa26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 8521781278455715117}
+--- !u!114 &6326924710156310960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9057027106591810013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7b4913a6abc5f48a717866d960e0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LandingBurst: {fileID: 3695797556601388517}
 --- !u!1001 &3692135111281763297
 PrefabInstance:
   m_ObjectHideFlags: 0
