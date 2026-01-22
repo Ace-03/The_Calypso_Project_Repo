@@ -97,6 +97,11 @@ public class PlayerController : MonoBehaviour
         currentInteractable?.Interact();
     }
 
+    public void PauseGame()
+    {
+        // pauseLogic
+    }
+
     private void MovePlayer()
     {
         if (movementVector.magnitude > 0.15f)

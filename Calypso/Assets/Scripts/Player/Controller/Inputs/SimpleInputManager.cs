@@ -11,7 +11,6 @@ public class SimpleInputManager : MonoBehaviour
 
     private Invoker invoker;
 
-
     void Start()
     {
         if (!player)
@@ -22,6 +21,7 @@ public class SimpleInputManager : MonoBehaviour
 
     void Update()
     {
+        // Get Player Movement
         Vector3 moveInput = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W))
@@ -33,13 +33,15 @@ public class SimpleInputManager : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             moveInput += Vector3.right;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-            invoker.ExecuteCommand(new InteractCommand(player));
-
         moveInput.Normalize();
 
         invoker.ExecuteCommand(new MoveCommand(player, moveInput));
 
+        // Get Interact Input
+        if (Input.GetKeyDown(KeyCode.Space))
+            invoker.ExecuteCommand(new InteractCommand(player));
+
+        // Get Weapon Aim
         Vector3 dir = new Vector3();
 
         switch (aimMethod) 
