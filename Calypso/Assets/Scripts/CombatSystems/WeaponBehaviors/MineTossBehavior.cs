@@ -30,7 +30,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
         for (int i = 0; i < volleyCount; ++i)
         {
             Transform target = TargetCalculator.GetClosestEnemy(transform.position);
-            Nullable<Vector3> aimVector = null;
+            Nullable<Vector3> aimVector = transform.position;
 
             if (target == null)
             {
@@ -57,7 +57,6 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
                     currentAimVector = aimVector.Value;
             }
 
-
             GameObject newBomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
 
             CustomGravity grav = newBomb.AddComponent<CustomGravity>();
@@ -71,6 +70,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
             bombRb.linearVelocity = Vector3.zero;
             bombRb.AddForce(currentAimVector.normalized * launchForce, ForceMode.Impulse);
+            Debug.Log($"Aim Vector is {aimVector}");
 
             StartCoroutine(ExplodeBomb(newBomb, weapon));
             yield return new WaitForSeconds(volleyRate);
