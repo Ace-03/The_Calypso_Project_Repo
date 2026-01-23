@@ -47,6 +47,9 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
             anchorRb.AddForce(Vector3.up * throwStrength, ForceMode.Impulse);
             newAnchor.transform.eulerAngles = new Vector3(0, 0, 180);
 
+            ComponentController componentController = newAnchor.GetComponent<ComponentController>();
+            componentController.GetShadow().SetActive(false);
+
             StartCoroutine(DropAnchor(newAnchor, weapon));
             yield return new WaitForSeconds(volleyRate);
         }
@@ -84,6 +87,8 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
                 targetPos = target.position;
             }
         }
+        ComponentController componentController = anchorObject.GetComponent<ComponentController>();
+        componentController.GetShadow().SetActive(true);
 
         anchorObject.transform.localScale *= weapon.GetArea();
         anchorObject.transform.position = targetPos + Vector3.up * 40f;
@@ -91,8 +96,8 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
         anchorObject.transform.rotation = Quaternion.identity;
 
         yield return new WaitForSeconds(weapon.GetDuration());
-        ComponentController componentController = anchorObject.GetComponent<ComponentController>();
         componentController.GetModel().SetActive(false);
+        componentController.GetShadow().SetActive(false);
         componentController.GetTrigger().enabled = false;
         Destroy(anchorObject, 5f);
     }
