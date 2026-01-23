@@ -111,7 +111,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
         explosion.GetComponent<Collider>().enabled = false;
 
-        ParticleSystem expPs = explosion.GetComponent<ParticleSystem>();
+        ParticleSystem expPs = explosion.GetComponentInChildren<ParticleSystem>();
         if (expPs != null) expPs.transform.parent = null;
         Destroy(expPs, 5f);
 
