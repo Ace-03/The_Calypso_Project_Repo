@@ -5,6 +5,7 @@ public class AttractorTrigger : MonoBehaviour
 {
     [SerializeField] private float attractForce = 10f;
     [SerializeField] private float windUpForce = 5f;
+    [SerializeField] private float dampening = 3f;
     [SerializeField] private string attractorTag = "Item";
 
     private SphereCollider col;
@@ -42,10 +43,14 @@ public class AttractorTrigger : MonoBehaviour
         Vector3 direction = (transform.position - other.position).normalized;
         rb.AddForce(-direction * windUpForce, ForceMode.Impulse);
 
-        while (other.gameObject != null)
+        Vector3 velocityToTarget = Vector3.Project(rb.linearVelocity, direction);
+        Vector3 lateralVelocity = rb.linearVelocity - velocityToTarget;
+
+        while (other != null)
         {
             direction = (transform.position - other.position).normalized;
             rb.AddForce(direction * attractForce, ForceMode.VelocityChange);
+            rb.AddForce(-lateralVelocity * dampening, ForceMode.VelocityChange);
             yield return new WaitForFixedUpdate();
         }
     }

@@ -266,7 +266,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32896
+    m_Bits: 55936
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -290,3 +290,4 @@ MonoBehaviour:
   animator: {fileID: 5497843044083496596}
   sr: {fileID: 3760277076098861880}
   delayAttraction: 1
+  attractionStarted: 0
