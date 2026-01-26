@@ -18,12 +18,12 @@ MonoBehaviour:
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: a13e7225c1e8d7f4eb74ca0b47210ab5, type: 3}
   bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
   baseStats:
-    Cooldown: 0.65
-    Damage: 4
+    Cooldown: 3
+    Damage: 15
     Amount: 1
-    Duration: 0.15
+    Duration: 8
     accuracy: 200
-    Speed: 1.5
+    Speed: 0.5
     AOETick: 0
     Area: 5
   pierce: 0

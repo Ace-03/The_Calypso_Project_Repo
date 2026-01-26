@@ -96,8 +96,8 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
             Vector3 velocityToTarget = Vector3.Project(rb.linearVelocity, direction);
             Vector3 lateralVelocity = rb.linearVelocity - velocityToTarget;
 
-            rb.AddForce(new Vector3(direction.x, 0, direction.z) * 0.3f, ForceMode.VelocityChange);
-            rb.AddForce(-new Vector3(lateralVelocity.x, 0, lateralVelocity.z) * 0.1f, ForceMode.VelocityChange);
+            rb.AddForce(new Vector3(direction.x, 0, direction.z) * 0.23f, ForceMode.VelocityChange);
+            rb.AddForce(-new Vector3(lateralVelocity.x, 0, lateralVelocity.z) * 0.05f, ForceMode.VelocityChange);
 
             timer -= Time.deltaTime;
             yield return new WaitForFixedUpdate();
