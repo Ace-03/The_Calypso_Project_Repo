@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class SimpleInputManager : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerController player;
-    [SerializeField]
-    private AimType aimMethod;
+    [SerializeField] private PlayerController player;
+    [SerializeField] private AimType aimMethod;
 
     private Vector3 persistentAim = new Vector3();
 
@@ -21,6 +19,14 @@ public class SimpleInputManager : MonoBehaviour
 
     void Update()
     {
+        // Get Interact Input
+        if (Input.GetKeyDown(KeyCode.Space))
+            invoker.ExecuteCommand(new InteractCommand(player));
+
+        // Get Pause Input
+        if (Input.GetKeyDown(KeyCode.Tab))
+            invoker.ExecuteCommand(new PauseCommand(player));
+
         // Get Player Movement
         Vector3 moveInput = Vector3.zero;
 
@@ -36,10 +42,6 @@ public class SimpleInputManager : MonoBehaviour
         moveInput.Normalize();
 
         invoker.ExecuteCommand(new MoveCommand(player, moveInput));
-
-        // Get Interact Input
-        if (Input.GetKeyDown(KeyCode.Space))
-            invoker.ExecuteCommand(new InteractCommand(player));
 
         // Get Weapon Aim
         Vector3 dir = new Vector3();

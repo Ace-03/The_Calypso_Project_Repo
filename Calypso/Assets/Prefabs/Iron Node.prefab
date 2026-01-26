@@ -56,7 +56,8 @@ MonoBehaviour:
     maxAmount: 6
   spawnPoint: {fileID: 7325785119240536770}
   mineTime: 2
-  hp: 1
+  Maxhp: 3
+  model: {fileID: 2091787940134440120}
   particlePrefab: {fileID: 1469735650166152172, guid: 716ca306d7f2a344d944e16759029f25, type: 3}
   particlePositions:
   - {fileID: 5833387688087399880}

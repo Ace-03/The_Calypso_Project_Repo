@@ -72,14 +72,36 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
             bombRb.AddForce(currentAimVector.normalized * launchForce, ForceMode.Impulse);
             Debug.Log($"Aim Vector is {aimVector}");
 
-            StartCoroutine(ExplodeBomb(newBomb, weapon));
+            StartCoroutine(ExplodeBomb(newBomb, weapon, target));
             yield return new WaitForSeconds(volleyRate);
         }
     }
 
-    private IEnumerator ExplodeBomb(GameObject bomb, WeaponController weapon)
+    private IEnumerator ExplodeBomb(GameObject bomb, WeaponController weapon, Transform target)
     {
-        yield return new WaitForSeconds(detonationTime);
+        // drift towards target
+        float timer = detonationTime;
+
+        while (timer > 0)
+        {
+            Rigidbody rb = bomb.GetComponent<Rigidbody>();
+
+            Vector3 distance = (target.position - rb.position);
+
+            if (distance.magnitude <= 2)
+                rb.linearVelocity *= 0.8f;
+
+            Vector3 direction = distance.normalized;
+
+            Vector3 velocityToTarget = Vector3.Project(rb.linearVelocity, direction);
+            Vector3 lateralVelocity = rb.linearVelocity - velocityToTarget;
+
+            rb.AddForce(new Vector3(direction.x, 0, direction.z) * 0.3f, ForceMode.VelocityChange);
+            rb.AddForce(-new Vector3(lateralVelocity.x, 0, lateralVelocity.z) * 0.1f, ForceMode.VelocityChange);
+
+            timer -= Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
 
         ParticleSystem ps = bomb.GetComponentInChildren<ParticleSystem>();
         ps.transform.parent = null;
@@ -111,9 +133,13 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
         explosion.GetComponent<Collider>().enabled = false;
 
-        ParticleSystem expPs = explosion.GetComponentInChildren<ParticleSystem>();
-        if (expPs != null) expPs.transform.parent = null;
-        Destroy(expPs, 5f);
+        ParticleSystem[] expPs = explosion.GetComponentsInChildren<ParticleSystem>();
+
+        foreach (ParticleSystem part in expPs)
+        {
+            part.transform.parent = null;
+            Destroy(part, 20f);
+        }
 
         Destroy(explosion);
     }

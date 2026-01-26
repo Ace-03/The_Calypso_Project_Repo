@@ -12,11 +12,21 @@ public class PlayerWeaponComposite : MonoBehaviour
     private void OnEnable()
     {
         weaponsUpdatedEvent.RegisterListener(RefreshWeapons);
+
+        foreach (WeaponController weapon in weaponInstances)
+        {
+            weapon.gameObject.SetActive(true);
+        }
     }
 
     private void OnDisable()
     {
         weaponsUpdatedEvent.UnregisterListener(RefreshWeapons);
+
+        foreach (WeaponController weapon in weaponInstances)
+        {
+            weapon.gameObject.SetActive(false);
+        }
     }
 
     private void Start()
