@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class SimpleInputManager : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerController player;
-    [SerializeField]
-    private AimType aimMethod;
+    [SerializeField] private PlayerController player;
+    [SerializeField] private AimType aimMethod;
 
     private Vector3 persistentAim = new Vector3();
 
     private Invoker invoker;
-
 
     void Start()
     {
@@ -22,6 +19,15 @@ public class SimpleInputManager : MonoBehaviour
 
     void Update()
     {
+        // Get Interact Input
+        if (Input.GetKeyDown(KeyCode.Space))
+            invoker.ExecuteCommand(new InteractCommand(player));
+
+        // Get Pause Input
+        if (Input.GetKeyDown(KeyCode.Tab))
+            invoker.ExecuteCommand(new PauseCommand(player));
+
+        // Get Player Movement
         Vector3 moveInput = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W))
@@ -33,13 +39,11 @@ public class SimpleInputManager : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             moveInput += Vector3.right;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-            invoker.ExecuteCommand(new InteractCommand(player));
-
         moveInput.Normalize();
 
         invoker.ExecuteCommand(new MoveCommand(player, moveInput));
 
+        // Get Weapon Aim
         Vector3 dir = new Vector3();
 
         switch (aimMethod) 

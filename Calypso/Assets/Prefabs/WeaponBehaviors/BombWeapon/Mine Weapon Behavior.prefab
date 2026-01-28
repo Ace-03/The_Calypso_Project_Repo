@@ -50,5 +50,5 @@ MonoBehaviour:
   range: 20
   detonationTime: 1
   volleyDuration: 0.8
-  predictionTime: 1.2
+  predictionTime: 0.2
   gravityMultiplier: 6

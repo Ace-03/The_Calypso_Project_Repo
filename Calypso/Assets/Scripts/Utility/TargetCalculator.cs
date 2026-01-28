@@ -7,6 +7,8 @@ public static class TargetCalculator
     {
         List<Transform> enemies = MakeEnemyList();
 
+        if (enemies.Count == 0) return null;
+
         Transform tMin = null;
         float minDist = Mathf.Infinity;
         foreach (Transform t in enemies)
@@ -52,7 +54,12 @@ public static class TargetCalculator
                 }
             }
         }
-        return validTargets[Random.Range(0, validTargets.Count)];
+        if (validTargets.Count > 0)
+        {
+            return validTargets[Random.Range(0, validTargets.Count)];
+        }
+
+        return null;
     }
 
     private static List<Transform> MakeEnemyList()

@@ -48,3 +48,15 @@ public class AimCommand : Command
         controller.SetAimVector(aimDirection);
     }
 }
+
+public class PauseCommand : Command
+{
+    public PauseCommand(PlayerController targetController)
+    {
+        controller = targetController;
+    }
+    public override void Execute()
+    {
+        controller.PauseGame();
+    }
+}

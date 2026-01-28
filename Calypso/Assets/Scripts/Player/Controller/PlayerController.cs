@@ -5,11 +5,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float bobAmmount = 0.5f;
     [SerializeField] private float bobSpeed = 0.1f;
-    private Transform weaponPivot;
-
     [SerializeField] private spriteControllerData spriteData;
-
     [SerializeField] private OnGenericEventSO clearInteractableEvent;
+
+    private Transform weaponPivot;
 
     private float maxSpeed;
     private float acceleration;
@@ -60,7 +59,6 @@ public class PlayerController : MonoBehaviour
         UpdateAim();
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         other.TryGetComponent<IInteractable>(out var target);
@@ -95,6 +93,12 @@ public class PlayerController : MonoBehaviour
     public void Interact()
     {
         currentInteractable?.Interact();
+    }
+
+    public void PauseGame()
+    {
+        bool isPaused = PauseManager.instance.isPaused;
+        PauseManager.instance.PauseGame(!isPaused);
     }
 
     private void MovePlayer()

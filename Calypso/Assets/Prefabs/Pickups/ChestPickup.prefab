@@ -164,7 +164,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5528931290286656765}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: aea52aff52d73c844a643fae9ba96f65, type: 2}
   m_CullingMode: 0
@@ -266,7 +266,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32896
+    m_Bits: 55936
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -290,4 +290,5 @@ MonoBehaviour:
   animator: {fileID: 5497843044083496596}
   sr: {fileID: 3760277076098861880}
   delayAttraction: 1
+  attractionStarted: 0
   chestOpenedEvent: {fileID: 11400000, guid: 2b4f6a0527c216b46b1ba32c50329290, type: 2}

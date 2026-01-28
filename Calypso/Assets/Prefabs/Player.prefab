@@ -5120,6 +5120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractForce: 10
+  windUpForce: 5
+  dampening: 3
   attractorTag: Item
 --- !u!1 &3587824869525600516
 GameObject:
@@ -20062,6 +20064,7 @@ MonoBehaviour:
   deathParticle: {fileID: 1469735650166152172, guid: b7eb6d1ae35ee604a8353b5211a34e95, type: 3}
   attractorTrigger: {fileID: 3722212198466870024}
   primaryWeapon: {fileID: 6693502108835353163}
+  playerWeaponComposite: {fileID: 6254831323610310648}
   playerHealth: {fileID: 5034327732661880448}
   playerController: {fileID: 2636485834852036548}
 --- !u!114 &3842321106409920161

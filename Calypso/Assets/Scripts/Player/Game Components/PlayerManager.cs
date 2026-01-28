@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject deathParticle;
     [SerializeField] private SphereCollider attractorTrigger;
     [SerializeField] private WeaponController primaryWeapon;
+    [SerializeField] private PlayerWeaponComposite playerWeaponComposite;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerController playerController;
 
@@ -62,7 +63,7 @@ public class PlayerManager : MonoBehaviour
     {
         DeathPayload payload = new DeathPayload()
         {
-            entity = this.gameObject,
+            entity = gameObject,
         };
 
         deathEvent.Raise(payload);
@@ -70,6 +71,7 @@ public class PlayerManager : MonoBehaviour
         ToggleMovement(false);
         ToggleWeapons(false);
         ToggleVisuals(false);
+        PauseManager.instance.gameObject.SetActive(false);
 
         SpawnDeathParticle();
         Debug.Log("Game Over");
@@ -86,13 +88,14 @@ public class PlayerManager : MonoBehaviour
 
     public void ToggleWeapons(bool state)
     {
-        gameObject.GetComponent<WeaponController>().enabled = state;
+        primaryWeapon.enabled = state;
+        playerWeaponComposite.enabled = state;
     }
 
     public void ToggleVisuals(bool state)
     {
         playerVisuals.SetActive(state);
-        gameObject.GetComponent<PlayerController>().ToggleCollider(state);
+        GetComponent<PlayerController>().ToggleCollider(state);
     }
 
     #endregion
@@ -125,7 +128,7 @@ public class PlayerManager : MonoBehaviour
         return playerController.GetFacingRight();
     }
 
-    public bool GetFacingUo()
+    public bool GetFacingUp()
     {
         return playerController.GetFacingUp();
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 public class AttractorTrigger : MonoBehaviour
 {
     [SerializeField] private float attractForce = 10f;
+    [SerializeField] private float windUpForce = 5f;
+    [SerializeField] private float dampening = 3f;
     [SerializeField] private string attractorTag = "Item";
 
     private SphereCollider col;
@@ -18,14 +20,12 @@ public class AttractorTrigger : MonoBehaviour
     {
         if (other.CompareTag(attractorTag))
         {
-            if (other.GetComponent<Pickup>() != null)
-            {
-                if (other.GetComponent<Pickup>().delayAttraction == true)
-                {
-                    return;
-                }
-            }
+            Pickup pickup = other.GetComponent<Pickup>();
 
+            if (pickup != null)
+            {
+                if (pickup.delayAttraction == true) return;
+            }
 
             if (!other.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
@@ -33,9 +33,25 @@ public class AttractorTrigger : MonoBehaviour
                 return;
             }
 
-            Vector3 direction = (transform.position - other.transform.position).normalized;
+            if (!pickup.attractionStarted)
+                StartCoroutine(pullItem(rb, other.transform));
+        }
+    }
 
+    private IEnumerator pullItem(Rigidbody rb, Transform other)
+    {
+        Vector3 direction = (transform.position - other.position).normalized;
+        rb.AddForce(-direction * windUpForce, ForceMode.Impulse);
+
+        Vector3 velocityToTarget = Vector3.Project(rb.linearVelocity, direction);
+        Vector3 lateralVelocity = rb.linearVelocity - velocityToTarget;
+
+        while (other != null)
+        {
+            direction = (transform.position - other.position).normalized;
             rb.AddForce(direction * attractForce, ForceMode.VelocityChange);
+            rb.AddForce(-lateralVelocity * dampening, ForceMode.VelocityChange);
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -43,10 +59,5 @@ public class AttractorTrigger : MonoBehaviour
     {
         col.radius = stats.GetFinalValue(StatType.ItemAttraction);
         Debug.Log($"Attractor Radius updated to {col.radius}");
-    }
-
-    private void EnableTrigger()
-    {
-        col.enabled = true;
     }
 }

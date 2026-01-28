@@ -7,6 +7,7 @@ public abstract class Pickup : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
     [HideInInspector] public bool delayAttraction = true;
+    [HideInInspector] public bool attractionStarted = false;
 
     private PickupSO pickupData;
     private Rigidbody rb;

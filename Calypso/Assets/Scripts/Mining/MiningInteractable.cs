@@ -8,7 +8,8 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     [SerializeField] private ItemDrop resourceDrop;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float mineTime = 2f;
-    [SerializeField] private int hp = 3;
+    [SerializeField] private int Maxhp = 3;
+    [SerializeField] private GameObject model;
 
     [Header("Particle Config")]
     [SerializeField] private GameObject particlePrefab;
@@ -20,7 +21,7 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     [Header("Event Object")]
     [SerializeField] private OnGenericEventSO clearPlayerInteractableEvent;
 
-
+    private int hp = 1;
     private float currentMineTimer = 0f;
     private bool mining = false;
     private MiningParticleController particleController;
@@ -35,6 +36,7 @@ public class MiningInteractable : MonoBehaviour, IInteractable
         particleRate = Mathf.Clamp(particleRate, 0f, 5000f);
         particleController.SetPrefab(particlePrefab);
         particleController.AddPosition(particlePositions);
+        hp = Maxhp;
     }
 
     public void Interact()
@@ -75,6 +77,10 @@ public class MiningInteractable : MonoBehaviour, IInteractable
         if (hp <= 0)
         {
             DepleteNode();
+        }
+        else
+        {
+            model.transform.localScale = Vector3.one * (hp / Maxhp);
         }
     }
 
