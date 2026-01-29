@@ -16,21 +16,23 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
     [SerializeField] private float predictionTime;
     [SerializeField] private float gravityMultiplier;
 
-    private Vector3 appliedGravity;
+    private Vector3 appliedGravity = Physics.gravity;
     private Vector3 currentAimVector = Vector3.one;
 
     private DamageSource damageSource = new DamageSource();
 
     private IEnumerator ThrowBomb(WeaponController weapon)
     {
+        appliedGravity = Physics.gravity * gravityMultiplier;
         int volleyCount = weapon.GetAmount();
         float volleyRate = volleyDuration / volleyCount;
-
 
         for (int i = 0; i < volleyCount; ++i)
         {
             Transform target = TargetCalculator.GetClosestEnemy(transform.position);
             Nullable<Vector3> aimVector = transform.position;
+
+
 
             if (target == null)
             {
@@ -55,6 +57,8 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
                 aimVector = GetAimVector(target);
                 if (aimVector.HasValue)
                     currentAimVector = aimVector.Value;
+
+                Debug.Log($"aim vector after ballistics calculation is {aimVector}");
             }
 
             GameObject newBomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
@@ -64,13 +68,10 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
             appliedGravity = grav.gravity;
 
             if (!newBomb.TryGetComponent<Rigidbody>(out Rigidbody bombRb))
-            {
                 Debug.LogError("No RigidBody On Bomb Prefab");
-            }
 
             bombRb.linearVelocity = Vector3.zero;
             bombRb.AddForce(currentAimVector.normalized * launchForce, ForceMode.Impulse);
-            Debug.Log($"Aim Vector is {aimVector}");
 
             StartCoroutine(ExplodeBomb(newBomb, weapon, target));
             yield return new WaitForSeconds(volleyRate);
@@ -166,11 +167,14 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
         if (target.TryGetComponent<NavMeshAgent>(out NavMeshAgent navAgent))
         {
             pos = navAgent.transform.position + (navAgent.velocity * predictionTime);
-            Debug.Log("trying future position");
         }
 
         FiringSolution fs = new FiringSolution();
         fs.useMaxTime = true;
+        Debug.Log($"current pos is {transform.position}");
+        Debug.Log($"projected enemy pos is {pos}");
+        Debug.Log($"launch force is {launchForce}");
+        Debug.Log($"applied grav is {appliedGravity}");
         return fs.Calculate(transform.position, pos, launchForce, appliedGravity);
     }
     private Nullable<Vector3> GetAimVector(Vector3 target)

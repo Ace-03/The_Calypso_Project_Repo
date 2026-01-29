@@ -1851,6 +1851,10 @@ PrefabInstance:
       propertyPath: resourceDrop.minAmount
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6768490393262379075, guid: 6f1f905e8fe2fec4daf9f3bfee544324, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6929279458739414432, guid: 6f1f905e8fe2fec4daf9f3bfee544324, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -8993,7 +8997,7 @@ PrefabInstance:
     - target: {fileID: 6693502108835353163, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
       propertyPath: weaponData
       value: 
-      objectReference: {fileID: 11400000, guid: ac1b7eba0a2893f44bee19d19bff67b9, type: 2}
+      objectReference: {fileID: 11400000, guid: 6ecdd5cd0b9d49a49809929916e42a15, type: 2}
     - target: {fileID: 6887405348467899213, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
       propertyPath: m_Name
       value: Player
