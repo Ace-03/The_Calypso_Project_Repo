@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3295864860974562906}
+  - component: {fileID: 4520530568428526237}
   m_Layer: 0
   m_Name: WavyPlant
   m_TagString: Untagged
@@ -32,6 +33,33 @@ Transform:
   - {fileID: 135804820517744133}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &4520530568428526237
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5471844674975401200}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 1.1690001, z: 0}
+  m_Size: 4
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1272641963113387370}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1272641963113387370}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1272641963113387370}
+  m_Enabled: 1
 --- !u!1001 &8198893337786963790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,5 +132,10 @@ PrefabInstance:
 --- !u!4 &135804820517744133 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082320648583854411, guid: b7a9043c80f5a1948b6a5e508ce7de04, type: 3}
+  m_PrefabInstance: {fileID: 8198893337786963790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1272641963113387370 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6944839876415767076, guid: b7a9043c80f5a1948b6a5e508ce7de04, type: 3}
   m_PrefabInstance: {fileID: 8198893337786963790}
   m_PrefabAsset: {fileID: 0}

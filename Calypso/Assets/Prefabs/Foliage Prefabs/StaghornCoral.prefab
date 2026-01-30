@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2812353755805639971}
+  - component: {fileID: -5160216282314068854}
   m_Layer: 0
   m_Name: StaghornCoral
   m_TagString: Untagged
@@ -32,6 +33,33 @@ Transform:
   - {fileID: 5240676766415870096}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &-5160216282314068854
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972201517032474831}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.41999984, y: 1.466, z: 0.70000005}
+  m_Size: 4.1300006
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6409100677980857343}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6409100677980857343}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6409100677980857343}
+  m_Enabled: 1
 --- !u!1001 &6477734505549824024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,5 +132,10 @@ PrefabInstance:
 --- !u!4 &5240676766415870096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1251744471214381192, guid: 0a250493b8a737d44861f2a868371848, type: 3}
+  m_PrefabInstance: {fileID: 6477734505549824024}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6409100677980857343 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 77751046714500071, guid: 0a250493b8a737d44861f2a868371848, type: 3}
   m_PrefabInstance: {fileID: 6477734505549824024}
   m_PrefabAsset: {fileID: 0}

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7094452578506683292}
+  - component: {fileID: -2169559199193291296}
   m_Layer: 0
   m_Name: FanCoral
   m_TagString: Untagged
@@ -32,6 +33,33 @@ Transform:
   - {fileID: 3643515273731349559}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &-2169559199193291296
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265201624090680264}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.1400001, y: 2.2550006, z: -0.31500006}
+  m_Size: 5.88
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2511725509053278040}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2511725509053278040}
+  - screenRelativeHeight: 0.09953539
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2511725509053278040}
+  m_Enabled: 1
 --- !u!1001 &5588069394585795687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,6 +129,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0ae127a63fed054f8f7b8ac4694516d, type: 3}
+--- !u!23 &2511725509053278040 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8023090765811735359, guid: e0ae127a63fed054f8f7b8ac4694516d, type: 3}
+  m_PrefabInstance: {fileID: 5588069394585795687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3643515273731349559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9159356647560388688, guid: e0ae127a63fed054f8f7b8ac4694516d, type: 3}
