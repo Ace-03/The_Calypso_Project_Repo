@@ -89,4 +89,9 @@ public class MiningInteractable : MonoBehaviour, IInteractable
         clearPlayerInteractableEvent.Raise(new GameEventPayload());
         gameObject.SetActive(false);
     }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 }

@@ -6,7 +6,7 @@ public class FishingRodBehavior : MonoBehaviour, IWeaponBehavior
     [SerializeField] private GameObject triggerObject;
     [SerializeField] private BulletTrigger trigger;
     [SerializeField] private float volleyDuration;
-
+    [SerializeField] private Animator animator;
 
     private IEnumerator SwingRod(WeaponController weapon)
     {
@@ -27,9 +27,13 @@ public class FishingRodBehavior : MonoBehaviour, IWeaponBehavior
 
             // player animation
 
+            animator.Play("Swing Rod");
+
             yield return new WaitForSeconds(weapon.GetDuration());
 
             // stop animation
+
+            animator.StopPlayback();
 
             triggerObject.SetActive(false);
 
@@ -56,6 +60,7 @@ public class FishingRodBehavior : MonoBehaviour, IWeaponBehavior
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animator.StopPlayback();
         triggerObject.SetActive(false);
     }
 }
