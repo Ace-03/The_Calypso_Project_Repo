@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 aimVector;
     private Vector3 horizontalVelocity;
 
+    public IInteractable CurrentInteractable {  get { return currentInteractable; } private set { } }
+
     private void Start()
     {
         if (!TryGetComponent<Rigidbody>(out rb))
