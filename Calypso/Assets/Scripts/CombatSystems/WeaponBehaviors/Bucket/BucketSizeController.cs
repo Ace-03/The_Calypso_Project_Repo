@@ -3,18 +3,24 @@ using UnityEngine;
 
 public class BucketSizeController : MonoBehaviour, IWeaponBehavior
 {
-    public float maxRadius = 4f;
-    public float minRadius = 2f;
-    float currentRadius;
-    public float switchCycleTime = 4f;
+    [SerializeField] private float maxRadiusMult;
+    [SerializeField] private float minRadiusDivisor;
+    [SerializeField] private Transform spriteTransform;
+    private float maxRadius = 4f;
+    private float minRadius = 2f;
+    private float currentRadius;
+    private float switchCycleTime = 4f;
     public Transform objectTransform;
     public BulletTrigger bulletTrigger;
     float timer;
     float normalizedTimerValue;
+
+    private Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         currentRadius = minRadius;
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -23,6 +29,7 @@ public class BucketSizeController : MonoBehaviour, IWeaponBehavior
         UpdateTimer();
         ChangeRadius();
         ChangeScale(currentRadius);
+        spriteTransform.eulerAngles = new Vector3(90, 0, 0);
     }
 
     void ChangeRadius()
@@ -50,10 +57,20 @@ public class BucketSizeController : MonoBehaviour, IWeaponBehavior
 
     public void ApplyWeaponStats(WeaponController weapon)
     {
-        maxRadius = weapon.GetArea();
-        minRadius = weapon.GetArea()/2;
+        maxRadius = weapon.GetArea()*maxRadiusMult;
+        minRadius = weapon.GetArea()/minRadiusDivisor;
         switchCycleTime = weapon.GetDuration();
         bulletTrigger.SetDamageSource(weapon.GetDamageSource());
+        SetAnimationDuration(weapon.GetDuration());
+        spriteTransform.localScale = Vector3.one * weapon.GetArea() * 2;
+    }
+
+    private void SetAnimationDuration(float duration)
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        float clipLength = stateInfo.length;
+
+        animator.speed = clipLength / duration;
     }
 
     public bool IsAimable()
