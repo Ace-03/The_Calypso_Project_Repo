@@ -17,9 +17,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Test Scenes/Combat Demo.unity
     guid: 297874c143bde084e8569ac24aca4207
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test Scenes/GreyBox v2.unity
     guid: 40ce2ec59f3443348941c70e62d1a542
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/New_Map.unity
+    guid: b54dd25bfceac3d4ca13469b276bb6e8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
