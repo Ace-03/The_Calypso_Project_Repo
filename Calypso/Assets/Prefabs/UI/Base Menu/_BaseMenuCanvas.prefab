@@ -5905,6 +5905,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 39.9474
       objectReference: {fileID: 0}
+    - target: {fileID: 3210420028404046812, guid: b16e42ac34741614bac8dbf9af5757d9, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3756687549710828232, guid: b16e42ac34741614bac8dbf9af5757d9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -251.00195
+      objectReference: {fileID: 0}
     - target: {fileID: 4744734765264017189, guid: b16e42ac34741614bac8dbf9af5757d9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

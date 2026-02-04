@@ -9,6 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 914a58b2049ad524c8947b8d25da00e3, type: 3}
-  m_Name: Weapon
+  m_Script: {fileID: 11500000, guid: f9c70da5ccaa8cd499de59d5caaae957, type: 3}
+  m_Name: AnchorRecipe
   m_EditorClassIdentifier: 
+  rewardWeapon: {fileID: 11400000, guid: e4aaaf1e70ca95d46b263537f7c78bb1, type: 2}
+  craftingRequirements:
+    ironCost: 5
+    stoneCost: 2
+    baseLevel: 0

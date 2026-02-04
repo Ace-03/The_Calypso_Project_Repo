@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6441254225155860308}
-  m_Layer: 0
+  - component: {fileID: 974135973519095696}
+  m_Layer: 11
   m_Name: Metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +33,33 @@ Transform:
   - {fileID: 8650039715218767250}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &974135973519095696
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529017133276364407}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.07000017, y: 1.04, z: -0.06999993}
+  m_Size: 4.830001
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7512058699485890301}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7512058699485890301}
+  - screenRelativeHeight: 0.0052756956
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7512058699485890301}
+  m_Enabled: 1
 --- !u!1001 &5589669590397300655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108,6 +136,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3244977619499746121}
   m_SourcePrefab: {fileID: 100100000, guid: 39e68ef712267694da94bfe459f08ac8, type: 3}
+--- !u!23 &7512058699485890301 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2725328095452227922, guid: 39e68ef712267694da94bfe459f08ac8, type: 3}
+  m_PrefabInstance: {fileID: 5589669590397300655}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8304864101068367656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4526877416353548423, guid: 39e68ef712267694da94bfe459f08ac8, type: 3}

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 877746709208126338}
+  - component: {fileID: -5829823797293100562}
   m_Layer: 0
   m_Name: TallGrass
   m_TagString: Untagged
@@ -32,6 +33,33 @@ Transform:
   - {fileID: 8252770691900795485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &-5829823797293100562
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872784837685967232}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: -0.3310001, z: 0}
+  m_Size: 5.9999995
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7119232119487828274}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7119232119487828274}
+  - screenRelativeHeight: 0.0056447703
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7119232119487828274}
+  m_Enabled: 1
 --- !u!1001 &4496326203422662454
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,6 +129,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b1b0bfd9f090b0458ec9c8f13a553d9, type: 3}
+--- !u!23 &7119232119487828274 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6677359647836753412, guid: 1b1b0bfd9f090b0458ec9c8f13a553d9, type: 3}
+  m_PrefabInstance: {fileID: 4496326203422662454}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8252770691900795485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5539871624553674091, guid: 1b1b0bfd9f090b0458ec9c8f13a553d9, type: 3}

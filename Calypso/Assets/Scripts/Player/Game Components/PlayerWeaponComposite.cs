@@ -8,25 +8,18 @@ public class PlayerWeaponComposite : MonoBehaviour
 
     private List<WeaponController> weaponInstances = new List<WeaponController>();
     private List<WeaponDefinitionSO> weaponDefinitions = new List<WeaponDefinitionSO>();
+    private bool weaponsActive;
 
     private void OnEnable()
     {
         weaponsUpdatedEvent.RegisterListener(RefreshWeapons);
-
-        foreach (WeaponController weapon in weaponInstances)
-        {
-            weapon.gameObject.SetActive(true);
-        }
+        Debug.Log("weapon composite IS listening for events");
     }
 
     private void OnDisable()
     {
         weaponsUpdatedEvent.UnregisterListener(RefreshWeapons);
-
-        foreach (WeaponController weapon in weaponInstances)
-        {
-            weapon.gameObject.SetActive(false);
-        }
+        Debug.Log("weapon composite NOT listening for events");
     }
 
     private void Start()
@@ -41,7 +34,11 @@ public class PlayerWeaponComposite : MonoBehaviour
 
     public void RefreshWeapons(WeaponsUpdatePayload payload)
     {
+        Debug.LogWarning($"In Refresh weapons");
         weaponDefinitions = payload.weapons;
+
+        foreach (WeaponDefinitionSO weapon in weaponDefinitions)
+            Debug.LogWarning($"weapon composite has {weapon.name}");
 
         if (weaponInstances != null || weaponInstances.Count > 0)
         {
@@ -55,12 +52,24 @@ public class PlayerWeaponComposite : MonoBehaviour
         for (int i = 0; i < weaponDefinitions.Count; i++)
         {
             WeaponDefinitionSO weaponData = weaponDefinitions[i];
-            WeaponController weaponController = gameObject.AddComponent<WeaponController>();
-            weaponController.SetWeaponData(weaponData);
-            weaponController.SetDamageSource(new DamageSource(weaponData, gameObject));
-            weaponController.Initialize();
+            WeaponController weaponCtrl = gameObject.AddComponent<WeaponController>();
+            weaponCtrl.SetWeaponData(weaponData);
+            weaponCtrl.SetDamageSource(new DamageSource(weaponData, gameObject));
+            weaponCtrl.Initialize();
 
-            weaponInstances.Add(weaponController);
+            weaponInstances.Add(weaponCtrl);
+
+            if (!weaponsActive)
+                weaponCtrl.gameObject.SetActive(false);
+        }
+    }
+
+    public void ToggleWeapons(bool toggle)
+    {
+        weaponsActive = toggle;
+        foreach (WeaponController weapon in weaponInstances)
+        {
+            weapon.gameObject.SetActive(toggle);
         }
     }
 }

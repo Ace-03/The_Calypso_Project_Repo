@@ -71,6 +71,8 @@ public class InventoryManager : MonoBehaviour
 
         weapons.Add(payload.weaponData);
 
+        Debug.Log($"inventory manager is adding {payload.weaponData}");
+
         List<PassiveItemSO> currentItems = passiveItems.Select(item => item.itemData).ToList();
 
         weaponsUpdatedEvent.Raise(new WeaponsUpdatePayload() { weapons = weapons });

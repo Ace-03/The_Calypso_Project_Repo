@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5248859272619020576}
-  - component: {fileID: 1184656030547008824}
+  - component: {fileID: 872754880261782079}
   m_Layer: 0
   m_Name: TableCoral
   m_TagString: Untagged
@@ -33,51 +33,33 @@ Transform:
   - {fileID: 3637344290329854553}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1184656030547008824
-MeshRenderer:
+--- !u!205 &872754880261782079
+LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6524003403833751438}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -1.3300002, y: 0.7370001, z: 0.034999847}
+  m_Size: 5.1100006
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2463853279293471030}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2463853279293471030}
+  - screenRelativeHeight: 0.0056447703
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2463853279293471030}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: d4ff88288298eb74b997199cedc24093, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &205772308382324575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,6 +136,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6074954011504894759}
   m_SourcePrefab: {fileID: 100100000, guid: aa363e57797768849b5c1149ef725857, type: 3}
+--- !u!23 &2463853279293471030 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2371797574501428841, guid: aa363e57797768849b5c1149ef725857, type: 3}
+  m_PrefabInstance: {fileID: 205772308382324575}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3637344290329854553 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3504220039535760646, guid: aa363e57797768849b5c1149ef725857, type: 3}
