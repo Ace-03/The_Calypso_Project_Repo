@@ -89,7 +89,7 @@ public class PlayerManager : MonoBehaviour
     public void ToggleWeapons(bool state)
     {
         primaryWeapon.enabled = state;
-        playerWeaponComposite.enabled = state;
+        playerWeaponComposite.ToggleWeapons(state);
     }
 
     public void ToggleVisuals(bool state)

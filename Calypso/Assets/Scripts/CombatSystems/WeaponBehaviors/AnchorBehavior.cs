@@ -20,9 +20,10 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
         int volleyCount = weapon.GetAmount();
         float volleyRate = volleyDuration / volleyCount;
 
-
         for (int i = 0; i < volleyCount; ++i)
         {
+            if (TargetCalculator.GetClosestEnemy(transform.position) == null) continue;
+
             GameObject newAnchor = Instantiate(anchorPrefab, transform.position + Vector3.up, Quaternion.identity);
             Debug.Log($"{newAnchor.transform.position}");
             CustomGravity grav = newAnchor.AddComponent<CustomGravity>();

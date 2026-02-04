@@ -3,10 +3,16 @@ using UnityEngine;
 
 public class MiningParticleController : MonoBehaviour
 {
-    private GameObject particlePrefab;
+    [SerializeField] private Color m_Color;
+    [SerializeField] private GameObject particlePrefab;
     private ParticleSystem ps;
 
     private List<Vector3> positions = new List<Vector3>();
+
+    private void Start()
+    {
+        SetPrefab(particlePrefab, m_Color);
+    }
 
     public void RollForParticle(float rate)
     {
@@ -23,17 +29,18 @@ public class MiningParticleController : MonoBehaviour
         Destroy(Instantiate(particlePrefab, GetPosition(), Quaternion.identity), 10f);
     }
     
-    public void SetPrefab(GameObject prefab)
+    public void SetPrefab(GameObject prefab, Color color)
     {
-        particlePrefab = prefab;
-        TryGetParticleSystem();
+        TryGetParticleSystem(prefab);
+        var main = ps.GetComponent<ParticleSystem>().main;
+        main.startColor = color;
     }
 
     public void SetColor(Color color)
     {
         if (ps == null)
         {
-            TryGetParticleSystem();
+            TryGetParticleSystem(particlePrefab);
         }
         GeneralModifier.SetColor(ps, color);
     }
@@ -66,11 +73,11 @@ public class MiningParticleController : MonoBehaviour
         return positions[Random.Range(0, positions.Count)];
     }
 
-    private void TryGetParticleSystem()
+    private void TryGetParticleSystem(GameObject prefab)
     {
-        if (!particlePrefab.TryGetComponent<ParticleSystem>(out ps))
+        if (!prefab.TryGetComponent<ParticleSystem>(out ps))
         {
-            ps = particlePrefab.GetComponentInChildren<ParticleSystem>();
+            ps = prefab.GetComponentInChildren<ParticleSystem>();
         }
     }
 }

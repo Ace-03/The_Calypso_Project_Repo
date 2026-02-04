@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9018152280602895752}
+  - component: {fileID: 4717205786406655496}
   - component: {fileID: 4793556067613120018}
   - component: {fileID: 6223630662146781946}
   - component: {fileID: -4136415793045579987}
@@ -39,6 +40,20 @@ Transform:
   - {fileID: 965495833603939629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4717205786406655496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268466235462064146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5524c5862e98a8e40bf8d83ab84b052e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Color: {r: 0.5764706, g: 0.53333336, b: 0.22352943, a: 1}
+  particlePrefab: {fileID: 1469735650166152172, guid: 716ca306d7f2a344d944e16759029f25, type: 3}
 --- !u!114 &4793556067613120018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +75,6 @@ MonoBehaviour:
   mineTime: 2
   Maxhp: 3
   model: {fileID: 2091787940134440120}
-  particlePrefab: {fileID: 1469735650166152172, guid: 716ca306d7f2a344d944e16759029f25, type: 3}
   particlePositions:
   - {fileID: 5833387688087399880}
   - {fileID: 8404696563136119840}

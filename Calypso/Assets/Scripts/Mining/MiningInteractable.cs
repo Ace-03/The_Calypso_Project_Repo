@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MiningParticleController))]
 public class MiningInteractable : MonoBehaviour, IInteractable
 {
     [Header("Mining Config")]
@@ -12,7 +13,6 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     [SerializeField] private GameObject model;
 
     [Header("Particle Config")]
-    [SerializeField] private GameObject particlePrefab;
     [SerializeField] private List<Transform> particlePositions = new List<Transform>();
 
     [Tooltip("Higher Rate means more particles")]
@@ -34,7 +34,6 @@ public class MiningInteractable : MonoBehaviour, IInteractable
         }
 
         particleRate = Mathf.Clamp(particleRate, 0f, 5000f);
-        particleController.SetPrefab(particlePrefab);
         particleController.AddPosition(particlePositions);
         hp = Maxhp;
     }
