@@ -129,8 +129,11 @@ public class WeaponController : MonoBehaviour
 
     public void DestroyWeaponInstance()
     {
+        Debug.Log($"in weapon controller destroying: {weaponInstance.name}");
+        Debug.Log($"in weapon controller destroying: {weaponPivot.gameObject.name}");
+
         if (weaponInstance != null) { Destroy(weaponInstance); }
-        if (weaponPivot != null) { Destroy(weaponPivot); }
+        if (weaponPivot != null) { Destroy(weaponPivot.gameObject); }
     }
 
     private void MakeWeaponPivot()

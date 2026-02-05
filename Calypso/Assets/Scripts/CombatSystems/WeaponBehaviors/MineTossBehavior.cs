@@ -152,6 +152,14 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
     public void Attack(WeaponController weapon)
     {
+        Debug.Log($"weapon Controller is {weapon}");
+
+        if (weapon == null)
+        {
+            StopAllCoroutines();
+            return;
+        }
+
         StartCoroutine(ThrowBomb(weapon));
     }
 

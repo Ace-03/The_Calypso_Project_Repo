@@ -537,6 +537,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metal
       objectReference: {fileID: 0}
+    - target: {fileID: 6529017133276364407, guid: 9e1e6f11e52e25c4dbb572dbbdb4e13f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 974135973519095696, guid: 9e1e6f11e52e25c4dbb572dbbdb4e13f, type: 3}
     m_RemovedGameObjects: []

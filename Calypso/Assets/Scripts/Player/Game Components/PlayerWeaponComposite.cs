@@ -45,7 +45,6 @@ public class PlayerWeaponComposite : MonoBehaviour
             foreach (WeaponController weaponInstance in weaponInstances)
             {
                 weaponInstance.DestroyWeaponInstance();
-                Destroy(weaponInstance);
             }
         }
 
@@ -60,7 +59,10 @@ public class PlayerWeaponComposite : MonoBehaviour
             weaponInstances.Add(weaponCtrl);
 
             if (!weaponsActive)
-                weaponCtrl.gameObject.SetActive(false);
+            {
+                weaponCtrl.enabled = false;
+                //weaponCtrl.weaponPivot.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -69,7 +71,8 @@ public class PlayerWeaponComposite : MonoBehaviour
         weaponsActive = toggle;
         foreach (WeaponController weapon in weaponInstances)
         {
-            weapon.gameObject.SetActive(toggle);
+            weapon.enabled = toggle;
+            //weapon.weaponPivot.gameObject.SetActive(toggle);
         }
     }
 }
