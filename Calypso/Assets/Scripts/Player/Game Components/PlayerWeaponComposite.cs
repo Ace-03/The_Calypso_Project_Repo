@@ -13,13 +13,11 @@ public class PlayerWeaponComposite : MonoBehaviour
     private void OnEnable()
     {
         weaponsUpdatedEvent.RegisterListener(RefreshWeapons);
-        Debug.Log("weapon composite IS listening for events");
     }
 
     private void OnDisable()
     {
         weaponsUpdatedEvent.UnregisterListener(RefreshWeapons);
-        Debug.Log("weapon composite NOT listening for events");
     }
 
     private void Start()
@@ -34,19 +32,18 @@ public class PlayerWeaponComposite : MonoBehaviour
 
     public void RefreshWeapons(WeaponsUpdatePayload payload)
     {
-        Debug.LogWarning($"In Refresh weapons");
         weaponDefinitions = payload.weapons;
-
-        foreach (WeaponDefinitionSO weapon in weaponDefinitions)
-            Debug.LogWarning($"weapon composite has {weapon.name}");
 
         if (weaponInstances != null || weaponInstances.Count > 0)
         {
             foreach (WeaponController weaponInstance in weaponInstances)
             {
                 weaponInstance.DestroyWeaponInstance();
+                Destroy(weaponInstance);
             }
         }
+
+        weaponInstances.Clear();
 
         for (int i = 0; i < weaponDefinitions.Count; i++)
         {

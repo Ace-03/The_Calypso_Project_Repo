@@ -88,7 +88,6 @@ public class PlayerManager : MonoBehaviour
 
     public void ToggleWeapons(bool state)
     {
-        Debug.Log($"primary weapon reference is {primaryWeapon.name}");
         primaryWeapon.enabled = state;
         playerWeaponComposite.ToggleWeapons(state);
     }
