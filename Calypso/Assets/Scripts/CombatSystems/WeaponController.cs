@@ -130,7 +130,7 @@ public class WeaponController : MonoBehaviour
     public void DestroyWeaponInstance()
     {
         if (weaponInstance != null) { Destroy(weaponInstance); }
-        if (weaponPivot != null) { Destroy(weaponPivot); }
+        if (weaponPivot != null) { Destroy(weaponPivot.gameObject); }
     }
 
     private void MakeWeaponPivot()

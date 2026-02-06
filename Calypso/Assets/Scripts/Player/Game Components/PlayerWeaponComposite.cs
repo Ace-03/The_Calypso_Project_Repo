@@ -13,13 +13,11 @@ public class PlayerWeaponComposite : MonoBehaviour
     private void OnEnable()
     {
         weaponsUpdatedEvent.RegisterListener(RefreshWeapons);
-        Debug.Log("weapon composite IS listening for events");
     }
 
     private void OnDisable()
     {
         weaponsUpdatedEvent.UnregisterListener(RefreshWeapons);
-        Debug.Log("weapon composite NOT listening for events");
     }
 
     private void Start()
@@ -34,11 +32,7 @@ public class PlayerWeaponComposite : MonoBehaviour
 
     public void RefreshWeapons(WeaponsUpdatePayload payload)
     {
-        Debug.LogWarning($"In Refresh weapons");
         weaponDefinitions = payload.weapons;
-
-        foreach (WeaponDefinitionSO weapon in weaponDefinitions)
-            Debug.LogWarning($"weapon composite has {weapon.name}");
 
         if (weaponInstances != null || weaponInstances.Count > 0)
         {
@@ -48,6 +42,8 @@ public class PlayerWeaponComposite : MonoBehaviour
                 Destroy(weaponInstance);
             }
         }
+
+        weaponInstances.Clear();
 
         for (int i = 0; i < weaponDefinitions.Count; i++)
         {
@@ -60,7 +56,10 @@ public class PlayerWeaponComposite : MonoBehaviour
             weaponInstances.Add(weaponCtrl);
 
             if (!weaponsActive)
-                weaponCtrl.gameObject.SetActive(false);
+            {
+                weaponCtrl.enabled = false;
+                //weaponCtrl.weaponPivot.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -69,7 +68,8 @@ public class PlayerWeaponComposite : MonoBehaviour
         weaponsActive = toggle;
         foreach (WeaponController weapon in weaponInstances)
         {
-            weapon.gameObject.SetActive(toggle);
+            weapon.enabled = toggle;
+            //weapon.weaponPivot.gameObject.SetActive(toggle);
         }
     }
 }
