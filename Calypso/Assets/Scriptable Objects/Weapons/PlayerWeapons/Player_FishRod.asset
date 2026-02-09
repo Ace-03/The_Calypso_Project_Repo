@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Fishing Rod
   weaponDescription: Swipe at opponents with your fishing line
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: dd8357f91f1eb7445ba4ba8d020b8d20, type: 3}
   weaponBehaviorPrefab: {fileID: 1613404437958726712, guid: 3706ec582f3ab294a921a56f6a235dee, type: 3}
   bulletSprite: {fileID: 0}
   baseStats:
