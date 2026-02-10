@@ -97,10 +97,7 @@ public class WeaponController : MonoBehaviour
         }
     }
     
-    public void Attack()
-    {
-        weaponBehavior?.Attack(this);
-    }
+    public void Attack() => weaponBehavior?.Attack(this);
 
     public void RecalculateStats()
     {
@@ -157,10 +154,8 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    private void RenamePivot()
-    {
+    private void RenamePivot() =>
         weaponPivot.name = $"{weaponData.weaponName} Pivot";
-    }
 
     private void DebugLogDamageSource(DamageSource src)
     {
@@ -178,44 +173,18 @@ public class WeaponController : MonoBehaviour
         damageSource.weapon = weaponData;
         Initialize();
     }
-    public void SetDamageSource(DamageSource src)
-    {
-        damageSource = src;
-        //DebugLogDamageSource(damageSource);
-    }
+    public void SetDamageSource(DamageSource src) => damageSource = src;
 
     #endregion
 
     #region Getters
-    public float GetCooldown()
-    {
-        return currentStats.Cooldown;
-    }
-    public int GetAmount()
-    {
-        return currentStats.Amount;
-    }
-    public float GetDuration()
-    {
-        return currentStats.Duration;
-    }
-    public float GetSpeed()
-    {
-        return currentStats.Speed;
-    }
-    public float GetAOETick()
-    {
-        return currentStats.AOETick;
-    }
-    public float GetArea()
-    {
-        return currentStats.Area;
-    }
-
-    public float GetAccuracy()
-    {
-        return currentStats.accuracy;
-    }
+    public float GetCooldown() => currentStats.Cooldown;
+    public int GetAmount() => currentStats.Amount;
+    public float GetDuration() => currentStats.Duration;
+    public float GetSpeed() => currentStats.Speed;
+    public float GetAOETick() => currentStats.AOETick;
+    public float GetArea() => currentStats.Area;
+    public float GetAccuracy() => currentStats.accuracy;
 
     public Material GetSprite()
     {
@@ -224,25 +193,11 @@ public class WeaponController : MonoBehaviour
         else
             return null;
     }
-    public GameObject GetWeaponInstance()
-    {
-        return weaponInstance;
-    }
 
-    public IWeaponBehavior GetWeaponBehavior()
-    {
-        return weaponBehavior;
-    }
-
-    public DamageSource GetDamageSource()
-    {
-        return damageSource;
-    }
-
-    public WeaponDefinitionSO GetWeaponData()
-    {
-        return weaponData;
-    }
+    public GameObject GetWeaponInstance() => weaponInstance;
+    public IWeaponBehavior GetWeaponBehavior() => weaponBehavior;
+    public DamageSource GetDamageSource() => damageSource;
+    public WeaponDefinitionSO GetWeaponData() => weaponData;
 
     #endregion
 }

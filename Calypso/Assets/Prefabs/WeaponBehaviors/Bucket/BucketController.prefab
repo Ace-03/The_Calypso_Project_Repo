@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4372289006952852718}
-  - component: {fileID: 5431661216986599766}
+  - component: {fileID: 4824536669267883659}
   m_Layer: 0
   m_Name: BucketController
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5431661216986599766
+--- !u!114 &4824536669267883659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1265745568162077986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa049b3df9ae694b8509ed921e1c6c2, type: 3}
+  m_Script: {fileID: 11500000, guid: bd52c3a618aeaa44b9612e3c24d9b6ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRadiusMult: 1.25
-  minRadiusDivisor: 2.4
-  spriteTransform: {fileID: 0}
-  objectTransform: {fileID: 0}
-  bulletTrigger: {fileID: 0}
+  TargetSizeModifier: 2
+  waterPoolPrefab: {fileID: 1265745568162077986, guid: a3147f769ee67c941bf4e81f72e693cd, type: 3}
