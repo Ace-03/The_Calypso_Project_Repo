@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4372289006952852718}
-  - component: {fileID: 5431661216986599766}
+  - component: {fileID: 8997235353338411514}
   m_Layer: 0
-  m_Name: Bucket
+  m_Name: Water Pool Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 5704797168335542452}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5431661216986599766
+--- !u!114 &8997235353338411514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,11 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa049b3df9ae694b8509ed921e1c6c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRadiusMult: 1.25
-  minRadiusDivisor: 2.4
+  spriteSizeModifier: 6
   spriteTransform: {fileID: 7507500148732031451}
-  objectTransform: {fileID: 5704797168335542452}
-  bulletTrigger: {fileID: 5421064365522097954}
+  targetTransform: {fileID: 5704797168335542452}
 --- !u!1 &5334734588257313906
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,8 +76,8 @@ Transform:
   m_GameObject: {fileID: 5334734588257313906}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.218, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 0, y: -0.218, z: -0.101}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4372289006952852718}
@@ -127,7 +125,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: -811263134, guid: 813836a0695579d4e989e5db9497c06d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -174,6 +172,7 @@ GameObject:
   - component: {fileID: 5421064365522097954}
   - component: {fileID: 1425264143223888334}
   - component: {fileID: 5211533239973832478}
+  - component: {fileID: 4087927142344715947}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -285,3 +284,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8534933995056884930}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &4087927142344715947
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534933995056884930}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

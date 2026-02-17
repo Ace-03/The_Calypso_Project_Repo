@@ -2,22 +2,16 @@ using UnityEngine;
 
 public class BulletTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private OnDamageDealtEventSO damageDealtEvent;
-    [SerializeField]
-    private OnDamageDealtEventSO damageTakenEvent;
+    [SerializeField] private OnDamageDealtEventSO damageDealtEvent;
+    [SerializeField] private OnDamageDealtEventSO damageTakenEvent;
 
     [SerializeField] private bool enemyTickDamage;
-    private float tickInterval = 1f;
+    [SerializeField] private float tickInterval = 0.75f;
     private bool isTicking = false;
     private float tickTimer = 0f;
 
     [HideInInspector] private DamageSource damageSource = new DamageSource();
 
-    public void SetDamageSource(DamageSource src)
-    {
-        damageSource = src;
-    }
 
     private void Update()
     {
@@ -28,29 +22,13 @@ public class BulletTrigger : MonoBehaviour
         if (tickTimer <= 0f) { isTicking = false; }
     }
 
-    void OnParticleCollision(GameObject other)
-    {
-        TryDamage(other);
-    }
+    void OnParticleCollision(GameObject other) => TryDamage(other);
 
-    private void OnTriggerEnter(Collider other)
-    {
-        TryDamage(other.gameObject);
-    }
+    private void OnTriggerEnter(Collider other) => TryDamage(other.gameObject);
 
-    private void OnTriggerStay(Collider other)
-    {
-        TryPlayerDamage(other.gameObject);
+    private void OnTriggerStay(Collider other) => TryDamage(other.gameObject, damageType.tick);
 
-        if (enemyTickDamage && !isTicking)
-        {
-            TryEnemyDamage(other.gameObject);
-            isTicking = true;
-            tickTimer = tickInterval;
-        }
-    }
-
-    private void TryDamage(GameObject other, bool isExternal = false)
+    private void TryDamage(GameObject other, damageType type = damageType.normal)
     {
         if (other.GetComponent<GenericHealth>() != null)
         {
@@ -63,48 +41,24 @@ public class BulletTrigger : MonoBehaviour
             }
             else if (other.CompareTag("Enemy"))
             {
+                if (type == damageType.tick)
+                {
+                    if (isTicking)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Debug.Log("enemy taking tick damage");
+                        isTicking = true;
+                        tickTimer = tickInterval;
+                    }
+                }
+
                 payload.damageInfo = DamageCalculator.CalculateDamageToEnemy(damageSource);
                 damageDealtEvent.Raise(payload);
             }
-
             other.GetComponent<GenericHealth>().TakeDamage(payload.damageInfo);
-        }
-    }
-
-    private void TryPlayerDamage(GameObject other)
-    {
-        if (other.GetComponent<GenericHealth>() != null)
-        {
-            DamagePayload payload = MakePayload(other);
-
-            if (other.CompareTag("Player"))
-            {
-                EnemyDefinitionSO enemyData = damageSource.enemyDefinition;
-
-                if (enemyData == null)
-                    enemyData = GetComponentInParent<EnemyInitializer>()?.GetEnemyData();
-
-                payload.damageInfo = DamageCalculator.CalculateDamageToPlayer(damageSource);
-                damageTakenEvent.Raise(payload);
-
-                other.GetComponent<GenericHealth>().TakeDamage(payload.damageInfo);
-            }
-        }
-    }
-
-    private void TryEnemyDamage(GameObject other)
-    {
-        if (other.GetComponent<GenericHealth>() != null)
-        {
-            DamagePayload payload = MakePayload(other);
-
-            if (other.CompareTag("Enemy"))
-            {
-                payload.damageInfo = DamageCalculator.CalculateDamageToEnemy(damageSource);
-                damageDealtEvent.Raise(payload);
-
-                other.GetComponent<GenericHealth>().TakeDamage(payload.damageInfo);
-            }
         }
     }
 
@@ -118,13 +72,14 @@ public class BulletTrigger : MonoBehaviour
         };
     }
 
-    public void SetTickInterval(float interval)
-    {
-        tickInterval = interval;
-    }
+    public void TryExternalDamage(GameObject other) => TryDamage(other, damageType.external);
+    public void SetTickInterval(float interval) => tickInterval = interval;
+    public void SetDamageSource(DamageSource src) => damageSource = src;
 
-    public void TryExternalDamage(GameObject other)
+    enum damageType
     {
-        TryDamage(other, true);
+        external,
+        tick,
+        normal
     }
 }
