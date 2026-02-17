@@ -10,5 +10,8 @@ public class PickupSO : ScriptableObject
     public Sprite sprite;
     public float sizeModifier = 1f;
     public GameObject prefab;
+
+    [Header("Weapon Data For Blueprint")]
+    public WeaponDefinitionSO weaponToUnlock;
 }
 

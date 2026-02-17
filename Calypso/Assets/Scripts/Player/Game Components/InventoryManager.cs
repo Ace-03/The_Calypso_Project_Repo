@@ -7,37 +7,43 @@ public class InventoryManager : MonoBehaviour
     private PlayerContext playerContext;
     private StatSystem statSystem;
 
+
+    [Header("Weapon Events")]
+    [SerializeField] private OnWeaponCraftedEventSO weaponCraftedEvent;
+    [SerializeField] private OnWeaponsUpdatedEventSO weaponsUpdatedEvent;
+    [SerializeField] private OnBlueprintCollectedEventSO blueprintCollectedEvent;
+
     [Header("Passive Item Events")]
     [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
     [SerializeField] private OnStatsUpdatedSO statsUpdatedEvent;
     [SerializeField] private OnUpdateHotBarSO updateHotBarEvent;
-    
-    [Header("Weapon Events")]
-    [SerializeField] private OnWeaponCraftedEventSO weaponCraftedEvent;
-    [SerializeField] private OnWeaponsUpdatedEventSO weaponsUpdatedEvent;
+
 
     [Header("List Info")]
     [SerializeField] private int maxPassiveItems;
     [SerializeField] private int maxWeapons;
     [SerializeField] private List<EquippedItemInstance> passiveItems;
     [SerializeField] private List<WeaponDefinitionSO> weapons;
-
-    private void Start()
-    {
-        playerContext = ContextRegister.Instance.GetContext();
-        statSystem = playerContext.statSystem;
-    }
+    [SerializeField] private List<string> weaponBlueprints;
 
     private void OnEnable()
     {
         rewardSelectedEvent.RegisterListener(ProcessSelectedReward);
         weaponCraftedEvent.RegisterListener(ProcessCraftedWeapon);
+        blueprintCollectedEvent.RegisterListener(AddBlueprint);
     }
 
     private void OnDisable()
     {
         rewardSelectedEvent.RegisterListener(ProcessSelectedReward);
         weaponCraftedEvent.RegisterListener(ProcessCraftedWeapon);
+        blueprintCollectedEvent.UnregisterListener(AddBlueprint);
+    }
+
+    private void Start()
+    {
+        playerContext = ContextRegister.Instance.GetContext();
+        statSystem = playerContext.statSystem;
     }
 
     private void ProcessSelectedReward(SelectedRewardPayload reward)
@@ -132,30 +138,26 @@ public class InventoryManager : MonoBehaviour
         statsUpdatedEvent.Raise(new StatUpdatePayload(statSystem));
     }
 
-    public List<EquippedItemInstance> GetUpgradeableItems()
+    private void AddBlueprint(BlueprintCollectedPayload payload)
     {
-        return passiveItems.FindAll(i => i.itemLevel < i.itemData.maxLevel);
+        if (weaponBlueprints.Contains(payload.weaponName))
+            Debug.LogWarning($"Player has already Unlocked {payload.weaponName}");
+        else
+            weaponBlueprints.Add(payload.weaponName);
     }
 
-    public List<EquippedItemInstance> GetAllPassiveItems()
-    {
-        return passiveItems;
-    }
+    #region Getters
 
-    public List<WeaponDefinitionSO> GetAllWeapons()
-    {
-        return weapons;
-    }
+    public List<EquippedItemInstance> GetUpgradeableItems() => passiveItems.FindAll(i => i.itemLevel < i.itemData.maxLevel);
+    public List<EquippedItemInstance> GetAllPassiveItems() => passiveItems;
+    public List<WeaponDefinitionSO> GetAllWeapons() => weapons;
+    public EquippedItemInstance GetItem(PassiveItemSO data) => passiveItems.Find(i => i.itemData == data);
+    public WeaponDefinitionSO GetWeapon(WeaponDefinitionSO data) => weapons.Find(w => w == data);
 
-    public EquippedItemInstance GetItem(PassiveItemSO data)
-    {
-        return passiveItems.Find(i => i.itemData == data);
-    }
+    #endregion
 
-    public WeaponDefinitionSO GetWeapon(WeaponDefinitionSO data)
-    {
-        return weapons.Find(w => w == data);
-    }
+    #region Checks
+
 
     public bool HasItem(PassiveItemSO itemToCheck)
     {
@@ -168,15 +170,14 @@ public class InventoryManager : MonoBehaviour
 
     public bool HasWeapon(WeaponDefinitionSO weaponToCheck)
     {
-        foreach(WeaponDefinitionSO weapon in weapons)
+        foreach (WeaponDefinitionSO weapon in weapons)
         {
             if (weapon == weaponToCheck) return true;
         }
         return false;
     }
 
-    public bool IsNewItemSlotAvailable()
-    {
-        return passiveItems.Count < maxPassiveItems;
-    }
+    public bool IsNewItemSlotAvailable() => passiveItems.Count < maxPassiveItems;
+
+    #endregion
 }
