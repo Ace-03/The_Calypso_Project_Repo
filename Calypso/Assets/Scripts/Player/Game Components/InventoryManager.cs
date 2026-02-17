@@ -153,6 +153,7 @@ public class InventoryManager : MonoBehaviour
     public List<WeaponDefinitionSO> GetAllWeapons() => weapons;
     public EquippedItemInstance GetItem(PassiveItemSO data) => passiveItems.Find(i => i.itemData == data);
     public WeaponDefinitionSO GetWeapon(WeaponDefinitionSO data) => weapons.Find(w => w == data);
+    public List<string> GetBlueprints() => weaponBlueprints;
 
     #endregion
 

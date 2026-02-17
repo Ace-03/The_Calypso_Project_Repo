@@ -55,6 +55,7 @@ public class BaseUI : MonoBehaviour
     {
         SetScreen(WeaponCraftingScreen);
         DisplayCurrentStats();
+        BlueprintManager.Instance.CheckRecipes();
     }
 
     public void OnPrimaryWeaponScreen()
