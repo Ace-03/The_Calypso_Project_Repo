@@ -4961,7 +4961,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7835021588888824271}
   - component: {fileID: 5926539021118034038}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4996,7 +4996,7 @@ SphereCollider:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 33152
+    m_Bits: 295296
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

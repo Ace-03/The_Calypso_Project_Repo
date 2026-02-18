@@ -84,7 +84,7 @@ public class PoolManager : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(poolName))
         {
-            Debug.LogError($"Pool with name '{poolName}' does not exist.");
+            Debug.LogWarning($"Pool with name '{poolName}' does not exist.");
             Destroy(obj);
             return;
         }

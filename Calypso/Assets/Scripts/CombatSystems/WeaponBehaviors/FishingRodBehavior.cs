@@ -12,7 +12,7 @@ public class FishingRodBehavior : MonoBehaviour, IWeaponBehavior
     {
         int volleyCount = weapon.GetAmount();
         float volleyRate = volleyDuration / volleyCount;
-        if (ContextRegister.Instance.GetContext().playerManager.GetFacingRight())
+        if (GetDirection())
         {
             transform.eulerAngles = new Vector3 (0f, 0f, 0f);
         }
@@ -45,6 +45,7 @@ public class FishingRodBehavior : MonoBehaviour, IWeaponBehavior
     {
         triggerObject.transform.localScale *= weapon.GetArea();
         trigger.SetDamageSource(weapon.GetDamageSource());
+        GeneralModifier.UpdateCollisionLayers(GetComponentInChildren<Collider>(), weapon.team);
     }
 
     public void Attack(WeaponController weapon)
@@ -63,4 +64,7 @@ public class FishingRodBehavior : MonoBehaviour, IWeaponBehavior
         animator.StopPlayback();
         triggerObject.SetActive(false);
     }
+
+    protected virtual bool GetDirection() =>
+        ContextRegister.Instance.GetContext().playerManager.GetFacingRight();
 }

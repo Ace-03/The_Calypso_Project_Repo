@@ -62,6 +62,8 @@ public static class TargetCalculator
         return null;
     }
 
+    public static Transform GetPlayer() => ContextRegister.Instance?.GetContext().playerTransform;
+
     private static List<Transform> MakeEnemyList()
     {
         List<AI_NAV> navAgents = new List<AI_NAV>();
@@ -79,4 +81,5 @@ public static class TargetCalculator
     {
         return !(Vector3.Distance(targetPos, currentPosition) > range);
     }
+
 }
