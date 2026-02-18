@@ -1091,6 +1091,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4093545903702465857, guid: de8a99c6d25d8214a93845d01805202e, type: 3}
   m_PrefabInstance: {fileID: 251972040}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &281573148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281573150}
+  - component: {fileID: 281573149}
+  m_Layer: 0
+  m_Name: Mine Blueprint Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &281573149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281573148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf088eb63f918b4286a19fbfd94bf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+    data: {fileID: 11400000, guid: a25f52bd95fdb8d49a098710c0493e1a, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
+--- !u!4 &281573150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281573148}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 28.78, y: 0.6090001, z: -5.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &335717159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1432,11 +1481,11 @@ Transform:
   - {fileID: 1858335188}
   - {fileID: 1054422883}
   - {fileID: 2068483409}
-  - {fileID: 116050643}
   - {fileID: 1792996850}
   - {fileID: 1677497324}
   - {fileID: 1668456877}
   - {fileID: 535604305}
+  - {fileID: 116050643}
   m_Father: {fileID: 724180522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &482636826
@@ -6879,7 +6928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5570168739754423075, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: spawnOnStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5570168739754423075, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: playerTransform
@@ -8960,7 +9009,7 @@ PrefabInstance:
     - target: {fileID: 6693502108835353163, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
       propertyPath: weaponData
       value: 
-      objectReference: {fileID: 11400000, guid: 6ecdd5cd0b9d49a49809929916e42a15, type: 2}
+      objectReference: {fileID: 11400000, guid: 7a7683a2b7adadf4eb485fb886bc4780, type: 2}
     - target: {fileID: 6887405348467899213, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9980,3 +10029,4 @@ SceneRoots:
   - {fileID: 1044982813}
   - {fileID: 40962075}
   - {fileID: 3411181782509952096}
+  - {fileID: 281573150}

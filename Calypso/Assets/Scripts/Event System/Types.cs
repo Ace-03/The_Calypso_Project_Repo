@@ -29,22 +29,9 @@ public class RewardOptionsPayload : GameEventPayload
     public List<RewardOption> options;
 }
 
-public class RewardOption
+public class BlueprintCollectedPayload : GameEventPayload
 {
-    public PassiveItemSO itemData;
-    public List<StatModifier> modifiers;
-    public List<StatChangeDelta> deltaValues;
-    public string instanceID;
-    public bool isNew;
-}
-
-public class StatChangeDelta
-{
-    public StatType Type;
-    public float oldValue;
-    public float newValue;
-    public float delta;
-    public StatModifierType ModType;
+    public string weaponName;
 }
 
 public class StatUpdatePayload : GameEventPayload
@@ -94,4 +81,22 @@ public class DayStateChangePayload : GameEventPayload
         this.isDayTime = isDayTime;
         this.dayCount = dayCount;
     }
+}
+
+public class RewardOption
+{
+    public PassiveItemSO itemData;
+    public List<StatModifier> modifiers;
+    public List<StatChangeDelta> deltaValues;
+    public string instanceID;
+    public bool isNew;
+}
+
+public class StatChangeDelta
+{
+    public StatType Type;
+    public float oldValue;
+    public float newValue;
+    public float delta;
+    public StatModifierType ModType;
 }
