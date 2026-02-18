@@ -4911,7 +4911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2111716326536823065}
   - component: {fileID: 4669667603740622747}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4946,7 +4946,7 @@ BoxCollider:
     m_Bits: 97399
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 33664
+    m_Bits: 295808
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -20147,6 +20147,7 @@ MonoBehaviour:
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
   enemyTickDamage: 0
+  tickInterval: 0.75
 --- !u!114 &6851373287457633510
 MonoBehaviour:
   m_ObjectHideFlags: 0

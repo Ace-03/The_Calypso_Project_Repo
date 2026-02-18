@@ -29,7 +29,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
         for (int i = 0; i < volleyCount; ++i)
         {
-            Transform target = TargetCalculator.GetClosestEnemy(transform.position);
+            Transform target = GetTarget();
             Nullable<Vector3> aimVector = transform.position;
 
 
@@ -155,10 +155,7 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
         StartCoroutine(ThrowBomb(weapon));
     }
 
-    public bool IsAimable()
-    {
-        return false;
-    }
+    public bool IsAimable() => false;
 
     private Nullable<Vector3> GetAimVector(Transform target)
     {
@@ -166,21 +163,22 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
 
         if (target.TryGetComponent<NavMeshAgent>(out NavMeshAgent navAgent))
         {
-            pos = navAgent.transform.position + (navAgent.velocity * predictionTime);
+            pos = target.transform.position + (navAgent.velocity * predictionTime);
+        }
+        else if (target.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            Debug.Log("Found target rigidbody");
+            pos = target.transform.position + (rb.linearVelocity * predictionTime);
         }
 
         FiringSolution fs = new FiringSolution();
         fs.useMaxTime = true;
-        Debug.Log($"current pos is {transform.position}");
-        Debug.Log($"projected enemy pos is {pos}");
-        Debug.Log($"launch force is {launchForce}");
-        Debug.Log($"applied grav is {appliedGravity}");
+        //Debug.Log($"current pos is {transform.position}");
+        //Debug.Log($"projected enemy pos is {pos}");
+        //Debug.Log($"launch force is {launchForce}");
+        //Debug.Log($"applied grav is {appliedGravity}");
         return fs.Calculate(transform.position, pos, launchForce, appliedGravity);
     }
-    private Nullable<Vector3> GetAimVector(Vector3 target)
-    {
-        FiringSolution fs = new FiringSolution();
-        fs.useMaxTime = true;
-        return fs.Calculate(transform.position, target, launchForce, appliedGravity);
-    }
+
+    protected virtual Transform GetTarget() => TargetCalculator.GetClosestEnemy(transform.position);
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.PlayerSettings;
 
 public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
 {
@@ -113,8 +112,7 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
         StartCoroutine(ThrowAnchor(weapon));
     }
 
-    public bool IsAimable()
-    {
-        return false;
-    }
+    public bool IsAimable() => false;
+
+    protected virtual Transform GetTarget() => TargetCalculator.GetRandomOfClosestEnemies(transform.position);
 }

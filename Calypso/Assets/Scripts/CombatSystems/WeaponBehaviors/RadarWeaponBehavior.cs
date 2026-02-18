@@ -34,6 +34,7 @@ public class RadarWeaponBehavior : MonoBehaviour, IWeaponBehavior
             GameObject newBeam = Instantiate(beamPrefab, beamPivotTransform);
             newBeam.transform.localScale = new Vector3(newBeam.transform.localScale.x, length, newBeam.transform.localScale.z) / 5;
             BulletTrigger bt = newBeam.GetComponentInChildren<BulletTrigger>();
+            GeneralModifier.UpdateCollisionLayers(newBeam.GetComponentInChildren<Collider>(), weapon.team);
 
             bt.SetDamageSource(weapon.GetDamageSource());
             bt.SetTickInterval(weapon.GetAOETick());
