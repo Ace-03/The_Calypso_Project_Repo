@@ -31,6 +31,7 @@ public class HealthUIElements
     public Image healthIcon;
     public Image baseIcon;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI backgroundHealthText;
     public TextMeshProUGUI baseText;
 
     public List<Sprite> playerHealthSprites;

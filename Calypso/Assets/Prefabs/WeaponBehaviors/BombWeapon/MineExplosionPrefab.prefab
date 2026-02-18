@@ -4917,7 +4917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4008078022488202596
 Transform:
   m_ObjectHideFlags: 0
@@ -14763,6 +14763,7 @@ MonoBehaviour:
   damageDealtEvent: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
   damageTakenEvent: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
   enemyTickDamage: 0
+  tickInterval: 0.75
 --- !u!54 &3813395605592723499
 Rigidbody:
   m_ObjectHideFlags: 0
