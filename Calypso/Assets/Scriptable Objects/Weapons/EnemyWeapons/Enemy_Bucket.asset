@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce5d6ed1a9ec704fb7ec3105f53009c, type: 3}
+  m_Name: Enemy_Bucket
+  m_EditorClassIdentifier: 
+  weaponName: Bucket
+  weaponDescription: booket
+  icon: {fileID: 21300000, guid: d233af5cc5ff75b4a937acf42ee7869c, type: 3}
+  weaponBehaviorPrefab: {fileID: 1265745568162077986, guid: 3b9f2138d6992a14682583511c4b1b80, type: 3}
+  bulletSprite: {fileID: 0}
+  baseStats:
+    Cooldown: 5
+    Damage: 2
+    Amount: 0
+    Duration: 3
+    accuracy: 39
+    Speed: 0
+    AOETick: 1
+    Area: 1
+  pierce: 0
+  baseKnockback: 0
+  baseStun: 0
+  basePoison: 0
+  baseSlowdown: 25
