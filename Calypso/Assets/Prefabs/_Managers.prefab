@@ -784,7 +784,6 @@ Transform:
   m_Children:
   - {fileID: 1945066981573276778}
   - {fileID: 6931822044479365446}
-  - {fileID: 8606676280942786101}
   - {fileID: 1821145134494683166}
   - {fileID: 6416200940466887147}
   - {fileID: 4437152743920561690}
@@ -794,6 +793,7 @@ Transform:
   - {fileID: 3932710049913112569}
   - {fileID: 1250309239735553979}
   - {fileID: 891192027780301986}
+  - {fileID: 8606676280942786101}
   - {fileID: 3460144311723011319}
   - {fileID: 5450269957308253521}
   - {fileID: 5521779368872737922}
@@ -969,15 +969,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23799311fc54187499579da2a8dd0b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponCraftedEvent: {fileID: 11400000, guid: 4b034238c4731c944ac8ff1f31e3e864, type: 2}
+  weaponsUpdatedEvent: {fileID: 11400000, guid: afe29241f1e28ec48b93fe0730e0cfbf, type: 2}
+  blueprintCollectedEvent: {fileID: 11400000, guid: d435f5c50496108409fd161525df1653, type: 2}
   rewardSelectedEvent: {fileID: 11400000, guid: 2715797d4803fd34181804696dcf3b77, type: 2}
   statsUpdatedEvent: {fileID: 11400000, guid: 8cbde4debb08a654f9e12db0d1d50805, type: 2}
   updateHotBarEvent: {fileID: 11400000, guid: 299d2cae329af9b43b4f85f7332d2b47, type: 2}
-  weaponCraftedEvent: {fileID: 11400000, guid: 4b034238c4731c944ac8ff1f31e3e864, type: 2}
-  weaponsUpdatedEvent: {fileID: 11400000, guid: afe29241f1e28ec48b93fe0730e0cfbf, type: 2}
   maxPassiveItems: 4
   maxWeapons: 2
   passiveItems: []
   weapons: []
+  weaponBlueprints: []
 --- !u!1 &8615426100148986089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,6 +1139,7 @@ GameObject:
   - component: {fileID: 8606676280942786101}
   - component: {fileID: 6801550527011735892}
   - component: {fileID: 1901332863640737044}
+  - component: {fileID: 5517989868720660397}
   m_Layer: 0
   m_Name: _BaseManager
   m_TagString: Untagged
@@ -1205,6 +1208,19 @@ MonoBehaviour:
     requirementsText: {fileID: 2615268938141193320}
     levelText: {fileID: 4303872577142683357}
   isOpen: 0
+--- !u!114 &5517989868720660397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9163537144071099051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406716e4fb0904649bc4ee5377bd97b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftingOptions: []
 --- !u!1001 &1670593148081875255
 PrefabInstance:
   m_ObjectHideFlags: 0

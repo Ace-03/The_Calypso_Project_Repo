@@ -836,4 +836,9 @@ MonoBehaviour:
     weaponNameText: {fileID: 7911106345861103846}
     requirementsText: {fileID: 7141438006476790788}
     descriptionText: {fileID: 1184694566837803166}
+  craftingButton: {fileID: 710231892869179670}
+  buttonImage: {fileID: 5521761356772286961}
   weaponIcon: {fileID: 4950701104083402929}
+  lockedColor: {r: 0, g: 0, b: 0, a: 0.3137255}
+  UnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  lockedAlpha: 0.15
