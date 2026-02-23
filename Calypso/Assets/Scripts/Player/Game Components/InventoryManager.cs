@@ -175,6 +175,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
+        statsUpdatedEvent.Raise(new StatUpdatePayload(statSystem));
         RaiseUpdateHotbarEvent();
     }
 
