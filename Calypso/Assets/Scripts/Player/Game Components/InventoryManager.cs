@@ -157,7 +157,23 @@ public class InventoryManager : MonoBehaviour
 
     private void ClearPassivesNotPermanentlyOwned(GameEventPayload payload)
     {
+        foreach (ItemInstance item in passiveItems)
+        {
+            foreach (StatModifier modifier in item.modifiers)
+            {
+                statSystem.RemoveAllModifiersBySource(modifier.StatType, item.instanceID);
+            }
+        }
+
         passiveItems.RemoveAll(item => !item.permanentlyOwned);
+
+        foreach (ItemInstance item in passiveItems)
+        {
+            foreach (StatModifier modifier in item.modifiers)
+            {
+                statSystem.AddModifier(modifier.StatType, modifier);
+            }
+        }
 
         RaiseUpdateHotbarEvent();
     }
