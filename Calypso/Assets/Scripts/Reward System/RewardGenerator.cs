@@ -32,7 +32,7 @@ public class RewardGenerator : MonoBehaviour
 
     private void GenerateRewardOptions(SelectedRewardPayload payload)
     {
-        List<EquippedItemInstance> equippedItems = inventoryManager.GetUpgradeableItems();
+        List<ItemInstance> equippedItems = inventoryManager.GetUpgradeableItems();
         bool canAquireNewItem = inventoryManager.IsNewItemSlotAvailable();
 
         List<PassiveItemSO> possibleRewards = FilterRewards(equippedItems, canAquireNewItem);
@@ -42,7 +42,7 @@ public class RewardGenerator : MonoBehaviour
         requestGeneratedEvent.Raise(new RewardOptionsPayload() { options = finalOptions });
     }
 
-    private List<PassiveItemSO> FilterRewards(List<EquippedItemInstance> equipped, bool canAquireNew)
+    private List<PassiveItemSO> FilterRewards(List<ItemInstance> equipped, bool canAquireNew)
     {
         List<PassiveItemSO> selectableRewards = equipped.Select(item => item.itemData).ToList();
 
@@ -127,7 +127,7 @@ public class RewardGenerator : MonoBehaviour
                 RewardOption newOption = new RewardOption();
 
                 List<StatModifier> rolledModifiers = new List<StatModifier>();
-                EquippedItemInstance existingInstance = null;
+                ItemInstance existingInstance = null;
                 List<StatChangeDelta> deltas = null;
                 string instanceID;
                 bool isNew = false;
@@ -139,7 +139,7 @@ public class RewardGenerator : MonoBehaviour
                     int level = existingInstance.itemLevel + 1;
                     instanceID = existingInstance.instanceID;
 
-                    rolledModifiers = RollModifiersForLevel(selectedItem, level, instanceID);
+                    rolledModifiers = RollModifiersForLevel(selectedItem, level, instanceID, existingInstance.modifiers);
                     deltas = CalculateStatDifferenceForUpgrade(existingInstance, rolledModifiers);
                 }
                 else
@@ -180,8 +180,6 @@ public class RewardGenerator : MonoBehaviour
                 currentTotalValue = currentModifiers.FirstOrDefault(m => m.StatType == template.Type)?.Value ?? 0f;
             }
 
-            Debug.Log($"Rolling stat for {template.Type} at level {level}. Current total value: {currentTotalValue}");
-
             float minPossibleValue = template.MinValue + currentTotalValue;
             float maxPossibleValue = template.MaxValue * level;
 
@@ -200,7 +198,7 @@ public class RewardGenerator : MonoBehaviour
     }
 
     public List<StatChangeDelta> CalculateStatDifferenceForUpgrade(
-        EquippedItemInstance existingInstance,
+        ItemInstance existingInstance,
         List<StatModifier> newMods)
     {
         if (existingInstance == null)

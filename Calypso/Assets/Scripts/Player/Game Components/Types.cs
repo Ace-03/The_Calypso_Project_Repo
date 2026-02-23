@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class StatContainer
 {
@@ -8,6 +9,7 @@ public class StatContainer
     public List<StatModifier> Modifiers;
 }
 
+[Serializable]
 public class StatModifier
 {
     public readonly StatType StatType;
@@ -21,6 +23,14 @@ public class StatModifier
         Value = value;
         SourceID = sourceId;
         ModType = modType;
+    }
+
+    public void DebugModifier()
+    {
+        Debug.Log($"Stat Type: {StatType} \n" +
+            $"Value: {Value}\n" +
+            $"sourceId: {SourceID}\n" +
+            $"Modifier Type: {ModType}\n");
     }
 }
 

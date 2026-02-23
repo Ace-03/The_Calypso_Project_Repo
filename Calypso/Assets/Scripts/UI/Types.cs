@@ -8,21 +8,21 @@ public struct RewardScreenUIComponents
 {
     public GameObject RewardScreenParent;
     public GameObject RewardsContainer;
-    public List<RewardOptionUIComponents> rewardOptions;
+    public List<OptionUIComponents> rewardOptions;
 }
 
 
 [System.Serializable]
-public struct RewardOptionUIComponents
+public struct OptionUIComponents
 {
     public RewardOption assignedItem;
     public Image iconImage;
     public GameObject isNewText;
-    public RewardInfoPanelComponents rewardInfoPanel;
+    public OptionInfoPanelComponents InfoPanel;
 }
 
 [System.Serializable]
-public struct RewardInfoPanelComponents
+public struct OptionInfoPanelComponents
 {
     public GameObject infoPanelParent;
     public TextMeshProUGUI itemName;
