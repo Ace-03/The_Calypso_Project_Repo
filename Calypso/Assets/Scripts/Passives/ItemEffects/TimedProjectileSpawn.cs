@@ -17,7 +17,7 @@ public class TimedProjectileSpawnSO : ItemEffectSO
         SpawnNet(context);
     }
 
-    public override void OnAcquired(EquippedItemInstance itemInstance, PlayerContext context)
+    public override void OnAcquired(ItemInstance itemInstance, PlayerContext context)
     {
         timerEvent = CreateInstance<OnGenericEventSO>();
         timer = context.playerManager.AddComponent<GenericTimer>();
@@ -32,7 +32,7 @@ public class TimedProjectileSpawnSO : ItemEffectSO
         SpawnNet(context);
     }
 
-    public override void OnRemove(EquippedItemInstance itemInstance, PlayerContext context)
+    public override void OnRemove(ItemInstance itemInstance, PlayerContext context)
     {
         timerEvent.UnregisterListener(timerListener);
     }

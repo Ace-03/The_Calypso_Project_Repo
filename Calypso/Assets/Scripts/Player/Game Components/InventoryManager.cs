@@ -17,12 +17,12 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
     [SerializeField] private OnStatsUpdatedSO statsUpdatedEvent;
     [SerializeField] private OnUpdateHotBarSO updateHotBarEvent;
-
+    [SerializeField] private OnGenericEventSO passiveRestrictionSelected;
 
     [Header("List Info")]
     [SerializeField] private int maxPassiveItems;
     [SerializeField] private int maxWeapons;
-    [SerializeField] private List<EquippedItemInstance> passiveItems;
+    [SerializeField] private List<ItemInstance> passiveItems;
     [SerializeField] private List<WeaponDefinitionSO> weapons;
     [SerializeField] private List<string> weaponBlueprints;
 
@@ -31,13 +31,15 @@ public class InventoryManager : MonoBehaviour
         rewardSelectedEvent.RegisterListener(ProcessSelectedReward);
         weaponCraftedEvent.RegisterListener(ProcessCraftedWeapon);
         blueprintCollectedEvent.RegisterListener(AddBlueprint);
+        passiveRestrictionSelected.RegisterListener(ClearPassivesNotPermanentlyOwned);
     }
 
     private void OnDisable()
     {
-        rewardSelectedEvent.RegisterListener(ProcessSelectedReward);
-        weaponCraftedEvent.RegisterListener(ProcessCraftedWeapon);
+        rewardSelectedEvent.UnregisterListener(ProcessSelectedReward);
+        weaponCraftedEvent.UnregisterListener(ProcessCraftedWeapon);
         blueprintCollectedEvent.UnregisterListener(AddBlueprint);
+        passiveRestrictionSelected.UnregisterListener(ClearPassivesNotPermanentlyOwned);
     }
 
     private void Start()
@@ -48,7 +50,7 @@ public class InventoryManager : MonoBehaviour
 
     private void ProcessSelectedReward(SelectedRewardPayload reward)
     {
-        EquippedItemInstance existingInstance = passiveItems.Find(i => i.itemData == reward.option.itemData);
+        ItemInstance existingInstance = passiveItems.Find(i => i.itemData == reward.option.itemData);
 
         if (existingInstance == null)
         {
@@ -77,24 +79,28 @@ public class InventoryManager : MonoBehaviour
 
         weapons.Add(payload.weaponData);
 
-        List<PassiveItemSO> currentItems = passiveItems.Select(item => item.itemData).ToList();
-
+        RaiseUpdateHotbarEvent();
         weaponsUpdatedEvent.Raise(new WeaponsUpdatePayload() { weapons = weapons });
-        updateHotBarEvent.Raise(new UpdateHotBarPayload(weapons, currentItems));
     }
 
     private void AddNewItem(SelectedRewardPayload reward)
     {
-        if (passiveItems.Count >= maxPassiveItems) return;
+        if (passiveItems.Count >= maxPassiveItems)
+        {
+            Debug.LogWarning($"Player has reached max item count aborting passive addition");
+            return;
+        }
 
         string instanceID = reward.option.instanceID;
         PassiveItemSO itemData = reward.option.itemData;
         List<StatModifier> levelOneModifiers = reward.option.modifiers;
 
-        EquippedItemInstance newItemInstance = new EquippedItemInstance(
+        ItemInstance newItemInstance = new ItemInstance(
             itemData,
             instanceID,
-            levelOneModifiers);
+            levelOneModifiers,
+            false
+        );
 
         passiveItems.Add(newItemInstance);
 
@@ -111,13 +117,11 @@ public class InventoryManager : MonoBehaviour
             effect.OnAcquired(newItemInstance, playerContext);
         }
 
-        List<PassiveItemSO> currentItems = passiveItems.Select(item => item.itemData).ToList();
-
+        RaiseUpdateHotbarEvent();
         statsUpdatedEvent.Raise(new StatUpdatePayload(statSystem));
-        updateHotBarEvent.Raise(new UpdateHotBarPayload(weapons, currentItems));
     }
 
-    private void UpgradeItem(EquippedItemInstance itemInstance, List<StatModifier> newModifiers)
+    private void UpgradeItem(ItemInstance itemInstance, List<StatModifier> newModifiers)
     {
         foreach (StatModifier modifier in itemInstance.modifiers)
         {
@@ -127,6 +131,10 @@ public class InventoryManager : MonoBehaviour
         itemInstance.itemLevel = itemInstance.itemLevel + 1;
         itemInstance.modifiers = newModifiers;
 
+        Debug.Log("In upgrade Item, the new modifiers provided will be printed below");
+        foreach (StatModifier mod in newModifiers)
+            mod.DebugModifier();
+
         if (newModifiers.Count > 0)
         {
             foreach (StatModifier modifier in newModifiers)
@@ -135,6 +143,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
+        itemInstance.DebugModifiers();
         statsUpdatedEvent.Raise(new StatUpdatePayload(statSystem));
     }
 
@@ -146,12 +155,25 @@ public class InventoryManager : MonoBehaviour
             weaponBlueprints.Add(payload.weaponName);
     }
 
+    private void ClearPassivesNotPermanentlyOwned(GameEventPayload payload)
+    {
+        passiveItems.RemoveAll(item => !item.permanentlyOwned);
+
+        RaiseUpdateHotbarEvent();
+    }
+
+    private void RaiseUpdateHotbarEvent()
+    {
+        List<PassiveItemSO> currentItems = passiveItems.Select(item => item.itemData).ToList();
+        updateHotBarEvent.Raise(new UpdateHotBarPayload(weapons, currentItems));
+    } 
+
     #region Getters
 
-    public List<EquippedItemInstance> GetUpgradeableItems() => passiveItems.FindAll(i => i.itemLevel < i.itemData.maxLevel);
-    public List<EquippedItemInstance> GetAllPassiveItems() => passiveItems;
+    public List<ItemInstance> GetUpgradeableItems() => passiveItems.FindAll(i => i.itemLevel < i.itemData.maxLevel);
+    public List<ItemInstance> GetAllPassiveItems() => passiveItems;
     public List<WeaponDefinitionSO> GetAllWeapons() => weapons;
-    public EquippedItemInstance GetItem(PassiveItemSO data) => passiveItems.Find(i => i.itemData == data);
+    public ItemInstance GetItem(PassiveItemSO data) => passiveItems.Find(i => i.itemData == data);
     public WeaponDefinitionSO GetWeapon(WeaponDefinitionSO data) => weapons.Find(w => w == data);
     public List<string> GetBlueprints() => weaponBlueprints;
 
@@ -159,10 +181,9 @@ public class InventoryManager : MonoBehaviour
 
     #region Checks
 
-
     public bool HasItem(PassiveItemSO itemToCheck)
     {
-        foreach (EquippedItemInstance equippedItem in passiveItems)
+        foreach (ItemInstance equippedItem in passiveItems)
         {
             if (equippedItem.itemData == itemToCheck) return true;
         }
@@ -179,6 +200,14 @@ public class InventoryManager : MonoBehaviour
     }
 
     public bool IsNewItemSlotAvailable() => passiveItems.Count < maxPassiveItems;
+
+    public bool NewPassiveInPossession()
+    {
+        foreach (ItemInstance item in passiveItems)
+            if (!item.permanentlyOwned) return true;
+
+        return false;
+    }
 
     #endregion
 }
