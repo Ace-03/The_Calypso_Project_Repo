@@ -14,7 +14,7 @@ public class ShockwaveOnHitSO : ItemEffectSO
         Debug.Log("Executing Shockwave on hit");
     }
 
-    public override void OnAcquired(EquippedItemInstance itemInstance, PlayerContext context)
+    public override void OnAcquired(ItemInstance itemInstance, PlayerContext context)
     {
         damageListener = (damagePayload) =>
         {
@@ -24,7 +24,7 @@ public class ShockwaveOnHitSO : ItemEffectSO
         damageTakenEvent.RegisterListener(damageListener);
     }
 
-    public override void OnRemove(EquippedItemInstance itemInstance, PlayerContext context)
+    public override void OnRemove(ItemInstance itemInstance, PlayerContext context)
     {
         damageTakenEvent.UnregisterListener(damageListener);
     }

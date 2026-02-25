@@ -29,8 +29,8 @@ public class RewardScreenUI : MonoBehaviour
 
     private void UpdateOptionUI(int index, RewardOption option)
     {
-        RewardOptionUIComponents rewardOptionUI = components.rewardOptions[index];
-        RewardInfoPanelComponents rewardInfoPanelUI = rewardOptionUI.rewardInfoPanel;
+        OptionUIComponents rewardOptionUI = components.rewardOptions[index];
+        OptionInfoPanelComponents rewardInfoPanelUI = rewardOptionUI.InfoPanel;
         string upgradeInfo = "";
 
         if (option.isNew)
@@ -64,12 +64,12 @@ public class RewardScreenUI : MonoBehaviour
     }
     public void OnDisplayInfoPanel(int index)
     {
-        components.rewardOptions[index].rewardInfoPanel.infoPanelParent.SetActive(true);
+        components.rewardOptions[index].InfoPanel.infoPanelParent.SetActive(true);
     }
 
     public void OnHideInfoPanel(int index)
     {
-        components.rewardOptions[index].rewardInfoPanel.infoPanelParent.SetActive(false);
+        components.rewardOptions[index].InfoPanel.infoPanelParent.SetActive(false);
 
     }
 
