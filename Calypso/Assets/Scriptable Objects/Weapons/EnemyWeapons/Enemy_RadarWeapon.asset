@@ -25,7 +25,7 @@ MonoBehaviour:
     accuracy: 1
     Speed: 1
     AOETick: 0.7
-    Area: 1
+    Area: 15
   pierce: 0
   baseKnockback: 10
   baseStun: 2

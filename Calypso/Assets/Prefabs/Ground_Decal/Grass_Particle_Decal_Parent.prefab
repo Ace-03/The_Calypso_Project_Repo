@@ -68,6 +68,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8065543669676827986}
     m_Modifications:
+    - target: {fileID: 2671691951004331966, guid: 0dbde0ab2eefa64469bd30b142e72b27, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3724178376304144661, guid: 0dbde0ab2eefa64469bd30b142e72b27, type: 3}
       propertyPath: m_Name
       value: Grass_Particle_Decal_3D
