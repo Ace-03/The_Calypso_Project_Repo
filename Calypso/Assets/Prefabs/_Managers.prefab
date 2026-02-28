@@ -324,9 +324,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5628187c675c37847a57bc7123e68562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDeathEvent: {fileID: 0}
   navMeshSampleDistance: 10
   spawnOnStart: 0
   poolSize: 80
+  activeEnemies: []
   waveComposite:
   - {fileID: 11400000, guid: 194a230e4c0ca464893311d8ff8c5f2a, type: 2}
 --- !u!1 &3842575261979015506

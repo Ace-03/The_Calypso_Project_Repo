@@ -96,7 +96,10 @@ public class SpawnManager : MonoBehaviour
     public void SetCurrentWave(int index)
     {
         if (index >= waveComposite.Count)
+        {
+            Debug.LogError($"Wave index of {index} is larger than wave composite count of {waveComposite.Count}");
             return;
+        }
 
         currentSequence = waveComposite[index];
         InitializeEnemyPools();

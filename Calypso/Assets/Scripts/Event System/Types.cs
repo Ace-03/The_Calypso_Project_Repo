@@ -44,6 +44,11 @@ public class StatUpdatePayload : GameEventPayload
     }
 }
 
+public class RespawnScenePayload : GameEventPayload
+{
+    public bool gambleResources;
+}
+
 public class UpdateHotBarPayload : GameEventPayload
 {
     public List<WeaponDefinitionSO> currentWeapons;

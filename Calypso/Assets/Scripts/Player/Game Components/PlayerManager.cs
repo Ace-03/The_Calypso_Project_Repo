@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour
         InitializePlayerHealth();
     }
 
-    private void InitializePlayerHealth()
+    public void InitializePlayerHealth()
     {
         if (!TryGetComponent<PlayerHealth>(out var hs))
             hs = gameObject.AddComponent<PlayerHealth>();
