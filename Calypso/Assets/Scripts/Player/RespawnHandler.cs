@@ -21,7 +21,8 @@ public class RespawnHandler : MonoBehaviour
     [SerializeField] private DayCycle _dayNightCycle;
     [SerializeField] private ResourceTracker _resourceTracker;
     [SerializeField] private PlayerManager _playerManager;
-    [SerializeField] private GenericHealth _baseHealth;
+    [SerializeField] private BaseHealth _baseHealth;
+    [SerializeField] private PassiveRestrictionScreen _passiveRestrictionScreen;
 
     [Header("Parameters")]
     [Tooltip("The number of resources needed to cap out on gamble assist")]
@@ -68,20 +69,21 @@ public class RespawnHandler : MonoBehaviour
         if (payload.gambleResources)
             gambleSuccess = RollToKeepItem();
 
+        if (!gambleSuccess) _passiveRestrictionScreen.OnSkipSelected();
+
         // player manager: initialize health and reset player position to base
         _playerManager.ResetPlayer();
 
         // base health: bases loses x health, base loses health dependent on payload
+        _baseHealth.TakeDamageRaw(payload.calculatedBaseDamage);
     }
 
     public float CalculateBaseDamage()
     {
-        // method to determine how much damage the base takes
-        // base take flat 10 percent damage plus additional ammount relative to how
-        // early into the night the player dies
-        // This needs to be split into a separate method because base destruction needs
-        // to be known earlier than when we try respawning the player
-        return 0;
+        float flatRate = _baseHealth.maxHP / 10;
+        float nightProgressValue = _dayNightCycle.GetDayProgressPercentage() * (_baseHealth.maxHP / 3);
+
+        return flatRate + nightProgressValue;
     }
 
     public bool RollToKeepItem()

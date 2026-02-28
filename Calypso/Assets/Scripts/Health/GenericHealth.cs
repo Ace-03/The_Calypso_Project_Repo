@@ -60,10 +60,10 @@ public class GenericHealth : MonoBehaviour
         dead = true;
     }
 
-    public void Initialize(HealthData data, VisualEffectsHandler vfx = null)
+    public virtual void Initialize(HealthData data, VisualEffectsHandler vfx = null)
     {
         maxHP = data.maxHP;
-        hp = maxHP;
+        hp = data.maxHP;
         dead = false;
         if (vfx != null)
         {
@@ -72,7 +72,7 @@ public class GenericHealth : MonoBehaviour
         }
         else if (!TryGetComponent<VisualEffectsHandler>(out vfxHandler))
         {
-            Debug.LogWarning("No VisualEffectsHandler found on GenericHealth object. Visual effects will be disabled.");
+            Debug.LogWarning($"No VisualEffectsHandler found on {name} in generic health. Visual effects will be disabled.");
         }
     }
 }
