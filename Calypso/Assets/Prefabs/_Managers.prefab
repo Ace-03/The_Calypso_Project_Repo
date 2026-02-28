@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateHotbarEvent: {fileID: 11400000, guid: 299d2cae329af9b43b4f85f7332d2b47, type: 2}
+  UnlockWeaponSlotEvent: {fileID: 11400000, guid: 640c39a96327bf84fa8db9050b7c5eb8, type: 2}
+  UnlockPassiveSlotEvent: {fileID: 11400000, guid: c778998b35cbc8a448110424623a2f92, type: 2}
   hotBarGroup: {fileID: 1976916528460080053}
   levelGroup: {fileID: 9093157249436379356}
   healthGroup: {fileID: 1318471819020921703}
@@ -324,7 +326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5628187c675c37847a57bc7123e68562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDeathEvent: {fileID: 0}
+  enemyDeathEvent: {fileID: 11400000, guid: 0106306f89036034b9dc9aaa9e5060d2, type: 2}
+  dayStateChangeEvent: {fileID: 11400000, guid: 415548a037ecb0144ab5f33c33758ac1, type: 2}
   navMeshSampleDistance: 10
   spawnOnStart: 0
   poolSize: 80

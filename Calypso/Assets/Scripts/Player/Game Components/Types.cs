@@ -68,5 +68,4 @@ public enum StatType
     Amount,
     ItemAttraction,
     none,
-
 }

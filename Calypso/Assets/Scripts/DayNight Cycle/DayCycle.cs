@@ -65,32 +65,20 @@ public class DayCycle : MonoBehaviour
 
         isDayTime = true;
         dayCount++;
-
-        spawner.ToggleSpawning(false);
-        spawner.ResetSpawner();
-
     }
     private void StartNight()
     {
         Debug.Log("Starting Night");
 
         isDayTime = false;
-
-        spawner.SetCurrentWave(dayCount - 1);
-        spawner.ToggleSpawning(true);
-
     }
 
     private void ChangeDayState()
     {
         if (isDayTime)
-        {
             StartNight();
-        }
         else
-        {
             StartDay();
-        }
 
         DayStateChangeEvent.Raise(new DayStateChangePayload(isDayTime, dayCount));
         dayNightClock = 0f;
@@ -112,6 +100,14 @@ public class DayCycle : MonoBehaviour
     public float GetCycleProgressProgression()
     {
         return cycleClock / dayDuration;
+    }
+
+    public void SkipCurrentDay()
+    {
+        StartDay();
+        dayNightClock = 0;
+        cycleClock = 0f;
+        DayStateChangeEvent.Raise(new DayStateChangePayload(isDayTime, dayCount));
     }
 }
 

@@ -6,8 +6,11 @@ using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
-    [Tooltip("Distance to sample NavMesh for valid spawn positions.")]
+    [Header("Events")]
     [SerializeField] private OnEnemyDeathEventSO enemyDeathEvent;
+    [SerializeField] private OnDayStateChangeEventSO dayStateChangeEvent;
+    [Header("Parameters")]
+    [Tooltip("Distance to sample NavMesh for valid spawn positions.")]
     [SerializeField] private float navMeshSampleDistance = 10.0f;
     [SerializeField] private bool spawnOnStart = false;
     [SerializeField] private int poolSize = 80;
@@ -34,11 +37,13 @@ public class SpawnManager : MonoBehaviour
     private void OnEnable()
     {
         enemyDeathEvent.RegisterListener(RemoveActiveEnemy);
+        dayStateChangeEvent.RegisterListener(OnDayStateChanged);
     }
 
     private void OnDisable()
     {
         enemyDeathEvent.UnregisterListener(RemoveActiveEnemy);
+        dayStateChangeEvent.UnregisterListener(OnDayStateChanged);
     }
 
     private void StartSpawning()
@@ -85,6 +90,20 @@ public class SpawnManager : MonoBehaviour
         {
             activeEnemies.Remove(enemyInit);
             Debug.Log($"Removed enemy {payload.entity.name} from active enemy List");
+        }
+    }
+
+    private void OnDayStateChanged(DayStateChangePayload payload)
+    {
+        if (payload.isDayTime)
+        {
+            ToggleSpawning(false);
+            ResetSpawner();
+        }
+        else
+        {
+            SetCurrentWave(payload.dayCount - 1);
+            ToggleSpawning(true);
         }
     }
 

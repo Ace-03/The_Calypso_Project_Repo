@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DayTimerUI : MonoBehaviour
 {
@@ -26,7 +24,7 @@ public class DayTimerUI : MonoBehaviour
         dayCycle = ContextRegister.Instance.GetContext().DayCycle;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateUI();
     }

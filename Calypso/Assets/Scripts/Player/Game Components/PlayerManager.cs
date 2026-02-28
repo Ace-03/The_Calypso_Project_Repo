@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour
         InitializePlayerHealth();
     }
 
-    public void InitializePlayerHealth()
+    private void InitializePlayerHealth()
     {
         if (!TryGetComponent<PlayerHealth>(out var hs))
             hs = gameObject.AddComponent<PlayerHealth>();
@@ -131,5 +131,11 @@ public class PlayerManager : MonoBehaviour
     public bool GetFacingUp()
     {
         return playerController.GetFacingUp();
+    }
+
+    public void ResetPlayer()
+    {
+        InitializePlayer();
+        GetComponent<Teleporter>().TeleportHome();
     }
 }
