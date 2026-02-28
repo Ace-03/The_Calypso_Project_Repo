@@ -88,5 +88,10 @@ public class PlayerHealth : GenericHealth
         if (hp <= 0)
             Die();
     }
+
+    public void ResetHealth()
+    {
+
+    }
 }
 

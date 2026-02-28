@@ -7,9 +7,11 @@ using UnityEngine.AI;
 public class SpawnManager : MonoBehaviour
 {
     [Tooltip("Distance to sample NavMesh for valid spawn positions.")]
+    [SerializeField] private OnEnemyDeathEventSO enemyDeathEvent;
     [SerializeField] private float navMeshSampleDistance = 10.0f;
     [SerializeField] private bool spawnOnStart = false;
     [SerializeField] private int poolSize = 80;
+    [SerializeField] private List<EnemyInitializer> activeEnemies = new List<EnemyInitializer>();
     public List<WaveSequenceDefinitionSO> waveComposite;
     private Transform playerTransform;
 
@@ -27,6 +29,16 @@ public class SpawnManager : MonoBehaviour
         {
             Invoke(nameof(StartSpawning), 2f);
         }
+    }
+
+    private void OnEnable()
+    {
+        enemyDeathEvent.RegisterListener(RemoveActiveEnemy);
+    }
+
+    private void OnDisable()
+    {
+        enemyDeathEvent.UnregisterListener(RemoveActiveEnemy);
     }
 
     private void StartSpawning()
@@ -52,6 +64,28 @@ public class SpawnManager : MonoBehaviour
     {
         waveTimer = 0f;
         currentWaveIndex = -1;
+    }
+
+    public void RemoveEnemies()
+    {
+        foreach(EnemyInitializer enem in activeEnemies)
+        {
+            enem.RemoveEnemy();
+        }
+
+        activeEnemies.Clear();
+        Debug.Log("Cleared active enemies from scene");
+    }
+
+    private void RemoveActiveEnemy(DeathPayload payload)
+    {
+        EnemyInitializer enemyInit = payload.entity.GetComponent<EnemyInitializer>();
+
+        if (enemyInit != null && activeEnemies.Contains(enemyInit))
+        {
+            activeEnemies.Remove(enemyInit);
+            Debug.Log($"Removed enemy {payload.entity.name} from active enemy List");
+        }
     }
 
     public void SetCurrentWave(WaveSequenceDefinitionSO sequence)
@@ -135,7 +169,12 @@ public class SpawnManager : MonoBehaviour
                 if (totalEnemies < enemySpawnInfo.maxActiveEnemies)
                 {
                     //Debug.Log("Spawning enemy");
-                    SpawnEnemy(enemySpawnInfo.enemyDefinition);
+                    GameObject newEnemy = SpawnEnemy(enemySpawnInfo.enemyDefinition);
+
+                    if (newEnemy != null)
+                    {
+                        activeEnemies.Add(newEnemy.GetComponent<EnemyInitializer>());
+                    }
                 }
                 else
                 {
@@ -147,7 +186,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy(EnemyDefinitionSO enemyType)
+    private GameObject SpawnEnemy(EnemyDefinitionSO enemyType)
     {
         Nullable<Vector3> spawnPosition = GetRandomSpawnPosition();
         GameObject enemyInstance = null;
@@ -158,14 +197,14 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            //Debug.LogWarning($"Failed To Spawn Enemy of Type {enemyType.name}, spawn position was invalid");
-            return; 
+            Debug.LogWarning($"Failed To Spawn Enemy of Type {enemyType.name}.");
+            return null; 
         }
 
         if (!enemyInstance.TryGetComponent<EnemyInitializer>(out var initializer))
         {
             Debug.LogError($"Enemy prefab {enemyType.name} does not have an EnemyInitializer component.");
-            return;
+            return null;
         }
         else
         {
@@ -175,8 +214,10 @@ public class SpawnManager : MonoBehaviour
         if (enemyInstance == null )
         {
             Debug.LogError($"Failed to spawn enemy of type {enemyType.name}, enemy instance null");
-            return;
+            return null;
         }
+
+        return enemyInstance;
     }
 
     private Nullable<Vector3> GetRandomSpawnPosition()
