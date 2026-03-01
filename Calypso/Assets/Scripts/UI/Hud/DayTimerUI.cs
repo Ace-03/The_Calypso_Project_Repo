@@ -22,6 +22,7 @@ public class DayTimerUI : MonoBehaviour
     private void Start()
     {
         dayCycle = ContextRegister.Instance.GetContext().DayCycle;
+        elements.dayCountText.text = "1";
     }
 
     private void FixedUpdate()
@@ -61,6 +62,7 @@ public class DayTimerUI : MonoBehaviour
         {
             elements.TimelineStartIcon.sprite = elements.sunSprite;
             elements.TimelineEndIcon.sprite = elements.moonSprite;
+            elements.dayCountText.text = payload.dayCount.ToString();
         }
         else
         {
