@@ -3,6 +3,8 @@ using UnityEngine;
 public class DayCycle : MonoBehaviour
 {
     [SerializeField] private OnDayStateChangeEventSO DayStateChangeEvent;
+    [SerializeField] private OnDeathEventSO deathEvent;
+    [SerializeField] private OnRespawnPlayerEventSO respawnEvent;
 
     public DayCycleData lightingData;
     public DayCycleProgressionStages progressionStages;
@@ -17,6 +19,7 @@ public class DayCycle : MonoBehaviour
     private float dayNightClock = 0f;
     private int dayCount = 0;
     bool isDayTime = true;
+    private bool playerDead;
 
     void Start()
     {
@@ -34,6 +37,8 @@ public class DayCycle : MonoBehaviour
 
     void Update()
     {
+        if (playerDead) return;
+
         UpdateClock();
         UpdateLighting();
     }
@@ -65,32 +70,20 @@ public class DayCycle : MonoBehaviour
 
         isDayTime = true;
         dayCount++;
-
-        spawner.ToggleSpawning(false);
-        spawner.ResetSpawner();
-
     }
     private void StartNight()
     {
         Debug.Log("Starting Night");
 
         isDayTime = false;
-
-        spawner.SetCurrentWave(dayCount - 1);
-        spawner.ToggleSpawning(true);
-
     }
 
     private void ChangeDayState()
     {
         if (isDayTime)
-        {
             StartNight();
-        }
         else
-        {
             StartDay();
-        }
 
         DayStateChangeEvent.Raise(new DayStateChangePayload(isDayTime, dayCount));
         dayNightClock = 0f;
@@ -112,6 +105,29 @@ public class DayCycle : MonoBehaviour
     public float GetCycleProgressProgression()
     {
         return cycleClock / dayDuration;
+    }
+
+    public void SkipCurrentDay()
+    {
+        StartDay();
+        dayNightClock = 0;
+        cycleClock = 0f;
+        DayStateChangeEvent.Raise(new DayStateChangePayload(isDayTime, dayCount));
+    }
+
+    private void StopClock(DeathPayload payload) => playerDead = true;
+    private void StartClock(RespawnScenePayload payload) => playerDead = false;
+
+    private void OnEnable()
+    {
+        deathEvent.RegisterListener(StopClock);
+        respawnEvent.RegisterListener(StartClock);
+    }
+
+    private void OnDisable()
+    {
+        deathEvent.UnregisterListener(StopClock);
+        respawnEvent.UnregisterListener(StartClock);
     }
 }
 

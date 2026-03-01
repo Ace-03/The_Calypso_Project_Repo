@@ -42,6 +42,7 @@ public class PassiveRestrictionScreen : MonoBehaviour
         Time.timeScale = 1.0f;
         screenCanvas.SetActive(false);
         HudManager.Instance.ToggleHud(true);
+        bigPanel.infoPanelParent.SetActive(false);
     }
 
     private void DisplayPassiveRestrictionScreen(DayStateChangePayload payload)
@@ -59,6 +60,7 @@ public class PassiveRestrictionScreen : MonoBehaviour
         nightClearedText.text = $"Night {payload.dayCount - 1} Cleared";
         screenCanvas.SetActive(true);
         HudManager.Instance.ToggleHud(false);
+        bigPanel.infoPanelParent.SetActive(false);
 
 
         List<ItemInstance> newItems = new List<ItemInstance>();

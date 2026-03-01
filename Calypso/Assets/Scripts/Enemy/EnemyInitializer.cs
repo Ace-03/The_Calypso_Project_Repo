@@ -154,7 +154,7 @@ public class EnemyInitializer : MonoBehaviour
         }
     }
 
-    void RemoveEnemy()
+    public void RemoveEnemy()
     {
         pooledObject.DeactivateAndReturn();
     }

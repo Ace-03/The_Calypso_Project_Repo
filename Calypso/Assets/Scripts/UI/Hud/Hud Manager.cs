@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class HudManager : MonoBehaviour
 {
+    [Header("Events")]
     [SerializeField] private OnUpdateHotBarSO updateHotbarEvent;
+    [SerializeField] private OnGenericEventSO UnlockWeaponSlotEvent;
+    [SerializeField] private OnGenericEventSO UnlockPassiveSlotEvent;
 
+    [Header("Section Containers")]
     [SerializeField] private GameObject hotBarGroup;
     [SerializeField] private GameObject levelGroup;
     [SerializeField] private GameObject healthGroup;
@@ -11,6 +15,7 @@ public class HudManager : MonoBehaviour
     [SerializeField] private GameObject dayTimerGroup;
     [SerializeField] private GameObject gameOverScreen;
 
+    [Header("UI Elements")]
     [SerializeField] private HotBarUIElements hotBarElements;
     [SerializeField] private LevelUIElements levelElements;
     [SerializeField] private HealthUIElements healthElements;
@@ -70,11 +75,16 @@ public class HudManager : MonoBehaviour
     private void OnEnable()
     {
         updateHotbarEvent.RegisterListener(UpdateHotbar);
+        UnlockPassiveSlotEvent.RegisterListener(UnlockPassiveSlot);
+        UnlockWeaponSlotEvent.RegisterListener(UnlockWeaponSlot);
     }
 
     private void OnDisable()
     {
         updateHotbarEvent.UnregisterListener(UpdateHotbar);
+        UnlockPassiveSlotEvent.UnregisterListener(UnlockPassiveSlot);
+        UnlockWeaponSlotEvent.UnregisterListener(UnlockWeaponSlot);
+
     }
 
     public void StartGameOver()
@@ -97,4 +107,7 @@ public class HudManager : MonoBehaviour
         hotBar.RefreshBar(hotBarElements.WeaponBar, payload.currentWeapons);
         hotBar.RefreshBar(hotBarElements.PassiveBar, payload.passiveItems);
     }
+
+    private void UnlockWeaponSlot(GameEventPayload payload) => hotBar.UnlockNewSlot(hotBarElements.WeaponBar);
+    private void UnlockPassiveSlot(GameEventPayload payload) => hotBar.UnlockNewSlot(hotBarElements.PassiveBar);
 }

@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DayTimerUI : MonoBehaviour
 {
@@ -24,9 +22,10 @@ public class DayTimerUI : MonoBehaviour
     private void Start()
     {
         dayCycle = ContextRegister.Instance.GetContext().DayCycle;
+        elements.dayCountText.text = "1";
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateUI();
     }
@@ -63,6 +62,7 @@ public class DayTimerUI : MonoBehaviour
         {
             elements.TimelineStartIcon.sprite = elements.sunSprite;
             elements.TimelineEndIcon.sprite = elements.moonSprite;
+            elements.dayCountText.text = payload.dayCount.ToString();
         }
         else
         {

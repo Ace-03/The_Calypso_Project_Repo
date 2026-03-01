@@ -74,9 +74,7 @@ public class PlayerManager : MonoBehaviour
         PauseManager.instance.gameObject.SetActive(false);
 
         SpawnDeathParticle();
-        Debug.Log("Game Over");
-
-        HudManager.Instance.StartGameOver();
+        Debug.Log("Player Died");
     }
 
     #region Player State Handlers
@@ -103,6 +101,7 @@ public class PlayerManager : MonoBehaviour
     public void SpawnDeathParticle()
     {
         GameObject particle = Instantiate(deathParticle, transform.position, Quaternion.identity);
+        Destroy(particle, 5f);
     }
 
     public void UpdateAttractorSize(float value)
@@ -131,5 +130,15 @@ public class PlayerManager : MonoBehaviour
     public bool GetFacingUp()
     {
         return playerController.GetFacingUp();
+    }
+
+    public void ResetPlayer()
+    {
+        InitializePlayer();
+        ToggleMovement(true);
+        ToggleWeapons(true);
+        ToggleVisuals(true);
+        PauseManager.instance.gameObject.SetActive(true);
+        GetComponent<Teleporter>().TeleportHome();
     }
 }
