@@ -34,6 +34,11 @@ public class HotBarUI : MonoBehaviour
     {
         HotBarSlot lockedSlot = bar.Slots.FirstOrDefault(m => m.isLocked == true);
 
+        if (lockedSlot != null)
+        {
+            Debug.LogError($"Could Not find locked slot in {bar}");
+        }
+
         lockedSlot.isLocked = false;
         lockedSlot.backgroundImage.sprite = hotBarElements.UnlockedBarSprite;
     }

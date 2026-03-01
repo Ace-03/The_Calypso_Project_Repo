@@ -81,4 +81,5 @@ public class DayTimerUIElements
     public Image TimelineEndIcon;
     public GameObject TimelineWavePrefab;
     public Transform timeLineContainer;
+    public TextMeshProUGUI dayCountText;
 }

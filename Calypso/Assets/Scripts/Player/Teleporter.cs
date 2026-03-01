@@ -51,7 +51,7 @@ public class Teleporter : MonoBehaviour
         }
     }
 
-    void TeleportHome()
+    public void TeleportHome()
     {
         offset.y = verticleOffset;
         if (homeWaypoint != null)
