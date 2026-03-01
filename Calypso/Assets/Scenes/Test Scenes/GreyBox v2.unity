@@ -1121,7 +1121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToSpawn:
-    data: {fileID: 11400000, guid: a25f52bd95fdb8d49a098710c0493e1a, type: 2}
+    data: {fileID: 11400000, guid: 04ca6e1ece37d7f4e8164830217260ca, type: 2}
     dropChance: 100
     minAmount: 1
     maxAmount: 1
@@ -6536,6 +6536,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1461969210421859258, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1510728628141384212, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6648,10 +6652,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1859690510}
-    - target: {fileID: 3572432983474898139, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
-      propertyPath: textAnimWaitInterval
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4415178789708848485, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -15,6 +15,7 @@ MonoBehaviour:
   weaponName: Radar
   weaponDescription: Attack Enemies in an area around you with a rotating radar beam
   icon: {fileID: 21300000, guid: 6752cd666cea5444e9b4082ff4a6cda2, type: 3}
+  blueprintIcon: {fileID: 21300000, guid: 57eb6e481532d7e44882233a57b0d72f, type: 3}
   weaponBehaviorPrefab: {fileID: 4508658942375460982, guid: 8f3f799bcc1b6d2428a15f834359298f, type: 3}
   bulletSprite: {fileID: 0}
   baseStats:

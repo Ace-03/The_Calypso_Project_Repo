@@ -32,6 +32,7 @@ public class RewardOptionsPayload : GameEventPayload
 public class BlueprintCollectedPayload : GameEventPayload
 {
     public string weaponName;
+    public Sprite icon;
 }
 
 public class StatUpdatePayload : GameEventPayload

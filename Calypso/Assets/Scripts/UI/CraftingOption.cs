@@ -22,6 +22,7 @@ public class CraftingOption : MonoBehaviour
     {
         SetupInfoPanel();
         weaponIcon.sprite = weaponRecipe.rewardWeapon.icon;
+        SpriteNormalizer.NormalizeImage(weaponIcon.gameObject);
         BlueprintManager.Instance.craftingOptions.Add(this);
     }
 
