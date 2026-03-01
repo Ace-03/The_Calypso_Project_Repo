@@ -12,12 +12,14 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private OnWeaponCraftedEventSO weaponCraftedEvent;
     [SerializeField] private OnWeaponsUpdatedEventSO weaponsUpdatedEvent;
     [SerializeField] private OnBlueprintCollectedEventSO blueprintCollectedEvent;
+    [SerializeField] private OnGenericEventSO weaponSlotUnlocked;
 
     [Header("Passive Item Events")]
     [SerializeField] private OnRewardSelectedEventSO rewardSelectedEvent;
     [SerializeField] private OnStatsUpdatedSO statsUpdatedEvent;
     [SerializeField] private OnUpdateHotBarSO updateHotBarEvent;
     [SerializeField] private OnGenericEventSO passiveRestrictionSelected;
+    [SerializeField] private OnGenericEventSO passiveSlotUnlocked;
 
     [Header("List Info")]
     [SerializeField] private int maxPassiveItems;
@@ -32,6 +34,8 @@ public class InventoryManager : MonoBehaviour
         weaponCraftedEvent.RegisterListener(ProcessCraftedWeapon);
         blueprintCollectedEvent.RegisterListener(AddBlueprint);
         passiveRestrictionSelected.RegisterListener(ClearPassivesNotPermanentlyOwned);
+        weaponSlotUnlocked.RegisterListener(AddWeaponSlot);
+        passiveSlotUnlocked.RegisterListener(AddPassiveSlot);
     }
 
     private void OnDisable()
@@ -40,6 +44,8 @@ public class InventoryManager : MonoBehaviour
         weaponCraftedEvent.UnregisterListener(ProcessCraftedWeapon);
         blueprintCollectedEvent.UnregisterListener(AddBlueprint);
         passiveRestrictionSelected.UnregisterListener(ClearPassivesNotPermanentlyOwned);
+        weaponSlotUnlocked.UnregisterListener(AddWeaponSlot);
+        passiveSlotUnlocked.UnregisterListener(AddPassiveSlot);
     }
 
     private void Start()
@@ -183,7 +189,10 @@ public class InventoryManager : MonoBehaviour
     {
         List<PassiveItemSO> currentItems = passiveItems.Select(item => item.itemData).ToList();
         updateHotBarEvent.Raise(new UpdateHotBarPayload(weapons, currentItems));
-    } 
+    }
+
+    private void AddWeaponSlot(GameEventPayload payload) => maxWeapons++;
+    private void AddPassiveSlot(GameEventPayload payload) => maxPassiveItems++;
 
     #region Getters
 

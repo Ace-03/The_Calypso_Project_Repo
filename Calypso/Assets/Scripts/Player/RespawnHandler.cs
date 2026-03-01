@@ -54,8 +54,6 @@ public class RespawnHandler : MonoBehaviour
 
     public void RespawnPlayer(RespawnScenePayload payload)
     {
-        bool gambleSuccess = false;
-
         // daynight: cycle set to morning and add 1 day
         _dayNightCycle.SkipCurrentDay();
 
@@ -66,10 +64,7 @@ public class RespawnHandler : MonoBehaviour
         // if gambling then run check for good or bad path
         // Bad path: lose all resources
         // Good path: lose no resources and get to keep 1 passive as if player hasn't died
-        if (payload.gambleResources)
-            gambleSuccess = RollToKeepItem();
-
-        if (!gambleSuccess)
+        if (!payload.gambleSuccess)
         {
             _passiveRestrictionScreen.OnSkipSelected();
             _resourceTracker.SetResource("stone", 0);

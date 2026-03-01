@@ -15,7 +15,7 @@ MonoBehaviour:
   pickupName: Bucket Blueprint
   pickupType: blueprint
   pickupValue: 1
-  sprite: {fileID: 1266672422, guid: 813836a0695579d4e989e5db9497c06d, type: 3}
+  sprite: {fileID: 21300000, guid: 39eaacbd907bbd54482b06ee0955d9a1, type: 3}
   sizeModifier: 3
   prefab: {fileID: 8462755256029153103, guid: 11de26af6d3f05644b15150e7f2c90e2, type: 3}
   weaponToUnlock: {fileID: 11400000, guid: 7a7683a2b7adadf4eb485fb886bc4780, type: 2}

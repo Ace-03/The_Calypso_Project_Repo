@@ -46,7 +46,7 @@ public class StatUpdatePayload : GameEventPayload
 
 public class RespawnScenePayload : GameEventPayload
 {
-    public bool gambleResources;
+    public bool gambleSuccess;
     public int calculatedBaseDamage;
 }
 
