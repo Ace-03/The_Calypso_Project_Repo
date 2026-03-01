@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4132894943121102077}
   - component: {fileID: 3140879941302287355}
   - component: {fileID: 3547935523648240745}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bubble_Particle_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4844,7 +4844,7 @@ GameObject:
   - component: {fileID: 3744567792589398715}
   - component: {fileID: 4124783719846250953}
   - component: {fileID: 7222400686118114350}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bubble_Particle_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9677,7 +9677,7 @@ GameObject:
   - component: {fileID: 725776715603357577}
   - component: {fileID: 3458510076729184527}
   - component: {fileID: 2798554026276892859}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bubble_Particle_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14575,9 +14575,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: HydroThermalVent1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2522724d3bee3e941b5f6054f3696bf9, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6939749228354137306, guid: 2522724d3bee3e941b5f6054f3696bf9, type: 3}
       propertyPath: m_Name
       value: HydroThermalVent1_Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939749228354137306, guid: 2522724d3bee3e941b5f6054f3696bf9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

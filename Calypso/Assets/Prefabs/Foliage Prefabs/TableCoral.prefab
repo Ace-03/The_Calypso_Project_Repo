@@ -59,7 +59,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2463853279293471030}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1001 &205772308382324575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68,6 +68,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5248859272619020576}
     m_Modifications:
+    - target: {fileID: 2371797574501428841, guid: aa363e57797768849b5c1149ef725857, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3504220039535760646, guid: aa363e57797768849b5c1149ef725857, type: 3}
       propertyPath: m_LocalScale.x
       value: 35
@@ -168,9 +172,9 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.07300001
   m_Height: 0.082
   m_Direction: 1
-  m_Center: {x: -0.038000006, y: 0.012000002, z: 0.0009999966}
+  m_Center: {x: -0.038000006, y: 0.012000002, z: 0}
