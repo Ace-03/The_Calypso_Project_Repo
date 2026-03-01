@@ -13,9 +13,10 @@ public struct RewardScreenUIComponents
 
 
 [System.Serializable]
-public struct OptionUIComponents
+public class OptionUIComponents
 {
     public RewardOption assignedItem;
+    public Image backgroundImage;
     public Image iconImage;
     public GameObject isNewText;
     public OptionInfoPanelComponents InfoPanel;

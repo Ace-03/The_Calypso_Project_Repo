@@ -6,13 +6,14 @@ public class PassiveOptionController : MonoBehaviour
     [SerializeField] private OnGenericEventSO itemSelectedEvent;
 
     [Header("Components")]
-    [SerializeField] private OptionUIComponents OptionUI;
+    public OptionUIComponents OptionUI;
 
     public void UpdateOptionUI()
     {
         string upgradeInfo = GetStatInfo(Item);
 
         OptionUI.iconImage.sprite = Item.itemData.sprite;
+        SpriteNormalizer.NormalizeImage(OptionUI.iconImage.gameObject);
         OptionUI.InfoPanel.itemName.text = Item.itemData.itemName;
         OptionUI.InfoPanel.itemDescription.text = Item.itemData.description;
         OptionUI.InfoPanel.statInfo.text = upgradeInfo;

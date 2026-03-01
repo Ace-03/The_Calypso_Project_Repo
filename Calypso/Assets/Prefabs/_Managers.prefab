@@ -390,21 +390,24 @@ MonoBehaviour:
     RewardScreenParent: {fileID: 702322314389039198}
     RewardsContainer: {fileID: 8768507472485002161}
     rewardOptions:
-    - iconImage: {fileID: 7932867448854637773}
+    - backgroundImage: {fileID: 0}
+      iconImage: {fileID: 7932867448854637773}
       isNewText: {fileID: 3854944595054852266}
       InfoPanel:
         infoPanelParent: {fileID: 7075748193928491997}
         itemName: {fileID: 5173337204101011015}
         itemDescription: {fileID: 6286551778059281757}
         statInfo: {fileID: 748327648116817333}
-    - iconImage: {fileID: 6648393346805125877}
+    - backgroundImage: {fileID: 0}
+      iconImage: {fileID: 6648393346805125877}
       isNewText: {fileID: 516614073506383506}
       InfoPanel:
         infoPanelParent: {fileID: 7075748193928491997}
         itemName: {fileID: 8475634495689484415}
         itemDescription: {fileID: 7307851140568996709}
         statInfo: {fileID: 4050559518768464781}
-    - iconImage: {fileID: 8886716841693438759}
+    - backgroundImage: {fileID: 0}
+      iconImage: {fileID: 8886716841693438759}
       isNewText: {fileID: 2322523319119476544}
       InfoPanel:
         infoPanelParent: {fileID: 4981605823634833935}
@@ -571,6 +574,8 @@ MonoBehaviour:
   itemOptionPrefab: {fileID: 2086487958905987756, guid: fa49506b93de3fa479b17c2813a7b725, type: 3}
   newItemContainer: {fileID: 3676337348116190952}
   ownedItemContainer: {fileID: 7974412581968186012}
+  collectedBG: {fileID: 21300000, guid: 3d7d0d857f18e9a469bb35d7fe754fc3, type: 3}
+  currentBG: {fileID: 21300000, guid: 148bd07b59e863b4ab6573a6eadf4f11, type: 3}
   bigPanel:
     infoPanelParent: {fileID: 4219762021401769331}
     itemName: {fileID: 4219238527780906187}

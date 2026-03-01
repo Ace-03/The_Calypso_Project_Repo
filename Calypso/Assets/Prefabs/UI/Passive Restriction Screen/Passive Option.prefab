@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4153728351282149950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2.8659058, y: -18.767395}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.23300171, y: 0.23300171}
+  m_SizeDelta: {x: 76.3958, y: 76.3958}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1760149970321690518
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1e913e1c3dbf6c94b8eca0284f29aded, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 148bd07b59e863b4ab6573a6eadf4f11, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -249,7 +249,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 106.4666, y: 106.4666}
+  m_SizeDelta: {x: 76.7733, y: 76.7733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2443897215679834485
 MonoBehaviour:
@@ -270,6 +270,7 @@ MonoBehaviour:
     modifiers: []
   itemSelectedEvent: {fileID: 11400000, guid: b7aab9056c12929449ce7326807716ca, type: 2}
   OptionUI:
+    backgroundImage: {fileID: 192433486672302312}
     iconImage: {fileID: 6405386125495213236}
     isNewText: {fileID: 255640830053222611}
     InfoPanel:
@@ -658,10 +659,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4153728351282149950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -34.1471, y: -41.4408}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.00009918213, y: -0.00009918213}
+  m_SizeDelta: {x: 51.7245, y: 51.7245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &171596297166483726
 CanvasRenderer:
