@@ -48,7 +48,8 @@ public class ResourceUIElements
     public Sprite EmptyBoatSprite;
     public Sprite aquiredBoatSprite;
 
-    public List<Image> boatIcons;
+    public Transform boatIconContainer;
+    public GameObject boatIconPrefab;
 }
 
 [Serializable]

@@ -54,7 +54,6 @@ public class HudManager : MonoBehaviour
         resources.SetElements(resourcesElements);
         dayTimer.SetElements(dayTimerElements);
 
-        resources.UpdateBoatIcons(0);
         gameOverScreen.SetActive(false);
     }
 

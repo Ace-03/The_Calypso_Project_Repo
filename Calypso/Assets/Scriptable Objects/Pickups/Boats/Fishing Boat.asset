@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dbf352a61a8c734c8e2487e2c8ccb88, type: 3}
-  m_Name: BoatPickup
+  m_Name: Fishing Boat
   m_EditorClassIdentifier: 
-  pickupName: boat
+  pickupName: Fishing Boat
   pickupType: boat
   pickupValue: 1
-  sprite: {fileID: 21300000, guid: fd84baf6b8d295148861efab71b16dc8, type: 3}
+  sprite: {fileID: 21300000, guid: 83fa8bc0c8fb4ab4da195235f4ddf720, type: 3}
   sizeModifier: 3
   prefab: {fileID: 8462755256029153103, guid: 24d3db786c00861438b02fd4c41b44fa, type: 3}
+  weaponToUnlock: {fileID: 0}

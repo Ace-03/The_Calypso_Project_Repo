@@ -1,11 +1,17 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent (typeof(PlayerController))]
 public class InteractableNotification : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private GameObject notifierCanvas;
-    [SerializeField] private TextMeshProUGUI notificationText;
+    [SerializeField] private Image notifIcon;
+
+    [Header("Resources")]
+    [SerializeField] private Sprite miningSprite;
+    [SerializeField] private Sprite openSprite;
+    [SerializeField] private Sprite handSprite;
 
     private PlayerController playerController;
 
@@ -20,23 +26,29 @@ public class InteractableNotification : MonoBehaviour
     {
         IInteractable currentInteractable = playerController.CurrentInteractable;
 
-        if ( currentInteractable == null)
+        if (currentInteractable == null)
         {
             notifierCanvas.SetActive(false);
+
         }
         else if (currentInteractable.GetGameObject().GetComponent<BaseInteractable>() != null)
         {
-            SetNotification("OPEN");
+            SetNotification(openSprite);
         }
         else if (currentInteractable.GetGameObject().GetComponent<MiningInteractable>() != null)
         {
-            SetNotification("MINE");
+            SetNotification(miningSprite);
+        }
+        else
+        {
+            notifierCanvas.SetActive(false);
         }
     }
 
-    private void SetNotification(string message)
+    private void SetNotification(Sprite sp)
     {
         notifierCanvas.SetActive(true);
-        notificationText.text = message;
+        notifIcon.sprite = sp;
+        SpriteNormalizer.NormalizeImage(notifIcon.gameObject);
     }
 }

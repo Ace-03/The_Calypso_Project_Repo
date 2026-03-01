@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public class BoatPickup : Pickup
 {
@@ -12,7 +13,7 @@ public class BoatPickup : Pickup
 
         Debug.Log("BoatCount: " + ResourceTracker.Instance.GetResource("boat"));
 
-        HudManager.Instance.resources.UpdateBoatIcons(Mathf.Clamp(ResourceTracker.Instance.GetResource("boat"), 0, 5));
+        HudManager.Instance.resources.UpdateBoatIcons(data.sprite);
 
         Destroy(this.gameObject);
     }
