@@ -13,6 +13,7 @@ public class BossController : MonoBehaviour
     private EnemyHealth bossHealth;
     private EnemyInitializer initializer;
     private Transform bossTransform;
+    private WeaponController weapnoCtrl;
 
     private void OnEnable()
     {
@@ -30,6 +31,7 @@ public class BossController : MonoBehaviour
         navigation = GetComponentInChildren<NavMeshAgent>();
         bossHealth = GetComponentInChildren<EnemyHealth>();
         initializer = GetComponentInChildren<EnemyInitializer>();
+        weapnoCtrl = GetComponentInChildren<WeaponController>();
 
         initializer.Initialize(bossData);
         bossTransform = initializer.transform;
@@ -41,8 +43,10 @@ public class BossController : MonoBehaviour
     {
         navigation.enabled = active;
         navController.enabled = active;
+        weapnoCtrl.enabled = active;
         bossTransform.position = bossHomePosition.position;
         bossHealth.Initialize(new HealthData { maxHP = bossData.maxHealth });
+
     }
 
     private void OnBossDeath(DeathPayload payload)

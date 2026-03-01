@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToSpawn:
-    data: {fileID: 11400000, guid: 9801124137bfc9545911291fb15768a9, type: 2}
+    data: {fileID: 11400000, guid: 9532ed52a94c7ff4ba82fb0e8bd992d4, type: 2}
     dropChance: 100
     minAmount: 1
     maxAmount: 1
@@ -547,7 +547,7 @@ Transform:
   m_GameObject: {fileID: 116050641}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.95, y: -0.27, z: 10.74}
+  m_LocalPosition: {x: -4.95, y: -0.27, z: 20.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1542,6 +1542,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5248859272619020576, guid: 4a26b2153dfc1ee4eb548ba88d5f7873, type: 3}
   m_PrefabInstance: {fileID: 1526741209}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &470307029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 470307030}
+  - component: {fileID: 470307031}
+  m_Layer: 0
+  m_Name: Boat One Time Spawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &470307030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470307029}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.95, y: -0.27, z: 20.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477784712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &470307031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470307029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf088eb63f918b4286a19fbfd94bf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+    data: {fileID: 11400000, guid: 40dfca5097da13745b23a7a0a36e231d, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
 --- !u!1 &477784711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,6 +1624,8 @@ Transform:
   - {fileID: 660639420}
   - {fileID: 2068483409}
   - {fileID: 116050643}
+  - {fileID: 470307030}
+  - {fileID: 1985732292}
   - {fileID: 417361867}
   - {fileID: 281573150}
   - {fileID: 1843987045}
@@ -8903,6 +8954,55 @@ PrefabInstance:
       addedObject: {fileID: 743566918}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
+--- !u!1 &1985732291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1985732292}
+  - component: {fileID: 1985732293}
+  m_Layer: 0
+  m_Name: Boat One Time Spawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1985732292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985732291}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.95, y: -0.27, z: 10.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477784712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1985732293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985732291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf088eb63f918b4286a19fbfd94bf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+    data: {fileID: 11400000, guid: 9801124137bfc9545911291fb15768a9, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
 --- !u!4 &1988597372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5539871624553674091, guid: 1b1b0bfd9f090b0458ec9c8f13a553d9, type: 3}

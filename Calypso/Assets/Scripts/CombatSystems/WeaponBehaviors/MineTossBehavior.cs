@@ -62,6 +62,9 @@ public class MineTossBehavior : MonoBehaviour, IWeaponBehavior
             }
 
             GameObject newBomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
+            
+            // failsafe destroy
+            Destroy(newBomb, 15f);
 
             CustomGravity grav = newBomb.AddComponent<CustomGravity>();
             grav.SetGravity(gravityMultiplier);
