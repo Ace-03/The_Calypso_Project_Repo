@@ -39,7 +39,8 @@ public class RewardScreenUI : MonoBehaviour
         }
         else
         {
-            upgradeInfo = GetUpgradeInfo(option);
+            if (option.deltaValues != null)
+                upgradeInfo = GetUpgradeInfo(option);
         }
 
         rewardOptionUI.assignedItem = option;
@@ -77,6 +78,9 @@ public class RewardScreenUI : MonoBehaviour
     {
         Time.timeScale = 1;
         components.RewardScreenParent.SetActive(false);
+        OnHideInfoPanel(0);
+        OnHideInfoPanel(1);
+        OnHideInfoPanel(2);
 
         for (int i = 0; i < components.rewardOptions.Count; i++)
         {

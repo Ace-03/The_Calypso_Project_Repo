@@ -46,6 +46,8 @@ public class DeathScreen : MonoBehaviour
         payload.gambleResources = gambling;
         payload.calculatedBaseDamage = (int)RespawnHandler.Instance.CalculateBaseDamage();
 
+
+        gambleDescriptionPanel.SetActive(false);
         HudManager.Instance.ToggleHud(true);
         deathScreen.SetActive(false);
         respawnEvent.Raise(payload);

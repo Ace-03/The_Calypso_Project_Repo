@@ -1,6 +1,4 @@
-using System.Resources;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class RespawnHandler : MonoBehaviour
 {
@@ -28,7 +26,7 @@ public class RespawnHandler : MonoBehaviour
     [Tooltip("The number of resources needed to cap out on gamble assist")]
     [SerializeField] private float gambleResourceAsssistCap = 100;
     [Tooltip("increases odds by a maximum of n percent")]
-    [Range(0, 1)][SerializeField] private float itemAssistRate = 0.5f;
+    [Range(0, 0.8f)][SerializeField] private float itemAssistRate = 0.2f;
     [Tooltip("1 in n success rate")]
     [Range(2.5f,8)][SerializeField] private float gambleSuccessOdds = 3;
 
@@ -40,6 +38,8 @@ public class RespawnHandler : MonoBehaviour
             Instance = this;
         else
             Destroy(this);
+
+        Debug.Log($"item assist rate is {itemAssistRate}");
     }
 
     private void OnEnable()
@@ -69,10 +69,15 @@ public class RespawnHandler : MonoBehaviour
         if (payload.gambleResources)
             gambleSuccess = RollToKeepItem();
 
-        if (!gambleSuccess) _passiveRestrictionScreen.OnSkipSelected();
+        if (!gambleSuccess)
+        {
+            _passiveRestrictionScreen.OnSkipSelected();
+            _resourceTracker.SetResource("stone", 0);
+            _resourceTracker.SetResource("iron", 0);
+        }
 
-        // player manager: initialize health and reset player position to base
-        _playerManager.ResetPlayer();
+            // player manager: initialize health and reset player position to base
+            _playerManager.ResetPlayer();
 
         // base health: bases loses x health, base loses health dependent on payload
         _baseHealth.TakeDamageRaw(payload.calculatedBaseDamage);
@@ -81,22 +86,38 @@ public class RespawnHandler : MonoBehaviour
     public float CalculateBaseDamage()
     {
         float flatRate = _baseHealth.maxHP / 10;
-        float nightProgressValue = _dayNightCycle.GetDayProgressPercentage() * (_baseHealth.maxHP / 3);
-
+        float nightProgressValue = (1 - _dayNightCycle.GetDayProgressPercentage()) * (_baseHealth.maxHP / 3);
         return flatRate + nightProgressValue;
     }
 
     public bool RollToKeepItem()
     {
-        float total = _resourceTracker.GetResource("stone") +
-            _resourceTracker.GetResource("iron");
+        // 1. Calculate Base Chance (Inverse of SuccessOdds)
+        // If gambleSuccessOdds is 3, baseChance is 0.33 (33%)
+        float baseChance = 1f / gambleSuccessOdds;
 
-        float itemHelpRatio = total / gambleResourceAsssistCap;
-        float trueOdds = gambleSuccessOdds * ((1 - itemAssistRate) * itemHelpRatio);
-        float roll = Random.Range(0f, trueOdds);
+        // 2. Calculate Resource Bonus
+        float totalResources = _resourceTracker.GetResource("stone") + _resourceTracker.GetResource("iron");
+        float resourceRatio = Mathf.Clamp01(totalResources / gambleResourceAsssistCap);
 
-        if (roll <= 1) return true;
+        // 3. Calculate Final Success Threshold
+        // itemAssistRate acts as the "Max Bonus" added to the base chance.
+        // Example: 0.33 (Base) + (1.0 (Full Resources) * 0.2 (Assist Rate)) = 0.53 (53% total chance)
+        float successThreshold = baseChance + (resourceRatio * itemAssistRate);
+        successThreshold = Mathf.Clamp01(successThreshold); // Ensure it never exceeds 100%
 
-        return false;
+        // 4. The Roll
+        float roll = Random.value; // Returns a float between 0.0 and 1.0
+        bool isWin = roll <= successThreshold;
+
+        // Debugging
+        Debug.Log($"--- Gambling Roll ---");
+        Debug.Log($"Base Chance: {baseChance * 100}%");
+        Debug.Log($"Resource Bonus: {resourceRatio * itemAssistRate * 100}%");
+        Debug.Log($"Total Win Chance: {successThreshold * 100}%");
+        Debug.Log($"Roll Result: {roll} (Needs to be <= {successThreshold})");
+        Debug.Log($"Outcome: {(isWin ? "SUCCESS" : "FAIL")}");
+
+        return isWin;
     }
 }

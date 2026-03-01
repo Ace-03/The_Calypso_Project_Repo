@@ -328,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyDeathEvent: {fileID: 11400000, guid: 0106306f89036034b9dc9aaa9e5060d2, type: 2}
   dayStateChangeEvent: {fileID: 11400000, guid: 415548a037ecb0144ab5f33c33758ac1, type: 2}
+  deathEvent: {fileID: 11400000, guid: 6e21a232539e09c4b8940d472c33fc13, type: 2}
   navMeshSampleDistance: 10
   spawnOnStart: 0
   poolSize: 80
@@ -487,6 +488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DayStateChangeEvent: {fileID: 11400000, guid: 415548a037ecb0144ab5f33c33758ac1, type: 2}
+  deathEvent: {fileID: 11400000, guid: 6e21a232539e09c4b8940d472c33fc13, type: 2}
+  respawnEvent: {fileID: 11400000, guid: 2eaaac96d4066cb4d83420b82c167d3f, type: 2}
   lightingData:
     light: {fileID: 0}
     lightPivot: {fileID: 0}
@@ -1043,9 +1046,6 @@ MonoBehaviour:
   passiveRestrictionSelected: {fileID: 11400000, guid: b7aab9056c12929449ce7326807716ca, type: 2}
   maxPassiveItems: 4
   maxWeapons: 2
-  passiveItems: []
-  weapons: []
-  weaponBlueprints: []
 --- !u!1 &8615426100148986089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,8 +1147,8 @@ MonoBehaviour:
   _baseHealth: {fileID: 1516982738671213850}
   _passiveRestrictionScreen: {fileID: 8891764025331231157}
   gambleResourceAsssistCap: 100
-  itemAssistRate: 0.5
-  gambleSuccessOdds: 3
+  itemAssistRate: 0.4
+  gambleSuccessOdds: 6
 --- !u!114 &3572432983474898139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2831,6 +2831,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6856794372428419975, guid: e9a769ac4fc24b14c92b5c95ae102c3d, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006657586592739630, guid: e9a769ac4fc24b14c92b5c95ae102c3d, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7035467187152100023, guid: e9a769ac4fc24b14c92b5c95ae102c3d, type: 3}

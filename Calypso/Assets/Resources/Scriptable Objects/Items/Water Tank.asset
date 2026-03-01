@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water Tank
   m_EditorClassIdentifier: 
   itemName: Water Tank
-  description: Increase Maximum Hleath
+  description: Increase Maximum Health
   sprite: {fileID: 21300000, guid: 1a388a34aa40e8c49b9ec543e6ba4a7a, type: 3}
   maxLevel: 5
   rarity: 0

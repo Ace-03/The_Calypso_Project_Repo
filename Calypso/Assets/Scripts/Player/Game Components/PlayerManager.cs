@@ -101,6 +101,7 @@ public class PlayerManager : MonoBehaviour
     public void SpawnDeathParticle()
     {
         GameObject particle = Instantiate(deathParticle, transform.position, Quaternion.identity);
+        Destroy(particle, 5f);
     }
 
     public void UpdateAttractorSize(float value)

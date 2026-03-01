@@ -9,6 +9,8 @@ public class SpawnManager : MonoBehaviour
     [Header("Events")]
     [SerializeField] private OnEnemyDeathEventSO enemyDeathEvent;
     [SerializeField] private OnDayStateChangeEventSO dayStateChangeEvent;
+    [SerializeField] private OnDeathEventSO deathEvent;
+
     [Header("Parameters")]
     [Tooltip("Distance to sample NavMesh for valid spawn positions.")]
     [SerializeField] private float navMeshSampleDistance = 10.0f;
@@ -38,13 +40,17 @@ public class SpawnManager : MonoBehaviour
     {
         enemyDeathEvent.RegisterListener(RemoveActiveEnemy);
         dayStateChangeEvent.RegisterListener(OnDayStateChanged);
+        deathEvent.RegisterListener(StopSpawning);
     }
 
     private void OnDisable()
     {
         enemyDeathEvent.UnregisterListener(RemoveActiveEnemy);
         dayStateChangeEvent.UnregisterListener(OnDayStateChanged);
+        deathEvent.UnregisterListener(StopSpawning);
     }
+
+    private void StopSpawning(DeathPayload payload) => ToggleSpawning(false);
 
     private void StartSpawning()
     {
@@ -57,12 +63,14 @@ public class SpawnManager : MonoBehaviour
         if (toggle == false)
         {
             StopAllCoroutines();
+            Debug.Log("Spawning set to false");
+
         }
         else
         {
             Debug.Log("Spawning set to true");
         }
-            spawningActive = toggle;
+        spawningActive = toggle;
     }
 
     public void ResetSpawner()
@@ -144,10 +152,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (!spawningActive)
-        {
-            return;
-        }
+        if (!spawningActive) return;
 
         if (waveTimer <= 0)
         {
@@ -219,7 +224,7 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Failed To Spawn Enemy of Type {enemyType.name}.");
+            Debug.LogWarning($"Failed To Spawn Enemy of Type {enemyType.name}. could not find position");
             return null; 
         }
 

@@ -22,9 +22,9 @@ public class InventoryManager : MonoBehaviour
     [Header("List Info")]
     [SerializeField] private int maxPassiveItems;
     [SerializeField] private int maxWeapons;
-    [SerializeField] private List<ItemInstance> passiveItems;
-    [SerializeField] private List<WeaponDefinitionSO> weapons;
-    [SerializeField] private List<string> weaponBlueprints;
+    private List<ItemInstance> passiveItems = new List<ItemInstance>();
+    private List<WeaponDefinitionSO> weapons = new List<WeaponDefinitionSO>();
+    private List<string> weaponBlueprints = new List<string>();
 
     private void OnEnable()
     {

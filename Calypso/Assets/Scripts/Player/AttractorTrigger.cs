@@ -58,6 +58,5 @@ public class AttractorTrigger : MonoBehaviour
     public void SetAttractorRadius(StatSystem stats)
     {
         col.radius = stats.GetFinalValue(StatType.ItemAttraction);
-        Debug.Log($"Attractor Radius updated to {col.radius}");
     }
 }
