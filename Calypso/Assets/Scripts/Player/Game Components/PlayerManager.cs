@@ -74,9 +74,7 @@ public class PlayerManager : MonoBehaviour
         PauseManager.instance.gameObject.SetActive(false);
 
         SpawnDeathParticle();
-        Debug.Log("Game Over");
-
-        HudManager.Instance.StartGameOver();
+        Debug.Log("Player Died");
     }
 
     #region Player State Handlers
@@ -136,6 +134,10 @@ public class PlayerManager : MonoBehaviour
     public void ResetPlayer()
     {
         InitializePlayer();
+        ToggleMovement(true);
+        ToggleWeapons(true);
+        ToggleVisuals(true);
+        PauseManager.instance.gameObject.SetActive(true);
         GetComponent<Teleporter>().TeleportHome();
     }
 }

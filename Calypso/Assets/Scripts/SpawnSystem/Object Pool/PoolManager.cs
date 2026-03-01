@@ -38,7 +38,7 @@ public class PoolManager : MonoBehaviour
             objectQueue = new Queue<GameObject>();
             for (int i = 0; i < size; i++)
             {
-                GameObject obj = GameObject.Instantiate(prefab, parent);
+                GameObject obj = Instantiate(prefab, parent);
                 obj.SetActive(false);
                 obj.GetComponent<PooledObject>().poolName = name;
                 objectQueue.Enqueue(obj);
@@ -51,7 +51,7 @@ public class PoolManager : MonoBehaviour
             {
                 // Optionally grow the pool if it's empty
                 Debug.LogWarning($"Pool '{name}' is exhausted. Growing the pool.");
-                GameObject obj = GameObject.Instantiate(prefab);
+                GameObject obj = Instantiate(prefab);
                 obj.GetComponent<PooledObject>().poolName = name;
                 return obj;
             }

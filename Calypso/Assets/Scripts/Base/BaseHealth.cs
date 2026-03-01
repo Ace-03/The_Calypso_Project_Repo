@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class BaseHealth : GenericHealth
 {
+    private void Start()
+    {
+        Initialize(new HealthData { maxHP = maxHP });
+    }
+
     public override void Initialize(HealthData data, VisualEffectsHandler vfx = null)
     {
         base.Initialize(data, vfx);
 
-        HudManager.Instance.health.UpdateBaseHealth(hp, maxHP);
+        HudManager.Instance?.health?.UpdateBaseHealth(hp, maxHP);
     }
 
     public override void TakeDamageRaw(int damage)
@@ -18,7 +23,6 @@ public class BaseHealth : GenericHealth
 
     public bool projectBaseDamage(int damage)
     {
-        hp -= damage;
-        return hp <= 0;
+        return hp - damage <= 0;
     }
 }

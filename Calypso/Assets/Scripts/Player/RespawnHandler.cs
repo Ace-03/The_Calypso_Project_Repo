@@ -32,12 +32,12 @@ public class RespawnHandler : MonoBehaviour
     [Tooltip("1 in n success rate")]
     [Range(2.5f,8)][SerializeField] private float gambleSuccessOdds = 3;
 
-    public static RespawnHandler instance;
+    public static RespawnHandler Instance;
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
             Destroy(this);
     }
