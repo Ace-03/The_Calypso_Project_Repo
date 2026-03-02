@@ -40,7 +40,11 @@ public class MiningInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (mining) return;
+        if (mining)
+        {
+            Debug.Log("attempting to mine");
+            return;
+        }
 
         Debug.Log("Started Mining...");
         mining = true;
@@ -85,12 +89,18 @@ public class MiningInteractable : MonoBehaviour, IInteractable
 
     private void DepleteNode()
     {
-        clearPlayerInteractableEvent.Raise(new GameEventPayload());
+        Invoke(nameof(RaiseEvent), 0.06f);
+
         gameObject.SetActive(false);
     }
 
     public GameObject GetGameObject()
     {
         return gameObject;
+    }
+
+    private void RaiseEvent()
+    {
+        clearPlayerInteractableEvent.Raise(new GameEventPayload());
     }
 }

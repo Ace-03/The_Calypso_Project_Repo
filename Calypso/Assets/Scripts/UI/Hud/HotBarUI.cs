@@ -36,7 +36,8 @@ public class HotBarUI : MonoBehaviour
 
         if (lockedSlot != null)
         {
-            Debug.LogError($"Could Not find locked slot in {bar}");
+            Debug.LogWarning($"Could Not find locked slot in {bar}");
+            return;
         }
 
         lockedSlot.isLocked = false;

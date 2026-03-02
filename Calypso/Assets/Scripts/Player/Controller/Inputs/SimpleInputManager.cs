@@ -86,6 +86,9 @@ public class SimpleInputManager : MonoBehaviour
         if (player == null) return;
 
         player.enabled = false;
+
+        if (invoker != null)
+            invoker.enabled = false;
     }
 
     private void OnEnable()
@@ -93,5 +96,8 @@ public class SimpleInputManager : MonoBehaviour
         if (player == null) return;
         
         player.enabled = true;
+
+        if (invoker != null)
+            invoker.enabled = true;
     }
 }

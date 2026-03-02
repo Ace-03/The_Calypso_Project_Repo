@@ -235,7 +235,7 @@ PrefabInstance:
       addedObject: {fileID: 3863345399291502377}
     - targetCorrespondingSourceObject: {fileID: -6676003430564208654, guid: 0cb6911778f84a443a1cdb1b08a68ac3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7821127098070792351}
+      addedObject: {fileID: 2222308328012439480}
   m_SourcePrefab: {fileID: 100100000, guid: 0cb6911778f84a443a1cdb1b08a68ac3, type: 3}
 --- !u!1 &2809081181028902053 stripped
 GameObject:
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   particlePrefab: {fileID: 1469735650166152172, guid: 73d1c6dfbc8739b42aa2d653f7c1a987, type: 3}
---- !u!114 &7821127098070792351
+--- !u!114 &2222308328012439480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2809081181028902053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff6541da81169ce45a96438371af27be, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dbe553ae5a3d364c9448f92aaccda7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resourceDrop:

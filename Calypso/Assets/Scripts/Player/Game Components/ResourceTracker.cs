@@ -10,10 +10,14 @@ public class ResourceTracker : MonoBehaviour
 
     private Dictionary<string, int> resources = new Dictionary<string, int>();
 
+    public bool hasMilitaryBoat = false;
+    public bool hasSailBoat = false;
+    public bool hasFishingBoat = false;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         else
             Instance = this;
 

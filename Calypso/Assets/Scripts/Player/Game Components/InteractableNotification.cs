@@ -35,6 +35,10 @@ public class InteractableNotification : MonoBehaviour
         {
             SetNotification(openSprite);
         }
+        else if (currentInteractable.GetGameObject().GetComponent<BoatPickupInteractable>() != null)
+        {
+            SetNotification(handSprite);
+        }
         else if (currentInteractable.GetGameObject().GetComponent<MiningInteractable>() != null)
         {
             SetNotification(miningSprite);

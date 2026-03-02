@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseLevelProgression:
   - playerLevel: 1
-    iron: 12
-    stone: 8
+    iron: 0
+    stone: 0
     boatCount: 1
   - playerLevel: 3
     iron: 25
