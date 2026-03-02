@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class BaseManager : MonoBehaviour
 {
+    [SerializeField] private OnGenericEventSO passiveSlotUpgrade;
+    [SerializeField] private OnGenericEventSO weaponSlotUpgrade;
+
     public int baseLevel;
     [SerializeField] private BaseProgressionSO progressionData;
+
+    [SerializeField] private GameObject militaryModel;
+    [SerializeField] private GameObject fishingModel;
+    [SerializeField] private GameObject sailModel;
 
     public BaseProgressionInfo currentRequirements;
 
@@ -17,6 +24,24 @@ public class BaseManager : MonoBehaviour
     {
         baseLevel++;
         currentRequirements = progressionData.BaseLevelProgression[baseLevel];
+
+        if (ResourceTracker.Instance.hasFishingBoat && !militaryModel.activeSelf)
+        {
+            militaryModel.SetActive(true);
+            weaponSlotUpgrade.Raise(new GameEventPayload());
+        }
+        
+        if (ResourceTracker.Instance.hasMilitaryBoat && !fishingModel.activeSelf)
+        {
+            militaryModel.SetActive(true);
+            passiveSlotUpgrade.Raise(new GameEventPayload());
+        }
+
+        if (ResourceTracker.Instance.hasSailBoat && !sailModel.activeSelf)
+        {
+            militaryModel.SetActive(true);
+        }
+
     }
 
     public bool CheckRequirements(BaseProgressionInfo currentStatus)

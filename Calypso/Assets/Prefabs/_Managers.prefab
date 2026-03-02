@@ -1151,6 +1151,9 @@ MonoBehaviour:
   - iron
   - stone
   - boat
+  hasMilitaryBoat: 0
+  hasSailBoat: 0
+  hasFishingBoat: 0
 --- !u!1 &8636749788326229672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,8 +1386,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea08f4420f69a7f4a88a901e4590f1d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passiveSlotUpgrade: {fileID: 11400000, guid: c778998b35cbc8a448110424623a2f92, type: 2}
+  weaponSlotUpgrade: {fileID: 11400000, guid: 640c39a96327bf84fa8db9050b7c5eb8, type: 2}
   baseLevel: 0
   progressionData: {fileID: 11400000, guid: 268ad168a31cb80468427cf0dd61296a, type: 2}
+  militaryModel: {fileID: 0}
+  fishingModel: {fileID: 0}
+  sailModel: {fileID: 0}
   currentRequirements:
     playerLevel: 0
     iron: 0
