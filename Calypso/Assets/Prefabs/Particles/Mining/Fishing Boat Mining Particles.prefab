@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5246161955506681382}
   m_Layer: 0
-  m_Name: Fishing Boat Mining Particles 2
+  m_Name: Fishing Boat Mining Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,7 +255,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 0.6901961, g: 0.5254902, b: 0.27058825, a: 1}
-      maxColor: {r: 0.04705883, g: 0.23137257, b: 0.41960788, a: 1}
+      maxColor: {r: 0, g: 0, b: 0, a: 0}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

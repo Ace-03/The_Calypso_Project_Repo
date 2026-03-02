@@ -25,22 +25,21 @@ public class BaseManager : MonoBehaviour
         baseLevel++;
         currentRequirements = progressionData.BaseLevelProgression[baseLevel];
 
-        if (ResourceTracker.Instance.hasFishingBoat && !militaryModel.activeSelf)
+        if (ResourceTracker.Instance.hasSailBoat && !sailModel.activeSelf)
         {
-            militaryModel.SetActive(true);
+            sailModel.SetActive(true);
+        }
+        else if (ResourceTracker.Instance.hasFishingBoat && !fishingModel.activeSelf)
+        {
+            fishingModel.SetActive(true);
             weaponSlotUpgrade.Raise(new GameEventPayload());
         }
-        
-        if (ResourceTracker.Instance.hasMilitaryBoat && !fishingModel.activeSelf)
+        else if (ResourceTracker.Instance.hasMilitaryBoat && !militaryModel.activeSelf)
         {
             militaryModel.SetActive(true);
             passiveSlotUpgrade.Raise(new GameEventPayload());
         }
 
-        if (ResourceTracker.Instance.hasSailBoat && !sailModel.activeSelf)
-        {
-            militaryModel.SetActive(true);
-        }
 
     }
 
