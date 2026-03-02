@@ -11,8 +11,11 @@ public class BlueprintPickup : Pickup
             Debug.LogError("Pickup Is Not Of Type Boat");
         }
 
-        blueprintCollectedEvent.Raise(new BlueprintCollectedPayload { weaponName = data.weaponToUnlock.weaponName });
+        blueprintCollectedEvent.Raise(new BlueprintCollectedPayload {
+            weaponName = data.weaponToUnlock.weaponName,
+            icon = data.weaponToUnlock.blueprintIcon,
+        });
 
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

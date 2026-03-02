@@ -24,7 +24,10 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
             if (TargetCalculator.GetClosestEnemy(transform.position) == null) continue;
 
             GameObject newAnchor = Instantiate(anchorPrefab, transform.position + Vector3.up, Quaternion.identity);
-            Debug.Log($"{newAnchor.transform.position}");
+
+            // failsafe destroy
+            Destroy(newAnchor, 15f);
+
             CustomGravity grav = newAnchor.AddComponent<CustomGravity>();
             if (!newAnchor.TryGetComponent<Rigidbody>(out Rigidbody anchorRb))
             {

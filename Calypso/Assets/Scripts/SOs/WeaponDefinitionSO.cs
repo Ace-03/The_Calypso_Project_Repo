@@ -7,6 +7,7 @@ public class WeaponDefinitionSO : ScriptableObject
     public string weaponName;
     public string weaponDescription;
     public Sprite icon;
+    public Sprite blueprintIcon;
 
     [Header("Weapon Base Stats")]
     public GameObject weaponBehaviorPrefab;

@@ -20,27 +20,10 @@ public class ResourcesUI : MonoBehaviour
         }
     }
 
-    public void UpdateBoatIcons(int count)
+    public void UpdateBoatIcons(Sprite icon)
     {
-        ClearBoats();
-
-        for (int i = 0; i < count; i++)
-        {
-            Debug.Log("Updating Sprite on index " + i + " for: " + resourceElements.boatIcons[i].name);
-            resourceElements.boatIcons[i].sprite = resourceElements.aquiredBoatSprite;
-        }
-    }
-
-    public void ClearBoats()
-    {
-        foreach (Image icon in resourceElements.boatIcons)
-        {
-            icon.sprite = resourceElements.EmptyBoatSprite;
-        }
-    }
-
-    public void ToggleIconVisibility(int index, bool toggle)
-    {
-        resourceElements.boatIcons[index].gameObject.SetActive(toggle);
+        Debug.Log("Making New Boat Icon");
+        GameObject newIcon = Instantiate(resourceElements.boatIconPrefab, resourceElements.boatIconContainer);
+        newIcon.GetComponent<Image>().sprite = icon;
     }
 }

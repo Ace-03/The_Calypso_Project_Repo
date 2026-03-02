@@ -15,6 +15,11 @@ public class PassiveRestrictionScreen : MonoBehaviour
     [SerializeField] private RectTransform newItemContainer;
     [SerializeField] private RectTransform ownedItemContainer;
 
+    [Header("Resources")]
+    [SerializeField] private Sprite collectedBG;
+    [SerializeField] private Sprite currentBG;
+
+
     [SerializeField] private OptionInfoPanelComponents bigPanel;
 
     private List<GameObject> ownedList = new List<GameObject>();
@@ -78,8 +83,8 @@ public class PassiveRestrictionScreen : MonoBehaviour
         ClearUIOptionsList(newList);
         ClearUIOptionsList(ownedList);
 
-        newList = MakeUIOptionList(newItems, newItemContainer);
-        ownedList = MakeUIOptionList(ownedItems, ownedItemContainer);
+        newList = MakeUIOptionList(newItems, newItemContainer, true);
+        ownedList = MakeUIOptionList(ownedItems, ownedItemContainer, false);
         
         // disable button component since this list is only for display
         foreach (GameObject item in ownedList)
@@ -94,7 +99,7 @@ public class PassiveRestrictionScreen : MonoBehaviour
         list.Clear();
     }
 
-    private List<GameObject> MakeUIOptionList(List<ItemInstance> items, RectTransform parent)
+    private List<GameObject> MakeUIOptionList(List<ItemInstance> items, RectTransform parent, bool newItems)
     {
         List<GameObject> result = new List<GameObject>();
         foreach (ItemInstance item in items)
@@ -104,6 +109,12 @@ public class PassiveRestrictionScreen : MonoBehaviour
             controller.Item = item;
             controller.UpdateOptionUI();
             controller.SetNewInfoPanel(bigPanel);
+
+            if (newItems)
+                controller.OptionUI.backgroundImage.sprite = collectedBG;
+            else
+                controller.OptionUI.backgroundImage.sprite = currentBG;
+
             result.Add(newUIObject);
         }
 
