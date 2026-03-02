@@ -32,6 +32,7 @@ public class RewardOptionsPayload : GameEventPayload
 public class BlueprintCollectedPayload : GameEventPayload
 {
     public string weaponName;
+    public Sprite icon;
 }
 
 public class StatUpdatePayload : GameEventPayload
@@ -46,7 +47,7 @@ public class StatUpdatePayload : GameEventPayload
 
 public class RespawnScenePayload : GameEventPayload
 {
-    public bool gambleResources;
+    public bool gambleSuccess;
     public int calculatedBaseDamage;
 }
 

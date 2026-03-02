@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToSpawn:
-    data: {fileID: 11400000, guid: 9801124137bfc9545911291fb15768a9, type: 2}
+    data: {fileID: 11400000, guid: 9532ed52a94c7ff4ba82fb0e8bd992d4, type: 2}
     dropChance: 100
     minAmount: 1
     maxAmount: 1
@@ -547,7 +547,7 @@ Transform:
   m_GameObject: {fileID: 116050641}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.95, y: -0.27, z: 10.74}
+  m_LocalPosition: {x: -4.95, y: -0.27, z: 20.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1107,7 +1107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &281573149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,6 +1140,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 477784712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &315000580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 315000581}
+  - component: {fileID: 315000582}
+  m_Layer: 0
+  m_Name: Mine Blueprint Spawner (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &315000581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315000580}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.050457, y: -0.26999998, z: 10.615318}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477784712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &315000582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315000580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf088eb63f918b4286a19fbfd94bf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+    data: {fileID: 11400000, guid: d8b0f1c43aa7b7846aa1ad0e26298ba2, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
 --- !u!1001 &335717159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1310,7 +1359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &417361866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,12 +1385,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417361865}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.52, y: 0.72, z: 6.73}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.2095432, y: -0.15900004, z: 22.845318}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 477784712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &439358173 stripped
 Transform:
@@ -1493,6 +1542,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5248859272619020576, guid: 4a26b2153dfc1ee4eb548ba88d5f7873, type: 3}
   m_PrefabInstance: {fileID: 1526741209}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &470307029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 470307030}
+  - component: {fileID: 470307031}
+  m_Layer: 0
+  m_Name: Boat One Time Spawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &470307030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470307029}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.95, y: -0.27, z: 20.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477784712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &470307031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470307029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf088eb63f918b4286a19fbfd94bf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+    data: {fileID: 11400000, guid: 40dfca5097da13745b23a7a0a36e231d, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
 --- !u!1 &477784711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1624,15 @@ Transform:
   - {fileID: 660639420}
   - {fileID: 2068483409}
   - {fileID: 116050643}
+  - {fileID: 470307030}
+  - {fileID: 1985732292}
+  - {fileID: 417361867}
   - {fileID: 281573150}
+  - {fileID: 1843987045}
+  - {fileID: 1765865650}
+  - {fileID: 809839354}
+  - {fileID: 315000581}
+  - {fileID: 1740403256}
   m_Father: {fileID: 724180522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &482636826
@@ -3027,6 +3133,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ef631f778bddb459d18c44d85ef8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &809839353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 809839354}
+  - component: {fileID: 809839355}
+  m_Layer: 0
+  m_Name: Mine Blueprint Spawner (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &809839354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809839353}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.050457, y: -0.26999998, z: 10.615318}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477784712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &809839355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809839353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf088eb63f918b4286a19fbfd94bf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+    data: {fileID: 11400000, guid: 01b737a6f22a34b4281f304e8373e126, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
 --- !u!1001 &844806832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6536,6 +6691,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1461969210421859258, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1510728628141384212, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6551,6 +6710,10 @@ PrefabInstance:
     - target: {fileID: 1510728628141384212, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: dayDuration
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1580633339944615185, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: lightingData.light
@@ -6792,6 +6955,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6835608985599718902, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835608985599718902, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835608985599718902, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 266.6827
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835608985599718902, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -69.2382
+      objectReference: {fileID: 0}
     - target: {fileID: 7597625183390032460, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6838,6 +7017,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7918569143137674550, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952242516684075601, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952242516684075601, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952242516684075601, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 266.6827
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952242516684075601, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -207.7146
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215333911143166330, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405169223175415592, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8459915666462965259, guid: 11c7a5686a835f24db333789e84fb14c, type: 3}
@@ -7256,6 +7459,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ef631f778bddb459d18c44d85ef8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1740403255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1740403256}
+  - component: {fileID: 1740403257}
+  m_Layer: 0
+  m_Name: Mine Blueprint Spawner (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1740403256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740403255}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.050457, y: -0.26999998, z: 10.615318}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477784712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1740403257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740403255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf088eb63f918b4286a19fbfd94bf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+    data: {fileID: 11400000, guid: 12942af05cccaa34386080981f81cb84, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
 --- !u!1001 &1743260655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7375,6 +7627,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68d4c9e75391b684ea9239c105916253, type: 3}
+--- !u!1 &1765865649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1765865650}
+  - component: {fileID: 1765865651}
+  m_Layer: 0
+  m_Name: Mine Blueprint Spawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1765865650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765865649}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.050457, y: -0.26999998, z: 10.615318}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477784712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1765865651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765865649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf088eb63f918b4286a19fbfd94bf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+    data: {fileID: 11400000, guid: d796fecec2b10f542a11c2cdc361b1e3, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
 --- !u!1 &1768669852
 GameObject:
   m_ObjectHideFlags: 0
@@ -8047,6 +8348,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7094452578506683292, guid: dd90cc4e99cd1414398503de28ae027c, type: 3}
   m_PrefabInstance: {fileID: 1237376276}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1843987044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1843987045}
+  - component: {fileID: 1843987046}
+  m_Layer: 0
+  m_Name: Mine Blueprint Spawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1843987045
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843987044}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.050457, y: -0.26999998, z: 10.615318}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477784712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1843987046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843987044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf088eb63f918b4286a19fbfd94bf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+    data: {fileID: 11400000, guid: 04ca6e1ece37d7f4e8164830217260ca, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
 --- !u!4 &1850282385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8055712022097469228, guid: 4b47dd14f7de6204cbcd1a535814f8ea, type: 3}
@@ -8604,6 +8954,55 @@ PrefabInstance:
       addedObject: {fileID: 743566918}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd6fda0d7763df047b7e54dd85be5927, type: 3}
+--- !u!1 &1985732291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1985732292}
+  - component: {fileID: 1985732293}
+  m_Layer: 0
+  m_Name: Boat One Time Spawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1985732292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985732291}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.95, y: -0.27, z: 10.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477784712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1985732293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985732291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf088eb63f918b4286a19fbfd94bf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+    data: {fileID: 11400000, guid: 9801124137bfc9545911291fb15768a9, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
 --- !u!4 &1988597372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5539871624553674091, guid: 1b1b0bfd9f090b0458ec9c8f13a553d9, type: 3}
@@ -9529,4 +9928,3 @@ SceneRoots:
   - {fileID: 40962075}
   - {fileID: 3411181782509952096}
   - {fileID: 888138313}
-  - {fileID: 417361867}

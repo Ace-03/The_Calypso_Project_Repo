@@ -15,6 +15,7 @@ MonoBehaviour:
   weaponName: Torpedoes
   weaponDescription: Small torpedoes that target and fire at nearby enemies
   icon: {fileID: 21300000, guid: 2ac9ab7627bed8b4cae1d869bead2089, type: 3}
+  blueprintIcon: {fileID: 21300000, guid: 2e5a159e5911e074bb239aef0f42c224, type: 3}
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 21119df84ab5e4344b5bfd17c79636f4, type: 3}
   bulletSprite: {fileID: 2100000, guid: 62665a653618d484aa7afe323752269c, type: 2}
   baseStats:

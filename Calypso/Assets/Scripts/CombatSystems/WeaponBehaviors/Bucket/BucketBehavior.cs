@@ -20,8 +20,8 @@ public class BucketBehavior : MonoBehaviour, IWeaponBehavior
         GeneralModifier.UpdateCollisionLayers(col, weapon.team);
         poolController.InitializePool(duration, targetSize);
 
-        Debug.Log("Spawning New Pool");
-        Debug.Log($"name of pool is {newObject.name}");
+        // failsafe Destroy
+        Destroy(newObject, 15f);
     }
 
     public void ApplyWeaponStats(WeaponController weapon)
