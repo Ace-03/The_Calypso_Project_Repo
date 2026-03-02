@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfb8fd06fa89164b99a25e7c7979c9e, type: 3}
   m_Name: BaseStats
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 50
   armor: 0
   recovery: 1
   invulnerabilityPeriod: 0.5

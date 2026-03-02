@@ -15,8 +15,9 @@ MonoBehaviour:
   weaponName: Triple Shell
   weaponDescription: 
   icon: {fileID: 21300000, guid: a705a6ac82afabb49abbc649c7399865, type: 3}
+  blueprintIcon: {fileID: 0}
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: a13e7225c1e8d7f4eb74ca0b47210ab5, type: 3}
-  bulletSprite: {fileID: 2100000, guid: 60a4bb7f822e20e4a97ef2d0a82d9c6b, type: 2}
+  bulletSprite: {fileID: 2100000, guid: 12125a7eb54764a4a94cba78fc143033, type: 2}
   baseStats:
     Cooldown: 3
     Damage: 8
