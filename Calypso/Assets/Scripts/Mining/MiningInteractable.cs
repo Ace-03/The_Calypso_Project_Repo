@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(MiningParticleController))]
 public class MiningInteractable : MonoBehaviour, IInteractable
 {
+    [Header("Events")]
+    [SerializeField] private OnDeathEventSO playerDeathEvent;
+
     [Header("Mining Config")]
     [SerializeField] private ItemDrop resourceDrop;
     [SerializeField] private Transform spawnPoint;
@@ -38,19 +41,34 @@ public class MiningInteractable : MonoBehaviour, IInteractable
         hp = Maxhp;
     }
 
+    private void OnEnable()
+    {
+        playerDeathEvent.RegisterListener(CancelMining);
+    }
+
+    private void OnDisable()
+    {
+        playerDeathEvent.UnregisterListener(CancelMining);
+    }
+
     public void Interact()
     {
         if (mining)
         {
-            Debug.Log("attempting to mine");
+            Debug.Log("Mining skipped, already mining");
             return;
         }
 
-        Debug.Log("Started Mining...");
-        mining = true;
-        StartCoroutine(MineResource());
-        PlayerManager.Instance.ToggleMovement(false);
-        PlayerManager.Instance.ToggleWeapons(false);
+        if (gameObject.activeSelf)
+        {
+            Debug.Log("Started Mining...");
+            
+            mining = true;
+
+            StartCoroutine(MineResource());
+            PlayerManager.Instance.ToggleMovement(false);
+            PlayerManager.Instance.ToggleWeapons(false);
+        }
     }
 
 
@@ -90,7 +108,7 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     private void DepleteNode()
     {
         Invoke(nameof(RaiseEvent), 0.06f);
-
+        StopAllCoroutines();
         gameObject.SetActive(false);
     }
 
@@ -103,4 +121,6 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     {
         clearPlayerInteractableEvent.Raise(new GameEventPayload());
     }
+
+    private void CancelMining(DeathPayload payload) => StopAllCoroutines();
 }

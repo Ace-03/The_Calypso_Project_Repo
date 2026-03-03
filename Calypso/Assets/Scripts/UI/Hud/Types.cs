@@ -7,22 +7,15 @@ using System;
 [Serializable]
 public class HotBarUIElements
 {
-    public Sprite emptySlotSprite;
-    public GameObject hotBarSlotPrefab;
-
-
     public HotBar WeaponBar;
     public HotBar PassiveBar;
-
-    public Sprite LockedBarSprite;
-    public Sprite UnlockedBarSprite;
 }
 
 [Serializable]
 public class HotBar
 {
     public GameObject BarParent;
-    public List<HotBarSlot> Slots;
+    public List<HotBarSlotController> Slots;
 }
 
 [Serializable]
@@ -59,15 +52,13 @@ public class LevelUIElements
 }
 
 [Serializable]
-public class HotBarSlot
+public class SlotComponents
 {
-    public PassiveItemSO assignedPassiveItem;
-    public WeaponController assignedWeapon;
+    [HideInInspector] public PassiveItemSO assignedPassiveItem;
+    [HideInInspector] public WeaponController assignedWeapon;
     public GameObject slotObject;
     public Image backgroundImage;
     public Image iconImage;
-    public bool isFilled;
-    public bool isLocked;
 }
 
 [Serializable]

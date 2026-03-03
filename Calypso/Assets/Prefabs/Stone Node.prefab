@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6541da81169ce45a96438371af27be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDeathEvent: {fileID: 11400000, guid: 6e21a232539e09c4b8940d472c33fc13, type: 2}
   resourceDrop:
     data: {fileID: 11400000, guid: 415624a556cd8664a9b09553963639d3, type: 2}
     dropChance: 100

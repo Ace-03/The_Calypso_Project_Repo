@@ -17,13 +17,15 @@ public class DeathScreen : MonoBehaviour
     [SerializeField] private GameObject gambleDescriptionPanel;
     [SerializeField] private TextMeshProUGUI panelText;
     [SerializeField] private BaseHealth baseHealth;
+    [SerializeField] private Button gambleButton;
 
     [Header("Resources/Parameters")]
     [SerializeField] private Sprite defaultBG;
     [SerializeField] private Sprite purpleBG;
-    [SerializeField] private string defaultPanelMessage;
+    [SerializeField] private string gambleDescriptionMessage = "Wager your resources and bet to keep an item?";
     [SerializeField] private string winMessage = "LUCKY!\nEnjoy Your Reward!";
-    [SerializeField] private string LoseMessage = "UNLUCKY!\nThanks For All Your Stuff!";
+    [SerializeField] private string loseMessage = "UNLUCKY!\nThanks For All Your Stuff!";
+    [SerializeField] private string noItemMessage = "You Can't Gamble if you have no items to keep";
     [SerializeField] private float textAnimWaitInterval;
     [SerializeField] private float postResultWaitPeriod;
 
@@ -64,8 +66,11 @@ public class DeathScreen : MonoBehaviour
         panelText.text = "";
         ToggleDeathScreenInput(false);
         
-        yield return new WaitForFixedUpdate();
+        yield return new WaitForSeconds(0.2f);
+
         gambleDescriptionPanel.SetActive(true);
+
+        yield return new WaitForSeconds(0.2f);
 
         // Do text Anim
         for (int i = 0; i < 8; i++)
@@ -80,7 +85,7 @@ public class DeathScreen : MonoBehaviour
         if (success)
             panelText.text = winMessage;
         else
-            panelText.text = LoseMessage;
+            panelText.text = loseMessage;
 
         // wait
         yield return new WaitForSeconds(postResultWaitPeriod);
@@ -91,7 +96,7 @@ public class DeathScreen : MonoBehaviour
         // reset screen to default
         background.sprite = defaultBG;
         ToggleDeathScreenInput(true);
-        panelText.text = defaultPanelMessage;
+        panelText.text = gambleDescriptionMessage;
     }
 
     private void ToggleDeathScreenInput(bool toggle)
@@ -111,6 +116,7 @@ public class DeathScreen : MonoBehaviour
         payload.gambleSuccess = success;
         payload.calculatedBaseDamage = (int)RespawnHandler.Instance.CalculateBaseDamage();
 
+        gambleButton.enabled = true;
         gambleDescriptionPanel.SetActive(false);
         HudManager.Instance.ToggleHud(true);
         deathScreen.SetActive(false);
@@ -120,6 +126,19 @@ public class DeathScreen : MonoBehaviour
     private void ShowDeathScreen(DeathPayload payload)
     {
         HudManager.Instance.ToggleHud(false);
+
+        bool hasNewItems = ContextRegister.Instance.GetContext().inventoryManager.NewPassiveInPossession(); 
+
+        if (!hasNewItems)
+        {
+            gambleButton.interactable = false;
+            panelText.text = noItemMessage;
+        }
+        else
+        {
+            panelText.text = gambleDescriptionMessage;
+        }
+
 
         if (baseHealth.projectBaseDamage((int)RespawnHandler.Instance.CalculateBaseDamage()))
         {

@@ -20270,6 +20270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathEvent: {fileID: 11400000, guid: 6e21a232539e09c4b8940d472c33fc13, type: 2}
   statsUpdatedEvent: {fileID: 11400000, guid: 8cbde4debb08a654f9e12db0d1d50805, type: 2}
+  clearInteractable: {fileID: 11400000, guid: b48ec32e1db0b374b9e712d7b0747a51, type: 2}
   playerVisuals: {fileID: 8166983347140975720}
   inputManager: {fileID: 0}
   deathParticle: {fileID: 1469735650166152172, guid: b7eb6d1ae35ee604a8353b5211a34e95, type: 3}

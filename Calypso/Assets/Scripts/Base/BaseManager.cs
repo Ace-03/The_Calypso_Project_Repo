@@ -39,8 +39,6 @@ public class BaseManager : MonoBehaviour
             militaryModel.SetActive(true);
             passiveSlotUpgrade.Raise(new GameEventPayload());
         }
-
-
     }
 
     public bool CheckRequirements(BaseProgressionInfo currentStatus)
