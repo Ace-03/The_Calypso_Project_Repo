@@ -134,7 +134,7 @@ public class BaseUI : MonoBehaviour
         }
     }
 
-    private void ExitBase(GameEventPayload payload) => ToggleBaseMenu(false);
+    private void ExitBase(DeathPayload payload) => ToggleBaseMenu(false);
 
     public void ToggleBaseMenu(bool toggle)
     {

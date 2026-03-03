@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(MiningParticleController))]
 public class MiningInteractable : MonoBehaviour, IInteractable
 {
+    [Header("Events")]
+    [SerializeField] private OnDeathEventSO playerDeathEvent;
+
     [Header("Mining Config")]
     [SerializeField] private ItemDrop resourceDrop;
     [SerializeField] private Transform spawnPoint;
@@ -36,6 +39,16 @@ public class MiningInteractable : MonoBehaviour, IInteractable
         particleRate = Mathf.Clamp(particleRate, 0f, 5000f);
         particleController.AddPosition(particlePositions);
         hp = Maxhp;
+    }
+
+    private void OnEnable()
+    {
+        playerDeathEvent.RegisterListener(CancelMining);
+    }
+
+    private void OnDisable()
+    {
+        playerDeathEvent.UnregisterListener(CancelMining);
     }
 
     public void Interact()
@@ -108,4 +121,6 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     {
         clearPlayerInteractableEvent.Raise(new GameEventPayload());
     }
+
+    private void CancelMining(DeathPayload payload) => StopAllCoroutines();
 }
