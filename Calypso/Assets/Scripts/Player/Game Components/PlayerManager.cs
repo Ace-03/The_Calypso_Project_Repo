@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    [Header("Events")]
     [SerializeField] private OnDeathEventSO deathEvent;
     [SerializeField] private OnStatsUpdatedSO statsUpdatedEvent;
+    [SerializeField] private OnGenericEventSO clearInteractable;
 
+    [Header("Components")]
     [SerializeField] private GameObject playerVisuals;
     [SerializeField] private GameObject inputManager;
     [SerializeField] private GameObject deathParticle;
@@ -61,12 +64,8 @@ public class PlayerManager : MonoBehaviour
 
     public void OnDeath()
     {
-        DeathPayload payload = new DeathPayload()
-        {
-            entity = gameObject,
-        };
-
-        deathEvent.Raise(payload);
+        deathEvent.Raise(new DeathPayload { entity = gameObject });
+        clearInteractable.Raise(new GameEventPayload());
 
         ToggleMovement(false);
         ToggleWeapons(false);
