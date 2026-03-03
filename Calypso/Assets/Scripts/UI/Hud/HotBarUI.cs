@@ -80,6 +80,10 @@ public class HotBarUI : MonoBehaviour
     {
         slot.assignedPassiveItem = null;
         slot.assignedWeapon = null;
+        Debug.Log($"slot is: {slot}");
+        Debug.Log($"slot iconimage {slot.iconImage}");
+        Debug.Log($"slot sprite {slot.iconImage.sprite}");
+        Debug.Log($"empty slot sprite {hotBarElements.emptySlotSprite}");
         slot.iconImage.sprite = hotBarElements.emptySlotSprite;
         slot.isFilled = false;
     }
