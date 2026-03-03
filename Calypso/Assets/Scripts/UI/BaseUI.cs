@@ -6,6 +6,7 @@ public class BaseUI : MonoBehaviour
 {
     [SerializeField] private OnCraftingAttemptEventSO craftingAttemptEvent;
     [SerializeField] private OnWeaponCraftedEventSO weaponCraftedEvent;
+    [SerializeField] private OnDeathEventSO playerDeathEvent;
 
     [SerializeField] private GameObject MenuCanvas;
     [SerializeField] private GameObject BaseLevelUpScreen;
@@ -28,11 +29,13 @@ public class BaseUI : MonoBehaviour
     private void OnEnable()
     {
         craftingAttemptEvent.RegisterListener(OnTryCraftWeapon);
+        playerDeathEvent.RegisterListener(ExitBase);
     }
 
     private void OnDisable()
     {
         craftingAttemptEvent.UnregisterListener(OnTryCraftWeapon);
+        playerDeathEvent.UnregisterListener(ExitBase);
     }
 
     private void Start()
@@ -126,13 +129,12 @@ public class BaseUI : MonoBehaviour
         {
             resourceTracker.SetResource("iron", -recipe.craftingRequirements.ironCost);
             resourceTracker.SetResource("stone", -recipe.craftingRequirements.stoneCost);
-            weaponCraftedEvent.Raise(new WeaponCraftedPayload
-            {
-                weaponData = recipe.rewardWeapon
-            });
+            weaponCraftedEvent.Raise(new WeaponCraftedPayload { weaponData = recipe.rewardWeapon });
             DisplayCurrentStats();
         }
     }
+
+    private void ExitBase(DeathPayload payload) => ToggleBaseMenu(false);
 
     public void ToggleBaseMenu(bool toggle)
     {

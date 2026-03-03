@@ -10,13 +10,14 @@ public class HotBarUI : MonoBehaviour
     {
         hotBarElements = elements;
     }
+    
     public void RefreshBar(HotBar bar, List<PassiveItemSO> passiveItems)
     {
         clearBar(bar);
 
         foreach (PassiveItemSO item in passiveItems)
         {
-            AddItem(bar, item);
+            AddItem(bar, item.sprite);
         }
     }
 
@@ -26,74 +27,51 @@ public class HotBarUI : MonoBehaviour
 
         foreach (WeaponDefinitionSO item in weapons)
         {
-            AddItem(bar, item);
+            AddItem(bar, item.icon);
         }
     }
 
     public void UnlockNewSlot(HotBar bar)
     {
-        HotBarSlot lockedSlot = bar.Slots.FirstOrDefault(m => m.isLocked == true);
-
-        if (lockedSlot != null)
+        HotBarSlotController lockedSlot = bar.Slots.FirstOrDefault(m => m.IsLocked == true);
+        
+        if (lockedSlot == null)
         {
             Debug.LogWarning($"Could Not find locked slot in {bar}");
             return;
         }
 
-        lockedSlot.isLocked = false;
-        lockedSlot.backgroundImage.sprite = hotBarElements.UnlockedBarSprite;
+        lockedSlot.UnlockSlot();
     }
 
-    public HotBarSlot GetHotBarSlot(WeaponDefinitionSO weaponData)
+    private void AddItem(HotBar bar, Sprite icon)
     {
-        return hotBarElements.WeaponBar.Slots.Find(m => m.assignedWeapon == weaponData);
-    }
+        HotBarSlotController openSlot = bar.Slots.FirstOrDefault(m => m.IsFilled == false);
 
-    public HotBarSlot GetHotBarSlot(PassiveItemSO ItemData)
-    {
-        return hotBarElements.WeaponBar.Slots.Find(m => m.assignedPassiveItem == ItemData);
-    }
-
-    private void AddItem(HotBar bar, WeaponDefinitionSO weaponData)
-    {
-        HotBarSlot openSlot = bar.Slots.FirstOrDefault(m => m.isFilled == false);
-
-        if (openSlot.isLocked == false)
+        if (openSlot == null)
         {
-            openSlot.iconImage.sprite = weaponData.icon;
-            openSlot.isFilled = true;
+            Debug.LogWarning($"Could Not find locked slot in {bar}");
+            return;
         }
+
+        openSlot.FillSlot(icon);
     }
 
-    private void AddItem(HotBar bar, PassiveItemSO passiveItemData)
+    public HotBarSlotController GetHotBarSlot(WeaponDefinitionSO weaponData)
     {
-        HotBarSlot openSlot = bar.Slots.FirstOrDefault(m => m.isFilled == false);
-
-        if (openSlot.isLocked == false)
-        {
-            openSlot.iconImage.sprite = passiveItemData.sprite;
-            openSlot.isFilled = true;
-        }
+        return hotBarElements.WeaponBar.Slots.Find(m => m.GetWeapon() == weaponData);
     }
 
-    private void removeItem(HotBarSlot slot)
+    public HotBarSlotController GetHotBarSlot(PassiveItemSO ItemData)
     {
-        slot.assignedPassiveItem = null;
-        slot.assignedWeapon = null;
-        Debug.Log($"slot is: {slot}");
-        Debug.Log($"slot iconimage {slot.iconImage}");
-        Debug.Log($"slot sprite {slot.iconImage.sprite}");
-        Debug.Log($"empty slot sprite {hotBarElements.emptySlotSprite}");
-        slot.iconImage.sprite = hotBarElements.emptySlotSprite;
-        slot.isFilled = false;
+        return hotBarElements.WeaponBar.Slots.Find(m => m.GetPassiveItem() == ItemData);
     }
+
 
     private void clearBar(HotBar bar)
     {
-        foreach (HotBarSlot slot in bar.Slots)
-        {
-            removeItem(slot);
-        }
+        foreach (HotBarSlotController slot in bar.Slots)
+            slot.ClearSlot();
     }
 
     public void ToggleWeaponBar(bool isVisible)
