@@ -137,6 +137,7 @@ public class PlayerManager : MonoBehaviour
         ToggleMovement(true);
         ToggleWeapons(true);
         ToggleVisuals(true);
+        clearInteractable.Raise(new GameEventPayload());
         PauseManager.instance.gameObject.SetActive(true);
         GetComponent<Teleporter>().TeleportHome();
     }
