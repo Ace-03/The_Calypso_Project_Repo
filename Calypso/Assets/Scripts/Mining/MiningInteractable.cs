@@ -42,15 +42,20 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     {
         if (mining)
         {
-            Debug.Log("attempting to mine");
+            Debug.Log("Mining skipped, already mining");
             return;
         }
 
-        Debug.Log("Started Mining...");
-        mining = true;
-        StartCoroutine(MineResource());
-        PlayerManager.Instance.ToggleMovement(false);
-        PlayerManager.Instance.ToggleWeapons(false);
+        if (gameObject.activeSelf)
+        {
+            Debug.Log("Started Mining...");
+            
+            mining = true;
+
+            StartCoroutine(MineResource());
+            PlayerManager.Instance.ToggleMovement(false);
+            PlayerManager.Instance.ToggleWeapons(false);
+        }
     }
 
 
@@ -90,7 +95,7 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     private void DepleteNode()
     {
         Invoke(nameof(RaiseEvent), 0.06f);
-
+        StopAllCoroutines();
         gameObject.SetActive(false);
     }
 
