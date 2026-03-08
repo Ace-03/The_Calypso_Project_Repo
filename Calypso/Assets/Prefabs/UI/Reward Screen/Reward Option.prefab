@@ -220,6 +220,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4153728351282149950}
+  - component: {fileID: 1167930465320286027}
+  - component: {fileID: 1171553514502296741}
   m_Layer: 5
   m_Name: Reward Option
   m_TagString: Untagged
@@ -250,6 +252,41 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1167930465320286027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086487958905987756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a08f8be95934144986e648ceca1132c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  components:
+    group: {fileID: 1171553514502296741}
+    backgroundImage: {fileID: 192433486672302312}
+    iconImage: {fileID: 6405386125495213236}
+    isNewText: {fileID: 255640830053222611}
+    InfoPanel:
+      infoPanelParent: {fileID: 7391899326760385948}
+      itemName: {fileID: 8158506652931597886}
+      itemDescription: {fileID: 7047541727262151972}
+      statInfo: {fileID: 4364318251744611788}
+  emptySprite: {fileID: 21300000, guid: c34955c9933abd34dadca4f192a7adbd, type: 3}
+--- !u!225 &1171553514502296741
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086487958905987756}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 1
 --- !u!1 &2775196209609041199
 GameObject:
   m_ObjectHideFlags: 0

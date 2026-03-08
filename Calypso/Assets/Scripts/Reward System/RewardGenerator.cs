@@ -37,6 +37,12 @@ public class RewardGenerator : MonoBehaviour
 
         List<PassiveItemSO> possibleRewards = FilterRewards(equippedItems, canAquireNewItem);
 
+        if (possibleRewards.Count <= 0)
+        {
+            Debug.Log("No Rewards to generate. Aborting");
+            return;
+        }
+
         List<RewardOption> finalOptions = SelectWeightedOptions(possibleRewards, rewardGenerationCount);
 
         requestGeneratedEvent.Raise(new RewardOptionsPayload() { options = finalOptions });
@@ -63,15 +69,6 @@ public class RewardGenerator : MonoBehaviour
     private List<RewardOption> SelectWeightedOptions(List<PassiveItemSO> eligibleRewards, int count)
     {
         List<RewardOption> finalOptions = new List<RewardOption>();
-
-        if (eligibleRewards.Count <= count)
-        {
-            foreach (PassiveItemSO item in eligibleRewards)
-            {
-                finalOptions.Add(new RewardOption { itemData = item });
-            }
-            return finalOptions;
-        }
 
         // Create a temporary, mutable list to remove selected options and ensure uniqueness
         List<PassiveItemSO> pool = new List<PassiveItemSO>(eligibleRewards);
@@ -238,5 +235,17 @@ public class RewardGenerator : MonoBehaviour
             }
         }
         return deltas;
+    }
+
+    private void DebugOption(RewardOption option)
+    {
+        Debug.Log($"Option item is: {option.itemData}");
+        Debug.Log($"Option has modifiers?: {option.modifiers != null}");
+        if ( option.modifiers != null )
+        {
+            Debug.Log($"Option Modifier count is: {option.modifiers.Count}");
+        }
+        Debug.Log($"Delta values: {option.deltaValues}");
+        Debug.Log($"Is this a new Ite: {option.isNew}");
     }
 }
