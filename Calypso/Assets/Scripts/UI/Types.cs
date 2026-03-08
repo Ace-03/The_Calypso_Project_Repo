@@ -8,13 +8,13 @@ public struct RewardScreenUIComponents
 {
     public GameObject RewardScreenParent;
     public GameObject RewardsContainer;
-    public List<OptionUIComponents> rewardOptions;
+    public List<RewardOptionController> rewardOptions;
 }
-
 
 [System.Serializable]
 public class OptionUIComponents
 {
+    public CanvasGroup group;
     public RewardOption assignedItem;
     public Image backgroundImage;
     public Image iconImage;

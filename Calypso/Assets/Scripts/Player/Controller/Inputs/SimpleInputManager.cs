@@ -22,9 +22,15 @@ public class SimpleInputManager : MonoBehaviour
         // Get Interact Input
         if (Input.GetKeyDown(KeyCode.Space))
             invoker.ExecuteCommand(new InteractCommand(player));
+        if (Input.GetKeyDown(KeyCode.E))
+            invoker.ExecuteCommand(new InteractCommand(player));
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            invoker.ExecuteCommand(new InteractCommand(player));
 
         // Get Pause Input
         if (Input.GetKeyDown(KeyCode.Tab))
+            invoker.ExecuteCommand(new PauseCommand(player));
+        if (Input.GetKeyDown(KeyCode.Escape))
             invoker.ExecuteCommand(new PauseCommand(player));
 
         // Get Player Movement

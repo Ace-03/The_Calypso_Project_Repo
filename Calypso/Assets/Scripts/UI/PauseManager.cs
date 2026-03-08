@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseUI;
@@ -19,5 +20,10 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = toggle ? 0 : 1;
         pauseUI.SetActive(toggle);
         isPaused = toggle;
+    }
+
+    public void GoToTitle()
+    {
+        Application.Quit();
     }
 }
