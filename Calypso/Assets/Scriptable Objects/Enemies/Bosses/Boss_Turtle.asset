@@ -22,7 +22,7 @@ MonoBehaviour:
   movementSpeed: 2
   DifficultyModifier: 2
   aimSpeed: 0
-  weapon: {fileID: 11400000, guid: bdff83bd1682bb34bb982acd0a4cf21f, type: 2}
+  weapon: {fileID: 11400000, guid: db0dd04015f93fb46b2d3c57c1f41e5d, type: 2}
   knockbackResistance: 10
   stunResistance: 200
   poisonResistance: 10
@@ -30,7 +30,7 @@ MonoBehaviour:
   bobAmount: 0.5
   bobSpeed: 0.1
   possibleDrops:
-  - data: {fileID: 11400000, guid: 01b737a6f22a34b4281f304e8373e126, type: 2}
+  - data: {fileID: 11400000, guid: d796fecec2b10f542a11c2cdc361b1e3, type: 2}
     dropChance: 100
     minAmount: 1
     maxAmount: 1
