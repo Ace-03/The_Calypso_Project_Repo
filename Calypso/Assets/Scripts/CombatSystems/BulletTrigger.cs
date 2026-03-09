@@ -12,7 +12,6 @@ public class BulletTrigger : MonoBehaviour
 
     [HideInInspector] private DamageSource damageSource = new DamageSource();
 
-
     private void Update()
     {
         if (!isTicking) { return; }
