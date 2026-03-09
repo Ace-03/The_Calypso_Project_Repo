@@ -1,5 +1,99 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &402888921264811139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4259100111679206552}
+  - component: {fileID: 3952333223620844754}
+  - component: {fileID: 8245407152876487739}
+  m_Layer: 0
+  m_Name: _TutorialHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4259100111679206552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402888921264811139}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8088421615832829596}
+  m_Father: {fileID: 8581233837381546114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3952333223620844754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402888921264811139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee7ecaa4984b9341ae333e12d963b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialTrigger: {fileID: 11400000, guid: 70e00c208e2c31648989ac7faa420fe4, type: 2}
+  tutScreen: {fileID: 8245407152876487739}
+  tutorials:
+  - cleared: 0
+    messages:
+    - Hey There Buddy!! \n\nWELCOME TO HELL
+    - You'll need weapons to survive in the sea.
+    - Go pick up that boat and build yourself a base before night falls.
+  - cleared: 0
+    messages:
+    - In your base you can craft yourself weapons.
+    - You're unarmed at the moment. You need a weapon.
+    - Mine for some resources. When you have enough craft your primary weapon.
+  - cleared: 0
+    messages:
+    - There are more boats out there to build bases out of.
+    - There are also some pretty tough creatures out there.
+    - Defeat them to unlock recipes for secondary weapons.
+    - Try to survive as long as you can out here.
+    - If your health reaches zero your base will be damaged and you'll lose a day.
+    - If your base is destroyed then its game over.
+--- !u!114 &8245407152876487739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402888921264811139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c309d42642703f04f992dc0c6eb00f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textField: {fileID: 9101391571350537844}
+  canvasObject: {fileID: 3161108211208993699}
+  baseCanvasGroup: {fileID: 4949981770709590051}
+  tutorialMessages:
+  - Hey There Buddy!! \n WELCOME TO SEA sHELL
+  - You'll need weapons to survive in the sea.
+  - Go pickup that boat with and build yourself a base before night falls.
+  - In your base you can craft yourself weapons.
+  - You're unarmed at the moment so go craft your primary weapon.
+  - There are more boats out there to build bases out of.
+  - There are also some pretty tough creatures out there.
+  - Defeat them to unlock recipes for secondary weapons.
+  - Try to survive as long as you can out here.
+  - If your health reaches zero your base will be damaged.
+  - If your base is destroyed then its game over.
 --- !u!1 &2789667501893983843
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +648,7 @@ MonoBehaviour:
   weaponLevel: 1
   playerWeaponController: {fileID: 0}
   progressionData: {fileID: 11400000, guid: 197b5373f33a04f4189cd2ebda1a519e, type: 2}
+  tutorialTrigger: {fileID: 11400000, guid: 70e00c208e2c31648989ac7faa420fe4, type: 2}
   currentProgressionState:
     playerLevel: 0
     iron: 0
@@ -835,6 +930,7 @@ Transform:
   - {fileID: 5450269957308253521}
   - {fileID: 5521779368872737922}
   - {fileID: 5156610463438235242}
+  - {fileID: 4259100111679206552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7976392922771141679
@@ -1304,6 +1400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSlotUpgrade: {fileID: 11400000, guid: c778998b35cbc8a448110424623a2f92, type: 2}
   weaponSlotUpgrade: {fileID: 11400000, guid: 640c39a96327bf84fa8db9050b7c5eb8, type: 2}
+  tutorialTrigger: {fileID: 11400000, guid: 70e00c208e2c31648989ac7faa420fe4, type: 2}
   baseLevel: 0
   progressionData: {fileID: 11400000, guid: 268ad168a31cb80468427cf0dd61296a, type: 2}
   militaryModel: {fileID: 0}
@@ -2228,6 +2325,11 @@ MonoBehaviour:
 --- !u!1 &4360014072303015096 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3147666697650732431, guid: e77bc03c3ca9cb84392635a2da229808, type: 3}
+  m_PrefabInstance: {fileID: 1670593148081875255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &4949981770709590051 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 6025532267924998420, guid: e77bc03c3ca9cb84392635a2da229808, type: 3}
   m_PrefabInstance: {fileID: 1670593148081875255}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6872546394997660435 stripped
@@ -4348,3 +4450,149 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2782205602892260671, guid: 5f14bdbeb4117d54ba97ff2e4817f06e, type: 3}
   m_PrefabInstance: {fileID: 6883420860430757976}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6987904525273058742
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4259100111679206552}
+    m_Modifications:
+    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8245407152876487739}
+    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AdvanceText
+      objectReference: {fileID: 0}
+    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TutorialScreen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5414598951755085333, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_Name
+      value: Tutorial Canvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+--- !u!1 &3161108211208993699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5414598951755085333, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+  m_PrefabInstance: {fileID: 6987904525273058742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &8088421615832829596 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+  m_PrefabInstance: {fileID: 6987904525273058742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9101391571350537844 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2212575070787439554, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+  m_PrefabInstance: {fileID: 6987904525273058742}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

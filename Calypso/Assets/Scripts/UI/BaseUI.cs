@@ -142,6 +142,8 @@ public class BaseUI : MonoBehaviour
         MenuCanvas.SetActive(toggle);
         OnMainMenu();
 
+
+
         PlayerManager.Instance.ToggleMovement(!toggle);
         PlayerManager.Instance.ToggleWeapons(!toggle);
         HudManager.Instance.ToggleHud(!toggle);

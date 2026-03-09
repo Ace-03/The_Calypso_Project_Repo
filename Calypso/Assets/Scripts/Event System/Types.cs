@@ -51,6 +51,11 @@ public class RespawnScenePayload : GameEventPayload
     public int calculatedBaseDamage;
 }
 
+public class TutorialTriggerPayload : GameEventPayload
+{
+    public int tutorialNumber;
+}
+
 public class UpdateHotBarPayload : GameEventPayload
 {
     public List<WeaponDefinitionSO> currentWeapons;

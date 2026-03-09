@@ -2,11 +2,22 @@ using UnityEngine;
 
 public class PlayerPrimaryWeaponManager : MonoBehaviour
 {
+    public static PlayerPrimaryWeaponManager Instance;
+
     public int weaponLevel = 1;
     [SerializeField] private WeaponController playerWeaponController;
     [SerializeField] private PrimaryWeaponProgressionSO progressionData;
+    [SerializeField] private OnTutorialTriggerEventSO tutorialTrigger;
 
-    public WeaponProgressionInfo currentProgressionState; 
+    public WeaponProgressionInfo currentProgressionState;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+    }
 
     private void Start()
     {
@@ -20,6 +31,9 @@ public class PlayerPrimaryWeaponManager : MonoBehaviour
         playerWeaponController.SetDamageSource(new DamageSource(GetRewardWeapon(), gameObject));
         currentProgressionState = progressionData.weaponLevelProgression[Mathf.Clamp(weaponLevel, 0, progressionData.weaponLevelProgression.Count - 1)];
         weaponLevel++;
+
+        if (weaponLevel == 2)
+            tutorialTrigger.Raise(new TutorialTriggerPayload { tutorialNumber = 2 });
     }
 
     public bool CheckRequirements(WeaponProgressionInfo currentStatus)

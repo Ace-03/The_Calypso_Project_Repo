@@ -4,6 +4,7 @@ public class BaseManager : MonoBehaviour
 {
     [SerializeField] private OnGenericEventSO passiveSlotUpgrade;
     [SerializeField] private OnGenericEventSO weaponSlotUpgrade;
+    [SerializeField] private OnTutorialTriggerEventSO tutorialTrigger;
 
     public int baseLevel;
     [SerializeField] private BaseProgressionSO progressionData;
@@ -39,6 +40,9 @@ public class BaseManager : MonoBehaviour
             militaryModel.SetActive(true);
             passiveSlotUpgrade.Raise(new GameEventPayload());
         }
+
+        if (baseLevel == 1)
+            tutorialTrigger.Raise(new TutorialTriggerPayload { tutorialNumber = 1 });
     }
 
     public bool CheckRequirements(BaseProgressionInfo currentStatus)
