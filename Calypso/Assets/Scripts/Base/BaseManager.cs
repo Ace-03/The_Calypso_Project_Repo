@@ -5,6 +5,7 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private OnGenericEventSO passiveSlotUpgrade;
     [SerializeField] private OnGenericEventSO weaponSlotUpgrade;
     [SerializeField] private OnTutorialTriggerEventSO tutorialTrigger;
+    [SerializeField] private OnUpgradeAttemptEventSO upgradeAttemptEvent;
 
     public int baseLevel;
     [SerializeField] private BaseProgressionSO progressionData;
@@ -14,6 +15,16 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private GameObject sailModel;
 
     public BaseProgressionInfo currentRequirements;
+
+    public static BaseManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+    }
 
     private void Start()
     {
@@ -48,70 +59,74 @@ public class BaseManager : MonoBehaviour
     public bool CheckRequirements(BaseProgressionInfo currentStatus)
     {
         bool passes = true;
-        string logMessage = "Base Upgrade Status: ";
+        string logMessage = "";
 
         if (currentStatus.playerLevel < currentRequirements.playerLevel)
         {
-            logMessage += "Player Level Is too low, ";
+            logMessage += "Player Level Is too low\n";
             passes = false;
         }
         if (currentStatus.iron < currentRequirements.iron)
         {
-            logMessage += "Not Enough Iron, ";
+            logMessage += "Not Enough Iron\n";
             passes = false;
         }
         if (currentStatus.stone < currentRequirements.stone)
         {
-            logMessage += "Not Enough Stone, ";
+            logMessage += "Not Enough Stone\n";
             passes = false;
         }
         if (currentStatus.boatCount < currentRequirements.boatCount)
         {
-            logMessage += "Lacking in boats";
+            logMessage += "No boat to craft base with";
             passes = false;
         }
 
         if (passes)
         {
-            Debug.Log(logMessage + "Success");
-        }
-        else
-        {
-            Debug.LogWarning(logMessage + ": Failed to level up");
+            Debug.Log(logMessage + "Base Succesffully Upgraded");
         }
 
-            return passes;
+        upgradeAttemptEvent.Raise(new UpgradeAttemptPayload
+        {
+            Result = passes ? "Success" : "Fail",
+            details = logMessage,
+        });
+
+        return passes;
     }
 
     public bool CheckRequirements(WeaponCraftingRequirements requirements,  WeaponCraftingRequirements currentStats)
     {
         bool passes = true;
-        string logMessage = "Crafting Status: ";
+        string logMessage = "";
 
         if (currentStats.baseLevel < requirements.baseLevel)
         {
-            logMessage += "Base Level Is too low, ";
+            logMessage += "Base Level Is too low\n";
             passes = false;
         }
         if (currentStats.ironCost < requirements.ironCost)
         {
-            logMessage += "Not Enough Iron, ";
+            logMessage += "Not Enough Iron\n";
             passes = false;
         }
         if (currentStats.stoneCost < requirements.stoneCost)
         {
-            logMessage += "Not Enough Stone, ";
+            logMessage += "Not Enough Stone\n";
             passes = false;
         }
 
         if (passes)
         {
-            Debug.Log(logMessage + "Success");
+            Debug.Log(logMessage + "Weapon Successfully Crafted");
         }
-        else
+
+        upgradeAttemptEvent.Raise(new UpgradeAttemptPayload
         {
-            Debug.LogWarning(logMessage + ": Failed to Craft Weapon");
-        }
+            Result = passes ? "Success" : "Fail",
+            details = logMessage,
+        });
 
         return passes;
     }

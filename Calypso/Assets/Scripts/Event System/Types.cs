@@ -83,6 +83,12 @@ public class CraftingAttemptPayload : GameEventPayload
     public WeaponRecipeSO weaponRecipe;
 }
 
+public class UpgradeAttemptPayload : GameEventPayload
+{
+    public string Result;
+    public string details;
+}
+
 public class DayStateChangePayload : GameEventPayload
 {
     public bool isDayTime;

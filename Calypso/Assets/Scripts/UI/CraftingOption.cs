@@ -18,23 +18,39 @@ public class CraftingOption : MonoBehaviour
     [SerializeField] private Color UnlockedColor;
     [Range(0,1)][SerializeField] private float lockedAlpha;
 
+    private bool isLocked;
+
     private void Start()
     {
-        SetupInfoPanel();
+        UpdateInfoPanel();
         weaponIcon.sprite = weaponRecipe.rewardWeapon.icon;
         SpriteNormalizer.NormalizeImage(weaponIcon.gameObject);
         BlueprintManager.Instance.craftingOptions.Add(this);
     }
 
-    public void SetupInfoPanel()
+    public void UpdateInfoPanel()
     {
+        if (isLocked)
+        {
+            infoPanelComponents.weaponNameText.text = "??????";
+            infoPanelComponents.descriptionText.text = "";
+            infoPanelComponents.requirementsText.text = "";
+            infoPanelComponents.currentStatsText.text = "";
+            return;
+        }
+
         infoPanelComponents.weaponNameText.text = weaponRecipe.rewardWeapon.weaponName;
-        infoPanelComponents.requirementsText.text = 
+        infoPanelComponents.descriptionText.text = weaponRecipe.rewardWeapon.weaponDescription;
+        infoPanelComponents.requirementsText.text =
             $"--Requirements--\n" +
             $"Base Level: {weaponRecipe.craftingRequirements.baseLevel}\n" +
             $"Iron: {weaponRecipe.craftingRequirements.ironCost}\n" +
             $"Stone: {weaponRecipe.craftingRequirements.stoneCost}";
-        infoPanelComponents.descriptionText.text = weaponRecipe.rewardWeapon.weaponDescription;
+        infoPanelComponents.currentStatsText.text =
+            $"--Current Stats--\n" +
+            $"Base Level: {BaseManager.Instance.baseLevel}\n" +
+            $"Iron: {ResourceTracker.Instance.GetResource("iron")}\n" +
+            $"Stone: {ResourceTracker.Instance.GetResource("stone")}";
     }
 
     public void ShowInfoPanel()
@@ -58,6 +74,8 @@ public class CraftingOption : MonoBehaviour
     public void LockCraftingOption(bool locked)
     {
         craftingButton.enabled = !locked;
+        isLocked = locked;
+        UpdateInfoPanel();
 
         if (locked)
         {
@@ -79,8 +97,9 @@ public class CraftingOption : MonoBehaviour
     {
         public GameObject panelParent;
         public TextMeshProUGUI weaponNameText;
-        public TextMeshProUGUI requirementsText;
         public TextMeshProUGUI descriptionText;
+        public TextMeshProUGUI requirementsText;
+        public TextMeshProUGUI currentStatsText;
     }
 }
 

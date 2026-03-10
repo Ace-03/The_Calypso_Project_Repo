@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: WeaponProgression
   m_EditorClassIdentifier: 
   weaponLevelProgression:
-  - playerLevel: 1
+  - BaseLevel: 0
     iron: 5
     stone: 3
     LevelUpReward: {fileID: 11400000, guid: de911b01e708f2646ac65bac4a9549dc, type: 2}
-  - playerLevel: 3
+  - BaseLevel: 1
     iron: 20
     stone: 15
     LevelUpReward: {fileID: 11400000, guid: d03bd6dc04fc70b4980c468420953a0f, type: 2}
-  - playerLevel: 5
+  - BaseLevel: 2
     iron: 40
     stone: 30
     LevelUpReward: {fileID: 11400000, guid: ea8de3f937f1407429266178c6c986d5, type: 2}
