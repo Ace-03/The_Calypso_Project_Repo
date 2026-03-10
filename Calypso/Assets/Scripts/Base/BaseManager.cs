@@ -15,6 +15,16 @@ public class BaseManager : MonoBehaviour
 
     public BaseProgressionInfo currentRequirements;
 
+    public static BaseManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+    }
+
     private void Start()
     {
         currentRequirements = progressionData.BaseLevelProgression[baseLevel];

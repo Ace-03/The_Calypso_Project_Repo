@@ -13,7 +13,8 @@ public class BaseUI : MonoBehaviour
     [SerializeField] private GameObject WeaponCraftingScreen;
     [SerializeField] private GameObject PrimaryWeaponUpgradeScreen;
     [SerializeField] private GameObject MainBaseScreen;
-    [SerializeField] private TextMeshProUGUI statsTextBox;
+    [SerializeField] private TextMeshProUGUI baseTextBox;
+    [SerializeField] private TextMeshProUGUI weaponTextBox;
 
     [SerializeField] private UpgradeInfoUI baseUpgradeUI;
     [SerializeField] private UpgradeInfoUI weaponUpgradeUI;
@@ -67,22 +68,22 @@ public class BaseUI : MonoBehaviour
     public void OnCraftingScreen()
     {
         SetScreen(WeaponCraftingScreen);
-        DisplayCurrentStats();
         BlueprintManager.Instance.CheckRecipes();
+        HideCurrentStats();
     }
 
     public void OnPrimaryWeaponScreen()
     {
         SetScreen(PrimaryWeaponUpgradeScreen);
         UpdateUpgradeInfo(weaponManager.GetCurrentStatus(), weaponManager.weaponLevel);
-        DisplayCurrentStats();
+        DisplayWeaponStats();
     }
 
     public void OnBuildBaseScreen()
     {
         SetScreen(BaseLevelUpScreen);
         UpdateUpgradeInfo(baseManager.GetCurrentRequirements(), baseManager.baseLevel);
-        DisplayCurrentStats();
+        DisplayBaseStats();
     }
 
     public void OnTryBaseUpgrade()
@@ -101,7 +102,7 @@ public class BaseUI : MonoBehaviour
             resourceTracker.SetResource("stone", -baseManager.currentRequirements.stone);
             baseManager.UpgradeBase();
             UpdateUpgradeInfo(baseManager.GetCurrentRequirements(), baseManager.baseLevel);
-            DisplayCurrentStats();
+            DisplayBaseStats();
         }
     }
 
@@ -109,7 +110,7 @@ public class BaseUI : MonoBehaviour
     {
         WeaponProgressionInfo currentStatus = new WeaponProgressionInfo()
         {
-            playerLevel = levelManager.currentLevel,
+            BaseLevel = baseManager.baseLevel,
             iron = resourceTracker.GetResource("iron"),
             stone = resourceTracker.GetResource("stone"),
         };
@@ -120,7 +121,7 @@ public class BaseUI : MonoBehaviour
             resourceTracker.SetResource("stone", -weaponManager.currentProgressionState.stone);
             weaponManager.UpgradeWeapon();
             UpdateUpgradeInfo(weaponManager.GetCurrentStatus(), weaponManager.weaponLevel);
-            DisplayCurrentStats();
+            DisplayWeaponStats();
         }
     }
 
@@ -140,7 +141,6 @@ public class BaseUI : MonoBehaviour
             resourceTracker.SetResource("iron", -recipe.craftingRequirements.ironCost);
             resourceTracker.SetResource("stone", -recipe.craftingRequirements.stoneCost);
             weaponCraftedEvent.Raise(new WeaponCraftedPayload { weaponData = recipe.rewardWeapon });
-            DisplayCurrentStats();
         }
     }
 
@@ -160,7 +160,7 @@ public class BaseUI : MonoBehaviour
 
     public void UpdateUpgradeInfo(BaseProgressionInfo currentRequirements, int level)
     {
-        baseUpgradeUI.requirementsText.text = $"LV: {currentRequirements.playerLevel}\n" +
+        baseUpgradeUI.requirementsText.text = $"Player Lv: {currentRequirements.playerLevel}\n" +
             $"Iron: {currentRequirements.iron}\n" +
             $"Stone: {currentRequirements.stone}\n";
         baseUpgradeUI.levelText.text = "LV: " + level;
@@ -168,7 +168,7 @@ public class BaseUI : MonoBehaviour
 
     public void UpdateUpgradeInfo(WeaponProgressionInfo currentRequirements, int level)
     {
-        weaponUpgradeUI.requirementsText.text = $"LV: {currentRequirements.playerLevel}\n" +
+        weaponUpgradeUI.requirementsText.text = $"Base Lv: {currentRequirements.BaseLevel}\n" +
             $"Iron: {currentRequirements.iron}\n" +
             $"Stone: {currentRequirements.stone}\n";
         weaponUpgradeUI.levelText.text = "LV: " + level;
@@ -184,21 +184,30 @@ public class BaseUI : MonoBehaviour
         activeScreen.SetActive(true);
     }
 
-    private void DisplayCurrentStats()
+    private void DisplayBaseStats()
     {
-        statsTextBox.enabled = true;
-        string stats = $"Current Player Level: {levelManager.currentLevel}\n" +
-            $"Current Base Level: {baseManager.baseLevel}\n\n" +
+        baseTextBox.enabled = true;
+        string stats = $"Player Lv: {levelManager.currentLevel}\n" +
             $"Iron: {resourceTracker.GetResource("iron")}\n" +
-            $"Stone: {resourceTracker.GetResource("stone")}\n" +
-            $"Boats: {resourceTracker.GetResource("boat")}\n";
+            $"Stone: {resourceTracker.GetResource("stone")}\n";
 
-        statsTextBox.text = stats;
+        baseTextBox.text = stats;
+    }
+
+    private void DisplayWeaponStats()
+    {
+        weaponTextBox.enabled = true;
+        string stats = $"Base Lv: {baseManager.baseLevel}\n" +
+            $"Iron: {resourceTracker.GetResource("iron")}\n" +
+            $"Stone: {resourceTracker.GetResource("stone")}\n";
+
+        weaponTextBox.text = stats;
     }
 
     private void HideCurrentStats()
     {
-        statsTextBox.enabled = false;
+        baseTextBox.enabled = false;
+        weaponTextBox.enabled = false;
     }
 }
 

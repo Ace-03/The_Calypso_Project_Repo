@@ -12,7 +12,7 @@ public class PrimaryWeaponProgressionSO : ScriptableObject
 [Serializable]
 public class WeaponProgressionInfo
 {
-    public int playerLevel;
+    public int BaseLevel;
     public int iron;
     public int stone;
     public WeaponDefinitionSO LevelUpReward;

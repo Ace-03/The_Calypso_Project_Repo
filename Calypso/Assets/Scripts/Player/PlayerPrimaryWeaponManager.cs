@@ -41,9 +41,9 @@ public class PlayerPrimaryWeaponManager : MonoBehaviour
         bool passes = true;
         string logMessage = "Weapon Upgrade Status: ";
 
-        if (currentStatus.playerLevel < currentProgressionState.playerLevel)
+        if (currentStatus.BaseLevel < currentProgressionState.BaseLevel)
         {
-            logMessage += "Player Level Is too low, ";
+            logMessage += "Base Level Is too low, ";
             passes = false;
         }
         if (currentStatus.iron < currentProgressionState.iron)

@@ -1445,7 +1445,8 @@ MonoBehaviour:
   WeaponCraftingScreen: {fileID: 2689884878698486617}
   PrimaryWeaponUpgradeScreen: {fileID: 4008566821843259043}
   MainBaseScreen: {fileID: 686857966492367864}
-  statsTextBox: {fileID: 8595699520520112391}
+  baseTextBox: {fileID: 8595699520520112391}
+  weaponTextBox: {fileID: 5824719084652155796}
   baseUpgradeUI:
     requirementsText: {fileID: 1362050779084950773}
     levelText: {fileID: 6872546394997660435}
@@ -2346,6 +2347,17 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 6025532267924998420, guid: e77bc03c3ca9cb84392635a2da229808, type: 3}
   m_PrefabInstance: {fileID: 1670593148081875255}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5824719084652155796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5186647828868266659, guid: e77bc03c3ca9cb84392635a2da229808, type: 3}
+  m_PrefabInstance: {fileID: 1670593148081875255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6872546394997660435 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5210404275941093924, guid: e77bc03c3ca9cb84392635a2da229808, type: 3}
