@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SimpleInputManager : MonoBehaviour
+public class SimpleCharacterInput : MonoBehaviour
 {
     [SerializeField] private PlayerController player;
     [SerializeField] private AimType aimMethod;
@@ -26,12 +26,6 @@ public class SimpleInputManager : MonoBehaviour
             invoker.ExecuteCommand(new InteractCommand(player));
         if (Input.GetKeyDown(KeyCode.Mouse0))
             invoker.ExecuteCommand(new InteractCommand(player));
-
-        // Get Pause Input
-        if (Input.GetKeyDown(KeyCode.Tab))
-            invoker.ExecuteCommand(new PauseCommand(player));
-        if (Input.GetKeyDown(KeyCode.Escape))
-            invoker.ExecuteCommand(new PauseCommand(player));
 
         // Get Player Movement
         Vector3 moveInput = Vector3.zero;

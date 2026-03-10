@@ -97,12 +97,6 @@ public class PlayerController : MonoBehaviour
         currentInteractable?.Interact();
     }
 
-    public void PauseGame()
-    {
-        bool isPaused = PauseManager.instance.isPaused;
-        PauseManager.instance.PauseGame(!isPaused);
-    }
-
     private void MovePlayer()
     {
         if (movementVector.magnitude > 0.15f)

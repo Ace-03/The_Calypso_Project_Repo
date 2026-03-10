@@ -1,12 +1,20 @@
 using UnityEngine;
 public abstract class Command
 {
-    public PlayerController controller;
-
     public abstract void Execute();
 }
 
-public class MoveCommand : Command
+public abstract class PlayerCommand : Command
+{
+    public PlayerController controller;
+}
+
+public abstract class MenuCommand : Command
+{
+    public MenuController controller;
+}
+
+public class MoveCommand : PlayerCommand
 {
     private Vector3 direction;
 
@@ -22,7 +30,7 @@ public class MoveCommand : Command
     }
 }
 
-public class InteractCommand : Command
+public class InteractCommand : PlayerCommand
 {
     public InteractCommand(PlayerController targetController)
     {
@@ -35,7 +43,7 @@ public class InteractCommand : Command
     }
 }
 
-public class AimCommand : Command
+public class AimCommand : PlayerCommand
 {
     private Vector3 aimDirection;
     public AimCommand(PlayerController targetController, Vector3 direction)
@@ -49,9 +57,9 @@ public class AimCommand : Command
     }
 }
 
-public class PauseCommand : Command
+public class PauseCommand : MenuCommand
 {
-    public PauseCommand(PlayerController targetController)
+    public PauseCommand(MenuController targetController)
     {
         controller = targetController;
     }

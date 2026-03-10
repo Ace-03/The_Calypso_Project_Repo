@@ -23,6 +23,16 @@ public class BaseUI : MonoBehaviour
     private ResourceTracker resourceTracker;
     private PlayerLevelManager levelManager;
 
+    public static BaseUI Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+    }
+
     [HideInInspector]
     public bool isOpen = false;
 
@@ -142,10 +152,9 @@ public class BaseUI : MonoBehaviour
         MenuCanvas.SetActive(toggle);
         OnMainMenu();
 
-
-
         PlayerManager.Instance.ToggleMovement(!toggle);
         PlayerManager.Instance.ToggleWeapons(!toggle);
+        PlayerManager.Instance.ToggleMenuControls(!toggle);
         HudManager.Instance.ToggleHud(!toggle);
     }
 
