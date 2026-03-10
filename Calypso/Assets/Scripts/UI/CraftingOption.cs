@@ -74,7 +74,7 @@ public class CraftingOption : MonoBehaviour
     public void LockCraftingOption(bool locked)
     {
         craftingButton.enabled = !locked;
-        isLocked = !locked;
+        isLocked = locked;
         UpdateInfoPanel();
 
         if (locked)

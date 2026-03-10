@@ -8,7 +8,7 @@ public class PlayerPrimaryWeaponManager : MonoBehaviour
     [SerializeField] private WeaponController playerWeaponController;
     [SerializeField] private PrimaryWeaponProgressionSO progressionData;
     [SerializeField] private OnTutorialTriggerEventSO tutorialTrigger;
-
+    [SerializeField] private OnUpgradeAttemptEventSO upgradeAttemptEvent;
     public WeaponProgressionInfo currentProgressionState;
 
     private void Awake()
@@ -39,32 +39,34 @@ public class PlayerPrimaryWeaponManager : MonoBehaviour
     public bool CheckRequirements(WeaponProgressionInfo currentStatus)
     {
         bool passes = true;
-        string logMessage = "Weapon Upgrade Status: ";
+        string logMessage = "";
 
         if (currentStatus.BaseLevel < currentProgressionState.BaseLevel)
         {
-            logMessage += "Base Level Is too low, ";
+            logMessage += "Base Level Is too low\n";
             passes = false;
         }
         if (currentStatus.iron < currentProgressionState.iron)
         {
-            logMessage += "Not Enough Iron, ";
+            logMessage += "Not Enough Iron\n";
             passes = false;
         }
         if (currentStatus.stone < currentProgressionState.stone)
         {
-            logMessage += "Not Enough Stone, ";
+            logMessage += "Not Enough Stone\n";
             passes = false;
         }
 
         if (passes)
         {
-            Debug.Log(logMessage + "Success");
+            Debug.Log(logMessage + "Weapon Successfully Upgraded");
         }
-        else
+
+        upgradeAttemptEvent.Raise(new UpgradeAttemptPayload
         {
-            Debug.LogWarning(logMessage + ": Failed to level up");
-        }
+            Result = passes ? "Success" : "Fail",
+            details = logMessage,
+        });
 
         return passes;
     }
