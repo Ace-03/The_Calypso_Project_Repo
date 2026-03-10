@@ -156,60 +156,68 @@ public class SpawnManager : MonoBehaviour
 
         if (waveTimer <= 0)
         {
-            currentWaveIndex++;
-
-            if (currentWaveIndex < currentSequence.waveDefinitions.Count)
-            {
-                Debug.Log("Found Wave index");
-                waveTimer = currentSequence.waveDefinitions[currentWaveIndex].waveDuration;
-                StartCoroutine(SpawnEnemies());
-            }
-            else
-            {
-                StopAllCoroutines();
-            }
+            ChangeWave();
         }
         waveTimer -= Time.deltaTime;
     }
 
-    private IEnumerator SpawnEnemies()
+    private void ChangeWave()
     {
-        Debug.Log("Coroutine is active");
+        StopAllCoroutines();
+        currentWaveIndex++;
+
+        if (currentWaveIndex < currentSequence.waveDefinitions.Count)
+        {
+            Debug.Log("Found Wave index");
+            waveTimer = currentSequence.waveDefinitions[currentWaveIndex].waveDuration;
+
+            foreach (EnemySpawnInfo spawnInfo in currentSequence.waveDefinitions[currentWaveIndex].enemiesInWave)
+            {
+                StartCoroutine(SpawnEnemies(spawnInfo));
+            }
+        }
+        else
+        {
+            ToggleSpawning(false);
+        }
+    }
+
+    private IEnumerator SpawnEnemies(EnemySpawnInfo spawnInfo)
+    {
+        Debug.Log($"Coroutine is active for {spawnInfo.enemyDefinition.enemyName}");
         while (true)
         {
-            WaveDefinitionSO currentWave = currentSequence.waveDefinitions[currentWaveIndex];
+            float t = (spawnInfo.spawnRate - 1f) / (100f - 1f);
+            float spawnInterval = Mathf.Lerp(5f, 0.001f, t);
 
-            foreach (var enemySpawnInfo in currentWave.enemiesInWave)
+            Debug.Log($"Spawn interval for {spawnInfo.enemyDefinition.enemyName} is {spawnInterval}");
+
+            float totalEnemies = FindObjectsByType<EnemyInitializer>(FindObjectsSortMode.None).Length;
+
+            foreach (var enemy in FindObjectsByType<EnemyInitializer>(FindObjectsSortMode.None))
             {
-                float spawnInterval = 1f / enemySpawnInfo.spawnRate;
-
-                float totalEnemies = FindObjectsByType<EnemyInitializer>(FindObjectsSortMode.None).Length;
-
-                foreach (var enemy in FindObjectsByType<EnemyInitializer>(FindObjectsSortMode.None))
+                if (enemy.GetEnemyData().enemyName != spawnInfo.enemyDefinition.enemyName)
                 {
-                    if (enemy.GetEnemyData().enemyName != enemySpawnInfo.enemyDefinition.enemyName)
-                    {
-                        totalEnemies--;
-                    }
+                    totalEnemies--;
                 }
+            }
 
-                if (totalEnemies < enemySpawnInfo.maxActiveEnemies)
+            if (totalEnemies < spawnInfo.maxActiveEnemies)
+            {
+                //Debug.Log("Spawning enemy");
+                GameObject newEnemy = SpawnEnemy(spawnInfo.enemyDefinition);
+
+                if (newEnemy != null)
                 {
-                    //Debug.Log("Spawning enemy");
-                    GameObject newEnemy = SpawnEnemy(enemySpawnInfo.enemyDefinition);
-
-                    if (newEnemy != null)
-                    {
-                        activeEnemies.Add(newEnemy.GetComponent<EnemyInitializer>());
-                    }
+                    activeEnemies.Add(newEnemy.GetComponent<EnemyInitializer>());
                 }
-                else
-                {
-                    //Debug.Log($"Max active enemies reached for {enemySpawnInfo.enemyDefinition.name}");
-                }
+            }
+            else
+            {
+                //Debug.Log($"Max active enemies reached for {enemySpawnInfo.enemyDefinition.name}");
+            }
 
-                yield return new WaitForSeconds(spawnInterval);
-            }   
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
 
