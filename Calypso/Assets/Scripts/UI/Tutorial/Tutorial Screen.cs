@@ -18,6 +18,7 @@ public class TutorialScreen : MonoBehaviour
         index = 0;
         displayText(index);
 
+        PlayerManager.Instance.ToggleMenuControls(!toggle);
         baseCanvasGroup.interactable = !toggle;
         baseCanvasGroup.blocksRaycasts = !toggle;
 

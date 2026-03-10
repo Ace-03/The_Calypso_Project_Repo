@@ -24,6 +24,7 @@ public class BlueprintScreen : MonoBehaviour
         SpriteNormalizer.NormalizeImage(itemIcon.gameObject);
         screen.SetActive(true);
         HudManager.Instance.ToggleHud(false);
+        PlayerManager.Instance.ToggleMenuControls(false);
     }
 
     public void HideScreen()
@@ -31,5 +32,6 @@ public class BlueprintScreen : MonoBehaviour
         Time.timeScale = 1f;
         screen.SetActive(false);
         HudManager.Instance.ToggleHud(true);
+        PlayerManager.Instance.ToggleMenuControls(true);
     }
 }

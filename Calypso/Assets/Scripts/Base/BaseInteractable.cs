@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class BaseInteractable : MonoBehaviour, IInteractable
 {
-    [SerializeField] private BaseUI baseMenu;
-
     public GameObject GetGameObject()
     {
         return gameObject;
@@ -11,6 +9,8 @@ public class BaseInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        BaseUI baseMenu = BaseUI.Instance;
+
         if (baseMenu.isOpen == false)
             baseMenu.ToggleBaseMenu(true);
     }

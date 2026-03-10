@@ -20,6 +20,8 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = toggle ? 0 : 1;
         pauseUI.SetActive(toggle);
         isPaused = toggle;
+
+        PlayerManager.Instance.ToggleMovement(!toggle);
     }
 
     public void GoToTitle()

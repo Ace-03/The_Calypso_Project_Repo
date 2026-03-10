@@ -80,7 +80,12 @@ public class PlayerManager : MonoBehaviour
 
     public void ToggleMovement(bool state)
     {
-        inputManager.GetComponent<SimpleInputManager>().enabled = state;
+        inputManager.GetComponent<SimpleCharacterInput>().enabled = state;
+    }
+
+    public void ToggleMenuControls(bool state)
+    {
+        inputManager.GetComponent<SimpleMenuInput>().enabled = state;
     }
 
     public void ToggleWeapons(bool state)
