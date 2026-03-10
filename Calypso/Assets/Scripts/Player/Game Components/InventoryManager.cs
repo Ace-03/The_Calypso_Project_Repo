@@ -165,6 +165,14 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (ItemInstance item in passiveItems)
         {
+            if (!item.permanentlyOwned)
+            {
+                foreach (ItemEffectSO effect in item.itemData.itemBehaviors)
+                {
+                    effect.OnRemove(item, playerContext);
+                }
+            }
+
             foreach (StatModifier modifier in item.modifiers)
             {
                 statSystem.RemoveAllModifiersBySource(modifier.StatType, item.instanceID);

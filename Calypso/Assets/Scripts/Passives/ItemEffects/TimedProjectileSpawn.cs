@@ -34,6 +34,7 @@ public class TimedProjectileSpawnSO : ItemEffectSO
 
     public override void OnRemove(ItemInstance itemInstance, PlayerContext context)
     {
+        Destroy(timer);
         timerEvent.UnregisterListener(timerListener);
     }
 
