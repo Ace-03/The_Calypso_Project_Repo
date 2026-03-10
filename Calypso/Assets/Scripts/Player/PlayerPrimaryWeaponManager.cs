@@ -64,7 +64,7 @@ public class PlayerPrimaryWeaponManager : MonoBehaviour
 
         upgradeAttemptEvent.Raise(new UpgradeAttemptPayload
         {
-            Result = passes ? "Success" : "Fail",
+            Result = passes ? "Weapon Successfully Upgraded" : "Cannot Upgrade Weapon",
             details = logMessage,
         });
 

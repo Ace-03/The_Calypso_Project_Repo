@@ -89,7 +89,7 @@ public class BaseManager : MonoBehaviour
 
         upgradeAttemptEvent.Raise(new UpgradeAttemptPayload
         {
-            Result = passes ? "Success" : "Fail",
+            Result = passes ? "Base Succesffully Upgraded" : "Cannot Upgrade Base",
             details = logMessage,
         });
 
@@ -124,7 +124,7 @@ public class BaseManager : MonoBehaviour
 
         upgradeAttemptEvent.Raise(new UpgradeAttemptPayload
         {
-            Result = passes ? "Success" : "Fail",
+            Result = passes ? "Weapon Successfully Crafted" : "Cannot Craft Weapon",
             details = logMessage,
         });
 
