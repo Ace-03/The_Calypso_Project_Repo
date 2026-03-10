@@ -47,6 +47,8 @@ public class PassiveRestrictionScreen : MonoBehaviour
         Time.timeScale = 1.0f;
         screenCanvas.SetActive(false);
         HudManager.Instance.ToggleHud(true);
+        PlayerManager.Instance.ToggleMovement(true);
+        PlayerManager.Instance.ToggleMenuControls(true);
         bigPanel.infoPanelParent.SetActive(false);
     }
 
@@ -64,6 +66,8 @@ public class PassiveRestrictionScreen : MonoBehaviour
         Time.timeScale = 0f;
         nightClearedText.text = $"Night {payload.dayCount - 1} Cleared";
         screenCanvas.SetActive(true);
+        PlayerManager.Instance.ToggleMovement(false);
+        PlayerManager.Instance.ToggleMenuControls(false);
         HudManager.Instance.ToggleHud(false);
         bigPanel.infoPanelParent.SetActive(false);
 

@@ -23,11 +23,11 @@ public static class TargetCalculator
         return tMin;
     }
 
-    public static Transform GetRandomOfClosestEnemies(Vector3 currentPos)
+    public static Transform GetRandomOfClosestEnemies(Vector3 currentPos, float range)
     {
         List<Transform> enemies = MakeEnemyList();
         List<Transform> validTargets = new List<Transform>();
-        float maxValidDist = Mathf.Infinity;
+        float maxValidDist = range;
         foreach (Transform enemy in enemies)
         {
             float dist = Vector3.Distance(enemy.position, currentPos);

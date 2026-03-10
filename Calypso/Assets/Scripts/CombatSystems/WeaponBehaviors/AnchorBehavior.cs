@@ -11,6 +11,7 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
     [SerializeField] private float dropDelay;
     [Tooltip("How far into the future the weapon will try to predict the target position")]
     [SerializeField] private float predictionTime;
+    [SerializeField] private float range = 25f;
 
     private DamageSource damageSource;
 
@@ -63,7 +64,7 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
         yield return new WaitForSeconds(dropDelay);
 
         anchorObject.GetComponent<CustomGravity>().SetGravity(gravityMultiplier);
-        Transform target = TargetCalculator.GetRandomOfClosestEnemies(transform.position);
+        Transform target = GetTarget();
         Vector3 targetPos = Vector3.zero;
 
         if (target == null)
@@ -116,6 +117,5 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
     }
 
     public bool IsAimable() => false;
-
-    protected virtual Transform GetTarget() => TargetCalculator.GetRandomOfClosestEnemies(transform.position);
+    protected virtual Transform GetTarget() => TargetCalculator.GetRandomOfClosestEnemies(transform.position, range);
 }
