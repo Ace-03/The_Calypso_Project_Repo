@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     [SerializeField] public Animator animator;
-
+    [SerializeField] private GameObject helpScreen;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -28,5 +28,15 @@ public class SceneController : MonoBehaviour
     public void ChangeScene() 
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void DisplayHelp()
+    {
+        helpScreen.SetActive(true);
+    }
+
+    public void HideHelp()
+    {
+        helpScreen.SetActive(false);
     }
 }

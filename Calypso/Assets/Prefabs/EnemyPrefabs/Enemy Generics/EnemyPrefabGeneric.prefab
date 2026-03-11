@@ -228,7 +228,7 @@ MonoBehaviour:
     Speed: 0
     AOETick: 0
     Area: 0
-  team: 0
+  team: 1
   weaponPivot: {fileID: 0}
 --- !u!114 &4462239315826289053
 MonoBehaviour:

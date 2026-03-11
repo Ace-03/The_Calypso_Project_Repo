@@ -8,7 +8,7 @@ public class BossExitTrigger : MonoBehaviour
     {
         Debug.Log("Boss is No Longer Active");
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && controller.isActive)
             controller.ActivateBoss(false);
     }
 

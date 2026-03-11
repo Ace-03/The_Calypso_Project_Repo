@@ -89,7 +89,7 @@ public class EnemyInitializer : MonoBehaviour
         sr.sprite = data.sprite;
         sr.color = data.spriteColor;
         sr.transform.localScale *= data.sizeModifier;
-        enemyCollider.size *= data.sizeModifier;
+        enemyCollider.size *= (data.sizeModifier / 2f);
         deathParticleColor = SpriteAverageColor.GetAverageColor(data.sprite) * data.spriteColor;
     }
 

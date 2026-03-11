@@ -8,7 +8,7 @@ public class BossEnterTrigger : MonoBehaviour
     {
         Debug.Log("Boss is now Active");
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !controller.isActive)
             controller.ActivateBoss(true);
     }
 

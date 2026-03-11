@@ -14,6 +14,8 @@ public class BossController : MonoBehaviour
     private EnemyInitializer initializer;
     private Transform bossTransform;
     private WeaponController weapnoCtrl;
+    public bool isActive;
+
 
     private void OnEnable()
     {
@@ -44,6 +46,7 @@ public class BossController : MonoBehaviour
         navigation.enabled = active;
         navController.enabled = active;
         weapnoCtrl.enabled = active;
+        isActive = active;
         bossTransform.position = bossHomePosition.position;
         bossHealth.Initialize(new HealthData { maxHP = bossData.maxHealth });
 
