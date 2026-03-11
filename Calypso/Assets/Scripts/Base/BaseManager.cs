@@ -10,6 +10,7 @@ public class BaseManager : MonoBehaviour
     public int baseLevel;
     [SerializeField] private BaseProgressionSO progressionData;
 
+    [SerializeField] private GameObject fakeBoat;
     [SerializeField] private GameObject militaryModel;
     [SerializeField] private GameObject fishingModel;
     [SerializeField] private GameObject sailModel;
@@ -40,6 +41,7 @@ public class BaseManager : MonoBehaviour
         if (ResourceTracker.Instance.hasSailBoat && !sailModel.activeSelf)
         {
             sailModel.SetActive(true);
+            fakeBoat.SetActive(false);
         }
         else if (ResourceTracker.Instance.hasFishingBoat && !fishingModel.activeSelf)
         {

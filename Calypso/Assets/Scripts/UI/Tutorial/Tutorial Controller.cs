@@ -12,6 +12,7 @@ public class TutorialController : MonoBehaviour
     [Header("Messages")]
     [SerializeField] private List<TutorialSequence> tutorials;
 
+
     private void OnEnable()
     {
         tutorialTrigger.RegisterListener(RunTutorialOnEvent);
