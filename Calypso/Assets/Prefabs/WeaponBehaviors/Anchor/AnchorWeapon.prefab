@@ -50,3 +50,4 @@ MonoBehaviour:
   throwStrength: 30
   dropDelay: 2.5
   predictionTime: 0.45
+  range: 40

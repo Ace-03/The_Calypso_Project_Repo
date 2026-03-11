@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
 {
@@ -11,7 +12,7 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
     [SerializeField] private float dropDelay;
     [Tooltip("How far into the future the weapon will try to predict the target position")]
     [SerializeField] private float predictionTime;
-    [SerializeField] private float range = 25f;
+    [SerializeField] private float range = 40f;
 
     private DamageSource damageSource;
 
@@ -22,7 +23,12 @@ public class AnchorBehavior : MonoBehaviour, IWeaponBehavior
 
         for (int i = 0; i < volleyCount; ++i)
         {
-            if (TargetCalculator.GetClosestEnemy(transform.position) == null) continue;
+            Transform assumedBestTarget = TargetCalculator.GetClosestEnemy(transform.position);
+
+            if (assumedBestTarget == null) continue;
+
+            if (!TargetCalculator.CheckRange(assumedBestTarget.position, transform.position, range))
+                continue;
 
             GameObject newAnchor = Instantiate(anchorPrefab, transform.position + Vector3.up, Quaternion.identity);
 

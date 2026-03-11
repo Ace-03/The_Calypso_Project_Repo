@@ -5,6 +5,7 @@ public class BossController : MonoBehaviour
 {
     [SerializeField] private OnEnemyDeathEventSO bossDeathEvent;
     [SerializeField] private EnemyDefinitionSO bossData;
+    [SerializeField] private OnDeathEventSO playerDeathEvent;
 
     [Header("Boss Components")]
     [SerializeField] private Transform bossHomePosition;
@@ -20,11 +21,13 @@ public class BossController : MonoBehaviour
     private void OnEnable()
     {
         bossDeathEvent.RegisterListener(OnBossDeath);
+        playerDeathEvent.RegisterListener(ForceDeactivateBoss);
     }
 
     private void OnDisable()
     {
         bossDeathEvent.UnregisterListener(OnBossDeath);
+        playerDeathEvent.UnregisterListener(ForceDeactivateBoss);
     }
 
     private void Start()
@@ -49,7 +52,6 @@ public class BossController : MonoBehaviour
         isActive = active;
         bossTransform.position = bossHomePosition.position;
         bossHealth.Initialize(new HealthData { maxHP = bossData.maxHealth });
-
     }
 
     private void OnBossDeath(DeathPayload payload)
@@ -63,5 +65,10 @@ public class BossController : MonoBehaviour
         {
             Debug.Log("payload entity is null");
         }
+    }
+
+    private void ForceDeactivateBoss(DeathPayload payload)
+    {
+        ActivateBoss(false);
     }
 }

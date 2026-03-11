@@ -117,7 +117,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossDeathEvent: {fileID: 11400000, guid: a8963e0811926104082bbde6bcc644bd, type: 2}
   bossData: {fileID: 11400000, guid: fc0394656400fc64e8f771923fa84c3f, type: 2}
+  playerDeathEvent: {fileID: 11400000, guid: 6e21a232539e09c4b8940d472c33fc13, type: 2}
   bossHomePosition: {fileID: 7403475371428347422}
+  isActive: 0
 --- !u!1 &5435967948753200681
 GameObject:
   m_ObjectHideFlags: 0
