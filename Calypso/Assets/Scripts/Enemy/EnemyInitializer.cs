@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyInitializer : MonoBehaviour
 {
-    [SerializeField]
-    private OnEnemyDeathEventSO deathEvent;
-
+    [SerializeField] private OnEnemyDeathEventSO deathEvent;
+    
+    private BoxCollider enemyCollider;
     private Animator animator;
     private EnemyDefinitionSO enemyData;
     private EnemyHealth healthSystem;
@@ -28,6 +28,9 @@ public class EnemyInitializer : MonoBehaviour
 
         if (!TryGetComponent<VisualEffectsHandler>(out var vfx))
             VfxHandler = gameObject.AddComponent<VisualEffectsHandler>();
+
+        if (!TryGetComponent<BoxCollider>(out enemyCollider))
+            enemyCollider = gameObject.AddComponent<BoxCollider>();
 
         if (!TryGetComponent<IEnemyMovement>(out ai))
             ai = gameObject.AddComponent<AI_NAV>();
@@ -86,6 +89,7 @@ public class EnemyInitializer : MonoBehaviour
         sr.sprite = data.sprite;
         sr.color = data.spriteColor;
         sr.transform.localScale *= data.sizeModifier;
+        enemyCollider.size *= data.sizeModifier;
         deathParticleColor = SpriteAverageColor.GetAverageColor(data.sprite) * data.spriteColor;
     }
 

@@ -18,7 +18,7 @@ MonoBehaviour:
   sizeModifier: 6
   enemyPrefab: {fileID: 936472771579500139, guid: 465b6aeb9fa55a74d9e0631fb381f028, type: 3}
   deathEffect: {fileID: 1469735650166152172, guid: 0cc132ba384097843aea95a07323bd74, type: 3}
-  maxHealth: 16
+  maxHealth: 80
   movementSpeed: 2
   DifficultyModifier: 2
   aimSpeed: 0

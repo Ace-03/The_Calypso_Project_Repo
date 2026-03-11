@@ -219,6 +219,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 0}
   autoInitialize: 0
+  currentStats:
+    Cooldown: 0
+    Damage: 0
+    Amount: 0
+    Duration: 0
+    accuracy: 0
+    Speed: 0
+    AOETick: 0
+    Area: 0
   team: 0
   weaponPivot: {fileID: 0}
 --- !u!114 &4462239315826289053
