@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c179c097528e1478747b8d91b80aef, type: 3}
-  m_Name: Wave_Night_01
+  m_Script: {fileID: 11500000, guid: 97594c2909a5e554487f634f72646b89, type: 3}
+  m_Name: CrabWave_Small
   m_EditorClassIdentifier: 
-  waveDefinitions:
-  - {fileID: 11400000, guid: de2f0b9b532f8d7408062797dfecc3a0, type: 2}
-  - {fileID: 11400000, guid: 54560d918ef74c34a96d29eb56a4ada7, type: 2}
+  enemiesInWave:
+  - enemyDefinition: {fileID: 11400000, guid: 07cad1300e39cc345b293c0b19fa95a2, type: 2}
+    spawnRate: 73.6
+    maxActiveEnemies: 10
+  waveDuration: 60
