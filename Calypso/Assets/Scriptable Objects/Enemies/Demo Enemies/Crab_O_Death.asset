@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17056790f82f890478fa81fc549e768a, type: 3}
+  m_Name: Crab_O_Death
+  m_EditorClassIdentifier: 
+  enemyName: Crab_O_Death
+  sprite: {fileID: 21300000, guid: 2e426de7d78065e4eb7ed540e20d116c, type: 3}
+  spriteColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+  sizeModifier: 1
+  enemyPrefab: {fileID: 936472771579500139, guid: 465b6aeb9fa55a74d9e0631fb381f028, type: 3}
+  deathEffect: {fileID: 1469735650166152172, guid: 0cc132ba384097843aea95a07323bd74, type: 3}
+  maxHealth: 999999999
+  movementSpeed: 50
+  DifficultyModifier: 1
+  aimSpeed: 1
+  weapon: {fileID: 11400000, guid: 5f6680a9f6a071248904a0948885e8a2, type: 2}
+  knockbackResistance: 0
+  stunResistance: 0
+  poisonResistance: 0
+  slowResistance: 0
+  bobAmount: 2.5
+  bobSpeed: 0.1
+  possibleDrops:
+  - data: {fileID: 11400000, guid: 56c6c9fb01d602846bb6c6f4d6b325f8, type: 2}
+    dropChance: 100
+    minAmount: 1
+    maxAmount: 1
+  - data: {fileID: 11400000, guid: db25f614fff8d2c4281fd95f9f2ba8cc, type: 2}
+    dropChance: 4
+    minAmount: 1
+    maxAmount: 1
