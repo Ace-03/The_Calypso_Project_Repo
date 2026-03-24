@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Flippers
   description: Increase Maximum Speed
   sprite: {fileID: 21300000, guid: 28dc6ee77dfbe964b945fa6f3da3f8ae, type: 3}
-  maxLevel: 5
+  maxLevel: 99
   rarity: 0
   itemBehaviors: []
   modifierTemplates:

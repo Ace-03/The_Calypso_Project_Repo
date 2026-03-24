@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97594c2909a5e554487f634f72646b89, type: 3}
-  m_Name: Turtle
+  m_Name: Turtle_Wave
   m_EditorClassIdentifier: 
   enemiesInWave:
   - enemyDefinition: {fileID: 11400000, guid: aabd99a2c804d124cb21fc0d517dc5ef, type: 2}
