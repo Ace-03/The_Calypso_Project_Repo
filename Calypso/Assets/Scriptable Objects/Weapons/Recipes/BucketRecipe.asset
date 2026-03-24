@@ -16,4 +16,4 @@ MonoBehaviour:
   craftingRequirements:
     ironCost: 7
     stoneCost: 10
-    baseLevel: 1
+    baseLevel: 2
