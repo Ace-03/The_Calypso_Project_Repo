@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Wave_Night_08
   m_EditorClassIdentifier: 
   waveDefinitions:
-  - {fileID: 11400000, guid: 1e7d40b63b3d78449b1dff191ca91ea9, type: 2}
+  - {fileID: 11400000, guid: 78621891f7c499a45a8688fd918afc26, type: 2}
