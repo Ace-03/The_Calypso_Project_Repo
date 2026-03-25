@@ -20,6 +20,6 @@ MonoBehaviour:
   itemBehaviors: []
   modifierTemplates:
   - Type: 8
-    ModType: 0
-    MinValue: 1
-    MaxValue: 3
+    ModType: 1
+    MinValue: 5
+    MaxValue: 10
