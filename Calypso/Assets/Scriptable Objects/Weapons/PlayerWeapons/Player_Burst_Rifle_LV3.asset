@@ -23,11 +23,11 @@ MonoBehaviour:
     Damage: 10
     Amount: 1
     Duration: 0.15
-    accuracy: 328
+    accuracy: 539
     Speed: 4
     AOETick: 0
     Area: 5
-  pierce: 1
+  pierce: 0
   baseKnockback: 10
   baseStun: 0
   basePoison: 0
