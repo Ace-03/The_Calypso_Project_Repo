@@ -15,11 +15,12 @@ MonoBehaviour:
   weaponName: Contact Damage
   weaponDescription: 
   icon: {fileID: 0}
+  blueprintIcon: {fileID: 0}
   weaponBehaviorPrefab: {fileID: 2735682749369207564, guid: 1651e34653973c8408358cb10d10f24c, type: 3}
   bulletSprite: {fileID: 0}
   baseStats:
     Cooldown: 0
-    Damage: 3
+    Damage: 6
     Amount: 0
     Duration: 0
     accuracy: 0
