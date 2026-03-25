@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetSizeModifier: 2
   waterPoolPrefab: {fileID: 1265745568162077986, guid: a3147f769ee67c941bf4e81f72e693cd, type: 3}
+  poolSpriteHeight: 0.25
