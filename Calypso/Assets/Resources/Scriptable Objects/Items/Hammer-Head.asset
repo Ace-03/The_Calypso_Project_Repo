@@ -21,5 +21,5 @@ MonoBehaviour:
   modifierTemplates:
   - Type: 8
     ModType: 0
-    MinValue: 5
-    MaxValue: 5
+    MinValue: 1
+    MaxValue: 3
