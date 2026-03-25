@@ -20,7 +20,7 @@ MonoBehaviour:
   bulletSprite: {fileID: 0}
   baseStats:
     Cooldown: 0
-    Damage: 6
+    Damage: 10
     Amount: 0
     Duration: 0
     accuracy: 0
