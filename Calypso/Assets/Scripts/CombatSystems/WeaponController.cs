@@ -112,7 +112,7 @@ public class WeaponController : MonoBehaviour
 
         if (CompareTag("Player"))
         {
-            currentStats.Cooldown = weaponData.baseStats.Cooldown * stats.GetFinalValue(StatType.Cooldown);
+            currentStats.Cooldown = weaponData.baseStats.Cooldown / stats.GetFinalValue(StatType.Cooldown);
             currentStats.Amount = (int)(weaponData.baseStats.Amount + stats.GetFinalValue(StatType.Amount));
             currentStats.Duration = weaponData.baseStats.Duration * stats.GetFinalValue(StatType.Duration);
             currentStats.accuracy = weaponData.baseStats.accuracy + stats.GetFinalValue(StatType.Dexterity);
