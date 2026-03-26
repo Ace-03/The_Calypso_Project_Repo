@@ -187,7 +187,7 @@ public class SpawnManager : MonoBehaviour
         Debug.Log($"Coroutine is active for {spawnInfo.enemyDefinition.enemyName}");
         while (true)
         {
-            float t = (spawnInfo.spawnRate - 1f) / (100f - 1f);
+            float t = Mathf.InverseLerp(1f, 100f, spawnInfo.spawnRate); 
             float spawnInterval = Mathf.Lerp(5f, 0.001f, t);
 
             Debug.Log($"Spawn interval for {spawnInfo.enemyDefinition.enemyName} is {spawnInterval}");

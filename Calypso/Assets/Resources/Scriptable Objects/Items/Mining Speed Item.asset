@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238a0bd59faa38e47b4e173765307487, type: 3}
+  m_Name: Mining Speed Item
+  m_EditorClassIdentifier: 
+  itemName: Mining Speed Upgrade
+  description: Increases your mining speed
+  sprite: {fileID: 21300000, guid: a37b264255dca7b499cef00d2c0f51e8, type: 3}
+  maxLevel: 99
+  rarity: 1
+  itemBehaviors: []
+  modifierTemplates:
+  - Type: 9
+    ModType: 1
+    MinValue: 5
+    MaxValue: 10
