@@ -12,6 +12,7 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     [SerializeField] private ItemDrop resourceDrop;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float mineTime = 2f;
+    private float activeMineTime;
     [SerializeField] private float Maxhp = 3;
     [SerializeField] private GameObject model;
 
@@ -65,6 +66,13 @@ public class MiningInteractable : MonoBehaviour, IInteractable
             
             mining = true;
 
+            float dexterity = ContextRegister.Instance.GetContext().statSystem.GetFinalValue(StatType.Dexterity);
+
+            float t = Mathf.InverseLerp(1f, 5, dexterity);
+            float biasedT = Mathf.Sqrt(t);
+            activeMineTime = Mathf.Lerp(mineTime, 0.001f, biasedT);
+            Debug.Log($"mine time is {activeMineTime}");
+
             StartCoroutine(MineResource());
             PlayerManager.Instance.ToggleMovement(false);
             PlayerManager.Instance.ToggleWeapons(false);
@@ -79,7 +87,7 @@ public class MiningInteractable : MonoBehaviour, IInteractable
             particleController.RollForParticle(particleRate);
 
             currentMineTimer += Time.deltaTime;
-            if (currentMineTimer >= mineTime)
+            if (currentMineTimer >= activeMineTime)
             {
                 Debug.Log("Resource Mined!");
 

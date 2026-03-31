@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wave_Night_02
   m_EditorClassIdentifier: 
   waveDefinitions:
-  - {fileID: 11400000, guid: 608d123b228565d40b2da312f52d6deb, type: 2}
-  - {fileID: 11400000, guid: 8a9e3cb566079f74a860d406b57dee65, type: 2}
-  - {fileID: 11400000, guid: 5623febe8ea82914fbb9d899a41b22be, type: 2}
+  - {fileID: 11400000, guid: 54560d918ef74c34a96d29eb56a4ada7, type: 2}
+  - {fileID: 11400000, guid: dd182d0fea9cb2044a5bc5596dad7274, type: 2}
+  - {fileID: 11400000, guid: de2f0b9b532f8d7408062797dfecc3a0, type: 2}

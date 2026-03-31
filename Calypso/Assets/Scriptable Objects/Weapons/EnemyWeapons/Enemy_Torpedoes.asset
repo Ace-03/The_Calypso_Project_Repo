@@ -20,7 +20,7 @@ MonoBehaviour:
   bulletSprite: {fileID: 2100000, guid: 62665a653618d484aa7afe323752269c, type: 2}
   baseStats:
     Cooldown: 2
-    Damage: 3
+    Damage: 15
     Amount: 2
     Duration: 0.2
     accuracy: 231

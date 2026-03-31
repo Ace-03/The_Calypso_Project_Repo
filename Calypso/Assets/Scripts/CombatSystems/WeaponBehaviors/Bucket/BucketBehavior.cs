@@ -5,13 +5,14 @@ public class BucketBehavior : MonoBehaviour, IWeaponBehavior
     [Header("Components")]
     [SerializeField] private float TargetSizeModifier;
     [SerializeField] private GameObject waterPoolPrefab;
+    [SerializeField] private float poolSpriteHeight = 0.1f;
 
     private float maxSize;
     private float poolLifeTime;
 
     private void SpawnPool(float duration, float targetSize, WeaponController weapon)
     {
-        GameObject newObject = Instantiate(waterPoolPrefab, transform.position + Vector3.down, Quaternion.identity);
+        GameObject newObject = Instantiate(waterPoolPrefab, new Vector3(transform.position.x, poolSpriteHeight, transform.position.z), Quaternion.identity);
         BulletTrigger bt = newObject.GetComponentInChildren<BulletTrigger>();
         PoolSizeController poolController = newObject.GetComponent<PoolSizeController>();
         Collider col = newObject.GetComponentInChildren<Collider>();

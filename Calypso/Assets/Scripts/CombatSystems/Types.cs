@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class WeaponStats
+public struct WeaponStats
 {
     public float Cooldown;
     public float Damage;
