@@ -19,11 +19,11 @@ MonoBehaviour:
   enemyPrefab: {fileID: 936472771579500139, guid: 465b6aeb9fa55a74d9e0631fb381f028, type: 3}
   deathEffect: {fileID: 1469735650166152172, guid: 0cc132ba384097843aea95a07323bd74, type: 3}
   maxHealth: 10000
-  movementSpeed: 1000
+  movementSpeed: 10000
   DifficultyModifier: 1
   aimSpeed: 1
   weapon: {fileID: 11400000, guid: 5f6680a9f6a071248904a0948885e8a2, type: 2}
-  knockbackResistance: 0
+  knockbackResistance: 10000
   stunResistance: 0
   poisonResistance: 0
   slowResistance: 0
@@ -35,6 +35,6 @@ MonoBehaviour:
     minAmount: 1
     maxAmount: 1
   - data: {fileID: 11400000, guid: db25f614fff8d2c4281fd95f9f2ba8cc, type: 2}
-    dropChance: 4
-    minAmount: 1
-    maxAmount: 1
+    dropChance: 100
+    minAmount: 110
+    maxAmount: 110
