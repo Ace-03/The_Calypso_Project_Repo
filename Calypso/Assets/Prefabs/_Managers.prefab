@@ -881,9 +881,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageDealt: {fileID: 11400000, guid: 063cbe1b0bbf2f846aaa5dfb6b70a30e, type: 2}
-  damageTaken: {fileID: 11400000, guid: dad5200942e7142419e70345aa0690e9, type: 2}
+  damageTaken: {fileID: 11400000, guid: 7803280f4b92797448c67754ee40c8b8, type: 2}
+  restoreHealth: {fileID: 11400000, guid: fc4cf7c8c04605b409a28d7cfb73b74b, type: 2}
   enemyTextColor: {r: 0.6627451, g: 0.70980394, b: 0.6862745, a: 1}
   playerTextColor: {r: 0.9685534, g: 0.39899522, b: 0.39899522, a: 1}
+  healPlayerTextColor: {r: 0, g: 1, b: 0, a: 1}
   textVerticalOffset: 1
   textPrefab: {fileID: 590358575339588700, guid: 5d5d32ea5bc7fda419576b8ca683245d, type: 3}
 --- !u!1 &7748535853381541244
@@ -4635,33 +4637,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 4259100111679206552}
     m_Modifications:
     - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8245407152876487739}
-    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AdvanceText
-      objectReference: {fileID: 0}
-    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TutorialScreen, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 37296431100505651, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 1208616985268601642, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4742,29 +4720,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1509106668189361769, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8245407152876487739}
     - target: {fileID: 5414598951755085333, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
       propertyPath: m_Name
       value: Tutorial Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 8945657918903882417, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8013006
-      objectReference: {fileID: 0}
-    - target: {fileID: 8945657918903882417, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8013006
-      objectReference: {fileID: 0}
-    - target: {fileID: 8945657918903882417, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8013006
-      objectReference: {fileID: 0}
-    - target: {fileID: 8945657918903882417, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1021
-      objectReference: {fileID: 0}
-    - target: {fileID: 8945657918903882417, guid: d1d3b78e13f834a4e858b5df35078c20, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 347
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

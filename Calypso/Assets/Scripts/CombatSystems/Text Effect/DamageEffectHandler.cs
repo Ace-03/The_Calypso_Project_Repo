@@ -5,10 +5,12 @@ public class DamageEffectHandler : MonoBehaviour
     [Header("Events")]
     [SerializeField] private OnDamageDealtEventSO damageDealt;
     [SerializeField] private OnDamageDealtEventSO damageTaken;
+    [SerializeField] private OnRestoreHealthEventSO restoreHealth;
 
     [Header("Parameters")]
     [SerializeField] private Color enemyTextColor = Color.white;
     [SerializeField] private Color playerTextColor = Color.red;
+    [SerializeField] private Color healPlayerTextColor = Color.green;
     [SerializeField] private float textVerticalOffset;
 
 
@@ -20,6 +22,7 @@ public class DamageEffectHandler : MonoBehaviour
     {
         damageDealt.RegisterListener(SpawnEnemyTextEffect);
         damageTaken.RegisterListener(SpawnPlayerTextEffect);
+        restoreHealth.RegisterListener(SpawnHealTextEffect);
     }
 
     private void OnDisable()
@@ -28,31 +31,34 @@ public class DamageEffectHandler : MonoBehaviour
         damageTaken.UnregisterListener(SpawnPlayerTextEffect);
     }
 
-
     private void SpawnEnemyTextEffect(DamagePayload payload)
     {
-        SpawnTextEffect(payload, enemyTextColor);
+        SpawnTextEffect(payload.damageInfo.damage, payload.receiver.transform.position, enemyTextColor);
     }
 
     private void SpawnPlayerTextEffect(DamagePayload payload)
     {
-        SpawnTextEffect(payload, playerTextColor);
+        SpawnTextEffect(payload.damageInfo.damage, payload.receiver.transform.position, playerTextColor);
     }
 
-    private void SpawnTextEffect(DamagePayload payload, Color textcolor)
+    private void SpawnHealTextEffect(HealPayload payload)
     {
-        GameObject textObject = Instantiate(textPrefab, payload.receiver.transform.position + (Vector3.up * textVerticalOffset), Quaternion.identity);
+        SpawnTextEffect(payload.value, PlayerManager.Instance.transform.position, healPlayerTextColor);
+    }
+
+    private void SpawnTextEffect(float value, Vector3 position, Color textcolor)
+    {
+        GameObject textObject = Instantiate(textPrefab, position + (Vector3.up * textVerticalOffset), Quaternion.identity);
         TextController controller = textObject.GetComponent<TextController>();
 
-        float damage = payload.damageInfo.damage;
         string roundingValue = "";
 
-        if (damage % 1 == 0)
+        if (value % 1 == 0)
             roundingValue = "n0";
         else
             roundingValue = "n1";
 
-        controller.SetText(damage.ToString(roundingValue));
+        controller.SetText(value.ToString(roundingValue));
         controller.SetColor(textcolor);
     }
 }

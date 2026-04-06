@@ -44,6 +44,11 @@ public class StatUpdatePayload : GameEventPayload
     }
 }
 
+public class HealPayload : GameEventPayload
+{
+    public float value;
+}
+
 public class RespawnScenePayload : GameEventPayload
 {
     public bool gambleSuccess;
