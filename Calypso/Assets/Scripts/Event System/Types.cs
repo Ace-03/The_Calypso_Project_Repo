@@ -16,7 +16,6 @@ public class DamagePayload : GameEventPayload
     public DamageInfo damageInfo;
     public GameObject attacker;
     public GameObject receiver;
-    public Vector3 hitPosition;
 }
 
 public class DeathPayload : GameEventPayload

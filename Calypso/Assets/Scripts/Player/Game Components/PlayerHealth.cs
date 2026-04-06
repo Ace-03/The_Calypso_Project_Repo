@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerHealth : GenericHealth
 {
+    [SerializeField] private OnDamageDealtEventSO damageTakenEvent;
     private int bonusHP;
 
     PlayerManager playerManager;
@@ -24,6 +25,13 @@ public class PlayerHealth : GenericHealth
     public override void TakeDamage(DamageInfo info)
     {
         if (invulnerable) { return; }
+
+        damageTakenEvent.Raise(new DamagePayload
+        {
+            damageInfo = info,
+            attacker = null,
+            receiver = gameObject,
+        });
 
         vfxHandler.TriggerInvulnerabilityEffect(invulnerable, invulnerabilityDuration);
         base.TakeDamage(info);
