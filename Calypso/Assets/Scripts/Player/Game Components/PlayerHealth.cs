@@ -4,7 +4,7 @@ public class PlayerHealth : GenericHealth
 {
     [Header("Events")]
     [SerializeField] private OnRestoreHealthEventSO healEvent;
-    private int bonusHP;
+    private float bonusHP;
 
     PlayerManager playerManager;
 
@@ -52,10 +52,10 @@ public class PlayerHealth : GenericHealth
 
     private void HealThroughEvent(HealPayload payload)
     {
-        heal((int)payload.value);
+        heal(payload.value);
     }
 
-    public void heal(int amount)
+    public void heal(float amount)
     {
         hp += amount;
         if (hp > maxHP + bonusHP)
@@ -64,7 +64,7 @@ public class PlayerHealth : GenericHealth
         HudManager.Instance.health.UpdatePlayerHealth(hp, maxHP);
     }
 
-    public void addBonusHP(int amount)
+    public void addBonusHP(float amount)
     {
         bonusHP += amount;
     }
@@ -79,8 +79,8 @@ public class PlayerHealth : GenericHealth
 
     public void UpdateHealthStats(StatSystem statSystem)
     {
-        int newMaxHP = (int)statSystem.GetFinalValue(StatType.MaxHealth);
-        int hpDiff = newMaxHP - maxHP;
+        float newMaxHP = statSystem.GetFinalValue(StatType.MaxHealth);
+        float hpDiff = newMaxHP - maxHP;
 
         maxHP = newMaxHP;
         hp += hpDiff;
@@ -89,17 +89,17 @@ public class PlayerHealth : GenericHealth
         HudManager.Instance.health.UpdatePlayerHealth(hp, maxHP);
     }
 
-    public override void TakeDamageRaw(int damage)
+    public override void TakeDamageRaw(float damage)
     {
         Debug.Log("Damage Taken by player: " + damage);
         if (bonusHP > 0)
         {
-            int damageToBonus = Mathf.Min(bonusHP, damage);
+            float damageToBonus = Mathf.Min(bonusHP, damage);
             bonusHP -= damageToBonus;
             damage -= damageToBonus;
         }
 
-        hp -= (int)Mathf.Clamp(damage, 0f, maxHP);
+        hp -= Mathf.Clamp(damage, 0f, maxHP);
         invulnerabilityTimer = invulnerabilityDuration;
         invulnerable = true;
 

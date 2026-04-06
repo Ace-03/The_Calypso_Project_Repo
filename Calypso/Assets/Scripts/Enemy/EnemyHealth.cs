@@ -32,7 +32,7 @@ public class EnemyHealth : GenericHealth
         base.TakeDamage(info);
     }
 
-    public override void TakeDamageRaw(int damage)
+    public override void TakeDamageRaw(float damage)
     {
 
         if (DEBUG_MATS)

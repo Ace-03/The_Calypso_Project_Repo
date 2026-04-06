@@ -13,14 +13,22 @@ public class HealthUI : MonoBehaviour
     public void UpdatePlayerHealth(float hp, float maxHp)
     {
         healthElements.healthIcon.sprite = SetHealthSprite(hp, maxHp, healthElements.playerHealthSprites);
-        healthElements.healthText.text = $"{hp}";
-        healthElements.backgroundHealthText.text = $"{hp}";
+
+        string roundingValue = "";
+
+        if (hp % 1 == 0)
+            roundingValue = "f0";
+        else
+            roundingValue = "f1";
+
+            healthElements.healthText.text = hp.ToString(roundingValue);
+        healthElements.backgroundHealthText.text = hp.ToString(roundingValue);
     }
 
-    public void UpdateBaseHealth(int hp, int maxHp)
+    public void UpdateBaseHealth(float hp, float maxHp)
     {
         healthElements.baseIcon.sprite = SetHealthSprite(hp, maxHp, healthElements.baseHealthSprites);
-        healthElements.baseText.text = $"{hp}";
+        healthElements.baseText.text = hp.ToString("f0");
 
     }
 
