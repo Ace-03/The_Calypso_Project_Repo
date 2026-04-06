@@ -2,9 +2,22 @@ using UnityEngine;
 
 public class PlayerHealth : GenericHealth
 {
+    [Header("Events")]
+    [SerializeField] private OnRestoreHealthEventSO healEvent;
     private int bonusHP;
 
     PlayerManager playerManager;
+
+    private void OnEnable()
+    {
+        healEvent.RegisterListener(HealThroughEvent);
+    }
+
+    private void OnDisable()
+    {
+        healEvent.UnregisterListener(HealThroughEvent);
+
+    }
 
     private void Awake()
     {
@@ -37,11 +50,18 @@ public class PlayerHealth : GenericHealth
         base.Die();
     }
 
+    private void HealThroughEvent(HealPayload payload)
+    {
+        heal((int)payload.value);
+    }
+
     public void heal(int amount)
     {
         hp += amount;
         if (hp > maxHP + bonusHP)
             hp = maxHP + bonusHP;
+
+        HudManager.Instance.health.UpdatePlayerHealth(hp, maxHP);
     }
 
     public void addBonusHP(int amount)
@@ -88,5 +108,7 @@ public class PlayerHealth : GenericHealth
         if (hp <= 0)
             Die();
     }
+
+    public bool GetInvulnerable() => invulnerable;
 }
 

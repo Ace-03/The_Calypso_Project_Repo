@@ -4,7 +4,7 @@ public class MenuController : MonoBehaviour
 {
     public void PauseGame()
     {
-        bool isPaused = PauseManager.instance.isPaused;
-        PauseManager.instance.PauseGame(!isPaused);
+        bool isPaused = PauseManager.Instance.isPaused;
+        PauseManager.Instance.PauseGame(!isPaused);
     }
 }

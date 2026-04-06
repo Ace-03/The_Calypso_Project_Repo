@@ -16,7 +16,6 @@ public class DamagePayload : GameEventPayload
     public DamageInfo damageInfo;
     public GameObject attacker;
     public GameObject receiver;
-    public Vector3 hitPosition;
 }
 
 public class DeathPayload : GameEventPayload
@@ -43,6 +42,11 @@ public class StatUpdatePayload : GameEventPayload
     {
         this.statSystem = statSystem;
     }
+}
+
+public class HealPayload : GameEventPayload
+{
+    public float value;
 }
 
 public class RespawnScenePayload : GameEventPayload

@@ -20233,6 +20233,8 @@ MonoBehaviour:
   maxHP: 0
   hp: 0
   vfxHandler: {fileID: 2971592590130550337}
+  damageTakenEvent: {fileID: 11400000, guid: dad5200942e7142419e70345aa0690e9, type: 2}
+  healEvent: {fileID: 11400000, guid: fc4cf7c8c04605b409a28d7cfb73b74b, type: 2}
 --- !u!114 &2971592590130550337
 MonoBehaviour:
   m_ObjectHideFlags: 0

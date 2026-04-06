@@ -31,7 +31,12 @@ public class TutorialScreen : MonoBehaviour
     public void AdvanceText()
     {
         index++;
+        displayText(index);
+    }
 
+    public void EndTutorial()
+    {
+        index = tutorialMessages.Count;
         displayText(index);
     }
 
