@@ -151,6 +151,7 @@ public class BaseUI : MonoBehaviour
         isOpen = toggle;
         MenuCanvas.SetActive(toggle);
         OnMainMenu();
+        Time.timeScale = toggle ? 0 : 1;
 
         PlayerManager.Instance.ToggleMovement(!toggle);
         PlayerManager.Instance.ToggleWeapons(!toggle);

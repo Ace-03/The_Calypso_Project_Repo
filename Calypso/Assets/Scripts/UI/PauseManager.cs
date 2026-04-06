@@ -5,12 +5,12 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject pauseUI;
     [HideInInspector] public bool isPaused = false;
 
-    public static PauseManager instance;
+    public static PauseManager Instance;
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
             Destroy(this);
     }

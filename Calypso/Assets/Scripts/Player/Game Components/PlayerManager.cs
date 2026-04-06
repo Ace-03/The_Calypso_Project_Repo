@@ -70,7 +70,7 @@ public class PlayerManager : MonoBehaviour
         ToggleMovement(false);
         ToggleWeapons(false);
         ToggleVisuals(false);
-        PauseManager.instance.gameObject.SetActive(false);
+        PauseManager.Instance.gameObject.SetActive(false);
 
         SpawnDeathParticle();
         Debug.Log("Player Died");
@@ -143,7 +143,7 @@ public class PlayerManager : MonoBehaviour
         ToggleWeapons(true);
         ToggleVisuals(true);
         clearInteractable.Raise(new GameEventPayload());
-        PauseManager.instance.gameObject.SetActive(true);
+        PauseManager.Instance.gameObject.SetActive(true);
         GetComponent<Teleporter>().TeleportHome();
     }
 }
