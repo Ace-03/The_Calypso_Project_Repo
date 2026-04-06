@@ -44,7 +44,15 @@ public class DamageEffectHandler : MonoBehaviour
         GameObject textObject = Instantiate(textPrefab, payload.receiver.transform.position + (Vector3.up * textVerticalOffset), Quaternion.identity);
         TextController controller = textObject.GetComponent<TextController>();
 
-        controller.SetText(payload.damageInfo.damage.ToString("f0"));
+        float damage = payload.damageInfo.damage;
+        string roundingValue = "";
+
+        if (damage % 1 == 0)
+            roundingValue = "n0";
+        else
+            roundingValue = "n1";
+
+        controller.SetText(damage.ToString(roundingValue));
         controller.SetColor(textcolor);
     }
 }
