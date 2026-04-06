@@ -155,6 +155,8 @@ public class EnemyInitializer : MonoBehaviour
                 .GetComponentInChildren<ParticleSystem>();
 
             GeneralModifier.SetColor(ps, deathParticleColor);
+
+            Destroy(ps.gameObject, 3f);
         }
     }
 

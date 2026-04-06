@@ -73,6 +73,7 @@ public class WeaponController : MonoBehaviour
 
         if (weaponData.pierce)
             team = TEAM.PlayerPierce;
+        
 
         if (weaponPivot == null)
             MakeWeaponPivot();
@@ -134,19 +135,17 @@ public class WeaponController : MonoBehaviour
     {
         if (CompareTag("Player"))
         {
-            GameObject pivotObject = Instantiate(new GameObject(), transform);
-            pivotObject.name = $"{weaponData.weaponName} Pivot";
+            GameObject pivotObject = new GameObject($"{weaponData.weaponName} Pivot");
+            pivotObject.transform.parent = transform;
             pivotObject.tag = "Player";
             pivotObject.layer = 8;
 
             weaponPivot = pivotObject.transform;
-            //Debug.Log("Created Player Weapon Pivot");
         }
         else if (CompareTag("Enemy"))
         {
-            //Debug.Log("pivot container: " + transform.Find("Pivot Container").name);
-            GameObject pivotObject = Instantiate(new GameObject(), transform.Find("Pivot Container"));
-            pivotObject.name = $"{weaponData.weaponName} Pivot";
+            GameObject pivotObject = new GameObject($"{weaponData.weaponName} Pivot");
+            pivotObject.transform.parent = transform;
             pivotObject.tag = "Enemy";
             pivotObject.layer = 7;
 
