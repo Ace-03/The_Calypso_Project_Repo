@@ -7,7 +7,7 @@ public class AttractorTrigger : MonoBehaviour
     [SerializeField] private float windUpForce = 5f;
     [SerializeField] private float dampening = 3f;
     [SerializeField] private string attractorTag = "Item";
-    [SerializeField] private float pullExpirationTime = 3f;
+    [SerializeField] private float pullExpirationTime = 10f;
 
     private SphereCollider col;
 
@@ -48,7 +48,7 @@ public class AttractorTrigger : MonoBehaviour
         Vector3 velocityToTarget = Vector3.Project(rb.linearVelocity, direction);
         Vector3 lateralVelocity = rb.linearVelocity - velocityToTarget;
 
-        while (timer < pullExpirationTime)
+        while (timer < pullExpirationTime && other != null)
         {
             direction = (transform.position - other.position).normalized;
             rb.AddForce(direction * attractForce, ForceMode.VelocityChange);

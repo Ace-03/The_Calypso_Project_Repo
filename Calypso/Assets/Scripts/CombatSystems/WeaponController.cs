@@ -133,24 +133,22 @@ public class WeaponController : MonoBehaviour
 
     private void MakeWeaponPivot()
     {
+        GameObject pivotObject = new GameObject($"{weaponData.weaponName} Pivot");
+        pivotObject.transform.parent = transform;
+        pivotObject.transform.localPosition = Vector3.zero;
+
         if (CompareTag("Player"))
         {
-            GameObject pivotObject = new GameObject($"{weaponData.weaponName} Pivot");
-            pivotObject.transform.parent = transform;
             pivotObject.tag = "Player";
             pivotObject.layer = 8;
-
-            weaponPivot = pivotObject.transform;
         }
         else if (CompareTag("Enemy"))
         {
-            GameObject pivotObject = new GameObject($"{weaponData.weaponName} Pivot");
-            pivotObject.transform.parent = transform;
             pivotObject.tag = "Enemy";
             pivotObject.layer = 7;
-
-            weaponPivot = pivotObject.transform;
         }
+
+        weaponPivot = pivotObject.transform;
     }
 
     private void RenamePivot() =>
