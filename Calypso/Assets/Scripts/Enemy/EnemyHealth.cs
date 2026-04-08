@@ -21,12 +21,14 @@ public class EnemyHealth : GenericHealth
     {
         if (invulnerable) { return; }
 
+        EnemyDefinitionSO enemy = GetComponent<EnemyInitializer>().GetEnemyData();
+
         if (statusSystem != null)
         {
-            statusSystem.ApplyPoison(info.poisonDuration);
-            statusSystem.ApplySlowdown(info.stunDuration);
-            statusSystem.ApplyStun(info.stunDuration);
-            statusSystem.ApplyKnockback(info.knockbackStrength);
+            statusSystem.ApplyPoison(Mathf.Max(info.poisonDuration - enemy.poisonResistance, 0));
+            statusSystem.ApplySlowdown(Mathf.Max(info.stunDuration - enemy.slowResistance, 0));
+            statusSystem.ApplyStun(Mathf.Max(info.stunDuration - enemy.stunResistance, 0));
+            statusSystem.ApplyKnockback(Mathf.Max(info.knockbackStrength - enemy.knockbackResistance, 0));
         }
 
         base.TakeDamage(info);
@@ -53,14 +55,11 @@ public class EnemyHealth : GenericHealth
     public void DEBUG_Change_Mat()
     {
         if (mr == null)
-        {
             mr = GetComponent<MeshRenderer>();
-        }
         if(mr == null)
-        {
             return;
-        }
-        float percentage = (float)hp/(float)maxHP;
+
+        float percentage = hp/maxHP;
         Color interpolatedColor = DEBUG_Gradient.Evaluate(percentage);
         mr.material.color = interpolatedColor;
     }
