@@ -14,7 +14,7 @@ public class BaseHealth : GenericHealth
         HudManager.Instance?.health?.UpdateBaseHealth(hp, maxHP);
     }
 
-    public override void TakeDamageRaw(int damage)
+    public override void TakeDamageRaw(float damage)
     {
         base.TakeDamageRaw(damage);
 

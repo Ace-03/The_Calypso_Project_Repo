@@ -3,8 +3,8 @@ using UnityEngine;
 public class GenericHealth : MonoBehaviour
 {
     [SerializeField]
-    public int maxHP;
-    public int hp;
+    public float maxHP;
+    public float hp;
     public VisualEffectsHandler vfxHandler;
 
     protected bool invulnerable;
@@ -43,7 +43,7 @@ public class GenericHealth : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamageRaw(int damage)
+    public virtual void TakeDamageRaw(float damage)
     {
         hp -= damage;
 

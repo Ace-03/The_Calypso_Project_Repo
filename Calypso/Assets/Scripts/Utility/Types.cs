@@ -7,7 +7,7 @@ public class PlayerHealthData : HealthData
 }
 public class HealthData
 {
-    public int maxHP;
+    public float maxHP;
 }
 
 public struct DamageInfo
