@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Item Count Increase
   description: Increases the number of projectiles fired by weapons
-  sprite: {fileID: 21300000, guid: f5e4f4e4eff4ce54c9798609f71b3086, type: 3}
+  sprite: {fileID: 21300000, guid: 2f8167f0ee9e9734290d832b7b7c2c40, type: 3}
   maxLevel: 5
   rarity: 2
   itemBehaviors: []

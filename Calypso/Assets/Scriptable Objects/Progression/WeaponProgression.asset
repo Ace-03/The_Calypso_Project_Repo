@@ -25,3 +25,7 @@ MonoBehaviour:
     iron: 40
     stone: 30
     LevelUpReward: {fileID: 11400000, guid: ea8de3f937f1407429266178c6c986d5, type: 2}
+  - BaseLevel: 2
+    iron: 999
+    stone: 999
+    LevelUpReward: {fileID: 11400000, guid: ea8de3f937f1407429266178c6c986d5, type: 2}

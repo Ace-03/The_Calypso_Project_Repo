@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Mining Speed Upgrade
   description: Increases your mining speed
-  sprite: {fileID: 21300000, guid: a37b264255dca7b499cef00d2c0f51e8, type: 3}
+  sprite: {fileID: 21300000, guid: a2cae889f4d479e4d8641673000f6c38, type: 3}
   maxLevel: 99
   rarity: 1
   itemBehaviors: []

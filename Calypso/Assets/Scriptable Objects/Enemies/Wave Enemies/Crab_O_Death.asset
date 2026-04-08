@@ -23,7 +23,7 @@ MonoBehaviour:
   DifficultyModifier: 1
   aimSpeed: 1
   weapon: {fileID: 11400000, guid: 5f6680a9f6a071248904a0948885e8a2, type: 2}
-  knockbackResistance: 0
+  knockbackResistance: 100
   stunResistance: 0
   poisonResistance: 0
   slowResistance: 0
@@ -35,6 +35,6 @@ MonoBehaviour:
     minAmount: 1
     maxAmount: 1
   - data: {fileID: 11400000, guid: db25f614fff8d2c4281fd95f9f2ba8cc, type: 2}
-    dropChance: 4
-    minAmount: 1
-    maxAmount: 1
+    dropChance: 100
+    minAmount: 110
+    maxAmount: 110

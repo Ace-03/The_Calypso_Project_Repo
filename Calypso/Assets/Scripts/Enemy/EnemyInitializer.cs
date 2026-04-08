@@ -16,6 +16,9 @@ public class EnemyInitializer : MonoBehaviour
     private SpriteRenderer sr;
     private IEnemyMovement ai;
 
+    private Vector3 startSize;
+    private Vector3 colStartSize;
+
     private Color deathParticleColor;
 
     private void Awake()
@@ -52,6 +55,9 @@ public class EnemyInitializer : MonoBehaviour
         }
         else
             sr = GetComponentInChildren<SpriteRenderer>();
+
+        startSize = sr.transform.localScale;
+        colStartSize = enemyCollider.size;
     }
 
     public void Initialize(EnemyDefinitionSO data)
@@ -88,8 +94,8 @@ public class EnemyInitializer : MonoBehaviour
     {
         sr.sprite = data.sprite;
         sr.color = data.spriteColor;
-        sr.transform.localScale *= data.sizeModifier;
-        enemyCollider.size *= (data.sizeModifier / 2f);
+        sr.transform.localScale = data.sizeModifier * startSize;
+        enemyCollider.size = data.sizeModifier * colStartSize;
         deathParticleColor = SpriteAverageColor.GetAverageColor(data.sprite) * data.spriteColor;
     }
 
