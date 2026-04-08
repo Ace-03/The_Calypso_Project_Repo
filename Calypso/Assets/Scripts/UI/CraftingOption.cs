@@ -25,9 +25,16 @@ public class CraftingOption : MonoBehaviour
         UpdateInfoPanel();
         weaponIcon.sprite = weaponRecipe.rewardWeapon.icon;
         SpriteNormalizer.NormalizeImage(weaponIcon.gameObject);
-        BlueprintManager.Instance.craftingOptions.Add(this);
     }
 
+    private void OnEnable()
+    {
+        // Register itself to the Singleton Manager
+        if (BlueprintManager.Instance != null && !BlueprintManager.Instance.craftingOptions.Contains(this))
+        {
+            BlueprintManager.Instance.craftingOptions.Add(this);
+        }
+    }
     public void UpdateInfoPanel()
     {
         if (isLocked)

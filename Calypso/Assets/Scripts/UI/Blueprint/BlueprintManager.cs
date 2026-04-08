@@ -18,14 +18,6 @@ public class BlueprintManager : MonoBehaviour
 
     public void CheckRecipes()
     {
-        // Crafting option objects start asleep.
-        // if no options are seen then delay and try again.
-        if (craftingOptions.Count <= 0)
-        {
-            Invoke(nameof(CheckRecipes), 0.1f);
-            return;
-        }
-
         Debug.Log("Checking recipes");
 
         InventoryManager invManager = ContextRegister.Instance.GetContext().inventoryManager;
