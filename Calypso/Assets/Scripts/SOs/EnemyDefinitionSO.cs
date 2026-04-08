@@ -28,16 +28,4 @@ public class EnemyDefinitionSO : ScriptableObject
     public float bobSpeed;
 
     public List<ItemDrop> possibleDrops;
-
-    public DamageInfo MakeDamageInfo()
-    {
-        return new DamageInfo
-        {
-            damage = weapon.baseStats.Damage * DifficultyModifier,
-            knockbackStrength = weapon.baseKnockback * DifficultyModifier,
-            stunDuration = weapon.baseStun * DifficultyModifier,
-            poisonDuration = weapon.basePoison * DifficultyModifier,
-            slowDuration = weapon.baseSlowdown * DifficultyModifier,
-        };
-    }
 }

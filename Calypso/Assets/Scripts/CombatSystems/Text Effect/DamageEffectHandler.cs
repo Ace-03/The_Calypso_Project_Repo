@@ -12,6 +12,7 @@ public class DamageEffectHandler : MonoBehaviour
     [SerializeField] private Color playerTextColor = Color.red;
     [SerializeField] private Color healPlayerTextColor = Color.green;
     [SerializeField] private float textVerticalOffset;
+    [SerializeField] private float EnemyValueMult = 10;
 
 
     [Header("Assets")]
@@ -33,7 +34,7 @@ public class DamageEffectHandler : MonoBehaviour
 
     private void SpawnEnemyTextEffect(DamagePayload payload)
     {
-        SpawnTextEffect(payload.damageInfo.damage, payload.receiver.transform.position, enemyTextColor);
+        SpawnTextEffect(payload.damageInfo.damage * EnemyValueMult, payload.receiver.transform.position, enemyTextColor);
     }
 
     private void SpawnPlayerTextEffect(DamagePayload payload)
