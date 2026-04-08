@@ -5119,10 +5119,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2442599d49069945a472a74ddb5f53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractForce: 10
-  windUpForce: 5
-  dampening: 3
+  attractForce: 1
+  windUpForce: 10
+  dampening: 1
   attractorTag: Item
+  pullExpirationTime: 3
 --- !u!1 &3587824869525600516
 GameObject:
   m_ObjectHideFlags: 0
@@ -20233,7 +20234,6 @@ MonoBehaviour:
   maxHP: 0
   hp: 0
   vfxHandler: {fileID: 2971592590130550337}
-  damageTakenEvent: {fileID: 11400000, guid: dad5200942e7142419e70345aa0690e9, type: 2}
   healEvent: {fileID: 11400000, guid: fc4cf7c8c04605b409a28d7cfb73b74b, type: 2}
 --- !u!114 &2971592590130550337
 MonoBehaviour:
