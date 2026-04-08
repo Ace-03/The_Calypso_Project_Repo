@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Attack Speed Increase Item
   description: Increases weapon rate of fire
-  sprite: {fileID: 21300000, guid: db7dc429e194db94b9c5f2cbd8f2466a, type: 3}
+  sprite: {fileID: 21300000, guid: f7cb64eb2d07ae04292c07ecdc45cadb, type: 3}
   maxLevel: 99
   rarity: 0
   itemBehaviors: []
