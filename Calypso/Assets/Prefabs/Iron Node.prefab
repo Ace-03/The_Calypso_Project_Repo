@@ -210,6 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3458881342363243601}
   - component: {fileID: 3963630243157493017}
+  - component: {fileID: 6299441721674035730}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -225,13 +226,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667641937440472098}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.09, y: 0, z: 0.45}
-  m_LocalScale: {x: 1.4655, y: 1.4655, z: 1.4655}
+  m_LocalRotation: {x: 0, y: 0, z: -0.26833138, w: 0.9633267}
+  m_LocalPosition: {x: -1.38, y: -0.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9018152280602895752}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -31.13}
 --- !u!136 &3963630243157493017
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -249,12 +250,33 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.06
-  m_Height: 5.49
+  m_Radius: 1.6
+  m_Height: 4
   m_Direction: 1
   m_Center: {x: -1.24, y: 1.5, z: -0.5}
+--- !u!135 &6299441721674035730
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667641937440472098}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.4
+  m_Center: {x: 0, y: 3.48, z: -0.46}
 --- !u!1 &1432250998109486118
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +748,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 1db76f0c2ef9b464bae5dc1d1b8aac20, type: 2}
     - target: {fileID: 919132149155446097, guid: 13c61fbf19a974041a59b6be85503ac4, type: 3}
       propertyPath: m_Name
-      value: Metal1
+      value: MetalD0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
