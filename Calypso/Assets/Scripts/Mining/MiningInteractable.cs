@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class MiningInteractable : MonoBehaviour, IInteractable
     [SerializeField] private float mineTime = 2f;
     private float activeMineTime;
     [SerializeField] private float Maxhp = 3;
-    [SerializeField] private GameObject model;
+    [SerializeField] private List<GameObject> models;
 
     [Header("Particle Config")]
     [SerializeField] private List<Transform> particlePositions = new List<Transform>();
@@ -104,13 +105,25 @@ public class MiningInteractable : MonoBehaviour, IInteractable
         --hp;
 
         if (hp <= 0)
-        {
             DepleteNode();
-        }
         else
-        {
-            model.transform.localScale = Vector3.one * (hp / Maxhp);
-        }
+            UpdateModel();
+    }
+
+    private void UpdateModel()
+    {
+        float hpPercent = hp / Maxhp;
+        int decayStage = models.Count - Mathf.RoundToInt(hpPercent * models.Count);
+
+        SetModel(decayStage);
+    }
+
+    private void SetModel(int decayStage)
+    {
+        foreach (GameObject model in models)
+            model.SetActive(false);
+
+        models[decayStage].SetActive(true);  
     }
 
     private void DepleteNode()
